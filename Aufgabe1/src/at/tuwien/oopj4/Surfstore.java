@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Surfstore {
 
   private ArrayList<Person> persons = new ArrayList<Person>();
-  private ArrayList<Surfartikel> articles = new ArrayList<Surfartikel>();
+  private ArrayList<Article> articles = new ArrayList<Article>();
 
-  public void borrowArticel() {
+  public void borrowArticle() {
 
 
   }
 
-  public void returnArticel() {
+  public void returnArticle() {
 
   }
 
@@ -22,7 +22,7 @@ public class Surfstore {
   }
 
   public void createArticle() {
-    articles.add(new Surfartikel());
+    articles.add(new Article());
   }
 
 

@@ -18,7 +18,7 @@ public class SurfstoreTest {
   }
 
   @Test
-  public void borrowArticelTest() {
+  public void borrowArticleTest() {
   }
 
 
