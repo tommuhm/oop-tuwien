@@ -18,15 +18,15 @@ public class Surfarticle{
 		this.articleprice = aprice;
 	}
 	
-	public void getPricePerTimeunit() {
+	public float getPricePerTimeunit() {
 		return  this.articleprice;
 	} 
 	
-	public void getArticleName() {
+	public String getArticleName() {
 		return  this.articlename;
 	} 
 	
-	public void getArticleNumber() {
+	public int getArticleNumber() {
 		return  this.articlenumber;
 	} 
 	
