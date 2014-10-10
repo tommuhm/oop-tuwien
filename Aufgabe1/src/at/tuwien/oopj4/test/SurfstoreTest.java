@@ -7,19 +7,22 @@ import at.tuwien.oopj4.Surfstore;
 
 public class SurfstoreTest {
 
-  private Surfstore surfstore;
+	private Surfstore surfstore;
 
-  @Before
-  public void createTestDate() {
-    surfstore = new Surfstore();
-    surfstore.createPerson("Uli");
-    surfstore.createPerson("David");
-    surfstore.createPerson("Tom");
-  }
+	@Before
+	public void createTestDate() {
+		surfstore = new Surfstore();
+		surfstore.createPerson("Ulrich", "A");
+		surfstore.createPerson("David", "J");
+		surfstore.createPerson("Tom", "M");
+	}
+
+	@Test
+	public void borrowSurfarticleTest() {
+	}
 
   @Test
-  public void borrowArticleTest() {
+  public void returnSurfarticleTest() {
   }
-
 
 }
