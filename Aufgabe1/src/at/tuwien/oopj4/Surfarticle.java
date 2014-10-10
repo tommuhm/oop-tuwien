@@ -19,7 +19,7 @@ public class Surfarticle{
 	}
 	
 	public void getPricePerTimeunit() {
-		return  this.aprice;
+		return  this.articleprice;
 	} 
 	
 	public void getArticleName() {
