@@ -3,35 +3,33 @@ package at.tuwien.oopj4;
 /**
  * @author: djaffry, uaschl, tmuhm
  *
- * @changelog:
- *
  */
 public class Surfarticle{
 	
-	private String articlename;
-	private int articlenumber;
-	private float articleprice;
+	private String articleName;
+	private int articleNumber;
+	private float articlePrice;
 	
-	public Surfarticle( String aname, int anumber, float aprice ) {
-		this.articlename = aname;
-		this.articlenumber = anumber; 
-		this.articleprice = aprice;
+	public Surfarticle( String aName, int aNumber, float aPrice ) {
+		this.articleName = aName;
+		this.articleNumber = aNumber; 
+		this.articlePrice = aPrice;
 	}
 	
 	public float getPricePerTimeunit() {
-		return  this.articleprice;
+		return  this.articlePrice;
 	} 
 	
 	public String getArticleName() {
-		return  this.articlename;
+		return  this.articleName;
 	} 
 	
 	public int getArticleNumber() {
-		return  this.articlenumber;
+		return  this.articleNumber;
 	} 
 	
 	public String toString() {
-		return this.articlename + " " + this.articlenumber + "" + this.articleprice;
+		return this.articleName + " " + this.articleNumber + "" + this.articlePrice;
 	}
 	
 }
