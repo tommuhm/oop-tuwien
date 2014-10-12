@@ -82,12 +82,11 @@ public class Surfstore {
 			for (ArrayList<Rental> rentedArticles : rentedMap.values()) {
 				for (Rental rentedArticle : rentedArticles) {
 					if (rentedArticle.getSurfarticle().equals(surfarticle)) {
-						System.out.println("Rented from " + rentedArticle.getDate()
+						System.out.println("\tRented from " + rentedArticle.getDate()
 								+ ", rented hours " + rentedArticle.getHours());
 					}
 				}
 			}
-			System.out.println("-----------");
 		}
 	}
 
@@ -107,8 +106,6 @@ public class Surfstore {
 			} else {
 				System.out.println("Rented Articles: 0");
 			}
-			System.out.println("-----------");
 		}
 	}
-
 }
