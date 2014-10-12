@@ -1,5 +1,10 @@
 import java.util.Date;
 
+/**
+* @author: djaffry, uaschl, tmuhm
+*
+*/
+
 public class Rental {
 	private Surfarticle surfarticle;
 	private Date date;
