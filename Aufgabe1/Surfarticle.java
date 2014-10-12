@@ -1,7 +1,10 @@
 /**
- * @author: djaffry, uaschl, tmuhm
- */
+* @author: djaffry, uaschl, tmuhm
+*
+*/
+
 public class Surfarticle {
+	
 	private static int maxArticleNumber = 0;
 
 	private int articleNumber;
