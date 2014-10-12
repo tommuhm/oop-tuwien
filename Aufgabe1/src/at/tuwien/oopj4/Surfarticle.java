@@ -21,7 +21,7 @@ public class Surfarticle{
 	}
 	
 	public Surfarticle( Surfarticle sa ) {
-		this(sa.aName, sa.aNumber, sa.aPrice, sa.totalAmount);
+		this(sa.articleName, sa.articleNumber, sa.articlePrice, sa.totalAmount);
 	}
 	
 	public float getPricePerTimeunit() {
