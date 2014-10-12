@@ -10,12 +10,16 @@ public class Surfstore {
 	private ArrayList<Surfarticle> surfArticles = new ArrayList<Surfarticle>();
 	private HashMap<Person, ArrayList<Rental>> rentedMap = new HashMap<Person, ArrayList<Rental>>();
 
-	public void createPerson(String firstname, String lastname) {
-		persons.add(new Person(firstname + " " + lastname));
+	public Person createPerson(String firstname, String lastname) {
+		Person person = new Person(firstname + " " + lastname);
+		persons.add(person);
+		return person;
 	}
 
-	public void createSurfarticle(String articelName, int articleNumber, float articlePrice, int totalAmount) {
-		surfArticles.add(new Surfarticle(articelName, articleNumber, articlePrice, totalAmount));
+	public Surfarticle createSurfarticle(String articelName, int articleNumber, float articlePrice, int totalAmount) {
+		Surfarticle surfarticle = new Surfarticle(articelName, articleNumber, articlePrice, totalAmount);
+		surfArticles.add(surfarticle);
+		return surfarticle;
 	}
 
 	public void borrowSurfarticle(Person person, Surfarticle surfarticle, int amount, Date issueDate) {
