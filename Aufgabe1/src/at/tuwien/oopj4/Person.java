@@ -12,7 +12,7 @@ public class Person {
 	public Person(String personName)
 	{
 		this.personName = personName;
-		this.personID = this.maxPersonID++; //Set PersonID and increment by 1
+		this.personID = Person.maxPersonID++; //Set PersonID and increment by 1
 	}
 
 	//===========GETTER AND SETTERS===============
