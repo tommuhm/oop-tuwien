@@ -5,11 +5,10 @@ import java.util.Date;
 public class Rental {
 	private Surfarticle surfarticle;
 	private Date date;
-	
-	public Rental(Surfarticle surfarticle, Date date)
-	{
+
+	public Rental(Surfarticle surfarticle, Date date) {
 		this.surfarticle = surfarticle;
-		this.date = date;		
+		this.date = date;
 	}
 
 	public Surfarticle getSurfarticle() {
@@ -24,6 +23,5 @@ public class Rental {
 	public String toString() {
 		return this.surfarticle.getArticleName() + " " + this.date.toString();
 	}
-	
-	
+
 }
