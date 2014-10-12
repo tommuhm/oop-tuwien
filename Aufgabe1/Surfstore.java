@@ -2,6 +2,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+/**
+* @author: djaffry, uaschl, tmuhm
+*
+*/
+
 public class Surfstore {
 
 	private ArrayList<Person> persons = new ArrayList<Person>();

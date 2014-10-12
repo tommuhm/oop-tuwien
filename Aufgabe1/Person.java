@@ -1,6 +1,7 @@
 /**
  * Created by tom, ulrich und david on 10/10/14.
  */
+ 
 public class Person {
 	private static int maxPersonID = 0;
 
