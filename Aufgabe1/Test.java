@@ -11,34 +11,19 @@ public class Test {
 		System.out.println("Creating some Persons and Surfarticles:");
 		initialize();
 
-		System.out.println();
-		System.out.println();
-
-		System.out.println("Renting some articles:");
+		System.out.println("\n\nRenting some articles:");
 		borrowSurfarticleTest();
 
-		System.out.println();
-		System.out.println();
-
-		System.out.println("Printing all rented articles:");
+		System.out.println("\n\nPrinting all rented articles:");
 		surfstore.printSurfArticles();
 
-		System.out.println();
-		System.out.println();
-
-		System.out.println("Returning some used articles:");
+		System.out.println("\n\nReturning some used articles:");
 		returnSurfarticleTest();
 
-		System.out.println();
-		System.out.println();
-
-		System.out.println("Printing all rented articles:");
+		System.out.println("\n\nPrinting all rented articles:");
 		surfstore.printSurfArticles();
 
-		System.out.println();
-		System.out.println();
-
-		System.out.println("Printing all persons:");
+		System.out.println("\n\nPrinting all persons:");
 		surfstore.printPersons();
 
 
