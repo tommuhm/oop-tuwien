@@ -3,6 +3,7 @@
 *
 */
 
+
 /*
  * Aufteilung der Arbeiten:
  * Geplant wurde von D. Jaffry, T. Muhm und U. Aschl gemeinsam.
@@ -16,7 +17,6 @@
  * Zum Schluss wurden die Klassen nochmal von allen Gruppenmitgliedern gegenkontrolliert.
  * 
  */
-
 
 
 import java.util.Date;
