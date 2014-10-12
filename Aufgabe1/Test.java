@@ -1,9 +1,25 @@
-import java.util.Date;
-
 /**
 * @author: djaffry, uaschl, tmuhm
 *
 */
+
+/*
+ * Aufteilung der Arbeiten:
+ * Geplant wurde von D. Jaffry, T. Muhm und U. Aschl gemeinsam.
+ * Anschlieﬂend wurden die Arbeiten aufgeteilt.
+ * 
+ * Die Klassen Rental.java und Person.java wurde von Ulrich Aschl geschrieben.
+ * Die Klasse Surfarticle.java wurde von David Jaffry geschrieben.
+ * Die Klasse Surfstore.java wurde von Thomas Muhm geschrieben.
+ * Anschlieﬂend wurde noch Test.java von Ulrich Aschl erstellt.
+ * 
+ * Zum Schluss wurden die Klassen nochmal von allen Gruppenmitgliedern gegenkontrolliert.
+ * 
+ */
+
+
+
+import java.util.Date;
 
 public class Test {
 
