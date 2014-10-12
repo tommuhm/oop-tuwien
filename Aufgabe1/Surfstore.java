@@ -1,11 +1,10 @@
+/**
+ * @author: djaffry, uaschl, tmuhm
+ */
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-/**
-* @author: djaffry, uaschl, tmuhm
-*
-*/
 
 public class Surfstore {
 

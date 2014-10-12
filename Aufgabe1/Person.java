@@ -1,12 +1,12 @@
 /**
- * Created by tom, ulrich und david on 10/10/14.
+ * @author: djaffry, uaschl, tmuhm
  */
- 
+
 public class Person {
 	private static int maxPersonID = 0;
 
 	private String personName;
-	private int personID;
+	private final int personID;
 
 	public Person(String personName) {
 		this.personName = personName;
@@ -21,7 +21,6 @@ public class Person {
 	public int getPersonID() {
 		return personID;
 	}
-
 	// ============================================
 
 	@Override

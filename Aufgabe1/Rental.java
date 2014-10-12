@@ -1,9 +1,8 @@
-import java.util.Date;
-
 /**
-* @author: djaffry, uaschl, tmuhm
-*
-*/
+ * @author: djaffry, uaschl, tmuhm
+ */
+
+import java.util.Date;
 
 public class Rental {
 	private Surfarticle surfarticle;

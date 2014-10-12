@@ -1,13 +1,12 @@
 /**
-* @author: djaffry, uaschl, tmuhm
-*
-*/
+ * @author: djaffry, uaschl, tmuhm
+ */
 
 public class Surfarticle {
-	
+
 	private static int maxArticleNumber = 0;
 
-	private int articleNumber;
+	private final int articleNumber;
 	private String articleName;
 	private float articlePrice;
 	private int currentAmount;
