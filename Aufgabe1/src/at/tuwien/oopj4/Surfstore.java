@@ -19,10 +19,10 @@ public class Surfstore {
 	}
 
 	public void borrowSurfarticle(Person person, Surfarticle surfarticle, int amount, Date issueDate) {
-		if (surfarticle.borrow(amount)) {
+		if (surfarticle.borrowArticle(amount)) {
 			ArrayList<Rental> rentedArticles;
 			if (!rentedMap.containsKey(person)) {
-				rentedArticles= new ArrayList<Rental>();
+				rentedArticles = new ArrayList<Rental>();
 				rentedMap.put(person, rentedArticles);
 			} else {
 				rentedArticles = rentedMap.get(person);
@@ -38,13 +38,24 @@ public class Surfstore {
 
 	public void returnSurfarticle(Person person, Surfarticle surfarticle, int amount) {
 		if (rentedMap.containsKey(person)) {
-
+			ArrayList<Rental> rentedArticles = rentedMap.get(person);
+			ArrayList<Rental> toRemove = new ArrayList<Rental>();
+			for (Rental rentedArticle: rentedArticles) {
+				if (amount <= 0) {
+					break;
+				}
+				if (rentedArticle.getArticleNumber() == surfarticle.getArticleNumber()) {
+					surfarticle.returnArticle(1);
+					toRemove.add(rentedArticle);
+					amount--;
+				}
+			}
+			for (Rental removeArticle : toRemove) {
+				rentedArticles.remove(removeArticle);
+			}
 		} else {
-			System.out.println();
+			System.out.println("Not articles borrowed");
 		}
-
-		surfarticle.returnArticle();
-
 	}
 
 	public void printSurfArticles() {
