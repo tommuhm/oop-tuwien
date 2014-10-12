@@ -2,7 +2,7 @@ package at.tuwien.oopj4;
 
 import java.util.Date;
 
-public class SurfstoreTestMain {
+public class Test {
 
 	private static Surfstore surfstore;
 
@@ -88,17 +88,17 @@ public class SurfstoreTestMain {
 	}
 
 	public static void returnSurfarticleTest() {
-		surfstore.returnSurfarticle(ulrich, surf200, 5);
-		System.out.println("Ulrich returned 5/5 of his surfboards.");
+		surfstore.returnSurfarticle(ulrich, surf200, 7);
+		//System.out.println("Ulrich returned 5/5 of his surfboards.");
 		
 		surfstore.returnSurfarticle(david, surf200, 5);
-		System.out.println("David returned 5/10 of his surfboards.");
+		//System.out.println("David returned 5/10 of his surfboards.");
 		
 		surfstore.returnSurfarticle(tom, surf200, 5);
-		System.out.println("Tom tried to return 5/0 of his sufboards.");
+		//System.out.println("Tom tried to return 5/0 of his sufboards.");
 		
 		surfstore.returnSurfarticle(david, surf200, 2);
-		System.out.println("David returned 2/5 of his surfboards.");
+		//System.out.println("David returned 2/5 of his surfboards.");
 	}
 
 
