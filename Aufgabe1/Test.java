@@ -1,23 +1,18 @@
 /**
-* @author: djaffry, uaschl, tmuhm
-*
-*/
-
-
-/*
+ * @author: djaffry, uaschl, tmuhm
+ *
  * Aufteilung der Arbeiten:
  * Geplant wurde von D. Jaffry, T. Muhm und U. Aschl gemeinsam.
- * Anschlieﬂend wurden die Arbeiten aufgeteilt.
- * 
+ * Anschliessend wurden die Arbeiten aufgeteilt.
+ *
  * Die Klassen Rental.java und Person.java wurde von Ulrich Aschl geschrieben.
  * Die Klasse Surfarticle.java wurde von David Jaffry geschrieben.
  * Die Klasse Surfstore.java wurde von Thomas Muhm geschrieben.
- * Anschlieﬂend wurde noch Test.java von Ulrich Aschl erstellt.
- * 
+ * Anschliessend wurde noch Test.java von Ulrich Aschl erstellt.
+ *
  * Zum Schluss wurden die Klassen nochmal von allen Gruppenmitgliedern gegenkontrolliert.
- * 
+ *
  */
-
 
 import java.util.Date;
 
@@ -46,8 +41,6 @@ public class Test {
 
 		System.out.println("\n\nPrinting all persons:");
 		surfstore.printPersons();
-
-
 	}
 
 
@@ -104,5 +97,4 @@ public class Test {
 		surfstore.returnSurfarticle(david, surf200, 2);
 		System.out.println("David returned 2/5 of his surfboards. 3 remaining.");
 	}
-
 }
