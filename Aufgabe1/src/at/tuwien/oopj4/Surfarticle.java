@@ -61,7 +61,6 @@ public class Surfarticle{
 	}
 	
 	public String toString() {
-		return this.articleName + " " + this.articleNumber + "" + this.articlePrice + " current: " + this.currentAmount + " total: " + this.totalAmount;
-	}
-	
+		return this.articleName + " " + this.articleNumber + "" + this.articlePrice + " total: " + this.totalAmount + " available: " + this.currentAmount + " rented: " + (this.totalAmount - this.currentAmount) ;
+	}	
 }
