@@ -12,10 +12,17 @@ public class Surfarticle{
 	private int currentAmount;
 	private int totalAmount;
 	
-	public Surfarticle( String aName, int aNumber, float aPrice ) {
+	public Surfarticle( String aName, int aNumber, float aPrice, int total ) {
 		this.articleName = aName;
 		this.articleNumber = aNumber; 
 		this.articlePrice = aPrice;
+		this.totalAmount = total;
+		this.currentAmount = total;
+	}
+	
+	public Surfarticle( Surfarticle sa ) {
+		this(sa.articleName, sa.articleNumber, sa.articlePrice, sa.totalAmount);
+		this.currentAmount = sa.currentAmount;
 	}
 	
 	public float getPricePerTimeunit() {
@@ -34,7 +41,7 @@ public class Surfarticle{
 		return this.currentAmount;
 	}
 	
-	public int getTotalAMount() {
+	public int getTotalAmount() {
 		return this.totalAmount;
 	}
 	
@@ -54,10 +61,11 @@ public class Surfarticle{
 	}
 	
 	public boolean returnArticle( int amount) {
-		tempAmount = amount + currentAmount;
+		int tempAmount = amount + currentAmount;
 		if ( tempAmount > totalAmount ) {
 			currentAmount = tempAmount;
-		}
+			return true;
+		} return false;
 	}
 	
 	public String toString() {
