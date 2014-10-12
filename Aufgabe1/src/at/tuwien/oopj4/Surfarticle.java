@@ -21,7 +21,7 @@ public class Surfarticle{
 		this.currentAmount = total;
 	}
 	
-	public float getPricePerTimeunit() {
+	public float getPricePerHour() {
 		return  this.articlePrice;
 	} 
 	
