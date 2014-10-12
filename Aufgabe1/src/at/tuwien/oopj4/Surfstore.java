@@ -44,7 +44,7 @@ public class Surfstore {
 				if (amount <= 0) {
 					break;
 				}
-				if (rentedArticle.getArticleNumber() == surfarticle.getArticleNumber()) {
+				if (rentedArticle.getSurfarticle().getArticleNumber() == surfarticle.getArticleNumber()) {
 					surfarticle.returnArticle(1);
 					toRemove.add(rentedArticle);
 					amount--;
