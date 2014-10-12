@@ -21,7 +21,12 @@ public class Rental {
 	
 	public float getPriceByNow()
 	{
-		return surfarticle.getPricePerHour() * ((new Date().getTime() - date.getTime())/1000/60);
+		return surfarticle.getPricePerHour() * this.getHours();
+	}
+	
+	public int getHours()
+	{
+		return (int) Math.ceil((new Date().getTime() - date.getTime())/1000/60);
 	}
 
 	@Override
