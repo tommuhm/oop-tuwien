@@ -44,7 +44,7 @@ public class Surfstore {
 		if (rentedMap.containsKey(person)) {
 			ArrayList<Rental> rentedArticles = rentedMap.get(person);
 			ArrayList<Rental> toRemove = new ArrayList<Rental>();
-			for (Rental rentedArticle: rentedArticles) {
+			for (Rental rentedArticle : rentedArticles) {
 				if (amount <= 0) {
 					break;
 				}
