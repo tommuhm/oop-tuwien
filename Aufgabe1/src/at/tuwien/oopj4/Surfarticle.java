@@ -21,7 +21,7 @@ public class Surfarticle{
 		this.currentAmount = total;
 	}
 	
-	public float getPricePerTimeunit() {
+	public float getPricePerHour() {
 		return  this.articlePrice;
 	} 
 	
@@ -56,16 +56,12 @@ public class Surfarticle{
 		} return false;
 	}
 	
-	public boolean returnArticle( int amount) {
-		int tempAmount = amount + currentAmount;
-		if ( tempAmount > totalAmount ) {
-			currentAmount = tempAmount;
-			return true;
-		} return false;
+	public void returnArticle( int amount) {
+			currentAmount += amount;
 	}
 	
 	public String toString() {
-		return this.articleName + " " + this.articleNumber + "" + this.articlePrice + " current: " + this.currentAmount + " total :" + this.totalAmount;
+		return this.articleName + " " + this.articleNumber + "" + this.articlePrice + " current: " + this.currentAmount + " total: " + this.totalAmount;
 	}
 	
 }
