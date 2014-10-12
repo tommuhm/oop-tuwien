@@ -33,10 +33,10 @@ public class Surfstore {
 			}
 
 			for (int i = 0; i < amount; i++) {
-				rentedArticles.add(new Rental(surfarticle, issueDate));
+				rentedArticles.add(new Rental(surfarticle, new Date(issueDate.getTime())));
 			}
 		} else {
-			System.out.println(person.getPersonName() + " could not borrow " + amount + " '"+ surfarticle.getArticleName() + "'");
+//			System.out.println(person.getPersonName() + " could not borrow " + amount + " '"+ surfarticle.getArticleName() + "'");
 		}
 	}
 
@@ -57,17 +57,17 @@ public class Surfstore {
 					price += rentedArticle.getPriceByNow();
 				}
 			}
-			if (amount == toReturnAmount) {
-				System.out.println(person.getPersonName() + " has no '" + surfarticle.getArticleName() + "' borrowed.");
-			} else {
-				System.out.println(person.getPersonName() + " returned " + (toReturnAmount-amount) + " '" + surfarticle.getArticleName() + "'");
-			}
+//			if (amount == toReturnAmount) {
+//				System.out.println(person.getPersonName() + " has no '" + surfarticle.getArticleName() + "' borrowed.");
+//			} else {
+//				System.out.println(person.getPersonName() + " returned " + (toReturnAmount-amount) + " '" + surfarticle.getArticleName() + "'");
+//			}
 
 			for (Rental removeArticle : toRemove) {
 				rentedArticles.remove(removeArticle);
 			}
 		} else {
-			System.out.println(person.getPersonName() + " has no articles borrowed.");
+//			System.out.println(person.getPersonName() + " has no articles borrowed.");
 		}
 		return price;
 	}
