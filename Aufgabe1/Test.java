@@ -1,7 +1,5 @@
 import java.util.Date;
 
-import at.tuwien.oopj4.*;
-
 public class Test {
 
 	private static Surfstore surfstore;
