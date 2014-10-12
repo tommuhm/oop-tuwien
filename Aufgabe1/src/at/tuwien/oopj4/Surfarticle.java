@@ -56,12 +56,8 @@ public class Surfarticle{
 		} return false;
 	}
 	
-	public boolean returnArticle( int amount) {
-		int tempAmount = amount + currentAmount;
-		if ( tempAmount > totalAmount ) {
-			currentAmount = tempAmount;
-			return true;
-		} return false;
+	public void returnArticle( int amount) {
+			currentAmount += amount;
 	}
 	
 	public String toString() {
