@@ -1,6 +1,8 @@
-package at.tuwien.oopj4;
+
 
 import java.util.Date;
+
+import at.tuwien.oopj4.*;
 
 public class Test {
 
@@ -84,22 +86,22 @@ public class Test {
 		
 		d.setHours(10);
 		System.out.println("Tom borrows 7 times surf200 at " + d);
+		System.out.println("Tom couldn't borrow surf200 - only 5 available");
 		surfstore.borrowSurfarticle(tom, surf200, 7, d);
 	}
 
 	public static void returnSurfarticleTest() {
 		surfstore.returnSurfarticle(ulrich, surf200, 7);
-		//System.out.println("Ulrich returned 5/5 of his surfboards.");
+		System.out.println("Ulrich returns 7/5 of his surfboards. He returend 5/5.");
 		
 		surfstore.returnSurfarticle(david, surf200, 5);
-		//System.out.println("David returned 5/10 of his surfboards.");
+		System.out.println("David returned 5/10 of his surfboards.");
 		
 		surfstore.returnSurfarticle(tom, surf200, 5);
-		//System.out.println("Tom tried to return 5/0 of his sufboards.");
+		System.out.println("Tom tried to return 5/0 of his sufboards. None articles were returned.");
 		
 		surfstore.returnSurfarticle(david, surf200, 2);
-		//System.out.println("David returned 2/5 of his surfboards.");
+		System.out.println("David returned 2/5 of his surfboards. 3 remaining.");
 	}
-
 
 }
