@@ -14,8 +14,8 @@ public class Surfstore {
 		persons.add(new Person(firstname + " " + lastname));
 	}
 
-	public void createSurfarticle(String articelName, int articleNumber, float articlePrice) {
-		surfArticles.add(new Surfarticle(articelName, articleNumber, articlePrice));
+	public void createSurfarticle(String articelName, int articleNumber, float articlePrice, int totalAmount) {
+		surfArticles.add(new Surfarticle(articelName, articleNumber, articlePrice, totalAmount));
 	}
 
 	public void borrowSurfarticle(Person person, Surfarticle surfarticle, int amount, Date issueDate) {
