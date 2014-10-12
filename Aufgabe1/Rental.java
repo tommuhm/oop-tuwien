@@ -1,5 +1,3 @@
-package at.tuwien.oopj4;
-
 import java.util.Date;
 
 public class Rental {

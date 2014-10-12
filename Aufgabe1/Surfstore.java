@@ -1,5 +1,3 @@
-package at.tuwien.oopj4;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -93,7 +91,7 @@ public class Surfstore {
 	public void printPersons() {
 		for (Person person : persons) {
 			System.out.println("-----------");
-			System.out.println("Name: " + person.getPersonName() + ", Person ID:" + person.getPersonID());
+			System.out.println("Name: " + person.getPersonName() + ", Person ID: " + person.getPersonID());
 			if (rentedMap.containsKey(person)) {
 				ArrayList<Rental> rentedArticles = rentedMap.get(person);
 				System.out.println("Rented Articles: " + rentedArticles.size());

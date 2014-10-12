@@ -1,5 +1,3 @@
-package at.tuwien.oopj4;
-
 /**
  * Created by tom, ulrich und david on 10/10/14.
  */

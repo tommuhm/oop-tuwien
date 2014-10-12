@@ -1,5 +1,3 @@
-package at.tuwien.oopj4;
-
 /**
 * @author: djaffry, uaschl, tmuhm
 *
