@@ -21,11 +21,6 @@
 
 import java.util.Date;
 
-/**
-* @author: djaffry, uaschl, tmuhm
-*
-*/
-
 public class Test {
 
 	private static Surfstore surfstore;
