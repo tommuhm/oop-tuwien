@@ -2,7 +2,7 @@ package at.tuwien.oopj4;
 
 import java.util.Date;
 
-public class SurfstoreTestMain {
+public class Test {
 
 	private static Surfstore surfstore;
 
