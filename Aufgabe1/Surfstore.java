@@ -38,18 +38,16 @@ public class Surfstore {
 			for (int i = 0; i < amount; i++) {
 				rentedArticles.add(new Rental(surfarticle, new Date(issueDate.getTime())));
 			}
-		} else {
-//			System.out.println(person.getPersonName() + " could not borrow " + amount + " '"+ surfarticle.getArticleName() + "'");
 		}
 	}
 
 	public float returnSurfarticle(Person person, Surfarticle surfarticle, int amount) {
 		float price = 0;
-		int toReturnAmount = amount;
+
 		if (rentedMap.containsKey(person)) {
 			ArrayList<Rental> rentedArticles = rentedMap.get(person);
 			ArrayList<Rental> toRemove = new ArrayList<Rental>();
-			for (Rental rentedArticle: rentedArticles) {
+			for (Rental rentedArticle : rentedArticles) {
 				if (amount <= 0) {
 					break;
 				}
@@ -60,17 +58,9 @@ public class Surfstore {
 					price += rentedArticle.getPriceByNow();
 				}
 			}
-//			if (amount == toReturnAmount) {
-//				System.out.println(person.getPersonName() + " has no '" + surfarticle.getArticleName() + "' borrowed.");
-//			} else {
-//				System.out.println(person.getPersonName() + " returned " + (toReturnAmount-amount) + " '" + surfarticle.getArticleName() + "'");
-//			}
-
 			for (Rental removeArticle : toRemove) {
 				rentedArticles.remove(removeArticle);
 			}
-		} else {
-//			System.out.println(person.getPersonName() + " has no articles borrowed.");
 		}
 		return price;
 	}
