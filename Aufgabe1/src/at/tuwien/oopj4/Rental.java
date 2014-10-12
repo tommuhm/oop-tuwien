@@ -20,7 +20,7 @@ public class Rental {
 	}
 
 	public float getPriceByNow() {
-		return surfarticle.getPricePerTimeunit() * this.getHours();
+		return surfarticle.getPricePerHour() * this.getHours();
 	}
 
 	public int getHours() {
