@@ -76,11 +76,14 @@ public class Surfstore {
 		Date currentDate = new Date();
 		for (Surfarticle surfarticle : surfArticles) {
 			System.out.println("-----------");
-			System.out.println("Articlename: " + surfarticle.getArticleName() + " , Articlenumber: " + surfarticle.getArticleNumber() + ", Price per Hour: " + surfarticle.getPricePerTimeunit());
+			System.out.println("Articlename: " + surfarticle.getArticleName()
+					+ " , Articlenumber: " + surfarticle.getArticleNumber()
+					+ ", Price per Hour: " + surfarticle.getPricePerHour());
 			for (ArrayList<Rental> rentedArticles : rentedMap.values()) {
 				for (Rental rentedArticle : rentedArticles) {
 					if (rentedArticle.getSurfarticle().equals(surfarticle)) {
-						System.out.println("Rented from " + rentedArticle.getDate() + ", rented hours " + rentedArticle.getHours());
+						System.out.println("Rented from " + rentedArticle.getDate()
+								+ ", rented hours " + rentedArticle.getHours());
 					}
 				}
 			}
@@ -96,7 +99,10 @@ public class Surfstore {
 				ArrayList<Rental> rentedArticles = rentedMap.get(person);
 				System.out.println("Rented Articles: " + rentedArticles.size());
 				for (Rental rentedArticle : rentedArticles) {
-					System.out.println("Article: " + rentedArticle.getSurfarticle().getArticleName() + ", rented from: " + rentedArticle.getDate() + ", rented hours " + rentedArticle.getHours() + ", current price: " + rentedArticle.getPriceByNow());
+					System.out.println("Article: " + rentedArticle.getSurfarticle().getArticleName()
+							+ ", rented from: " + rentedArticle.getDate()
+							+ ", rented hours " + rentedArticle.getHours()
+							+ ", current price: " + rentedArticle.getPriceByNow());
 				}
 			} else {
 				System.out.println("Rented Articles: 0");
