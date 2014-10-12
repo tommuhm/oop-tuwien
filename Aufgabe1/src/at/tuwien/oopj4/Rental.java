@@ -24,8 +24,7 @@ public class Rental {
 	}
 
 	public int getHours() {
-		return (int) Math
-				.ceil((new Date().getTime() - date.getTime()) / 1000 / 60);
+		return (int) Math.ceil((new Date().getTime() - date.getTime()) / 1000 / 60 / 60);
 	}
 
 	@Override
