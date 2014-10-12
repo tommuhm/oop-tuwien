@@ -10,12 +10,12 @@ public class Surfarticle {
 	private int currentAmount;
 	private int totalAmount;
 
-	public Surfarticle(String aName, float aPrice, int total) {
-		this.articleName = aName;
-		this.articleNumber = Surfarticle.maxArticleNumber++; //Set articleNmae and increment by 1
-		this.articlePrice = aPrice;
-		this.totalAmount = total;
-		this.currentAmount = total;
+	public Surfarticle(String articleName, float articlePrice, int totalAmount) {
+		this.articleName = articleName;
+		this.articleNumber = Surfarticle.maxArticleNumber++; //Set articleName and increment by 1
+		this.articlePrice = articlePrice;
+		this.totalAmount = totalAmount;
+		this.currentAmount = totalAmount;
 	}
 
 	public float getPricePerHour() {
@@ -43,12 +43,12 @@ public class Surfarticle {
 	}
 
 	public boolean isAvailable(int amount) {
-		return currentAmount > amount;
+		return currentAmount >= amount;
 	}
 
 	public boolean borrowArticle(int amount) {
 		if (isAvailable(amount)) {
-			currentAmount = currentAmount - amount;
+			currentAmount -= amount;
 			return true;
 		}
 		return false;
@@ -59,6 +59,11 @@ public class Surfarticle {
 	}
 
 	public String toString() {
-		return this.articleName + " " + this.articleNumber + "" + this.articlePrice + " total: " + this.totalAmount + " available: " + this.currentAmount + " rented: " + (this.totalAmount - this.currentAmount);
+		return "Name: " + this.articleName
+				+ ", ID: " + this.articleNumber
+				+ ", Price/Hour: " + this.articlePrice
+				+ ", total: " + this.totalAmount
+				+ ", available: " + this.currentAmount
+				+ ", rented: " + (this.totalAmount - this.currentAmount);
 	}
 }
