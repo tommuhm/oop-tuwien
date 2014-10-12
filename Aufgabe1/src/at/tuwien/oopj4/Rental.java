@@ -18,6 +18,11 @@ public class Rental {
 	public Surfarticle getSurfarticle() {
 		return surfarticle;
 	}
+	
+	public float getPriceByNow()
+	{
+		return surfarticle.getPricePerHour() * ((new Date().getTime() - date.getTime())/1000/60);
+	}
 
 	@Override
 	public String toString() {
