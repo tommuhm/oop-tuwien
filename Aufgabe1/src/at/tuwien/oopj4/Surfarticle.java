@@ -46,7 +46,7 @@ public class Surfarticle{
 	}
 	
 	public boolean isAvailable( int amount ) {
-		return currentAmount < amount;
+		return currentAmount > amount;
 	}
 	
 	public boolean borrowArticle( int amount ) {
