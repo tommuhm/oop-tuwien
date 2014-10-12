@@ -57,7 +57,8 @@ public class Surfarticle{
 		tempAmount = amount + currentAmount;
 		if ( tempAmount > totalAmount ) {
 			currentAmount = tempAmount;
-		}
+			return true;
+		} return false;
 	}
 	
 	public String toString() {
