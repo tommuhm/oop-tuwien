@@ -5,16 +5,17 @@ package at.tuwien.oopj4;
 *
 */
 public class Surfarticle{
+	private static int maxArticleNumber = 0;
 	
-	private String articleName;
 	private int articleNumber;
+	private String articleName;
 	private float articlePrice;
 	private int currentAmount;
 	private int totalAmount;
 	
-	public Surfarticle( String aName, int aNumber, float aPrice, int total ) {
+	public Surfarticle( String aName, float aPrice, int total ) {
 		this.articleName = aName;
-		this.articleNumber = aNumber; 
+		this.articleNumber = Surfarticle.maxArticleNumber++; //Set articleNmae and increment by 1
 		this.articlePrice = aPrice;
 		this.totalAmount = total;
 		this.currentAmount = total;
