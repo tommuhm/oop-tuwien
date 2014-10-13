@@ -36,11 +36,14 @@ public class Test {
 		System.out.println("\n\nReturning some used articles:");
 		returnSurfarticleTest();
 
+		//Print-methods:
+		//	Originally System.out.println was directly in Surfstore.java,
+		//	but the description says, that methods in Surfstore.java must return values and mustn't do output.
 		System.out.println("\n\nPrinting all rented articles:");
-		surfstore.printSurfArticles();
+		System.out.println(surfstore.printSurfArticles());
 
 		System.out.println("\n\nPrinting all persons:");
-		surfstore.printPersons();
+		System.out.println(surfstore.printPersons());
 	}
 
 

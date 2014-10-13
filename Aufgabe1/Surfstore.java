@@ -64,42 +64,51 @@ public class Surfstore {
 		return price;
 	}
 
-	public void printSurfArticles() {
+	public String printSurfArticles() {
+		StringBuilder ausgabe = new StringBuilder();
+		
 		for (Surfarticle surfarticle : surfArticles) {
-			System.out.println("-----------------------------");
-			System.out.println("| Name: " + surfarticle.getArticleName()
+			ausgabe.append("-----------------------------\n");
+			ausgabe.append("| Name: " + surfarticle.getArticleName()
 					+ "\t| Article ID: " + surfarticle.getArticleNumber()
 					+ "\t| Price per Hour: " + surfarticle.getPricePerHour()
 					+ "\t| Total Amount: " + surfarticle.getTotalAmount()
-					+ "\t| Rented Count: " + (surfarticle.getTotalAmount() - surfarticle.getCurrentAmount()));
+					+ "\t| Rented Count: " + (surfarticle.getTotalAmount() - surfarticle.getCurrentAmount()) 
+					+ "\n");
 			for (ArrayList<Rental> rentedArticles : rentedMap.values()) {
 				for (Rental rentedArticle : rentedArticles) {
 					if (rentedArticle.getSurfarticle().equals(surfarticle)) {
-						System.out.println("\t| Rented from " + rentedArticle.getDate()
-								+ "\t| Rented Hours " + rentedArticle.getHours());
+						ausgabe.append("\t| Rented from " + rentedArticle.getDate()
+								+ "\t| Rented Hours " + rentedArticle.getHours()
+								+ "\n");
 					}
 				}
 			}
 		}
+		return ausgabe.toString();
 	}
 
-	public void printPersons() {
+	public String printPersons() {
+		StringBuilder ausgabe = new StringBuilder();
+		
 		for (Person person : persons) {
-			System.out.println("--------------------------");
-			System.out.println("| Name: " + person.getPersonName()
-					+ "\t| Person ID: " + person.getPersonID() + " |");
+			ausgabe.append("--------------------------\n");
+			ausgabe.append("| Name: " + person.getPersonName()
+					+ "\t| Person ID: " + person.getPersonID() + " |\n");
 			if (rentedMap.containsKey(person)) {
 				ArrayList<Rental> rentedArticles = rentedMap.get(person);
-				System.out.println("| " + rentedArticles.size() + " Rented Articles: ");
+				ausgabe.append("| " + rentedArticles.size() + " Rented Articles: \n");
 				for (Rental rentedArticle : rentedArticles) {
-					System.out.println("| Article: " + rentedArticle.getSurfarticle().getArticleName()
+					ausgabe.append("| Article: " + rentedArticle.getSurfarticle().getArticleName()
 							+ "\t| Rented from: " + rentedArticle.getDate()
 							+ "\t| Rented Hours " + rentedArticle.getHours()
-							+ "\t| Current Price: " + rentedArticle.getPriceByNow());
+							+ "\t| Current Price: " + rentedArticle.getPriceByNow()
+							+ "\n");
 				}
 			} else {
-				System.out.println("|  0 Rented Articles: ");
+				ausgabe.append("|  0 Rented Articles: \n");
 			}
 		}
+		return ausgabe.toString();
 	}
 }
