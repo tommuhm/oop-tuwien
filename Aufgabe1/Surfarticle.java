@@ -32,16 +32,12 @@ public class Surfarticle {
 		return this.articleNumber;
 	}
 
-	public int getAmount() {
+	public int getCurrentAmount() {
 		return this.currentAmount;
 	}
 
 	public int getTotalAmount() {
 		return this.totalAmount;
-	}
-
-	public void setAmount(int amount) {
-		currentAmount = amount;
 	}
 
 	public boolean isAvailable(int amount) {
