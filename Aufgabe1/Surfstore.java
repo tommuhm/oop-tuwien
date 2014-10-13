@@ -65,17 +65,18 @@ public class Surfstore {
 	}
 
 	public void printSurfArticles() {
-		Date currentDate = new Date();
 		for (Surfarticle surfarticle : surfArticles) {
-			System.out.println("-----------");
-			System.out.println("Articlename: " + surfarticle.getArticleName()
-					+ " , Articlenumber: " + surfarticle.getArticleNumber()
-					+ ", Price per Hour: " + surfarticle.getPricePerHour());
+			System.out.println("-----------------------------");
+			System.out.println("| Name: " + surfarticle.getArticleName()
+					+ "\t| Article ID: " + surfarticle.getArticleNumber()
+					+ "\t| Price per Hour: " + surfarticle.getPricePerHour()
+					+ "\t| Total Amount: " + surfarticle.getTotalAmount()
+					+ "\t| Rented Count: " + (surfarticle.getTotalAmount() - surfarticle.getCurrentAmount()));
 			for (ArrayList<Rental> rentedArticles : rentedMap.values()) {
 				for (Rental rentedArticle : rentedArticles) {
 					if (rentedArticle.getSurfarticle().equals(surfarticle)) {
-						System.out.println("\tRented from " + rentedArticle.getDate()
-								+ ", rented hours " + rentedArticle.getHours());
+						System.out.println("\t| Rented from " + rentedArticle.getDate()
+								+ "\t| Rented Hours " + rentedArticle.getHours());
 					}
 				}
 			}
@@ -84,19 +85,20 @@ public class Surfstore {
 
 	public void printPersons() {
 		for (Person person : persons) {
-			System.out.println("-----------");
-			System.out.println("Name: " + person.getPersonName() + ", Person ID: " + person.getPersonID());
+			System.out.println("--------------------------");
+			System.out.println("| Name: " + person.getPersonName()
+					+ "\t| Person ID: " + person.getPersonID() + " |");
 			if (rentedMap.containsKey(person)) {
 				ArrayList<Rental> rentedArticles = rentedMap.get(person);
-				System.out.println("Rented Articles: " + rentedArticles.size());
+				System.out.println("| " + rentedArticles.size() + " Rented Articles: ");
 				for (Rental rentedArticle : rentedArticles) {
-					System.out.println("Article: " + rentedArticle.getSurfarticle().getArticleName()
-							+ ", rented from: " + rentedArticle.getDate()
-							+ ", rented hours " + rentedArticle.getHours()
-							+ ", current price: " + rentedArticle.getPriceByNow());
+					System.out.println("| Article: " + rentedArticle.getSurfarticle().getArticleName()
+							+ "\t| Rented from: " + rentedArticle.getDate()
+							+ "\t| Rented Hours " + rentedArticle.getHours()
+							+ "\t| Current Price: " + rentedArticle.getPriceByNow());
 				}
 			} else {
-				System.out.println("Rented Articles: 0");
+				System.out.println("|  0 Rented Articles: ");
 			}
 		}
 	}
