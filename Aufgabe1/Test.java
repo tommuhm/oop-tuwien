@@ -70,15 +70,15 @@ public class Test {
 	public static void borrowSurfarticleTest() {
 		Date d = new Date();
 
-		d.setHours(8);
+		d.setHours(4);
 		System.out.println("Ulrich borrows 5 times surf200 at " + d);
 		surfstore.borrowSurfarticle(ulrich, surf200, 5, d);
 
-		d.setHours(9);
+		d.setHours(5);
 		System.out.println("David borrows 10 times surf200 at " + d);
 		surfstore.borrowSurfarticle(david, surf200, 10, d);
 
-		d.setHours(10);
+		d.setHours(6);
 		System.out.println("Tom borrows 7 times surf200 at " + d);
 		System.out.println("Tom couldn't borrow surf200 - only 5 available");
 		surfstore.borrowSurfarticle(tom, surf200, 7, d);
