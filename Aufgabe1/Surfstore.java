@@ -18,7 +18,7 @@ public class Surfstore {
 		return person;
 	}
 
-	public Surfarticle createSurfarticle(String articleName, float articlePrice, int totalAmount) { // articleName
+	public Surfarticle createSurfarticle(String articleName, float articlePrice, int totalAmount) {
 		Surfarticle surfarticle = new Surfarticle(articleName, articlePrice, totalAmount);
 		surfArticles.add(surfarticle);
 		return surfarticle;
