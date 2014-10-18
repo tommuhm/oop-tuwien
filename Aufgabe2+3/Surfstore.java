@@ -14,8 +14,8 @@ public class Surfstore {
     stockManagement = new StockManagement();
   }
 
-  public Person createPerson(String firstname, String lastname) {
-    Person person = new Person(firstname + " " + lastname);
+  public Person createCustomer(String firstname, String lastname) {
+    Person person = new Customer(firstname + " " + lastname);
     persons.add(person);
     return person;
   }
