@@ -21,7 +21,7 @@ public class Test {
 	private static Surfstore surfstore;
 
 	private static Person ulrich, david, tom;
-	private static Surfarticle surf200, surf220, helmM;
+	private static Article surf200, surf220, helmM;
 
 	public static void main(String[] args) {
 		System.out.println("Creating some Persons and Surfarticles:");
@@ -31,7 +31,7 @@ public class Test {
 		borrowSurfarticleTest();
 
 		System.out.println("\n\nPrinting all rented articles:");
-		surfstore.printSurfArticles();
+		surfstore.printArticles();
 
 		System.out.println("\n\nReturning some used articles:");
 		returnSurfarticleTest();
@@ -40,7 +40,7 @@ public class Test {
 		//	Originally System.out.println was directly in Surfstore.java,
 		//	but the description says, that methods in Surfstore.java must return values and mustn't do output.
 		System.out.println("\n\nPrinting all rented articles:");
-		System.out.println(surfstore.printSurfArticles());
+		System.out.println(surfstore.printArticles());
 
 		System.out.println("\n\nPrinting all persons:");
 		System.out.println(surfstore.printPersons());
@@ -51,13 +51,13 @@ public class Test {
 		surfstore = new Surfstore();
 		System.out.println("Surfstore was created.");
 
-		ulrich = surfstore.createPerson("Ulrich", "A");
+		ulrich = surfstore.createCustomer("Ulrich", "A");
 		System.out.println(ulrich + " created.");
 
-		david = surfstore.createPerson("David", "J");
+		david = surfstore.createCustomer("David", "J");
 		System.out.println(david + " created.");
 
-		tom = surfstore.createPerson("Tom", "M");
+		tom = surfstore.createCustomer("Tom", "M");
 		System.out.println(tom + " created.");
 
 		surf200 = surfstore.createSurfarticle("Surfboard 200cm", 6.00f, 20, 330);
