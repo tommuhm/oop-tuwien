@@ -18,8 +18,8 @@ public class Surfstore {
 		return person;
 	}
 
-	public Surfarticle createSurfarticle(String articleName, float articlePrice, int totalAmount) {
-		Surfarticle surfarticle = new Surfarticle(articleName, articlePrice, totalAmount);
+	public Surfarticle createSurfarticle(String articleName, float articlePrice, int totalAmount, int size) {
+		Surfarticle surfarticle = new Surfarticle(articleName, articlePrice, totalAmount, size);
 		surfArticles.add(surfarticle);
 		return surfarticle;
 	}

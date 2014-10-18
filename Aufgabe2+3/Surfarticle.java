@@ -67,7 +67,7 @@ public class Surfarticle {
 	public String toString() {
 		return "Name: " + this.articleName
 				+ ", ID: " + this.articleNumber
-				+ ", size: " + this.size
+				+ ", size: " + this.size + "cm"
 				+ ", price/Hour: " + this.articlePrice
 				+ ", total: " + this.totalAmount
 				+ ", available: " + this.currentAmount

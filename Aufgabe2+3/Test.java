@@ -60,13 +60,13 @@ public class Test {
 		tom = surfstore.createPerson("Tom", "M");
 		System.out.println(tom + " created.");
 
-		surf200 = surfstore.createSurfarticle("Surfboard 200cm", 6.00f, 20);
+		surf200 = surfstore.createSurfarticle("Surfboard 200cm", 6.00f, 20, 330);
 		System.out.println(surf200 + " created.");
 
-		surf220 = surfstore.createSurfarticle("Surfboard 220cm", 6.00f, 20);
+		surf220 = surfstore.createSurfarticle("Surfboard 220cm", 6.00f, 20, 330);
 		System.out.println(surf220 + " created.");
 
-		helmM = surfstore.createSurfarticle("Helm M", 2.50f, 50);
+		helmM = surfstore.createSurfarticle("Helm M", 2.50f, 50, 330);
 		System.out.println(helmM + " created.");
 	}
 
