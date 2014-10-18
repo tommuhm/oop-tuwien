@@ -4,19 +4,24 @@ import java.util.Date;
 public class Course {
 
 	private String courseName;
+	private float price;
+
 	private Teacher teacher;
 	private ArrayList<Student> students;
 	private ArrayList<Date> dates;
 
-	public Course(String courseName, Teacher teacher, ArrayList<Student> students, ArrayList<Date> dates) {
+	public Course(String courseName, Float price, Teacher teacher,
+			ArrayList<Student> students, ArrayList<Date> dates) {
 		this.courseName = courseName;
+		this.price = price;
 		this.teacher = teacher;
 		this.students = students;
 		this.dates = dates;
 	}
 
-	public Course(String courseName,Teacher teacher) {
+	public Course(String courseName, Float price, Teacher teacher) {
 		this.courseName = courseName;
+		this.price = price;
 		this.teacher = teacher;
 		this.students = new ArrayList<Student>();
 		this.dates = new ArrayList<Date>();
@@ -61,4 +66,21 @@ public class Course {
 	public void setDates(ArrayList<Date> dates) {
 		this.dates = dates;
 	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
 }

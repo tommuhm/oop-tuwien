@@ -8,21 +8,29 @@ public class Surfschool {
 		this.courses = new ArrayList<Course>();
 	}
 
-	public void addCourse(String courseName, Teacher teacher,
-		ArrayList<Student> students, ArrayList<Date> dates) {
-		Course course = new Course(courseName, teacher, students, dates);
+	public Course addCourse(String courseName, Float price, Teacher teacher,
+			ArrayList<Student> students, ArrayList<Date> dates) {
+		Course course = new Course(courseName, price, teacher, students, dates);
+
+		return this.addCourse(course);
+	}
+
+	public Course addCourse(Course course) {
 		this.courses.add(course);
+		return course;
 	}
 
-	public void removeCourse(Course course) {
-		this.courses.remove(course);
-	}
-
-	public void addStudent(Student student, Course course) {
+	public void addStudent(Course course, Student student) {
 		course.addStudent(student);
 	}
-
-	public void removeStudent(Student student, Course course) {
+	
+	public void removeStudent(Course course, Student student) {
 		course.removeStudent(student);
 	}
+	
+	public void setTeacher(Course course, Teacher teacher) {
+		course.setTeacher(teacher);
+	}
+	
+	
 }
