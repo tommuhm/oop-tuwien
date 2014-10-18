@@ -2,113 +2,109 @@
  * @author: djaffry, uaschl, tmuhm
  */
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 public class Surfstore {
 
-	private ArrayList<Person> persons = new ArrayList<Person>();
-	private ArrayList<Surfarticle> surfArticles = new ArrayList<Surfarticle>();
-	private HashMap<Person, ArrayList<Rental>> rentedMap = new HashMap<Person, ArrayList<Rental>>();
+  private ArrayList<Person> persons;
+  private StockManagement stockManagement;
 
-	public Person createPerson(String firstname, String lastname) {
-		Person person = new Person(firstname + " " + lastname);
-		persons.add(person);
-		return person;
-	}
+  public Surfstore() {
+    persons = new ArrayList<Person>();
+    stockManagement = new StockManagement();
+  }
 
-	public Surfarticle createSurfarticle(String articleName, float articlePrice, int totalAmount, int size) {
-		Surfarticle surfarticle = new Surfarticle(articleName, articlePrice, totalAmount, size);
-		surfArticles.add(surfarticle);
-		return surfarticle;
-	}
+  public Person createPerson(String firstname, String lastname) {
+    Person person = new Person(firstname + " " + lastname);
+    persons.add(person);
+    return person;
+  }
 
-	public void borrowSurfarticle(Person person, Surfarticle surfarticle, int amount, Date issueDate) {
-		if (surfarticle.borrowArticle(amount)) {
-			ArrayList<Rental> rentedArticles;
-			if (!rentedMap.containsKey(person)) {
-				rentedArticles = new ArrayList<Rental>();
-				rentedMap.put(person, rentedArticles);
-			} else {
-				rentedArticles = rentedMap.get(person);
-			}
+  public Article buyArticle(Article article, int amount) {
+    return stockManagement.addArticle(article, amount);
+  }
 
-			for (int i = 0; i < amount; i++) {
-				rentedArticles.add(new Rental(surfarticle, new Date(issueDate.getTime())));
-			}
-		}
-	}
+  public Rental borrowArticle(Person person, Article article, Date issueDate) {
+    return stockManagement.borrowArticle(person, article, issueDate);
+  }
 
-	public float returnSurfarticle(Person person, Surfarticle surfarticle, int amount) {
-		float price = 0;
+  public float returnArticle(Person person, Article article, int amount) {
+    float price = 0;
 
-		if (rentedMap.containsKey(person)) {
-			ArrayList<Rental> rentedArticles = rentedMap.get(person);
-			ArrayList<Rental> toRemove = new ArrayList<Rental>();
-			for (Rental rentedArticle : rentedArticles) {
-				if (amount <= 0) {
-					break;
-				}
-				if (rentedArticle.getSurfarticle().getArticleNumber() == surfarticle.getArticleNumber()) {
-					surfarticle.returnArticle(1);
-					toRemove.add(rentedArticle);
-					amount--;
-					price += rentedArticle.getPriceByNow();
-				}
-			}
-			for (Rental removeArticle : toRemove) {
-				rentedArticles.remove(removeArticle);
-			}
-		}
-		return price;
-	}
+    HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
 
-	public String printSurfArticles() {
-		StringBuilder ausgabe = new StringBuilder();
-		
-		for (Surfarticle surfarticle : surfArticles) {
-			ausgabe.append("-----------------------------\n");
-			ausgabe.append("| Name: " + surfarticle.getArticleName()
-					+ "\t| Article ID: " + surfarticle.getArticleNumber()
-					+ "\t| Price per Hour: " + surfarticle.getPricePerHour()
-					+ "\t| Total Amount: " + surfarticle.getTotalAmount()
-					+ "\t| Rented Count: " + (surfarticle.getTotalAmount() - surfarticle.getCurrentAmount()) 
-					+ "\n");
-			for (ArrayList<Rental> rentedArticles : rentedMap.values()) {
-				for (Rental rentedArticle : rentedArticles) {
-					if (rentedArticle.getSurfarticle().equals(surfarticle)) {
-						ausgabe.append("\t| Rented from " + rentedArticle.getDate()
-								+ "\t| Rented Hours " + rentedArticle.getHours()
-								+ "\n");
-					}
-				}
-			}
-		}
-		return ausgabe.toString();
-	}
+    if (rentedArticleMap.containsKey(person)) {
+      ArrayList<Rental> rentedArticles = rentedArticleMap.get(person);
+      ArrayList<Rental> toRemove = new ArrayList<Rental>();
+      for (Rental rentedArticle : rentedArticles) {
+        if (amount <= 0) {
+          break;
+        }
+        if (rentedArticle.getArticle().getId() == article.getId()) {
+          article.returnArticle(1);
+          toRemove.add(rentedArticle);
+          amount--;
+          price += rentedArticle.getPriceByNow();
+        }
+      }
+      for (Rental removeArticle : toRemove) {
+        rentedArticles.remove(removeArticle);
+      }
+    }
+    return price;
+  }
 
-	public String printPersons() {
-		StringBuilder ausgabe = new StringBuilder();
-		
-		for (Person person : persons) {
-			ausgabe.append("--------------------------\n");
-			ausgabe.append("| Name: " + person.getPersonName()
-					+ "\t| Person ID: " + person.getPersonID() + " |\n");
-			if (rentedMap.containsKey(person)) {
-				ArrayList<Rental> rentedArticles = rentedMap.get(person);
-				ausgabe.append("| " + rentedArticles.size() + " Rented Articles: \n");
-				for (Rental rentedArticle : rentedArticles) {
-					ausgabe.append("| Article: " + rentedArticle.getSurfarticle().getArticleName()
-							+ "\t| Rented from: " + rentedArticle.getDate()
-							+ "\t| Rented Hours " + rentedArticle.getHours()
-							+ "\t| Current Price: " + rentedArticle.getPriceByNow()
-							+ "\n");
-				}
-			} else {
-				ausgabe.append("|  0 Rented Articles: \n");
-			}
-		}
-		return ausgabe.toString();
-	}
+  public String printArticles() {
+    StringBuilder ausgabe = new StringBuilder();
+
+    Collection<Article> articles = stockManagement.getArticles().values();
+    HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
+
+    for (Article article : articles) {
+      ausgabe.append("-----------------------------\n");
+      ausgabe.append("| Name: " + article.getName()
+          + "\t| Article ID: " + article.getId()
+          + "\t| Price per Hour: " + article.getPricePerHour()
+          + "\t| Total Amount: " + article.getTotalAmount()
+          + "\t| Rented Count: " + (article.getTotalAmount() - article.getCurrentAmount())
+          + "\n");
+
+
+      for (ArrayList<Rental> rentedArticles : rentedArticleMap.values()) {
+        for (Rental rentedArticle : rentedArticles) {
+          if (rentedArticle.getArticle().equals(article)) {
+            ausgabe.append("\t| Rented from " + rentedArticle.getDate()
+                + "\t| Rented Hours " + rentedArticle.getHours()
+                + "\n");
+          }
+        }
+      }
+    }
+    return ausgabe.toString();
+  }
+
+  public String printPersons() {
+    HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
+    StringBuilder ausgabe = new StringBuilder();
+
+    for (Person person : persons) {
+      ausgabe.append("--------------------------\n");
+      ausgabe.append("| Name: " + person.getPersonName()
+          + "\t| Person ID: " + person.getPersonID() + " |\n");
+      if (rentedArticleMap.containsKey(person)) {
+        ArrayList<Rental> rentedArticles = rentedArticleMap.get(person);
+        ausgabe.append("| " + rentedArticles.size() + " Rented Articles: \n");
+        for (Rental rentedArticle : rentedArticles) {
+          ausgabe.append("| Article: " + rentedArticle.getArticle().getName()
+              + "\t| Rented from: " + rentedArticle.getDate()
+              + "\t| Rented Hours " + rentedArticle.getHours()
+              + "\t| Current Price: " + rentedArticle.getPriceByNow()
+              + "\n");
+        }
+      } else {
+        ausgabe.append("|  0 Rented Articles: \n");
+      }
+    }
+    return ausgabe.toString();
+  }
 }

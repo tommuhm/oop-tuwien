@@ -6,7 +6,7 @@
  * Anschliessend wurden die Arbeiten aufgeteilt.
  *
  * Die Klassen Rental.java und Person.java wurde von Ulrich Aschl geschrieben.
- * Die Klasse Surfarticle.java wurde von David Jaffry geschrieben.
+ * Die Klasse Article.java wurde von David Jaffry geschrieben.
  * Die Klasse Surfstore.java wurde von Thomas Muhm geschrieben.
  * Anschliessend wurde noch Test.java von Ulrich Aschl erstellt.
  *

@@ -5,11 +5,11 @@
 import java.util.Date;
 
 public class Rental {
-	private Surfarticle surfarticle;
+	private Article article;
 	private Date date;
 
-	public Rental(Surfarticle surfarticle, Date date) {
-		this.surfarticle = surfarticle;
+	public Rental(Article article, Date date) {
+		this.article = article;
 		this.date = date;
 	}
 
@@ -17,12 +17,12 @@ public class Rental {
 		return date;
 	}
 
-	public Surfarticle getSurfarticle() {
-		return surfarticle;
+	public Article getArticle() {
+		return article;
 	}
 
 	public float getPriceByNow() {
-		return surfarticle.getPricePerHour() * this.getHours();
+		return article.getPricePerHour() * this.getHours();
 	}
 
 	public int getHours() {
@@ -31,7 +31,7 @@ public class Rental {
 
 	@Override
 	public String toString() {
-		return this.surfarticle.getArticleName() + " " + this.date.toString();
+		return this.article.getName() + " " + this.date.toString();
 	}
 
 }
