@@ -2,7 +2,7 @@
  * @author: djaffry, uaschl, tmuhm
  */
 
-public class Person {
+public abstract class Person {
 	private static int maxPersonID = 0;
 
 	private String personName;
