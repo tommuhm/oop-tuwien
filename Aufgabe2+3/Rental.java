@@ -8,7 +8,7 @@ public class Rental {
 	private ArticleRent article;
 	private Date date;
 
-	public hRental(ArticleRent article, Date date) {
+	public Rental(ArticleRent article, Date date) {
 		this.article = article;
 		this.date = date;
 	}
@@ -22,11 +22,21 @@ public class Rental {
 	}
 
 	public float getPriceByNow() {
-		return article.getPricePerHour() * this.getHours();
+		if(this.getHours() < 24) { //Pricing
+			return article.getPricePerHour() * this.getHours();
+		}
+		else
+		{
+			return article.getPricePerDay() * this.getDays() * Discount.getDiscount(this.getDays());
+		}
 	}
 
 	public int getHours() {
 		return (int) Math.ceil((new Date().getTime() - date.getTime()) / 1000 / 60 / 60);
+	}
+
+	public int getDays() {
+		return (int) Math.ceil((new Date().getTime() - date.getTime()) / 1000 / 60 / 60 / 24);
 	}
 
 	@Override
