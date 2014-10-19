@@ -41,8 +41,9 @@ public class Order {
 		return amountOfMoney;
 	}
 
-	public Bill createOutgoingBill( boolean inCash ) {
+	public OutgoingBill createOutgoingBill( boolean inCash ) {
 		return new OutgoingBill(service, amountOfMoney, new Date() , inCash, person);
+		
 	}
 
 }

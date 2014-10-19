@@ -13,7 +13,7 @@ public class Surfstore {
 	private HashMap<Person, ArrayList<Rental>> rentedMap = new HashMap<Person, ArrayList<Rental>>();
 
 	public Person createPerson(String firstname, String lastname) {
-		Person person = new Person(firstname + " " + lastname);
+		Person person = new Customer(firstname + " " + lastname);
 		persons.add(person);
 		return person;
 	}

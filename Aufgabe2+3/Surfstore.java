@@ -8,10 +8,14 @@ public class Surfstore {
 
 	private ArrayList<Person> persons;
 	private StockManagement stockManagement;
+	private SurfSchool surfSchool;
+	private Accounting accounting; 
 
 	public Surfstore() {
 		persons = new ArrayList<Person>();
 		stockManagement = new StockManagement();
+		surfSchool = new SurfSchool();
+		accounting = new Accounting( 0, 0); //set balance //TODO
 	}
 
 	public Person createCustomer(String firstname, String lastname) {
@@ -45,6 +49,30 @@ public class Surfstore {
 	public Rental borrowArticle(Person person, Article article, Date issueDate) {
 		return stockManagement.borrowArticle(person, article, issueDate);
 	}
+	
+	public Order createOrder( Person person, Date orderDate, String service, float amountOfMoney ) {
+		Order order = new Order( person,  orderDate, service, amountOfMoney );
+		accounting.addOrder(order);
+		return order;
+	}
+	
+	public OutgoingBill createOutgoingBill( Order order, boolean inCash ) {
+		 OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
+		 accounting.addOutgoingBill(bill);
+		 return bill;
+	}
+	
+	public float getBalanceAccount() {
+		return accounting.getBalanceAccount();
+	}
+	
+	public float getBalanceCash() {
+		return accounting.getBalanceCash();
+	}
+	
+	public float getTotalBalance() {
+		return ( getBalanceAccount() + getBalanceCash() );
+	}
 
 	public ArrayList<Rental> borrowArticles(Person person, Article article, Date issueDate, int amount) {
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
@@ -55,20 +83,34 @@ public class Surfstore {
 		}
 		return rentals;
 	}
-
-	public float returnArticle(Person person, Rental rental) {
-		// TODO add income to balance
-		if (stockManagement.returnArticle(person, rental))
-			return rental.getPriceByNow();
-		else
-			return 0f;
-	}
-
-	public float returnArticles(Person person, ArrayList<Rental> rentals) {
+	
+	/*
+	 * We know, that outgoing bills normally have every article in detail on them, but
+	 * we thought this could be a little too detailed for this assignment.
+	 */
+	public OutgoingBill returnArticles(Person person, ArrayList<Rental> rentals, Boolean inCash) {
 		float price = 0f;
-		for (Rental rental : rentals)
-			price += returnArticle(person, rental);
-		return price;
+		int amount = 0;
+		
+		for (Rental rental : rentals) {
+			if(stockManagement.returnArticle(person, rental)) {
+				price += rental.getPriceByNow();
+				amount++;
+			}
+		}
+		
+		OutgoingBill oBill = null;
+		if(amount > 0) {
+			oBill = new OutgoingBill("Rented articles: " + amount, 
+					price, 
+					new Date(), 
+					inCash, 
+					person);
+		}
+		
+		//TODO Rechnung in Buchhaltung einfügen.
+		
+		return oBill;
 	}
 
 
@@ -79,7 +121,6 @@ public class Surfstore {
 		HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
 
 		for (Article article : articles) {
-			ausgabe.append("-----------------------------\n");
 			ausgabe.append(article.toString());
 
 			for (ArrayList<Rental> rentedArticles : rentedArticleMap.values()) {
@@ -118,5 +159,24 @@ public class Surfstore {
 			}
 		}
 		return ausgabe.toString();
+	}
+
+	public SurfSchool getSurfSchool() {
+		return surfSchool;
+	}
+
+	public Course addCourse(String courseName, float price, Teacher teacher,
+				ArrayList<Student> students, ArrayList<Date> dates) {
+		return surfSchool.addCourse(courseName, price, teacher, students, dates);
+	}
+
+	public ArrayList<OutgoingBill> createOutgoingBills(Course course) {
+		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
+		
+		for(OutgoingBill bill : outgoingBills) {
+			accounting.addOutgoingBill(bill);
+		}
+		
+		return outgoingBills;
 	}
 }
