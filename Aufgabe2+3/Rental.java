@@ -5,10 +5,10 @@
 import java.util.Date;
 
 public class Rental {
-	private Article article;
+	private ArticleRent article;
 	private Date date;
 
-	public Rental(Article article, Date date) {
+	public hRental(ArticleRent article, Date date) {
 		this.article = article;
 		this.date = date;
 	}
