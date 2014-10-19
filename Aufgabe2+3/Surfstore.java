@@ -8,10 +8,12 @@ public class Surfstore {
 
 	private ArrayList<Person> persons;
 	private StockManagement stockManagement;
+	private Accounting accounting; 
 
 	public Surfstore() {
 		persons = new ArrayList<Person>();
 		stockManagement = new StockManagement();
+		accounting = new Accounting( 0, 0); //set balance //TODO
 	}
 
 	public Person createCustomer(String firstname, String lastname) {
@@ -44,6 +46,18 @@ public class Surfstore {
 
 	public Rental borrowArticle(Person person, Article article, Date issueDate) {
 		return stockManagement.borrowArticle(person, article, issueDate);
+	}
+	
+	public Order createOrder( Person person, Date orderDate, String service, float amountOfMoney ) {
+		Order order = new Order( person,  orderDate, service, amountOfMoney );
+		accounting.addOrder(order);
+		return order;
+	}
+	
+	public OutgoingBill createOutgoingBill( Order order, boolean inCash ) {
+		 OutgoingBill bill = order.createOutgoingBill(inCash);
+		 accounting.addOutgoingBill(bill);
+		 return bill;
 	}
 
 	public ArrayList<Rental> borrowArticles(Person person, Article article, Date issueDate, int amount) {
