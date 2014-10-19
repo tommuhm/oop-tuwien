@@ -61,6 +61,18 @@ public class Surfstore {
 		 accounting.addOutgoingBill(bill);
 		 return bill;
 	}
+	
+	public float getBalanceAccount() {
+		return accounting.getBalanceAccount();
+	}
+	
+	public float getBalanceCash() {
+		return accounting.getBalanceCash();
+	}
+	
+	public float getTotalBalance() {
+		return ( getBalanceAccount() + getBalanceCash() );
+	}
 
 	public ArrayList<Rental> borrowArticles(Person person, Article article, Date issueDate, int amount) {
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
