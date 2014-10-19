@@ -42,7 +42,7 @@ public class Test {
 		//Print-methods:
 		//	Originally System.out.println was directly in Surfstore.java,
 		//	but the description says, that methods in Surfstore.java must return values and mustn't do output.
-		System.out.println("\n\nPrinting all rented articles:");
+		System.out.println("\n\nPrinting all articles:");
 		System.out.println(surfstore.printArticles());
 
 		System.out.println("\n\nPrinting all persons:");
@@ -103,7 +103,7 @@ public class Test {
 
 		d.setHours(6);
 		System.out.println("Tom borrows 7 times helmMediumRent at " + d);
-		System.out.println("Tom couldn't borrow helmMediumRent - only 5 available");
+		System.out.println("Tom couldn't borrow helmMediumRent - only 5 available - he borrowed 5");
 		tomRentals = surfstore.borrowArticles(tom, helmMediumRent, d, 7);
 	}
 
@@ -119,7 +119,7 @@ public class Test {
 		System.out.println("\t" + oDavid.toString());
 		
 		OutgoingBill oTom = surfstore.returnArticles(tom, tomRentals, true);
-		System.out.println("Tom tried to return 5/0 of his sufboards. None articles were returned.");
+		System.out.println("Tom tried to return 5/5 of his sufboards. All were returned.");
 		System.out.println("\t" + oTom.toString());
 		
 	}

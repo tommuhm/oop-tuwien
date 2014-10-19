@@ -14,4 +14,16 @@ public class OutgoingBill extends Bill {
 	public Person getPerson() {
 		return this.person;
 	}
+	
+	public String toString() {
+		return "\n ###################### \n # Surfstore Gruppe 4 # \n ###################### \n"
+		+ "\n  Name:           " + person.toString()	
+		+ "\n  BillID:         " + getBillID()
+		+ "\n  Date:           " + getDate()
+		+ "\n  Service:        " + getService()
+		+ "\n  Amount:         " + getAmountOfMoney()
+		+ "\n ................."
+		+ "\n paid:            " + (getInCash() ? "in Cash" : "with Card" )
+		+ "\n \n Thank you!";
+	}
 }

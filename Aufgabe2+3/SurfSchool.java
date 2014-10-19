@@ -32,5 +32,18 @@ public class SurfSchool {
 		course.setTeacher(teacher);
 	}
 	
+	public ArrayList<OutgoingBill> createOutgoingBills(Course course) {
+		ArrayList<OutgoingBill> bills = new ArrayList<OutgoingBill>();
+		for(Student student : course.getStudents()) {
+			OutgoingBill bill = new OutgoingBill("Surfschool: " + course.getCourseName(), 
+					course.getPrice(), 
+					new Date(), 
+					true, 
+					student); //Everybody pays in cash.
+		}
+		
+		return bills;
+	}
+	
 	
 }
