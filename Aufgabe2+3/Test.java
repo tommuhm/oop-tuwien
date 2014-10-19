@@ -22,7 +22,7 @@ public class Test {
 	private static Surfstore surfstore;
 
 	private static Person ulrich, david, tom;
-	private static Article surf200Rent, surf220Sale, helmMediumRent;
+	private static Article surf200Rent, surf200Sale, surf220Rent, surf220Sale, helmMediumRent;
 	private static Rental davidRental;
 	private static ArrayList<Rental> ulrichRentals, tomRentals;
 
@@ -66,7 +66,15 @@ public class Test {
 
 		Article surfboard200Rent = new ArticleRent("Surfboard", "200cm", 3f, 20f, false);
 		surf200Rent = surfstore.buyArticles(surfboard200Rent, 1200f, 10);
-		System.out.println(surf200Rent + " created.");
+		System.out.println(surf200Rent + " created.");		
+
+		Article surfboard220Rent = new ArticleRent("Surfboard", "220cm", 3f, 20f, false);
+		surf220Rent = surfstore.buyArticles(surfboard220Rent, 1200f, 10);
+		System.out.println(surf220Rent + " created.");		
+		
+		Article surfboard200Sale = new ArticleSale("Surfboard", "200cm", 250f, true);
+		surf200Sale = surfstore.buyArticles(surfboard200Sale, 500f, 3);
+		System.out.println(surf200Sale + " created.");
 
 		Article surfboard220Sale = new ArticleSale("Surfboard", "220cm", 250f, true);
 		surf220Sale = surfstore.buyArticles(surfboard220Sale, 500f, 3);
@@ -84,10 +92,14 @@ public class Test {
 		System.out.println("Ulrich borrows surf200Rent at " + d);
 		ulrichRentals = surfstore.borrowArticles(ulrich, surf200Rent, d, 3);
 
+		d.setDate(10);
 		d.setHours(5);
 		System.out.println("David borrows surf220Sale at " + d);
 		System.out.println("Sale articles can't be borrowed");
 		davidRental = surfstore.borrowArticle(david, surf220Sale, d);
+		
+		System.out.println("David borrows surf220Rent at " + d);
+		davidRental = surfstore.borrowArticle(david, surf220Rent, d);
 
 		d.setHours(6);
 		System.out.println("Tom borrows 7 times helmMediumRent at " + d);
@@ -96,13 +108,19 @@ public class Test {
 	}
 
 	public static void returnSurfarticleTest() {
-		surfstore.returnArticles(ulrich, ulrichRentals);
-		System.out.println("Ulrich returns 7/5 of his surfboards. He returend 5/5.");
+		OutgoingBill oUlrich = surfstore.returnArticles(ulrich, ulrichRentals, true);
+		System.out.println("Ulrich returns 7/5 of his surfboards. He returend 5/5:");
+		System.out.println("\t" + oUlrich.toString());
 
-		surfstore.returnArticle(david, davidRental);
+		ArrayList<Rental> davidRentals = new ArrayList<Rental>();
+		davidRentals.add(davidRental);
+		OutgoingBill oDavid = surfstore.returnArticles(david, davidRentals, false);
 		System.out.println("David returned 5/10 of his surfboards.");
-
-		surfstore.returnArticles(tom, tomRentals);
+		System.out.println("\t" + oDavid.toString());
+		
+		OutgoingBill oTom = surfstore.returnArticles(tom, tomRentals, true);
 		System.out.println("Tom tried to return 5/0 of his sufboards. None articles were returned.");
+		System.out.println("\t" + oTom.toString());
+		
 	}
 }

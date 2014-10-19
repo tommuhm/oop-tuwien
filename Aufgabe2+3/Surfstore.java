@@ -56,19 +56,41 @@ public class Surfstore {
 		return rentals;
 	}
 
-	public float returnArticle(Person person, Rental rental) {
+	private float returnArticle(Person person, Rental rental) {
 		// TODO add income to balance
 		if (stockManagement.returnArticle(person, rental))
 			return rental.getPriceByNow();
 		else
 			return 0f;
 	}
-
-	public float returnArticles(Person person, ArrayList<Rental> rentals) {
+	
+	/*
+	 * We know, that outgoing bills normally have every article in detail on them, but
+	 * we thought this could be a little too detailed for this assignment.
+	 */
+	public OutgoingBill returnArticles(Person person, ArrayList<Rental> rentals, Boolean inCash) {
 		float price = 0f;
-		for (Rental rental : rentals)
-			price += returnArticle(person, rental);
-		return price;
+		int amount = 0;
+		
+		for (Rental rental : rentals) {
+			if(stockManagement.returnArticle(person, rental)) {
+				price += rental.getPriceByNow();
+				amount++;
+			}
+		}
+		
+		OutgoingBill oBill = null;
+		if(amount > 0) {
+			oBill = new OutgoingBill("Rented articles: " + amount, 
+					price, 
+					new Date(), 
+					inCash, 
+					person);
+		}
+		
+		//TODO Rechnung in Buchhaltung einfügen.
+		
+		return oBill;
 	}
 
 
