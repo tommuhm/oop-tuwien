@@ -195,4 +195,8 @@ public class Surfstore {
 	public String getStockingStatistics() {
 		return stockManagement.getRentalStatistic();
 	}
+
+	public String getAccountingStatistics() {
+		return accounting.getAccountStatistics();
+	}
 }

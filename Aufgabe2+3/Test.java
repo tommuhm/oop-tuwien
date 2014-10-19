@@ -32,10 +32,7 @@ public class Test {
 
 		System.out.println("\n\nRenting some articles:");
 		borrowSurfarticleTest();
-
-		System.out.println("\n\nPrinting all rented articles:");
-		surfstore.printArticles();
-
+		
 		System.out.println("\n\nReturning some used articles:");
 		returnSurfarticleTest();
 
@@ -58,6 +55,9 @@ public class Test {
 	private static void statistics() {
 		System.out.println("Stock statistics:");
 		System.out.println(surfstore.getStockingStatistics());
+		
+		System.out.println("Accounting statistics:");
+		System.out.println(surfstore.getAccountingStatistics());
 	}
 
 
@@ -143,7 +143,6 @@ public class Test {
 	
 
 	private static void surfschool() {
-		SurfSchool surfschool = surfstore.getSurfSchool();
 		
 		System.out.println("Creating some dummy students, teacher and dummy dates!");
 		ArrayList<Student> students = new ArrayList<Student>();
