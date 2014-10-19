@@ -8,10 +8,14 @@ public class Surfstore {
 
 	private ArrayList<Person> persons;
 	private StockManagement stockManagement;
+	private SurfSchool surfSchool;
+	private Accounting accounting; 
 
 	public Surfstore() {
 		persons = new ArrayList<Person>();
 		stockManagement = new StockManagement();
+		surfSchool = new SurfSchool();
+		accounting = new Accounting( 0, 0); //set balance //TODO
 	}
 
 	public Person createCustomer(String firstname, String lastname) {
@@ -44,6 +48,18 @@ public class Surfstore {
 
 	public Rental borrowArticle(Person person, Article article, Date issueDate) {
 		return stockManagement.borrowArticle(person, article, issueDate);
+	}
+	
+	public Order createOrder( Person person, Date orderDate, String service, float amountOfMoney ) {
+		Order order = new Order( person,  orderDate, service, amountOfMoney );
+		accounting.addOrder(order);
+		return order;
+	}
+	
+	public OutgoingBill createOutgoingBill( Order order, boolean inCash ) {
+		 OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
+		 accounting.addOutgoingBill(bill);
+		 return bill;
 	}
 
 	public ArrayList<Rental> borrowArticles(Person person, Article article, Date issueDate, int amount) {
@@ -101,7 +117,6 @@ public class Surfstore {
 		HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
 
 		for (Article article : articles) {
-			ausgabe.append("-----------------------------\n");
 			ausgabe.append(article.toString());
 
 			for (ArrayList<Rental> rentedArticles : rentedArticleMap.values()) {
@@ -140,5 +155,20 @@ public class Surfstore {
 			}
 		}
 		return ausgabe.toString();
+	}
+
+	public SurfSchool getSurfSchool() {
+		return surfSchool;
+	}
+
+	public Course addCourse(String courseName, float price, Teacher teacher,
+				ArrayList<Student> students, ArrayList<Date> dates) {
+		return surfSchool.addCourse(courseName, price, teacher, students, dates);
+	}
+
+	public ArrayList<OutgoingBill> createOutgoingBills(Course course) {
+		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
+		
+		return outgoingBills;
 	}
 }
