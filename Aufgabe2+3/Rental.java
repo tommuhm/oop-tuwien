@@ -17,7 +17,7 @@ public class Rental {
 		return date;
 	}
 
-	public Article getArticle() {
+	public ArticleRent getArticle() {
 		return article;
 	}
 
