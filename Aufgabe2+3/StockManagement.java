@@ -47,7 +47,7 @@ public class StockManagement {
 		return true;
 	}
 
-	public Rental borrowArticle(Person person, ArticleRent a, Date issueDate) {
+	public Rental borrowArticle(Person person, Article a, Date issueDate) {
 		Article article = articles.get(a.getId());
 
 		if (article == null)

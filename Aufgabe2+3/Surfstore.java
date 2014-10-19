@@ -24,41 +24,53 @@ public class Surfstore {
 		return stockManagement.getArticles().values();
 	}
 
-	public Article buyArticle(Article article, int amount) {
+	public ArrayList<Rental> getRentedArticles(Person person) {
+		return stockManagement.getRentedArticleMap().get(person);
+	}
+
+	public Article buyArticles(Article article, float priceBuy, int amount) {
+		// TODO remove price from balance
 		return stockManagement.addArticle(article, amount);
 	}
 
-	public Rental borrowArticle(Person person, Article article, Date issueDate) {
-		if (!(article instanceof ArticleRent))
-			return null;
-		return stockManagement.borrowArticle(person, (ArticleRent) article, issueDate);
+	public boolean sellArticles(Article article, float priceSell, int amount) {
+		// TODO add price to balance
+		return stockManagement.removeArticle(article, amount);
 	}
 
-	public float returnArticle(Person person, Article article, int amount) {
-		float price = 0;
+	public boolean discardArticles(Article article, int amount) {
+		return stockManagement.removeArticle(article, amount);
+	}
 
-		HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
+	public Rental borrowArticle(Person person, Article article, Date issueDate) {
+		return stockManagement.borrowArticle(person, article, issueDate);
+	}
 
-		if (rentedArticleMap.containsKey(person)) {
-			ArrayList<Rental> rentedArticles = rentedArticleMap.get(person);
-			ArrayList<Rental> toRemove = new ArrayList<Rental>();
-			for (Rental rentedArticle : rentedArticles) {
-				if (amount <= 0) {
-					break;
-				}
-				if (rentedArticle.getArticle().getId() == article.getId()) {
-					article.returnArticle(1);
-					toRemove.add(rentedArticle);
-					amount--;
-					price += rentedArticle.getPriceByNow();
-				}
-			}
-			for (Rental removeArticle : toRemove) {
-				rentedArticles.remove(removeArticle);
-			}
+	public ArrayList<Rental> borrowArticles(Person person, Article article, Date issueDate, int amount) {
+		ArrayList<Rental> rentals = new ArrayList<Rental>();
+		for (int i = 0; i < amount; i++) {
+			Rental rental = this.borrowArticle(person, article, issueDate);
+			if (rental != null)
+				rentals.add(rental);
 		}
+		return rentals;
+	}
+
+	public float returnArticle(Person person, Rental rental) {
+		// TODO add income to balance
+		if (stockManagement.returnArticle(person, rental))
+			return rental.getPriceByNow();
+		else
+			return 0f;
+	}
+
+	public float returnArticles(Person person, ArrayList<Rental> rentals) {
+		float price = 0f;
+		for (Rental rental : rentals)
+			price += returnArticle(person, rental);
 		return price;
 	}
+
 
 	public String printArticles() {
 		StringBuilder ausgabe = new StringBuilder();
