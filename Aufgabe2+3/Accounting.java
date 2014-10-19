@@ -57,18 +57,22 @@ public class Accounting {
 	public float getBalanceCash() {
 		return balanceCash;
 	}
-/*
+	
 	public String toString() {
 		String s = "";
 		Bill bill = null;
-		for ( i = 0; i < billMap.size(); i++ ) {
-			bill = getBill( i );
-			s = bill.toString()
+		for ( int i = 0; i < outgoingBillMap.size(); i++ ) {
+			bill = getOutgoingBill( i );
+			s = bill.toString();
 					s += "\n ########## \n";
 		}
-		s += " current Account Balance: " + this.balanceAccount + "\n current Cash Balance: " + this.balanceCash
+		for ( int i = 0; i < incomingBillMap.size(); i++ ) {
+			bill = getIncomingBill( i );
+			s = bill.toString();
+					s += "\n ########## \n";
+		}		
+		s += " current Account Balance: " + this.balanceAccount + "\n current Cash Balance: " + this.balanceCash;
 				s += "\n total ammount: " + (this.balanceAccount + this.balanceCash);
-		s += "\n \n End of Accounting \n ";
+		return s += "\n \n End of Accounting \n ";
 	}
-	*/
 }

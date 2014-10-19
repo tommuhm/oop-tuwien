@@ -15,8 +15,7 @@ public class Surfstore {
 		persons = new ArrayList<Person>();
 		stockManagement = new StockManagement();
 		surfSchool = new SurfSchool();
-		accounting = new Accounting(balanceAccount, balanceCash); // set balance
-																	// //TODO
+		accounting = new Accounting(balanceAccount, balanceCash); // set balance //TODO
 	}
 
 	public Person createCustomer(String firstname, String lastname) {
@@ -62,14 +61,12 @@ public class Surfstore {
 		return order;
 	}
 
-	public OutgoingBill finishOrder(Order order, boolean inCash, Article a,
-			int amount) {
+	public OutgoingBill finishOrder(Order order, boolean inCash, Article a, int amount) {
 		if (stockManagement.removeArticle(a, amount)) {
 			OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
 			accounting.addOutgoingBill(bill);
 			return bill;
-		} else
-			return null;
+		} else return null;
 	}
 
 	public float getBalanceAccount() {
