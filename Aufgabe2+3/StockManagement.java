@@ -59,7 +59,8 @@ public class StockManagement {
 		if (!(article instanceof ArticleRent))
 			return null;
 
-		article.borrowArticle(1);
+		((ArticleRent) article).borrowArticle(1);
+
 		ArrayList<Rental> rentedArticles;
 		if (!rentedArticleMap.containsKey(person)) {
 			rentedArticles = new ArrayList<Rental>();
@@ -100,6 +101,18 @@ public class StockManagement {
 		}
 
 		return foundArticle;
+	}
+
+	public String getRentalStatistic() {
+		StringBuilder stats = new StringBuilder();
+
+		for (Article article : articles.values()) {
+			if (article instanceof ArticleRent)
+				stats.append("| " + article.toString()
+						+ "\t| Rented " + ((ArticleRent) article).getRentedCount() + " time(s).");
+		}
+
+		return stats.toString();
 	}
 
 }

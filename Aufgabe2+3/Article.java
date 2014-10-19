@@ -9,7 +9,6 @@ public abstract class Article {
 	private final int id;
 	private String name;
 	private String size;
-	private int currentAmount;
 	private int totalAmount;
 	boolean isNew;
 
@@ -18,7 +17,6 @@ public abstract class Article {
 		this.name = name;
 		this.size = size;
 		this.totalAmount = 0;
-		this.currentAmount = totalAmount;
 		this.isNew = isNew;
 	}
 
@@ -34,10 +32,6 @@ public abstract class Article {
 		return size;
 	}
 
-	public int getCurrentAmount() {
-		return currentAmount;
-	}
-
 	public int getTotalAmount() {
 		return totalAmount;
 	}
@@ -48,27 +42,14 @@ public abstract class Article {
 
 	public void addAmount(int amount) {
 		totalAmount += amount;
-		currentAmount += amount;
 	}
 
 	public void removeAmount(int amount) {
 		totalAmount -= amount;
-		currentAmount -= amount;
 	}
 
 	public boolean isAvailable(int amount) {
-		return currentAmount >= amount;
+		return totalAmount >= amount;
 	}
 
-	public boolean borrowArticle(int amount) {
-		if (isAvailable(amount)) {
-			currentAmount -= amount;
-			return true;
-		}
-		return false;
-	}
-
-	public void returnArticle(int amount) {
-		currentAmount += amount;
-	}
 }
