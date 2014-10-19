@@ -22,11 +22,9 @@ public class Rental {
 	}
 
 	public float getPriceByNow() {
-		if(this.getHours() < 24) { //Pricing
+		if (this.getHours() < 24) { //Pricing
 			return article.getPricePerHour() * this.getHours();
-		}
-		else
-		{
+		} else {
 			return article.getPricePerDay() * this.getDays() * Discount.getDiscount(this.getDays());
 		}
 	}
