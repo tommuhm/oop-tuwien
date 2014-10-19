@@ -73,6 +73,6 @@ public class Accounting {
 		}		
 		s += " current Account Balance: " + this.balanceAccount + "\n current Cash Balance: " + this.balanceCash;
 				s += "\n total ammount: " + (this.balanceAccount + this.balanceCash);
-		s += "\n \n End of Accounting \n ";
+		return s += "\n \n End of Accounting \n ";
 	}
 }
