@@ -29,7 +29,9 @@ public class Surfstore {
 	}
 
 	public Rental borrowArticle(Person person, Article article, Date issueDate) {
-		return stockManagement.borrowArticle(person, article, issueDate);
+		if (!(article instanceof ArticleRent))
+			return null;
+		return stockManagement.borrowArticle(person, (ArticleRent) article, issueDate);
 	}
 
 	public float returnArticle(Person person, Article article, int amount) {
@@ -66,13 +68,7 @@ public class Surfstore {
 
 		for (Article article : articles) {
 			ausgabe.append("-----------------------------\n");
-			ausgabe.append("| Name: " + article.getName()
-					+ "\t| Article ID: " + article.getId()
-					+ "\t| Price per Hour: " + article.getPricePerHour()
-					+ "\t| Total Amount: " + article.getTotalAmount()
-					+ "\t| Rented Count: " + (article.getTotalAmount() - article.getCurrentAmount())
-					+ "\n");
-
+			ausgabe.append(article.toString());
 
 			for (ArrayList<Rental> rentedArticles : rentedArticleMap.values()) {
 				for (Rental rentedArticle : rentedArticles) {
