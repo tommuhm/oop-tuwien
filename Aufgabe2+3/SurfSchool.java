@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Surfschool {
+public class SurfSchool {
 	private ArrayList<Course> courses;
 
-	public Surfschool() {
+	public SurfSchool() {
 		this.courses = new ArrayList<Course>();
 	}
 
