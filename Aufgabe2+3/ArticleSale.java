@@ -16,8 +16,13 @@ public class ArticleSale extends Article {
 	}
 
 	public String toString() {
-		return super.toString() +
-				", price: " + this.priceSale;
+		return "| ID: " + this.getId()
+				+ "\t| Name: " + this.getName()
+				+ "\t| Size: " + this.getSize()
+				+ "\t| Price: " + this.getPriceSale() + "€"
+				+ "\t| Total: " + this.getTotalAmount()
+				+ "\t| Available: " + this.getCurrentAmount()
+				+ "\t| Rented: " + (this.getTotalAmount() - this.getCurrentAmount());
 	}
 
 }

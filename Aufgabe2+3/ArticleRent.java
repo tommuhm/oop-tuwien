@@ -23,7 +23,13 @@ public class ArticleRent extends Article {
 	}
 
 	public String toString() {
-		return super.toString() +
-				", price/hour: " + this.pricePerHour;
+		return "| ID: " + this.getId()
+				+ "\t| Name: " + this.getName()
+				+ "\t| Size: " + this.getSize()
+				+ "\t| Price/Hour: " + this.getPricePerHour() + "€"
+				+ "\t| Price/Day: " + this.getPricePerDay() + "€"
+				+ "\t| Total: " + this.getTotalAmount()
+				+ "\t| Available: " + this.getCurrentAmount()
+				+ "\t| Rented: " + (this.getTotalAmount() - this.getCurrentAmount());
 	}
 }
