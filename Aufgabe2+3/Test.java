@@ -14,6 +14,7 @@
  *
  */
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Test {
@@ -21,7 +22,9 @@ public class Test {
 	private static Surfstore surfstore;
 
 	private static Person ulrich, david, tom;
-	private static Article surf200, surf220, helmM;
+	private static Article surf200Rent, surf220Sale, helmMediumRent;
+	private static Rental davidRental;
+	private static ArrayList<Rental> ulrichRentals, tomRentals;
 
 	public static void main(String[] args) {
 		System.out.println("Creating some Persons and Surfarticles:");
@@ -60,44 +63,46 @@ public class Test {
 		tom = surfstore.createCustomer("Tom", "M");
 		System.out.println(tom + " created.");
 
-		surf200 = surfstore.createSurfarticle("Surfboard 200cm", 6.00f, 20, 330);
-		System.out.println(surf200 + " created.");
 
-		surf220 = surfstore.createSurfarticle("Surfboard 220cm", 6.00f, 20, 330);
-		System.out.println(surf220 + " created.");
+		Article surfboard200Rent = new ArticleRent("Surfboard", "200cm", 3f, 20f, false);
+		surf200Rent = surfstore.buyArticles(surfboard200Rent, 1200f, 10);
+		System.out.println(surf200Rent + " created.");
 
-		helmM = surfstore.createSurfarticle("Helm M", 2.50f, 50, 330);
-		System.out.println(helmM + " created.");
+		Article surfboard220Sale = new ArticleSale("Surfboard", "220cm", 250f, true);
+		surf220Sale = surfstore.buyArticles(surfboard220Sale, 500f, 3);
+		System.out.println(surf220Sale + " created.");
+
+		Article helmRent = new ArticleRent("Helm", "M", 2f, 10f, true);
+		helmMediumRent = surfstore.buyArticles(helmRent, 150, 5);
+		System.out.println(helmMediumRent + " created.");
 	}
 
 	public static void borrowSurfarticleTest() {
 		Date d = new Date();
 
 		d.setHours(4);
-		System.out.println("Ulrich borrows 5 times surf200 at " + d);
-		surfstore.borrowSurfarticle(ulrich, surf200, 5, d);
+		System.out.println("Ulrich borrows surf200Rent at " + d);
+		ulrichRentals = surfstore.borrowArticles(ulrich, surf200Rent, d, 3);
 
 		d.setHours(5);
-		System.out.println("David borrows 10 times surf200 at " + d);
-		surfstore.borrowSurfarticle(david, surf200, 10, d);
+		System.out.println("David borrows surf220Sale at " + d);
+		System.out.println("Sale articles can't be borrowed");
+		davidRental = surfstore.borrowArticle(david, surf220Sale, d);
 
 		d.setHours(6);
-		System.out.println("Tom borrows 7 times surf200 at " + d);
-		System.out.println("Tom couldn't borrow surf200 - only 5 available");
-		surfstore.borrowSurfarticle(tom, surf200, 7, d);
+		System.out.println("Tom borrows 7 times helmMediumRent at " + d);
+		System.out.println("Tom couldn't borrow helmMediumRent - only 5 available");
+		tomRentals = surfstore.borrowArticles(tom, helmMediumRent, d, 7);
 	}
 
 	public static void returnSurfarticleTest() {
-		surfstore.returnSurfarticle(ulrich, surf200, 7);
+		surfstore.returnArticles(ulrich, ulrichRentals);
 		System.out.println("Ulrich returns 7/5 of his surfboards. He returend 5/5.");
 
-		surfstore.returnSurfarticle(david, surf200, 5);
+		surfstore.returnArticle(david, davidRental);
 		System.out.println("David returned 5/10 of his surfboards.");
 
-		surfstore.returnSurfarticle(tom, surf200, 5);
+		surfstore.returnArticles(tom, tomRentals);
 		System.out.println("Tom tried to return 5/0 of his sufboards. None articles were returned.");
-
-		surfstore.returnSurfarticle(david, surf200, 2);
-		System.out.println("David returned 2/5 of his surfboards. 3 remaining.");
 	}
 }
