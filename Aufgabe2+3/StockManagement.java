@@ -23,7 +23,10 @@ public class StockManagement {
 	public Article addArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 		if (article == null) {
-			article = new Article(a);
+			if (a instanceof ArticleRent)
+				article = new ArticleRent((ArticleRent) a);
+			if (a instanceof ArticleSale)
+				article = new ArticleSale((ArticleSale) a);
 			articles.put(article.getId(), article);
 		}
 
@@ -44,13 +47,16 @@ public class StockManagement {
 		return true;
 	}
 
-	public Rental borrowArticle(Person person, Article a, Date issueDate) {
+	public Rental borrowArticle(Person person, ArticleRent a, Date issueDate) {
 		Article article = articles.get(a.getId());
 
 		if (article == null)
 			return null;
 
 		if (!article.isAvailable(1))
+			return null;
+
+		if (!(article instanceof ArticleRent))
 			return null;
 
 		article.borrowArticle(1);
@@ -62,13 +68,13 @@ public class StockManagement {
 			rentedArticles = rentedArticleMap.get(person);
 		}
 
-		Rental rental = new Rental(article, new Date(issueDate.getTime()));
+		Rental rental = new Rental((ArticleRent) article, new Date(issueDate.getTime()));
 		rentedArticles.add(rental);
 
 		return rental;
 	}
 
-	public boolean returnArticle(Person person, Rental rental, int amount) {
+	public boolean returnArticle(Person person, Rental rental) {
 		if (!rentedArticleMap.containsKey(person))
 			return false;
 
@@ -92,6 +98,7 @@ public class StockManagement {
 				break;
 			}
 		}
+
 		return foundArticle;
 	}
 
