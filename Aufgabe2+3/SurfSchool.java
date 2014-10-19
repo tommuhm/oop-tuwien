@@ -40,6 +40,7 @@ public class SurfSchool {
 					new Date(), 
 					true, 
 					student); //Everybody pays in cash.
+			bills.add(bill);
 		}
 		
 		return bills;

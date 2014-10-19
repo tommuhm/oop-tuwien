@@ -39,19 +39,32 @@ public class Test {
 		System.out.println("\n\nReturning some used articles:");
 		returnSurfarticleTest();
 
-		//Print-methods:
-		//	Originally System.out.println was directly in Surfstore.java,
-		//	but the description says, that methods in Surfstore.java must return values and mustn't do output.
+		System.out.println("\n\nSurfschool:");
+		surfschool();
+		
 		System.out.println("\n\nPrinting all articles:");
 		System.out.println(surfstore.printArticles());
 
 		System.out.println("\n\nPrinting all persons:");
 		System.out.println(surfstore.printPersons());
+		
+		System.out.println("\nStatistics:");
+		statistics();
 	}
 
 
+
+
+	private static void statistics() {
+		System.out.println("Stock statistics:");
+		System.out.println(surfstore.getStockingStatistics());
+	}
+
+
+
+
 	public static void initialize() {
-		surfstore = new Surfstore();
+		surfstore = new Surfstore(50000, 3000);
 		System.out.println("Surfstore was created.");
 
 		ulrich = surfstore.createCustomer("Ulrich", "A");
@@ -63,26 +76,28 @@ public class Test {
 		tom = surfstore.createCustomer("Tom", "M");
 		System.out.println(tom + " created.");
 
-
+		System.out.println("Buying some articles:");
 		Article surfboard200Rent = new ArticleRent("Surfboard", "200cm", 3f, 20f, false);
-		surf200Rent = surfstore.buyArticles(surfboard200Rent, 1200f, 10);
-		System.out.println(surf200Rent + " created.");		
+		surf200Rent = surfstore.buyArticles(surfboard200Rent, 1200f, 10, true);
+		System.out.println(surf200Rent + " bought.");		
 
 		Article surfboard220Rent = new ArticleRent("Surfboard", "220cm", 3f, 20f, false);
-		surf220Rent = surfstore.buyArticles(surfboard220Rent, 1200f, 10);
-		System.out.println(surf220Rent + " created.");		
+		surf220Rent = surfstore.buyArticles(surfboard220Rent, 1200f, 10, true);
+		System.out.println(surf220Rent + " bought.");		
 		
 		Article surfboard200Sale = new ArticleSale("Surfboard", "200cm", 250f, true);
-		surf200Sale = surfstore.buyArticles(surfboard200Sale, 500f, 3);
-		System.out.println(surf200Sale + " created.");
+		surf200Sale = surfstore.buyArticles(surfboard200Sale, 500f, 3, false);
+		System.out.println(surf200Sale + " bought.");
 
 		Article surfboard220Sale = new ArticleSale("Surfboard", "220cm", 250f, true);
-		surf220Sale = surfstore.buyArticles(surfboard220Sale, 500f, 3);
-		System.out.println(surf220Sale + " created.");
+		surf220Sale = surfstore.buyArticles(surfboard220Sale, 500f, 3, false);
+		System.out.println(surf220Sale + " bought.");
 
 		Article helmRent = new ArticleRent("Helm", "M", 2f, 10f, true);
-		helmMediumRent = surfstore.buyArticles(helmRent, 150, 5);
-		System.out.println(helmMediumRent + " created.");
+		helmMediumRent = surfstore.buyArticles(helmRent, 150, 5, true);
+		System.out.println(helmMediumRent + " bought.");
+		
+		System.out.println("Account/Cash: " + surfstore.getBalanceAccount() + "/" + surfstore.getBalanceCash());
 	}
 
 	public static void borrowSurfarticleTest() {
@@ -121,6 +136,37 @@ public class Test {
 		OutgoingBill oTom = surfstore.returnArticles(tom, tomRentals, true);
 		System.out.println("Tom tried to return 5/5 of his sufboards. All were returned.");
 		System.out.println("\t" + oTom.toString());
+		
+		System.out.println("Account/Cash: " + surfstore.getBalanceAccount() + "/" + surfstore.getBalanceCash());
+		
+	}
+	
+
+	private static void surfschool() {
+		SurfSchool surfschool = surfstore.getSurfSchool();
+		
+		System.out.println("Creating some dummy students, teacher and dummy dates!");
+		ArrayList<Student> students = new ArrayList<Student>();
+		for(int i = 0; i < 15; i++)
+		{
+			students.add(new Student("Student Nr. " + (i+1)));
+		}
+		Teacher teacher = new Teacher("Prof. Surf");
+		ArrayList<Date> dates = new ArrayList<Date>();
+		for(int i = 0; i < 6; i++)
+		{
+			Date d = new Date();
+			d.setDate(i+1); //In our test.java we use some deprecated methods to relieve some complexity.
+			dates.add(d);
+		}
+		
+		System.out.println("Creating the surf course.");
+		Course course = surfstore.addCourse("Newbies 1", 300f, teacher, students, dates);
+		
+		System.out.println("Created bills for all students and added them to the accounting.");
+		ArrayList<OutgoingBill> bills = surfstore.createOutgoingBillsSurfSchool(course);
+		
+		System.out.println("Account/Cash: " + surfstore.getBalanceAccount() + "/" + surfstore.getBalanceCash());
 		
 	}
 }

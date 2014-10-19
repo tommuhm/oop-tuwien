@@ -107,9 +107,10 @@ public class StockManagement {
 		StringBuilder stats = new StringBuilder();
 
 		for (Article article : articles.values()) {
-			if (article instanceof ArticleRent)
+			if (article instanceof ArticleRent) {
 				stats.append("| " + article.toString()
-						+ "\t| Rented " + ((ArticleRent) article).getRentedCount() + " time(s).");
+						+ "\t| Rented " + ((ArticleRent) article).getRentedCount() + " time(s).\n");
+			}
 		}
 
 		return stats.toString();

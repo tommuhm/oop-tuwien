@@ -9,13 +9,14 @@ public class Surfstore {
 	private ArrayList<Person> persons;
 	private StockManagement stockManagement;
 	private SurfSchool surfSchool;
-	private Accounting accounting; 
+	private Accounting accounting;
 
-	public Surfstore() {
+	public Surfstore(float balanceAccount, float balanceCash) {
 		persons = new ArrayList<Person>();
 		stockManagement = new StockManagement();
 		surfSchool = new SurfSchool();
-		accounting = new Accounting( 0, 0); //set balance //TODO
+		accounting = new Accounting(balanceAccount, balanceCash); // set balance
+																	// //TODO
 	}
 
 	public Person createCustomer(String firstname, String lastname) {
@@ -32,12 +33,11 @@ public class Surfstore {
 		return stockManagement.getRentedArticleMap().get(person);
 	}
 
-	public Article buyArticles(Article article, float priceBuy, int amount, Boolean inCash) {	
-		IncomingBill bill = new IncomingBill(article.getName() + ": " + amount, 
-				priceBuy, 
-				new Date(), 
-				inCash);
-		
+	public Article buyArticles(Article article, float priceBuy, int amount,
+			Boolean inCash) {
+		IncomingBill bill = new IncomingBill(article.getName() + ": " + amount,
+				priceBuy, new Date(), inCash);
+
 		accounting.addIncomingBill(bill);
 		return stockManagement.addArticle(article, amount);
 	}
@@ -54,32 +54,38 @@ public class Surfstore {
 	public Rental borrowArticle(Person person, Article article, Date issueDate) {
 		return stockManagement.borrowArticle(person, article, issueDate);
 	}
-	
-	public Order createOrder( Person person, Date orderDate, String service, float amountOfMoney ) {
-		Order order = new Order( person,  orderDate, service, amountOfMoney );
+
+	public Order createOrder(Person person, Date orderDate, String service,
+			float amountOfMoney) {
+		Order order = new Order(person, orderDate, service, amountOfMoney);
 		accounting.addOrder(order);
 		return order;
 	}
-	
-	public OutgoingBill createOutgoingBill( Order order, boolean inCash ) {
-		 OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
-		 accounting.addOutgoingBill(bill);
-		 return bill;
+
+	public OutgoingBill finishOrder(Order order, boolean inCash, Article a,
+			int amount) {
+		if (stockManagement.removeArticle(a, amount)) {
+			OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
+			accounting.addOutgoingBill(bill);
+			return bill;
+		} else
+			return null;
 	}
-	
+
 	public float getBalanceAccount() {
 		return accounting.getBalanceAccount();
 	}
-	
+
 	public float getBalanceCash() {
 		return accounting.getBalanceCash();
 	}
-	
+
 	public float getTotalBalance() {
-		return ( getBalanceAccount() + getBalanceCash() );
+		return (getBalanceAccount() + getBalanceCash());
 	}
 
-	public ArrayList<Rental> borrowArticles(Person person, Article article, Date issueDate, int amount) {
+	public ArrayList<Rental> borrowArticles(Person person, Article article,
+			Date issueDate, int amount) {
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
 		for (int i = 0; i < amount; i++) {
 			Rental rental = this.borrowArticle(person, article, issueDate);
@@ -88,42 +94,41 @@ public class Surfstore {
 		}
 		return rentals;
 	}
-	
+
 	/*
-	 * We know, that outgoing bills normally have every article in detail on them, but
-	 * we thought this could be a little too detailed for this assignment.
+	 * We know, that outgoing bills normally have every article in detail on
+	 * them, but we thought this could be a little too detailed for this
+	 * assignment.
 	 */
-	public OutgoingBill returnArticles(Person person, ArrayList<Rental> rentals, Boolean inCash) {
+	public OutgoingBill returnArticles(Person person,
+			ArrayList<Rental> rentals, Boolean inCash) {
 		float price = 0f;
 		int amount = 0;
-		
+
 		for (Rental rental : rentals) {
-			if(stockManagement.returnArticle(person, rental)) {
+			if (stockManagement.returnArticle(person, rental)) {
 				price += rental.getPriceByNow();
 				amount++;
 			}
 		}
-		
+
 		OutgoingBill oBill = null;
-		if(amount > 0) {
-			oBill = new OutgoingBill("Rented articles: " + amount, 
-					price, 
-					new Date(), 
-					inCash, 
-					person);
+		if (amount > 0) {
+			oBill = new OutgoingBill("Rented articles: " + amount, price,
+					new Date(), inCash, person);
 		}
-		
-		//TODO Rechnung in Buchhaltung einfügen.
-		
+
+		accounting.addOutgoingBill(oBill);
+
 		return oBill;
 	}
-
 
 	public String printArticles() {
 		StringBuilder ausgabe = new StringBuilder();
 
 		Collection<Article> articles = stockManagement.getArticles().values();
-		HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
+		HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement
+				.getRentedArticleMap();
 
 		for (Article article : articles) {
 			ausgabe.append(article.toString());
@@ -131,9 +136,9 @@ public class Surfstore {
 			for (ArrayList<Rental> rentedArticles : rentedArticleMap.values()) {
 				for (Rental rentedArticle : rentedArticles) {
 					if (rentedArticle.getArticle().equals(article)) {
-						ausgabe.append("\t| Rented from " + rentedArticle.getDate()
-								+ "\t| Rented Hours " + rentedArticle.getHours()
-								+ "\n");
+						ausgabe.append("\t| Rented from "
+								+ rentedArticle.getDate() + "\t| Rented Hours "
+								+ rentedArticle.getHours() + "\n");
 					}
 				}
 			}
@@ -142,7 +147,8 @@ public class Surfstore {
 	}
 
 	public String printPersons() {
-		HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement.getRentedArticleMap();
+		HashMap<Person, ArrayList<Rental>> rentedArticleMap = stockManagement
+				.getRentedArticleMap();
 		StringBuilder ausgabe = new StringBuilder();
 
 		for (Person person : persons) {
@@ -151,13 +157,15 @@ public class Surfstore {
 					+ "\t| Person ID: " + person.getPersonID() + " |\n");
 			if (rentedArticleMap.containsKey(person)) {
 				ArrayList<Rental> rentedArticles = rentedArticleMap.get(person);
-				ausgabe.append("| " + rentedArticles.size() + " Rented Articles: \n");
+				ausgabe.append("| " + rentedArticles.size()
+						+ " Rented Articles: \n");
 				for (Rental rentedArticle : rentedArticles) {
-					ausgabe.append("| Article: " + rentedArticle.getArticle().getName()
+					ausgabe.append("| Article: "
+							+ rentedArticle.getArticle().getName()
 							+ "\t| Rented from: " + rentedArticle.getDate()
 							+ "\t| Rented Hours " + rentedArticle.getHours()
-							+ "\t| Current Price: " + rentedArticle.getPriceByNow()
-							+ "\n");
+							+ "\t| Current Price: "
+							+ rentedArticle.getPriceByNow() + "\n");
 				}
 			} else {
 				ausgabe.append("|  0 Rented Articles: \n");
@@ -171,17 +179,23 @@ public class Surfstore {
 	}
 
 	public Course addCourse(String courseName, float price, Teacher teacher,
-				ArrayList<Student> students, ArrayList<Date> dates) {
-		return surfSchool.addCourse(courseName, price, teacher, students, dates);
+			ArrayList<Student> students, ArrayList<Date> dates) {
+		return surfSchool
+				.addCourse(courseName, price, teacher, students, dates);
 	}
 
-	public ArrayList<OutgoingBill> createOutgoingBills(Course course) {
-		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
-		
-		for(OutgoingBill bill : outgoingBills) {
+	public ArrayList<OutgoingBill> createOutgoingBillsSurfSchool(Course course) {
+		ArrayList<OutgoingBill> outgoingBills = surfSchool
+				.createOutgoingBills(course);
+
+		for (OutgoingBill bill : outgoingBills) {
 			accounting.addOutgoingBill(bill);
 		}
-		
+
 		return outgoingBills;
+	}
+
+	public String getStockingStatistics() {
+		return stockManagement.getRentalStatistic();
 	}
 }
