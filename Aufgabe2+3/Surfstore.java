@@ -61,10 +61,12 @@ public class Surfstore {
 		return order;
 	}
 	
-	public OutgoingBill createOutgoingBill( Order order, boolean inCash ) {
-		 OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
-		 accounting.addOutgoingBill(bill);
-		 return bill;
+	public OutgoingBill finishOrder( Order order, boolean inCash, Article a, int amount) {
+		if (stockManagement.removeArticle(a, amount)) {
+			OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
+			accounting.addOutgoingBill(bill);
+			return bill;
+		} else return null;
 	}
 	
 	public float getBalanceAccount() {
