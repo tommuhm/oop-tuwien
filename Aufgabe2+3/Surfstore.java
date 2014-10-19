@@ -32,8 +32,13 @@ public class Surfstore {
 		return stockManagement.getRentedArticleMap().get(person);
 	}
 
-	public Article buyArticles(Article article, float priceBuy, int amount) {
-		// TODO remove price from balance
+	public Article buyArticles(Article article, float priceBuy, int amount, Boolean inCash) {	
+		IncomingBill bill = new IncomingBill(article.getName() + ": " + amount, 
+				priceBuy, 
+				new Date(), 
+				inCash);
+		
+		accounting.addIncomingBill(bill);
 		return stockManagement.addArticle(article, amount);
 	}
 
@@ -60,6 +65,18 @@ public class Surfstore {
 		 OutgoingBill bill = (OutgoingBill) order.createOutgoingBill(inCash);
 		 accounting.addOutgoingBill(bill);
 		 return bill;
+	}
+	
+	public float getBalanceAccount() {
+		return accounting.getBalanceAccount();
+	}
+	
+	public float getBalanceCash() {
+		return accounting.getBalanceCash();
+	}
+	
+	public float getTotalBalance() {
+		return ( getBalanceAccount() + getBalanceCash() );
 	}
 
 	public ArrayList<Rental> borrowArticles(Person person, Article article, Date issueDate, int amount) {
