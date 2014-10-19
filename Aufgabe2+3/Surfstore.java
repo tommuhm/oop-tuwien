@@ -1,5 +1,5 @@
 /**
- * @author: djaffry, uaschl, tmuhm
+ * @author: djaffry, uaschl, tmuh m
  */
 
 import java.util.*;
