@@ -71,14 +71,6 @@ public class Surfstore {
 		}
 		return rentals;
 	}
-
-	private float returnArticle(Person person, Rental rental) {
-		// TODO add income to balance
-		if (stockManagement.returnArticle(person, rental))
-			return rental.getPriceByNow();
-		else
-			return 0f;
-	}
 	
 	/*
 	 * We know, that outgoing bills normally have every article in detail on them, but
@@ -168,6 +160,10 @@ public class Surfstore {
 
 	public ArrayList<OutgoingBill> createOutgoingBills(Course course) {
 		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
+		
+		for(OutgoingBill bill : outgoingBills) {
+			accounting.addOutgoingBill(bill);
+		}
 		
 		return outgoingBills;
 	}
