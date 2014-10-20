@@ -21,7 +21,7 @@ public class Test {
 
 	private static Surfstore surfstore;
 
-	private static Person ulrich, david, tom;
+	private static Customer ulrich, david, tom;
 	private static Article surf200Rent, surf200Sale, surf220Rent, surf220Sale, helmMediumRent;
 	private static Rental davidRental;
 	private static ArrayList<Rental> ulrichRentals, tomRentals;
@@ -67,14 +67,16 @@ public class Test {
 		surfstore = new Surfstore(50000, 3000);
 		System.out.println("Surfstore was created.");
 
-		ulrich = surfstore.createCustomer("Ulrich", "A");
-		System.out.println(ulrich + " created.");
+		ulrich = new Customer("Ulrich A"); 
+		david = new Customer("David J");
+		tom = new Customer("Tom M");
 
-		david = surfstore.createCustomer("David", "J");
-		System.out.println(david + " created.");
+		surfstore.addCustomer(ulrich);
+		surfstore.addCustomer(david);
+		surfstore.addCustomer(tom);
+		
 
-		tom = surfstore.createCustomer("Tom", "M");
-		System.out.println(tom + " created.");
+		System.out.println("Customers ulrich, david and tom were created and added to the surfstore.");
 
 		System.out.println("Buying some articles:");
 		Article surfboard200Rent = new ArticleRent("Surfboard", "200cm", 3f, 20f, false);

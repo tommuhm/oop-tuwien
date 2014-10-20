@@ -18,10 +18,8 @@ public class Surfstore {
 		accounting = new Accounting(balanceAccount, balanceCash); // set balance //TODO
 	}
 
-	public Person createCustomer(String firstname, String lastname) {
-		Person person = new Customer(firstname + " " + lastname);
-		persons.add(person);
-		return person;
+	public void addCustomer(Person customer) {
+		persons.add(customer);
 	}
 
 	public Collection<Article> getArticleList() {
