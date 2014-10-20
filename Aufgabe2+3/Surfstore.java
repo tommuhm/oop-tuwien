@@ -137,6 +137,7 @@ public class Surfstore {
 					}
 				}
 			}
+			ausgabe.append("\n");
 		}
 		return ausgabe.toString();
 	}
