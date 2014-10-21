@@ -32,21 +32,19 @@ public class Accounting {
 		orderMap.put(order.getOrderID(), order);
 	}
 
-	public void addIncomingBill(IncomingBill bill) {
-		incomingBillMap.put(bill.getBillID(), bill);
-		if (bill.getInCash()) {
-			balanceCash -= bill.getAmountOfMoney();
-		} else {
-			balanceAccount -= bill.getAmountOfMoney();
+	public void addBill(Bill bill) {
+		float amountOfMoney = bill.getAmountOfMoney();
+		if (bill instanceof OutgoingBill) {
+			outgoingBillMap.put(bill.getBillID(), (OutgoingBill) bill);
 		}
-	}
-
-	public void addOutgoingBill(OutgoingBill bill) {
-		outgoingBillMap.put(bill.getBillID(), bill);
+		if (bill instanceof IncomingBill) {
+			incomingBillMap.put(bill.getBillID(), (IncomingBill) bill);
+			amountOfMoney *= -1;
+		}
 		if (bill.getInCash()) {
-			balanceCash += bill.getAmountOfMoney();
+			balanceCash += amountOfMoney;
 		} else {
-			balanceAccount += bill.getAmountOfMoney();
+			balanceAccount += amountOfMoney;
 		}
 	}
 
@@ -58,22 +56,6 @@ public class Accounting {
 		return balanceCash;
 	}
 
-	public String toString() {
-		String s = "";
-		for (OutgoingBill bill : outgoingBillMap.values()) {
-			s += ((OutgoingBill) bill).toString();
-			s += "\n ########## \n";
-		}
-		for (IncomingBill bill : incomingBillMap.values()) {
-			s += ((IncomingBill) bill).toString();
-			s += "\n ########## \n";
-		}
-		s += " current Account Balance: " + this.balanceAccount
-				+ "\n current Cash Balance: " + this.balanceCash;
-		s += "\n total ammount: " + (this.balanceAccount + this.balanceCash);
-		return s += "\n \n End of Accounting \n ";
-	}
-	
 	public String getAccountStatistics() {
 		String s = "";
 		float spent = 0;
@@ -84,13 +66,31 @@ public class Accounting {
 		for (IncomingBill bill : incomingBillMap.values()) {
 			spent += bill.getAmountOfMoney();
 		}
-		
-		s += 	"Account/Cash: " + this.balanceAccount + "/" + this.balanceCash + "\n" + 
+
+		s += "Account/Cash: " + this.balanceAccount + "/" + this.balanceCash + "\n" +
 				"Money spent: " + spent + "\n" +
 				"Money income: " + income + "\n" +
 				"Bills outgoing: " + outgoingBillMap.size() + "\n" +
 				"Bills incoming: " + incomingBillMap.size() + "\n";
-		
+
+		return s;
+	}
+
+	@Override
+	public String toString() {
+		String s = "";
+		for (OutgoingBill bill : outgoingBillMap.values()) {
+			s += bill.toString();
+			s += "\n ########## \n";
+		}
+		for (IncomingBill bill : incomingBillMap.values()) {
+			s += bill.toString();
+			s += "\n ########## \n";
+		}
+		s += " current Account Balance: " + this.balanceAccount
+				+ "\n current Cash Balance: " + this.balanceCash;
+		s += "\n total ammount: " + (this.balanceAccount + this.balanceCash);
+		s += "\n\n End of Accounting \n ";
 		return s;
 	}
 }

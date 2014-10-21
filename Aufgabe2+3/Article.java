@@ -1,7 +1,3 @@
-/**
- * @author: djaffry, uaschl, tmuhm
- */
-
 public abstract class Article {
 
 	private static int maxArticleNumber = 0;
@@ -10,7 +6,8 @@ public abstract class Article {
 	private String name;
 	private String size;
 	private int totalAmount;
-	boolean isNew;
+	private boolean isNew;
+	private int discardCount;
 
 	public Article(String name, String size, boolean isNew) {
 		this.id = Article.maxArticleNumber++; //Set name and increment by 1
@@ -36,6 +33,10 @@ public abstract class Article {
 		return totalAmount;
 	}
 
+	public int getDiscardCount() {
+		return discardCount;
+	}
+
 	public boolean isNew() {
 		return isNew;
 	}
@@ -52,4 +53,12 @@ public abstract class Article {
 		return totalAmount >= amount;
 	}
 
+	public boolean discardArticle(int amount) {
+		if (isAvailable(amount)) {
+			removeAmount(amount);
+			discardCount += amount;
+			return true;
+		}
+		return false;
+	}
 }

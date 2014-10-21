@@ -14,8 +14,7 @@ public class ArticleRent extends Article {
 	}
 
 	public ArticleRent(ArticleRent aricleRent) {
-		this(aricleRent.getName(), aricleRent.getSize(), aricleRent.getPricePerHour(),
-				aricleRent.getPricePerDay(), aricleRent.isNew());
+		this(aricleRent.getName(), aricleRent.getSize(), aricleRent.getPricePerHour(), aricleRent.getPricePerDay(), aricleRent.isNew());
 	}
 
 	public float getPricePerHour() {
@@ -37,7 +36,7 @@ public class ArticleRent extends Article {
 	public boolean borrowArticle(int amount) {
 		if (isAvailable(amount)) {
 			currentAmount -= amount;
-			rentedCount++;
+			rentedCount += amount;
 			return true;
 		}
 		return false;
@@ -47,20 +46,24 @@ public class ArticleRent extends Article {
 		currentAmount += amount;
 	}
 
+	@Override
 	public void addAmount(int amount) {
 		super.addAmount(amount);
 		currentAmount += amount;
 	}
 
+	@Override
 	public void removeAmount(int amount) {
 		super.removeAmount(amount);
 		currentAmount -= amount;
 	}
 
+	@Override
 	public boolean isAvailable(int amount) {
 		return currentAmount >= amount;
 	}
 
+	@Override
 	public String toString() {
 		return "| ID: " + this.getId()
 				+ "\t| Name: " + this.getName()

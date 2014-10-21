@@ -8,12 +8,10 @@ public class Order {
 	private Person person;
 	private Date orderDate;
 
-
 	private String service;
 	private float amountOfMoney;
 
-
-	public Order( Person person, Date orderDate, String service, float amountOfMoney ) {
+	public Order(Person person, Date orderDate, String service, float amountOfMoney) {
 		this.person = person;
 		this.orderDate = orderDate;
 		this.service = service;
@@ -41,9 +39,7 @@ public class Order {
 		return amountOfMoney;
 	}
 
-	public OutgoingBill createOutgoingBill( boolean inCash ) {
-		return new OutgoingBill(service, amountOfMoney, new Date() , inCash, person);
-		
+	public OutgoingBill createOutgoingBill(boolean inCash) {
+		return new OutgoingBill(service, amountOfMoney, new Date(), inCash, person);
 	}
-
 }

@@ -1,7 +1,3 @@
-/**
- * @author: djaffry, uaschl, tmuhm
- */
-
 import java.util.Date;
 
 public class Rental {

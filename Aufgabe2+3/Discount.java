@@ -1,4 +1,5 @@
 public class Discount {
+
 	public static float getDiscount(int days) {
 		if (days > 7) {
 			return 0.5f; //multiplier
@@ -10,4 +11,5 @@ public class Discount {
 			return 1.0f;
 		}
 	}
+	
 }

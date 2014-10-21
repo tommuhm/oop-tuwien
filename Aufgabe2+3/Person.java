@@ -1,8 +1,5 @@
-/**
- * @author: djaffry, uaschl, tmuhm
- */
-
 public abstract class Person {
+
 	private static int maxPersonID = 0;
 
 	private String personName;
@@ -13,7 +10,6 @@ public abstract class Person {
 		this.personID = Person.maxPersonID++; // Set PersonID and increment by 1
 	}
 
-	// ===========GETTER AND SETTERS===============
 	public String getPersonName() {
 		return personName;
 	}
@@ -21,10 +17,10 @@ public abstract class Person {
 	public int getPersonID() {
 		return personID;
 	}
-	// ============================================
 
 	@Override
 	public String toString() {
 		return this.personID + " " + this.personName;
 	}
+
 }

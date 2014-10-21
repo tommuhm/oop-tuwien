@@ -20,13 +20,28 @@ public class StockManagement {
 		return rentedArticleMap;
 	}
 
+	private Article getArticle(String articleName, String articleSize) {
+		Article foundArticle = null;
+
+		for (Article article : articles.values()) {
+			if (article.getName().equals(articleName) &&
+					article.getSize().equals(articleSize)) {
+				foundArticle = article;
+				break;
+			}
+		}
+		return foundArticle;
+	}
+
 	public Article addArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 		if (article == null) {
-			if (a instanceof ArticleRent)
+			if (a instanceof ArticleRent) {
 				article = new ArticleRent((ArticleRent) a);
-			if (a instanceof ArticleSale)
+			}
+			if (a instanceof ArticleSale) {
 				article = new ArticleSale((ArticleSale) a);
+			}
 			articles.put(article.getId(), article);
 		}
 
@@ -40,11 +55,19 @@ public class StockManagement {
 		if (article == null)
 			return false;
 
-		if (!article.isAvailable(amount))
+		return article.discardArticle(amount);
+	}
+
+	public boolean sellArticle(Article a, int amount) {
+		Article article = articles.get(a.getId());
+
+		if (article == null)
 			return false;
 
-		article.removeAmount(amount);
-		return true;
+		if (!(a instanceof ArticleSale))
+			return false;
+
+		return ((ArticleSale) a).sellArticle(amount);
 	}
 
 	public Rental borrowArticle(Person person, Article a, Date issueDate) {
@@ -89,31 +112,21 @@ public class StockManagement {
 		return true;
 	}
 
-	private Article getArticle(String articleName, String articleSize) {
-		Article foundArticle = null;
-
-		for (Article article : articles.values()) {
-			if (article.getName().equals(articleName) &&
-					article.getSize().equals(articleSize)) {
-				foundArticle = article;
-				break;
-			}
-		}
-
-		return foundArticle;
-	}
-
 	public String getRentalStatistic() {
-		StringBuilder stats = new StringBuilder();
+		StringBuilder statistic = new StringBuilder();
 
 		for (Article article : articles.values()) {
 			if (article instanceof ArticleRent) {
-				stats.append("| " + article.toString()
-						+ "\t| Rented " + ((ArticleRent) article).getRentedCount() + " time(s).\n");
+				statistic.append(article.toString() + "\t| Rented " + ((ArticleRent) article).getRentedCount() + " time(s).");
 			}
+			if (article instanceof ArticleSale) {
+				ArticleSale articleSale = (ArticleSale) article;
+				statistic.append(article.toString() + "\t| Sold: " + articleSale.getSoldCount());
+			}
+			statistic.append("\t| Discarded: " + article.getDiscardCount() + "\n");
 		}
 
-		return stats.toString();
+		return statistic.toString();
 	}
 
 }
