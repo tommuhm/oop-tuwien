@@ -6,6 +6,7 @@ public class StockManagement {
 
 	private HashMap<Integer, Article> articles;
 	private HashMap<Person, ArrayList<Rental>> rentedArticleMap;
+	//INVARIANT: articles != null, rentedArticleMap != null
 
 	public StockManagement() {
 		articles = new HashMap<Integer, Article>();
@@ -20,6 +21,7 @@ public class StockManagement {
 		return rentedArticleMap;
 	}
 
+	//PRECONDITION: articleName != null, articleSize != null
 	private Article getArticle(String articleName, String articleSize) {
 		Article foundArticle = null;
 
@@ -33,6 +35,8 @@ public class StockManagement {
 		return foundArticle;
 	}
 
+	//PRECONDITION: a != null, amount > 0
+	//POSTCONDITOIN: article != null
 	public Article addArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 		if (article == null) {
@@ -49,15 +53,17 @@ public class StockManagement {
 		return article;
 	}
 
+	//PRECONDITION: articles contains a, amount > 0
 	public boolean removeArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 
 		if (article == null)
 			return false;
-
+		
 		return article.discardArticle(amount);
 	}
 
+	//PRECONDITION: a != null, amount >= 0, a instanceof ArticleSale, articles contains a
 	public boolean sellArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 
@@ -70,6 +76,7 @@ public class StockManagement {
 		return ((ArticleSale) a).sellArticle(amount);
 	}
 
+	//PRECONDITION: person != null, a != null, issueDate != null, articles contains a, a instanceof ArticleRent
 	public Rental borrowArticle(Person person, Article a, Date issueDate) {
 		Article article = articles.get(a.getId());
 
@@ -98,6 +105,7 @@ public class StockManagement {
 		return rental;
 	}
 
+	//PRECONDITION: person != null, rental != null, rentedArticleMap contains person
 	public boolean returnArticle(Person person, Rental rental) {
 		if (!rentedArticleMap.containsKey(person))
 			return false;

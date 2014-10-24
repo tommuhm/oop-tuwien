@@ -6,13 +6,14 @@ public class ArticleSale extends Article {
 	private int soldCount;
 	//INVARIANT: priceSale > 0, soldCount >= 0
 
-	//PRECONDITION: priceSale > 0
+	//PRECONDITION: priceSale > 0, name != null, size != null
 	public ArticleSale(String name, String size, float priceSale, boolean isNew) {
 		super(name, size, isNew);
 		this.priceSale = priceSale;
 	}
 
 	//ERROR: Getter not used. Even though it works. Class cohesion is lowered.
+	//PRECONDITION: articleSale != null
 	public ArticleSale(ArticleSale aricleSale) {
 		this(aricleSale.getName(), aricleSale.getSize(), aricleSale.priceSale, aricleSale.isNew());
 	}

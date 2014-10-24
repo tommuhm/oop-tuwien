@@ -1,11 +1,12 @@
 import java.util.*;
-
+ 
 public class Surfstore {
 
 	private ArrayList<Customer> customers;
 	private StockManagement stockManagement;
 	private SurfSchool surfSchool;
 	private Accounting accounting;
+	//INVARIANT: customers != null, stockManagement != null, surfSchool != null, accounting != null
 
 	public Surfstore(float balanceAccount, float balanceCash) {
 		customers = new ArrayList<Customer>();
@@ -14,11 +15,11 @@ public class Surfstore {
 		accounting = new Accounting(balanceAccount, balanceCash);
 	}
 
-
 	public Collection<Article> getArticles() {
 		return stockManagement.getArticles().values();
 	}
 
+	//PRECONDITION: person != null
 	public ArrayList<Rental> getRentedArticles(Person person) {
 		return stockManagement.getRentedArticleMap().get(person);
 	}
@@ -43,27 +44,34 @@ public class Surfstore {
 		return accounting.getAccountStatistics();
 	}
 
-
+	//PRECONDITION: customer != null
+	//POSTCONDITION: customers != null and contains customer
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
 
+	//PRECONDITION: course != null
+	//POSTCONDITION: surfSchool contains course
 	public Course addCourse(Course course) {
 		return surfSchool.addCourse(course);
 	}
-
+	
+	//PRECONDITION: order != null
+	//POSTCONDITION: accounting contains order
 	public Order addOrder(Order order) {
 		accounting.addOrder(order);
 		return order;
 	}
 
-
+	//PRECONDITION: article != null, priceBuy >= 0, amount > 0
+	//POSTCONDITION: accounting contains bill AND stockManagement contains article
 	public Article buyArticles(Article article, float priceBuy, int amount, boolean inCash) {
 		IncomingBill bill = new IncomingBill(article.getName() + ": " + amount, priceBuy, new Date(), inCash);
 		accounting.addBill(bill);
 		return stockManagement.addArticle(article, amount);
 	}
 
+	//PRECONDITION: article != null, amount > 0, person != null
 	public boolean sellArticles(Article article, int amount, boolean inCash, Person person) {
 		if (stockManagement.sellArticle(article, amount)) {
 			OutgoingBill bill = new OutgoingBill(article.getName() + ": " + amount, ((ArticleSale) article).getPriceSale(), new Date(), inCash, person);
@@ -73,11 +81,13 @@ public class Surfstore {
 			return false;
 		}
 	}
-
+	//PRECONDITION: article != null, amount > 0
 	public boolean discardArticles(Article article, int amount) {
 		return stockManagement.removeArticle(article, amount);
 	}
-
+	
+	//PRECONDITION: person != null, article != null, issueDate != null, amount > 0
+	//POSTCONDITION: rentals != null
 	public ArrayList<Rental> borrowArticle(Person person, Article article, Date issueDate, int amount) {
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
 		for (int i = 0; i < amount; i++) {
@@ -88,11 +98,7 @@ public class Surfstore {
 		return rentals;
 	}
 
-	/*
-	 * We know, that outgoing bills normally have every article in detail on
-   * them, but we thought this could be a little too detailed for this
-   * assignment.
-   */
+	//PRECONDITION: person != null, rentals != null
 	public OutgoingBill returnArticles(Person person, ArrayList<Rental> rentals, boolean inCash) {
 		float price = 0f;
 		int amount = 0;
@@ -112,7 +118,7 @@ public class Surfstore {
 		return oBill;
 	}
 
-
+	//PRECONDITION: order != null, a != null, amount > 0
 	public OutgoingBill createBillForOrder(Order order, boolean inCash, Article a, int amount) {
 		if (stockManagement.removeArticle(a, amount)) {
 			OutgoingBill bill = order.createOutgoingBill(inCash);
@@ -123,6 +129,7 @@ public class Surfstore {
 		}
 	}
 
+	//PRECONDITION: course != null
 	public ArrayList<OutgoingBill> createBillsForSurfSchool(Course course) {
 		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
 
@@ -132,7 +139,7 @@ public class Surfstore {
 		return outgoingBills;
 	}
 
-
+	
 	public String printArticles() {
 		StringBuilder ausgabe = new StringBuilder();
 

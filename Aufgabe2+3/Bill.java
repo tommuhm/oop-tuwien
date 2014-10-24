@@ -1,15 +1,20 @@
 import java.util.Date;
 
+//GOOD: high class cohesion
+//BAD: Most of the getters and setters could have been "protected"
 public abstract class Bill {
 
 	private static int maxBillID = 0;
-
+	//INVARIANT: maxBillID >= 0, gets increment by 1 every Bill
+	
 	private final int billID;
 	private final String service;
 	private final float amountOfMoney;
 	private final Date date;
 	private final boolean inCash;
+	//INVARIANT: billID >= 0, amountOfMoney >= 0, service != null, date != null
 
+	//PRECONDITION: service =! null, date != null, amountOfMoney >= 0
 	public Bill(String service, float amountOfMoney, Date date, boolean inCash) {
 		this.billID = Bill.maxBillID++;
 		this.service = service;

@@ -1,5 +1,6 @@
 import java.util.HashMap;
 
+//GOOD: High class cohesion.
 public class Accounting {
 
 	private HashMap<Integer, Order> orderMap;
@@ -7,6 +8,9 @@ public class Accounting {
 	private HashMap<Integer, IncomingBill> incomingBillMap;
 	private float balanceAccount;
 	private float balanceCash;
+	//INVARIANT: orderMap != null, outgoingBillMap != null, incomingBillMap != null
+	//BAD: We should have used whole numbered objects for money like big decimal or long. (like in the script [Page 82])
+	//BAD: We should have used one instead of two maps for the bills.
 
 	public Accounting(float balanceAccount, float balanceCash) {
 		this.orderMap = new HashMap<Integer, Order>();
@@ -16,10 +20,11 @@ public class Accounting {
 		this.balanceCash = balanceCash;
 	}
 
+	//BAD: not used
 	public Order getOrder(int orderID) {
 		return orderMap.get(orderID);
 	}
-
+	
 	public IncomingBill getIncomingBill(int billID) {
 		return incomingBillMap.get(billID);
 	}

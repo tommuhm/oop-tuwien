@@ -1,5 +1,7 @@
 public class Discount {
 
+	//PRECONDITION: days >= 1
+	//POSTCONDITION: value >= 0 && value <= 1
 	public static float getDiscount(int days) {
 		if (days > 7) {
 			return 0.5f; //multiplier

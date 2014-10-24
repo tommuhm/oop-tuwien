@@ -3,12 +3,15 @@ import java.util.Date;
 public class OutgoingBill extends Bill {
 
 	private Person person;
+	//INVARIANT: person != null
 
+	//PRECONDITION: amountOfMoney >= 0, person != null, date != null, service != null
 	public OutgoingBill(String service, float amountOfMoney, Date date, boolean inCash, Person person) {
 		super(service, amountOfMoney, date, inCash);
 		this.person = person;
 	}
 
+	//BAD: Not used!
 	public Person getPerson() {
 		return this.person;
 	}

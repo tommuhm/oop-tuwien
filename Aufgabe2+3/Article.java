@@ -11,9 +11,9 @@ public abstract class Article {
 	private int totalAmount;
 	private boolean isNew;
 	private int discardCount;
-	//INVARIANT: id >= 0
-	//INVARIANT: totalAmount >= 0, discardCount >= 0
+	//INVARIANT: id >= 0, totalAmount >= 0, discardCount >= 0, name != null, size != null
 
+	//PRECONDITION: name != null, size != null
 	public Article(String name, String size, boolean isNew) {
 		this.id = Article.maxArticleNumber++; //Set name and increment by 1
 		this.name = name;
