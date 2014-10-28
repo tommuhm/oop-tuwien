@@ -9,8 +9,8 @@ public abstract class Bill {
 	private final float amountOfMoney;
 	private final Date date;
 	private final boolean inCash;
-	// INVARIANT: maxBillID is always greater or equal to zero and gets increment by 1 every Bill
-	// INVARIANT: billID and amountOfMoney are always greater or equal to zero
+	// INVARIANT: maxBillID gets increment by one after each new bill
+	// INVARIANT: maxBillID, billID and amountOfMoney are always greater or equal to zero
 	// INVARIANT: service and date are never null
 
 	// PRECONDITION: service and date must not be null, amountOfMoney has to be greater or equal to zero

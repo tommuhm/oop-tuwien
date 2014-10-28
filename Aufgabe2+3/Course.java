@@ -5,14 +5,14 @@ public class Course {
 
 	private String courseName;
 	private float price;
-	//INVARIANT: price > 0, courseName != null
 
 	private Teacher teacher;
 	private ArrayList<Student> students;
 	private ArrayList<Date> dates;
-	//INVARIANT: teacher != null, students != null, dates != null
+	// INVARIANT: price is always greater than zero
+	// INVARIANT: courseName, teacher, students and dates are never null
 
-	//PRECONDITION: courseName != null, price > 0, teacher != null, students != null, dates != null
+	// PRECONDITION: price has to be greater than zero, courseName, teacher, students and dates must not be null
 	public Course(String courseName, Float price, Teacher teacher,
 	              ArrayList<Student> students, ArrayList<Date> dates) {
 		this.courseName = courseName;
@@ -22,7 +22,7 @@ public class Course {
 		this.dates = dates;
 	}
 
-	//PRECONDITION: courseName != null, price > 0, teacher != null
+	// PRECONDITION: price has to be greater than zero, courseName and teacher must not be null
 	public Course(String courseName, Float price, Teacher teacher) {
 		this.courseName = courseName;
 		this.price = price;
@@ -31,23 +31,23 @@ public class Course {
 		this.dates = new ArrayList<Date>();
 	}
 
-	//PRECONDITION: student != Null
+	// PRECONDITION: student must not be null
 	public void addStudent(Student student) {
 		this.students.add(student);
 	}
 
-	//PRECONDITION: student != null, students contain student
+	// PRECONDITION: student must not be null, students contain student
 	public void removeStudent(Student student) {
 		this.students.remove(student);
 	}
 
-	//PRECONDITION: date != null, !dates.contains(date)
-	//BAD: We should have checked if dates contains date.
+	// PRECONDITION: date must not be null, dates must not already contain date
+	// BAD: We should have checked if dates contains date.
 	public void addDate(Date date) {
 		this.dates.add(date);
 	}
 
-	//PRECONDITION: date != null, dates contain date
+	// PRECONDITION: date must not be null, dates has to contain date
 	public void removeDate(Date date) {
 		this.dates.remove(date);
 	}

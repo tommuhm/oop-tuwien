@@ -63,7 +63,7 @@ public class Test {
 		statisticsTest();
 	}
 
-	//PRECONDITION: surfstore should never be null.
+	// PRECONDITION: surfstore must not be null
 	private static void statisticsTest() {
 		System.out.println("Stock statistics:");
 		System.out.println(surfstore.getStockingStatistics());
@@ -72,7 +72,7 @@ public class Test {
 		System.out.println(surfstore.getAccountingStatistics());
 	}
 
-	//POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf200Sale, surf220Sale, helmMediumRent, ulrich, tom and david should never be null as well.
+	// POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf200Sale, surf220Sale, helmMediumRent, ulrich, tom and david must not be null
 	private static void createTestData() {
 		surfstore = new Surfstore(50000, 3000);
 		System.out.println("Surfstore was created.");
@@ -111,18 +111,18 @@ public class Test {
 		System.out.println("Account/Cash: " + surfstore.getBalanceAccount() + "/" + surfstore.getBalanceCash());
 	}
 	
-	//POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf220Sale, helmMediumRent, ulrich, tom and david can not be null, again.
+	// POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf220Sale, helmMediumRent, ulrich, tom and david must not be null
 	private static void borrowSurfarticleTest() {
 		Date d = new Date();
 
-		//ERROR: deprecated methods should not be used, calendar object should be used instead.
+		// ERROR: deprecated methods should not be used, calendar object should be used instead.
 		d.setHours(4); 
 		System.out.println("Ulrich borrows surf200Rent at " + d);
 		ulrichRentals = surfstore.borrowArticle(ulrich, surf200Rent, d, 3);
 
-		//ERROR: deprecated methods should not be used, calendar object should be used instead.
+		// ERROR: deprecated methods should not be used, calendar object should be used instead.
 		d.setDate(10);
-		//ERROR: deprecated methods should not be used, calendar object should be used instead.
+		// ERROR: deprecated methods should not be used, calendar object should be used instead.
 		d.setHours(5);
 		System.out.println("David borrows surf220Sale at " + d);
 		System.out.println("Sale articles can't be borrowed");
@@ -137,7 +137,7 @@ public class Test {
 		tomRentals = surfstore.borrowArticle(tom, helmMediumRent, d, 7);
 	}
 
-	//PRECONDITION: ulrich, david, tom, ulrichRentals, davidRentals, tomRentals and surfstore should not be null, once again.
+	// PRECONDITION: ulrich, david, tom, ulrichRentals, davidRentals, tomRentals and surfstore must not be null
 	private static void returnSurfarticleTest() {
 		OutgoingBill oUlrich = surfstore.returnArticles(ulrich, ulrichRentals, true);
 		System.out.println("Ulrich returns 7/5 of his surfboards. He returend 5/5:");
@@ -154,7 +154,7 @@ public class Test {
 		System.out.println("Account/Cash: " + surfstore.getBalanceAccount() + "/" + surfstore.getBalanceCash());
 	}
 
-	//PRECONDITION: surfstore, helmMediumRent, surf200Sale and tom are not allowed to be null too.
+	// PRECONDITION: surfstore, helmMediumRent, surf200Sale and tom must not be null
 	private static void sellSurfarticleTest() {
 		surfstore.sellArticles(helmMediumRent, 3, true, tom);
 		System.out.println("Rent-Articles can not be sold");
@@ -163,7 +163,7 @@ public class Test {
 		System.out.println("Sold 2/3: " + surf200Sale);
 	}
 	
-	//PRECONDITION: surfstore, helmMediumRent and surf200Sale must not be null.
+	// PRECONDITION: surfstore, helmMediumRent and surf200Sale must not be null
 	private static void discardSurfarticleTest() {
 		surfstore.discardArticles(surf200Sale, 1);
 		System.out.println("discarded the last: " + surf200Sale);
@@ -172,7 +172,7 @@ public class Test {
 		System.out.println("discarded 3/5 " + helmMediumRent);
 	}
 
-	//PRECONDITION: And once again, surfstore cannot be null!
+	// PRECONDITION: surfstore must not be null
 	private static void surfschoolTest() {
 		System.out.println("Creating some dummy students, teacher and dummy dates!");
 		ArrayList<Student> students = new ArrayList<Student>();
@@ -183,7 +183,7 @@ public class Test {
 		ArrayList<Date> dates = new ArrayList<Date>();
 		for (int i = 0; i < 6; i++) {
 			Date d = new Date();
-			//ERROR: deprecated methods should not be used, calendar object should be used instead.
+			// ERROR: deprecated methods should not be used, calendar object should be used instead
 			d.setDate(i + 1); 		
 			dates.add(d);
 		}

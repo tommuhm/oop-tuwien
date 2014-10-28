@@ -3,18 +3,19 @@ import java.util.Date;
 public class Order {
 
 	private static int maxOrderID = 0;
-	//INVARIANT: maxOrderID >= 0, gets incremented by 1 every new Order.
 
 	private final int orderID;
 	private Person person;
 	private Date orderDate;
-	//INVARIANT: orderID >= 0, person != null, orderDate != null
 
 	private String service;
 	private float amountOfMoney;
-	//INVARIANT: amountOfMoney >= 0, service != null
+	// INVARIANT: maxOrderID gets incremented by one after each new order
+	// INVARIANT: maxOrderID, amountOfMoney and orderID are always greater or equal to zero
+	// INVARIANT: service, person and orderDate are never null
 
-	//PRECONDITION: person != null, orderDate != null, service != null, amountOfMoney >= 0
+	// PRECONDITION: person, orderDate and service must not be null
+	// PRECONDITION: amountOfMoney has to be greater or equal to zero
 	public Order(Person person, Date orderDate, String service, float amountOfMoney) {
 		this.person = person;
 		this.orderDate = orderDate;

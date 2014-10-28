@@ -9,13 +9,13 @@ public abstract class Article {
 	private int totalAmount;
 	private boolean isNew;
 	private int discardCount;
-	// INVARIANT: maxArticleNumber is always greater or equals to zero and gets incremented by 1 every Article
-	// INVARIANT: id, totalAmount and discardCount are always greater or equal to zero
+	// INVARIANT: maxArticleNumber gets incremented by one after each new article
+	// INVARIANT: maxArticleNumber, id, totalAmount and discardCount are always greater or equal to zero
 	// INVARIANT: name and size are never null
 
 	// PRECONDITION: name and size are never null
 	public Article(String name, String size, boolean isNew) {
-		this.id = Article.maxArticleNumber++; // Set name and increment by 1
+		this.id = Article.maxArticleNumber++;
 		this.name = name;
 		this.size = size;
 		this.totalAmount = 0;
@@ -33,7 +33,7 @@ public abstract class Article {
 	public String getSize() {
 		return size;
 	}
-	
+
 	// BAD: object linking is not as low as it could be. Some Getters/Setters could be "protected" and the classes should have been in different packages, to avoid unauthorized using of the methods.
 	public int getTotalAmount() {
 		return totalAmount;
