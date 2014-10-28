@@ -2,15 +2,16 @@ public class ArticleSale extends Article {
 
 	private float priceSale;
 	private int soldCount;
-	//INVARIANT: priceSale > 0, soldCount >= 0
+	// INVARIANT: priceSale is always greater than zero
+	// INVARIANT: soldCount is always greater or equal to zero
 
-	//PRECONDITION: priceSale > 0, name != null, size != null
+	// PRECONDITION: priceSale has to be greater than zero, name and size must not be null
 	public ArticleSale(String name, String size, float priceSale, boolean isNew) {
 		super(name, size, isNew);
 		this.priceSale = priceSale;
 	}
 
-	//PRECONDITION: articleSale != null
+	// PRECONDITION: articleSale must not be null
 	public ArticleSale(ArticleSale aricleSale) {
 		this(aricleSale.getName(), aricleSale.getSize(), aricleSale.priceSale, aricleSale.isNew());
 	}
@@ -23,7 +24,7 @@ public class ArticleSale extends Article {
 		return soldCount;
 	}
 
-	//PRECONDITION: amount > 0
+	// PRECONDITION: amount has to be greater than zero
 	public boolean sellArticle(int amount) {
 		if (isAvailable(amount)) {
 			removeAmount(amount);

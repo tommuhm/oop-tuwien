@@ -3,16 +3,17 @@ import java.util.Date;
 public abstract class Bill {
 
 	private static int maxBillID = 0;
-	//INVARIANT: maxBillID >= 0, gets increment by 1 every Bill
-	
+
 	private final int billID;
 	private final String service;
 	private final float amountOfMoney;
 	private final Date date;
 	private final boolean inCash;
-	//INVARIANT: billID >= 0, amountOfMoney >= 0, service != null, date != null
+	// INVARIANT: maxBillID is always greater or equal to zero and gets increment by 1 every Bill
+	// INVARIANT: billID and amountOfMoney are always greater or equal to zero
+	// INVARIANT: service and date are never null
 
-	//PRECONDITION: service =! null, date != null, amountOfMoney >= 0
+	// PRECONDITION: service and date must not be null, amountOfMoney has to be greater or equal to zero
 	public Bill(String service, float amountOfMoney, Date date, boolean inCash) {
 		this.billID = Bill.maxBillID++;
 		this.service = service;

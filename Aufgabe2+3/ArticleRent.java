@@ -4,9 +4,10 @@ public class ArticleRent extends Article {
 	private float pricePerDay;
 	private int rentedCount;
 	private int currentAmount;
-	//INVARIANT: pricePerHour > 0, pricePerDay > 0, rentedCount >= 0, currentAmount >= 0
+	// INVARIANT: pricePerHour and pricePerDay are always greater than zero
+	// INVARIANT: rentedCount and currentAmount are always greater or equal to zero
 
-	//PRECONDITION: pricePerHour und pricePerDay müssen größer als Null sein, name und size dürfen nicht null sein
+	// PRECONDITION: pricePerHour und pricePerDay have to be greater than zero, name and size must not be null
 	public ArticleRent(String name, String size, float pricePerHour, float pricePerDay, boolean isNew) {
 		super(name, size, isNew);
 		this.pricePerHour = pricePerHour;
@@ -35,7 +36,7 @@ public class ArticleRent extends Article {
 		return rentedCount;
 	}
 
-	//PRECONDITION: amount > 0
+	// PRECONDITION: amount has to be greater than zero
 	public boolean borrowArticle(int amount) {
 		if (isAvailable(amount)) {
 			currentAmount -= amount;
@@ -45,29 +46,29 @@ public class ArticleRent extends Article {
 		return false;
 	}
 
-	//PRECONDITION: amount > 0
+	// PRECONDITION: amount has to be greater than zero
 	public void returnArticle(int amount) {
 		currentAmount += amount;
 	}
 
 	@Override
-	//PRECONDITION: amount > 0
-	//GOOD: Uses super.method -> no duplicate code
+	// PRECONDITION: amount has to be greater than zero
+	// GOOD: Uses super.method -> no duplicate code
 	public void addAmount(int amount) {
 		super.addAmount(amount);
 		currentAmount += amount;
 	}
 
 	@Override
-	//PRECONDITION: amount >= totalAmount
-	//POSTCONDITION: currentAmount >= 0
+	// PRECONDITION: amount has to be greater or equal to totalAmount
+	// POSTCONDITION: currentAmount has to be greater or equal to totalAmount
 	public void removeAmount(int amount) {
 		super.removeAmount(amount);
 		currentAmount -= amount;
 	}
 
 	@Override
-	//PRECONDITION: amount > 0
+	// PRECONDITION: amount has to be greater than zero
 	public boolean isAvailable(int amount) {
 		return currentAmount >= amount;
 	}

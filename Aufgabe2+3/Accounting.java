@@ -7,8 +7,8 @@ public class Accounting {
 	private HashMap<Integer, IncomingBill> incomingBillMap;
 	private float balanceAccount;
 	private float balanceCash;
-	//INVARIANT: orderMap != null, outgoingBillMap != null, incomingBillMap != null
-	//BAD: We should have used whole numbered objects for money like big decimal or long. (like in the script [Page 82])
+	// INVARIANT: orderMap, outgoingBillMap and incomingBillMap are never null
+	// BAD: We should have used whole numbered objects for money like big decimal or long. (like in the script [Page 82])
 
 	public Accounting(float balanceAccount, float balanceCash) {
 		this.orderMap = new HashMap<Integer, Order>();
@@ -21,7 +21,7 @@ public class Accounting {
 	public Order getOrder(int orderID) {
 		return orderMap.get(orderID);
 	}
-	//BAD:We should have used here one map instead of two, to achieve dynamic binding.
+
 	public IncomingBill getIncomingBill(int billID) {
 		return incomingBillMap.get(billID);
 	}
@@ -33,7 +33,8 @@ public class Accounting {
 	public void addOrder(Order order) {
 		orderMap.put(order.getOrderID(), order);
 	}
-	//GOOD: this method is a good example for dynamic binding: We decide of what type the bill is and put it in the right map. -> Less duplicate code.
+
+	// GOOD: this method is a good example for dynamic binding: We decide of what type the bill is and put it in the right map. -> Less duplicate code.
 	public void addBill(Bill bill) {
 		float amountOfMoney = bill.getAmountOfMoney();
 		if (bill instanceof OutgoingBill) {
