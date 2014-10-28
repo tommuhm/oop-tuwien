@@ -6,7 +6,7 @@ public class StockManagement {
 
 	private HashMap<Integer, Article> articles;
 	private HashMap<Person, ArrayList<Rental>> rentedArticleMap;
-	//INVARIANT: articles != null, rentedArticleMap != null
+	// INVARIANT: articles and rentedArticleMap are never null
 
 	public StockManagement() {
 		articles = new HashMap<Integer, Article>();
@@ -21,7 +21,7 @@ public class StockManagement {
 		return rentedArticleMap;
 	}
 
-	//PRECONDITION: articleName != null, articleSize != null
+	// PRECONDITION: articleName and articleSize must not be null
 	private Article getArticle(String articleName, String articleSize) {
 		Article foundArticle = null;
 
@@ -35,8 +35,8 @@ public class StockManagement {
 		return foundArticle;
 	}
 
-	//PRECONDITION: a != null, amount > 0
-	//POSTCONDITOIN: article != null
+	// PRECONDITION: a must not be null, amount has to be greater than zero
+	// POSTCONDITOIN: article must not be null
 	public Article addArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 		if (article == null) {
@@ -53,17 +53,17 @@ public class StockManagement {
 		return article;
 	}
 
-	//PRECONDITION: articles contains a, amount > 0
+	// PRECONDITION: articles has to contain a, amount has to be greater than zero
 	public boolean removeArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 
 		if (article == null)
 			return false;
-		
+
 		return article.discardArticle(amount);
 	}
 
-	//PRECONDITION: a != null, amount >= 0, a instanceof ArticleSale, articles contains a
+	// PRECONDITION: a must not be null, amount has to be greater than zero, a has to be an instance of ArticleSale, articles has to contain a
 	public boolean sellArticle(Article a, int amount) {
 		Article article = articles.get(a.getId());
 
@@ -76,7 +76,7 @@ public class StockManagement {
 		return ((ArticleSale) a).sellArticle(amount);
 	}
 
-	//PRECONDITION: person != null, a != null, issueDate != null, articles contains a, a instanceof ArticleRent
+	// PRECONDITION: person, a and issueDate must not be null, articles has to contain a, a has to be an instance of ArticleRent
 	public Rental borrowArticle(Person person, Article a, Date issueDate) {
 		Article article = articles.get(a.getId());
 
@@ -105,7 +105,7 @@ public class StockManagement {
 		return rental;
 	}
 
-	//PRECONDITION: person != null, rental != null, rentedArticleMap contains person
+	// PRECONDITION: person and rental must not be null, rentedArticleMap has to contain person
 	public boolean returnArticle(Person person, Rental rental) {
 		if (!rentedArticleMap.containsKey(person))
 			return false;
@@ -120,8 +120,8 @@ public class StockManagement {
 		return true;
 	}
 
-	//GOOD: Dynamic binding is used to determine if the current article in the for-loop is rentable or for sale.
-	//BAD:	Even though we used dynamic binding, the toString() methods of ArticleRent and ArticleSale don't contain the rentedCount or the soldCount.
+	// GOOD: Dynamic binding is used to determine if the current article in the for-loop is rentable or for sale.
+	// BAD:	Even though we used dynamic binding, the toString() methods of ArticleRent and ArticleSale don't contain the rentedCount or the soldCount.
 	public String getRentalStatistic() {
 		StringBuilder statistic = new StringBuilder();
 
