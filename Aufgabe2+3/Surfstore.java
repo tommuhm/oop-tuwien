@@ -1,13 +1,14 @@
 import java.util.*;
-//BAD: This class has a very high object cohesion. StockManagement, Accounting and SurfSchool should work all on their own to lower object cohesion. 
-//		Some methods in this class "redirect" to methods of StockManagement, Accounting and SurfSchool, so the test class can use them.
+
+// BAD: This class has a very high object cohesion. StockManagement, Accounting and SurfSchool should work all on their own to lower object cohesion.
+//		  Some methods in this class "redirect" to methods of StockManagement, Accounting and SurfSchool, so the test class can use them. (this should also be avoided)
 public class Surfstore {
 
 	private ArrayList<Customer> customers;
 	private StockManagement stockManagement;
 	private SurfSchool surfSchool;
 	private Accounting accounting;
-	//INVARIANT: stockManagement, surfSchool, accounting and customers may not be null.
+	// INVARIANT: stockManagement, surfSchool, accounting and customers are never null.
 
 	public Surfstore(float balanceAccount, float balanceCash) {
 		customers = new ArrayList<Customer>();
@@ -21,7 +22,7 @@ public class Surfstore {
 		return stockManagement.getArticles().values();
 	}
 
-	//PRECONDITION: person may not be null...
+	// PRECONDITION: person must not be null
 	public ArrayList<Rental> getRentedArticles(Person person) {
 		return stockManagement.getRentedArticleMap().get(person);
 	}
@@ -46,34 +47,34 @@ public class Surfstore {
 		return accounting.getAccountStatistics();
 	}
 
-	//PRECONDITION: customer may not be null.
-	//POSTCONDITION: customers contains customer.
+	// PRECONDITION: customer must not be null
+	// POSTCONDITION: customers has to contain the customer
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
 
-	//PRECONDITION: course may not be null. whatasurprise.
-	//POSTCONDITION: surfSchool contains course
+	// PRECONDITION: course must not be null
+	// POSTCONDITION: surfSchool has to contain the course
 	public Course addCourse(Course course) {
 		return surfSchool.addCourse(course);
 	}
-	
-	//PRECONDITION: order should not be null
-	//POSTCONDITION: accounting contains order
+
+	// PRECONDITION: order must not be null
+	// POSTCONDITION: accounting has to contain the order
 	public Order addOrder(Order order) {
 		accounting.addOrder(order);
 		return order;
 	}
 
-	//PRECONDITION: article has to be null, priceBuy should be equal or greater  than 0, amount should be greater than 0
-	//POSTCONDITION: accounting contains bill AND stockManagement contains article
+	// PRECONDITION: article must not be null, priceBuy has to be equal or greater than zero, amount has to be greater than zero
+	// POSTCONDITION: accounting has to contain the bill and stockManagement has to contain the article
 	public Article buyArticles(Article article, float priceBuy, int amount, boolean inCash) {
 		IncomingBill bill = new IncomingBill(article.getName() + ": " + amount, priceBuy, new Date(), inCash);
 		accounting.addBill(bill);
 		return stockManagement.addArticle(article, amount);
 	}
 
-	//PRECONDITION: article may not be null, amount should be greater than 0 and person should also not be null
+	// PRECONDITION: article and person must not be null, amount has to be greater than zero
 	public boolean sellArticles(Article article, int amount, boolean inCash, Person person) {
 		if (stockManagement.sellArticle(article, amount)) {
 			OutgoingBill bill = new OutgoingBill(article.getName() + ": " + amount, ((ArticleSale) article).getPriceSale(), new Date(), inCash, person);
@@ -83,13 +84,14 @@ public class Surfstore {
 			return false;
 		}
 	}
-	//PRECONDITION: article is not allowed to be null, amount should be greater than 0
+
+	// PRECONDITION: article must not be null, amount has to be greater than zero
 	public boolean discardArticles(Article article, int amount) {
 		return stockManagement.removeArticle(article, amount);
 	}
-	
-	//PRECONDITION: person and article have not to be null, issueDate as well, amount has to be greater than 0.
-	//POSTCONDITION: rentals != null
+
+	// PRECONDITION: person, article and issueDate must not be null, amount has to be greater than zero
+	// POSTCONDITION: rentals must not be null
 	public ArrayList<Rental> borrowArticle(Person person, Article article, Date issueDate, int amount) {
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
 		for (int i = 0; i < amount; i++) {
@@ -100,7 +102,7 @@ public class Surfstore {
 		return rentals;
 	}
 
-	//PRECONDITION: person may not be null, rentals as well.
+	// PRECONDITION: person and rentals must not be null
 	public OutgoingBill returnArticles(Person person, ArrayList<Rental> rentals, boolean inCash) {
 		float price = 0f;
 		int amount = 0;
@@ -120,7 +122,7 @@ public class Surfstore {
 		return oBill;
 	}
 
-	//PRECONDITION: order and a may not be null, amount should be greater than 0
+	// PRECONDITION: order and a must not be null, amount has to be greater than zero
 	public OutgoingBill createBillForOrder(Order order, boolean inCash, Article a, int amount) {
 		if (stockManagement.removeArticle(a, amount)) {
 			OutgoingBill bill = order.createOutgoingBill(inCash);
@@ -131,7 +133,7 @@ public class Surfstore {
 		}
 	}
 
-	//PRECONDITION: course is not allowed to be null
+	// PRECONDITION: course must not be null
 	public ArrayList<OutgoingBill> createBillsForSurfSchool(Course course) {
 		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
 
@@ -141,7 +143,7 @@ public class Surfstore {
 		return outgoingBills;
 	}
 
-	
+
 	public String printArticles() {
 		StringBuilder ausgabe = new StringBuilder();
 
