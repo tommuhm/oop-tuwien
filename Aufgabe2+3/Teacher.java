@@ -1,6 +1,6 @@
 public class Teacher extends Person {
 
-	//PRECONDITION: personName != null
+	//PRECONDITION: personName may not be null!
 	public Teacher(String personName) {
 		super(personName);
 	}

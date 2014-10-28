@@ -63,7 +63,7 @@ public class Test {
 		statisticsTest();
 	}
 
-	//PRECONDITION: surfstore != null;
+	//PRECONDITION: surfstore should never be null.
 	private static void statisticsTest() {
 		System.out.println("Stock statistics:");
 		System.out.println(surfstore.getStockingStatistics());
@@ -72,7 +72,7 @@ public class Test {
 		System.out.println(surfstore.getAccountingStatistics());
 	}
 
-	//POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf200Sale, surf220Sale, helmMediumRent, ulrich, tom, david != null;
+	//POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf200Sale, surf220Sale, helmMediumRent, ulrich, tom and david should never be null as well.
 	private static void createTestData() {
 		surfstore = new Surfstore(50000, 3000);
 		System.out.println("Surfstore was created.");
@@ -111,7 +111,7 @@ public class Test {
 		System.out.println("Account/Cash: " + surfstore.getBalanceAccount() + "/" + surfstore.getBalanceCash());
 	}
 	
-	//POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf220Sale, helmMediumRent, ulrich, tom, david != null;
+	//POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf220Sale, helmMediumRent, ulrich, tom and david can not be null, again.
 	private static void borrowSurfarticleTest() {
 		Date d = new Date();
 
@@ -137,7 +137,7 @@ public class Test {
 		tomRentals = surfstore.borrowArticle(tom, helmMediumRent, d, 7);
 	}
 
-	//PRECONDITION: ulrich, david, tom, ulrichRentals, davidRentals, tomRentals, surfstore != null
+	//PRECONDITION: ulrich, david, tom, ulrichRentals, davidRentals, tomRentals and surfstore should not be null, once again.
 	private static void returnSurfarticleTest() {
 		OutgoingBill oUlrich = surfstore.returnArticles(ulrich, ulrichRentals, true);
 		System.out.println("Ulrich returns 7/5 of his surfboards. He returend 5/5:");
@@ -154,7 +154,7 @@ public class Test {
 		System.out.println("Account/Cash: " + surfstore.getBalanceAccount() + "/" + surfstore.getBalanceCash());
 	}
 
-	//PRECONDITION: surfstore, helmMediumRent, surf200Sale, tom != null
+	//PRECONDITION: surfstore, helmMediumRent, surf200Sale and tom are not allowed to be null too.
 	private static void sellSurfarticleTest() {
 		surfstore.sellArticles(helmMediumRent, 3, true, tom);
 		System.out.println("Rent-Articles can not be sold");
@@ -163,7 +163,7 @@ public class Test {
 		System.out.println("Sold 2/3: " + surf200Sale);
 	}
 	
-	//PRECONDITION: surfstore, helmMediumRent, surf200Sale != null
+	//PRECONDITION: surfstore, helmMediumRent and surf200Sale must not be null.
 	private static void discardSurfarticleTest() {
 		surfstore.discardArticles(surf200Sale, 1);
 		System.out.println("discarded the last: " + surf200Sale);
@@ -172,7 +172,7 @@ public class Test {
 		System.out.println("discarded 3/5 " + helmMediumRent);
 	}
 
-	//PRECONDITION: surfstore != null
+	//PRECONDITION: And once again, surfstore cannot be null!
 	private static void surfschoolTest() {
 		System.out.println("Creating some dummy students, teacher and dummy dates!");
 		ArrayList<Student> students = new ArrayList<Student>();

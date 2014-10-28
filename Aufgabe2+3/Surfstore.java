@@ -7,7 +7,7 @@ public class Surfstore {
 	private StockManagement stockManagement;
 	private SurfSchool surfSchool;
 	private Accounting accounting;
-	//INVARIANT: customers != null, stockManagement != null, surfSchool != null, accounting != null
+	//INVARIANT: stockManagement, surfSchool, accounting and customers may not be null.
 
 	public Surfstore(float balanceAccount, float balanceCash) {
 		customers = new ArrayList<Customer>();
@@ -21,7 +21,7 @@ public class Surfstore {
 		return stockManagement.getArticles().values();
 	}
 
-	//PRECONDITION: person != null
+	//PRECONDITION: person may not be null...
 	public ArrayList<Rental> getRentedArticles(Person person) {
 		return stockManagement.getRentedArticleMap().get(person);
 	}
@@ -46,26 +46,26 @@ public class Surfstore {
 		return accounting.getAccountStatistics();
 	}
 
-	//PRECONDITION: customer != null
-	//POSTCONDITION: customers contains customer
+	//PRECONDITION: customer may not be null.
+	//POSTCONDITION: customers contains customer.
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
 
-	//PRECONDITION: course != null
+	//PRECONDITION: course may not be null. whatasurprise.
 	//POSTCONDITION: surfSchool contains course
 	public Course addCourse(Course course) {
 		return surfSchool.addCourse(course);
 	}
 	
-	//PRECONDITION: order != null
+	//PRECONDITION: order should not be null
 	//POSTCONDITION: accounting contains order
 	public Order addOrder(Order order) {
 		accounting.addOrder(order);
 		return order;
 	}
 
-	//PRECONDITION: article != null, priceBuy >= 0, amount > 0
+	//PRECONDITION: article has to be null, priceBuy should be equal or greater  than 0, amount should be greater than 0
 	//POSTCONDITION: accounting contains bill AND stockManagement contains article
 	public Article buyArticles(Article article, float priceBuy, int amount, boolean inCash) {
 		IncomingBill bill = new IncomingBill(article.getName() + ": " + amount, priceBuy, new Date(), inCash);
@@ -73,7 +73,7 @@ public class Surfstore {
 		return stockManagement.addArticle(article, amount);
 	}
 
-	//PRECONDITION: article != null, amount > 0, person != null
+	//PRECONDITION: article may not be null, amount should be greater than 0 and person should also not be null
 	public boolean sellArticles(Article article, int amount, boolean inCash, Person person) {
 		if (stockManagement.sellArticle(article, amount)) {
 			OutgoingBill bill = new OutgoingBill(article.getName() + ": " + amount, ((ArticleSale) article).getPriceSale(), new Date(), inCash, person);
@@ -83,12 +83,12 @@ public class Surfstore {
 			return false;
 		}
 	}
-	//PRECONDITION: article != null, amount > 0
+	//PRECONDITION: article is not allowed to be null, amount should be greater than 0
 	public boolean discardArticles(Article article, int amount) {
 		return stockManagement.removeArticle(article, amount);
 	}
 	
-	//PRECONDITION: person != null, article != null, issueDate != null, amount > 0
+	//PRECONDITION: person and article have not to be null, issueDate as well, amount has to be greater than 0.
 	//POSTCONDITION: rentals != null
 	public ArrayList<Rental> borrowArticle(Person person, Article article, Date issueDate, int amount) {
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
@@ -100,7 +100,7 @@ public class Surfstore {
 		return rentals;
 	}
 
-	//PRECONDITION: person != null, rentals != null
+	//PRECONDITION: person may not be null, rentals as well.
 	public OutgoingBill returnArticles(Person person, ArrayList<Rental> rentals, boolean inCash) {
 		float price = 0f;
 		int amount = 0;
@@ -120,7 +120,7 @@ public class Surfstore {
 		return oBill;
 	}
 
-	//PRECONDITION: order != null, a != null, amount > 0
+	//PRECONDITION: order and a may not be null, amount should be greater than 0
 	public OutgoingBill createBillForOrder(Order order, boolean inCash, Article a, int amount) {
 		if (stockManagement.removeArticle(a, amount)) {
 			OutgoingBill bill = order.createOutgoingBill(inCash);
@@ -131,7 +131,7 @@ public class Surfstore {
 		}
 	}
 
-	//PRECONDITION: course != null
+	//PRECONDITION: course is not allowed to be null
 	public ArrayList<OutgoingBill> createBillsForSurfSchool(Course course) {
 		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
 
