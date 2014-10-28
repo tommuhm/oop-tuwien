@@ -1,6 +1,5 @@
 import java.util.Date;
 
-//GOOD: 
 public class Rental {
 	private ArticleRent article;
 	private Date date;

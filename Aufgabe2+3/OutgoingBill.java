@@ -11,7 +11,6 @@ public class OutgoingBill extends Bill {
 		this.person = person;
 	}
 
-	//BAD: Not used!
 	public Person getPerson() {
 		return this.person;
 	}

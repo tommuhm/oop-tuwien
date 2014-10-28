@@ -1,7 +1,5 @@
 import java.util.Date;
 
-//GOOD: high class cohesion
-//BAD: Most of the getters and setters could have been "protected"
 public abstract class Bill {
 
 	private static int maxBillID = 0;

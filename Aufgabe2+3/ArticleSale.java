@@ -1,5 +1,3 @@
-//GOOD: class cohesion is high, even though the copy constructor uses getters and variables.
-//BAD: object linking is not as low as it could be. Getters/Setters could be protected and the classes should be in different packages.
 public class ArticleSale extends Article {
 
 	private float priceSale;
@@ -12,7 +10,6 @@ public class ArticleSale extends Article {
 		this.priceSale = priceSale;
 	}
 
-	//ERROR: Getter not used. Even though it works. Class cohesion is lowered.
 	//PRECONDITION: articleSale != null
 	public ArticleSale(ArticleSale aricleSale) {
 		this(aricleSale.getName(), aricleSale.getSize(), aricleSale.priceSale, aricleSale.isNew());

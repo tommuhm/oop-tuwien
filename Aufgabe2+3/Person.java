@@ -1,4 +1,3 @@
-//GOOD: Object linking is low. Class cohesion is high.
 public abstract class Person {
 
 	private static int maxPersonID = 0;

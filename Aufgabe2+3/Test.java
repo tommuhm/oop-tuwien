@@ -15,6 +15,12 @@
  * Aufgabe 3:
  * 	COMMENTS wurden von allen Gruppenmitgliedern gemeinsam an einem einzelnem Gerät geschrieben.
  * 
+ * 
+ * Wieso nicht genügend GOODs markiert wurden:
+ *  Da wir unseren Klassenzusammenhalt im Allgemeinen als eher hoch einschätzen (bis auf den Surfstore), wussten wir nicht genau, in welchen Dateien wir den 
+ *  Klassenzusammenhalt eher hervorheben sollten. Wir wollten ebenso nicht die Dateien nur mit GOOD-Kommentaren über Klassenzusammenhalt
+ *  überfluten.
+ * 
  */
 
 import java.util.ArrayList;

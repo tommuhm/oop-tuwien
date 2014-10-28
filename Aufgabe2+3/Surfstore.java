@@ -1,5 +1,6 @@
 import java.util.*;
- 
+//BAD: This class has a very high object cohesion. StockManagement, Accounting and SurfSchool should work all on their own to lower object cohesion. 
+//		Some methods in this class "redirect" to methods of StockManagement, Accounting and SurfSchool, so the test class can use them.
 public class Surfstore {
 
 	private ArrayList<Customer> customers;
@@ -14,6 +15,7 @@ public class Surfstore {
 		surfSchool = new SurfSchool();
 		accounting = new Accounting(balanceAccount, balanceCash);
 	}
+
 
 	public Collection<Article> getArticles() {
 		return stockManagement.getArticles().values();
@@ -45,7 +47,7 @@ public class Surfstore {
 	}
 
 	//PRECONDITION: customer != null
-	//POSTCONDITION: customers != null and contains customer
+	//POSTCONDITION: customers contains customer
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}

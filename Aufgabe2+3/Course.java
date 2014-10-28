@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-//BAD: Some getters/setters are not used. -> Referenced in the code.
 public class Course {
 
 	private String courseName;
@@ -53,12 +52,10 @@ public class Course {
 		this.dates.remove(date);
 	}
 
-	//BAD: not used
 	public Teacher getTeacher() {
 		return teacher;
 	}
 
-	//BAD: not used, although this setter shouldn't used in this way. Teacher is already set in the constructor
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
@@ -67,7 +64,6 @@ public class Course {
 		return students;
 	}
 
-	//BAD: not used
 	public ArrayList<Date> getDates() {
 		return dates;
 	}

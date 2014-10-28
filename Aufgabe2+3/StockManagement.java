@@ -120,6 +120,8 @@ public class StockManagement {
 		return true;
 	}
 
+	//GOOD: Dynamic binding is used to determine if the current article in the for-loop is rentable or for sale.
+	//BAD:	Even though we used dynamic binding, the toString() methods of ArticleRent and ArticleSale don't contain the rentedCount or the soldCount.
 	public String getRentalStatistic() {
 		StringBuilder statistic = new StringBuilder();
 

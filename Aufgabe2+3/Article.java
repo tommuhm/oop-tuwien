@@ -1,5 +1,4 @@
-//GOOD: class cohesion is high.
-//BAD: object linking is not as low as it could be. Getters/Setters could be protected and the classes should be in different packages.
+
 public abstract class Article {
 
 	private static int maxArticleNumber = 0;
@@ -34,6 +33,7 @@ public abstract class Article {
 		return size;
 	}
 	
+	//BAD: object linking is not as low as it could be. Some Getters/Setters could be "protected" and the classes should have been in different packages, to avoid unauthorized using of the methods.
 	public int getTotalAmount() {
 		return totalAmount;
 	}
@@ -51,9 +51,9 @@ public abstract class Article {
 		totalAmount += amount;
 	}
 
-	//PRECONDITION: amount > 0
+	//PRECONDITION: amount >= totalAmount
 	//POSTCONDITION: totalAmount >= 0
-	//BAD: Should be combined with isAvailable(amount), but the classes which use removeAmount use isAvailable first.
+	//BAD: Should be combined with isAvailable(amount), but the classes using removeAmount use isAvailable first, so it's not that bad.
 	public void removeAmount(int amount) {
 		totalAmount -= amount;
 	}

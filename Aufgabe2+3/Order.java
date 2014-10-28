@@ -27,22 +27,18 @@ public class Order {
 		return orderID;
 	}
 
-	//BAD: not used
 	public Person getPerson() {
 		return person;
 	}
-	
-	//BAD: not used
+
 	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	//BAD: not used
 	public String getService() {
 		return service;
 	}
 
-	//BAD: not used
 	public float getAmountOfMoney() {
 		return amountOfMoney;
 	}

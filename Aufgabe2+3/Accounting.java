@@ -1,6 +1,5 @@
 import java.util.HashMap;
 
-//GOOD: High class cohesion.
 public class Accounting {
 
 	private HashMap<Integer, Order> orderMap;
@@ -10,7 +9,6 @@ public class Accounting {
 	private float balanceCash;
 	//INVARIANT: orderMap != null, outgoingBillMap != null, incomingBillMap != null
 	//BAD: We should have used whole numbered objects for money like big decimal or long. (like in the script [Page 82])
-	//BAD: We should have used one instead of two maps for the bills.
 
 	public Accounting(float balanceAccount, float balanceCash) {
 		this.orderMap = new HashMap<Integer, Order>();
@@ -20,11 +18,10 @@ public class Accounting {
 		this.balanceCash = balanceCash;
 	}
 
-	//BAD: not used
 	public Order getOrder(int orderID) {
 		return orderMap.get(orderID);
 	}
-	
+	//BAD:We should have used here one map instead of two, to achieve dynamic binding.
 	public IncomingBill getIncomingBill(int billID) {
 		return incomingBillMap.get(billID);
 	}
@@ -36,7 +33,7 @@ public class Accounting {
 	public void addOrder(Order order) {
 		orderMap.put(order.getOrderID(), order);
 	}
-
+	//GOOD: this method is a good example for dynamic binding: We decide of what type the bill is and put it in the right map. -> Less duplicate code.
 	public void addBill(Bill bill) {
 		float amountOfMoney = bill.getAmountOfMoney();
 		if (bill instanceof OutgoingBill) {
