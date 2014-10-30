@@ -1,4 +1,4 @@
-public abstract class Schutz extends Set implements ISchutz {
+public abstract class Schutz extends Set implements KategorieSchutz {
 
 	@Override
 	public void verleihe(String kunde) {

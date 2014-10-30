@@ -1,2 +1,2 @@
-public interface ISchutz extends Artikel {
+public interface KategorieSchutz extends Artikel {
 }
