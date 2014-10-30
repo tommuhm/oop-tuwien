@@ -54,7 +54,7 @@ public abstract class Set implements Artikel {
 	@Override
 	public void retour() {
 		if (zustand() == Zustand.verliehen) {
-			
+			this.zustand = Zustand.benutzt;
 		}
 	}
 
@@ -62,8 +62,10 @@ public abstract class Set implements Artikel {
 	public boolean kontrolle() {
 		if (zustand() == Zustand.benutzt) {
 			//Prüfen. Artikel fällt 1:6 weg.
-			if(Math.random() > (1/6)) 
+			if(Math.random() > (1/6)) {
+				this.setZustand(Zustand.verleihbar);				
 				return true;
+			}
 			else
 				return false;
 		}

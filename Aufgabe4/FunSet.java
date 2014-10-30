@@ -19,21 +19,17 @@ public class FunSet extends Set {
 	
 	@Override
 	public void verleihe(String kunde) {
+		if(zustand() != Zustand.verleihbar && maxVerleihungen > 0)	
+			return;
 		
-	}
-	@Override
-	public String kunde() {
-		return null;
-	}
-
-	@Override
-	public void retour() {
-
+		maxVerleihungen--;
+		super.verleihe(kunde);
+		
 	}
 	
 	@Override
 	public boolean kontrolle() {
-		return false;
+		return false; //TODO
 	}
 
 	public ArrayList<Artikel> getArtikelSet() {
