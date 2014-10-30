@@ -11,10 +11,25 @@ import java.util.ArrayList;
 public class FunSet extends Set {
 
 	private int maxVerleihungen;
+	private int serviceCount;
 	
 	public FunSet(int maxVerleihungen) {
 		super();
 		this.maxVerleihungen = maxVerleihungen;
+		this.serviceCount = 0;
+	}
+	
+	public void service() {
+		this.serviceCount = 0;		
+	}
+	
+	@Override
+	public void retour() {
+		if(zustand() != Zustand.verliehen)
+			return;
+		
+		super.retour();
+		this.serviceCount++;
 	}
 	
 	@Override
@@ -25,24 +40,5 @@ public class FunSet extends Set {
 		maxVerleihungen--;
 		super.verleihe(kunde);
 		
-	}
-	
-	@Override
-	public boolean kontrolle() {
-		return false; //TODO
-	}
-
-	public ArrayList<Artikel> getArtikelSet() {
-		return null;
-	}
-
-	public void artikelHinzufuegen(Artikel a) {
-		super.artikelHinzufuegen(a);
-	}
-
-	@Override
-	public Zustand zustand() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
