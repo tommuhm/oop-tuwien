@@ -16,6 +16,9 @@ public abstract class Schutz extends Set implements KategorieSchutz {
 
 	@Override
 	public boolean kontrolle() {
+		if (zustand() != Zustand.benutzt)
+			return false;
+
 		if (anzVerleihbar <= 0)
 			return false;
 
