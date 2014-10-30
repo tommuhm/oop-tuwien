@@ -1,4 +1,4 @@
-public class Bekleidung extends Set {
+public class Bekleidung extends Set implements IBekleidung {
 
   @Override
   public void verleihe(String kunde) {
