@@ -8,7 +8,6 @@ public abstract class Bekleidung extends Set implements KategorieBekleidung {
 		this.anzVerleihbar = anzVerleihbar;
 		this.zustand = Zustand.verleihbar;
 		this.desinfiziert = true;
-		this.inOrdnung = true;
 	}
 	public void desinfiziere() {
 		this.desinfiziert = true;
