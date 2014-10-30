@@ -22,6 +22,10 @@ public abstract class Set implements Artikel {
 	protected void setZustand(Zustand zustand) {
 		this.zustand = zustand;
 	}
+	
+	protected void setKunde(String kunde) {
+		this.kunde = kunde;
+	}
 
 	@Override
 	public Zustand zustand() {
@@ -44,18 +48,25 @@ public abstract class Set implements Artikel {
 
 	@Override
 	public String kunde() {
-		return null;
+		return this.kunde;
 	}
 
 	@Override
 	public void retour() {
-		// TODO Auto-generated method stub
-
+		if (zustand() == Zustand.verliehen) {
+			
+		}
 	}
 
 	@Override
 	public boolean kontrolle() {
-		// TODO Auto-generated method stub
+		if (zustand() == Zustand.benutzt) {
+			//Prüfen. Artikel fällt 1:6 weg.
+			if(Math.random() > (1/6)) 
+				return true;
+			else
+				return false;
+		}
 		return false;
 	}
 
