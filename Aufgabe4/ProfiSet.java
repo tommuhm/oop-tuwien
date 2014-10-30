@@ -1,19 +1,35 @@
 public class ProfiSet extends Set {
 
-
-	@Override
-	public void verleihe(String kunde) {
-
+	private boolean serviceAusgefuehrt;
+	private boolean serviceImmerAusgefuehrt;
+	
+	public ProfiSet() {
+		super();
+		this.serviceAusgefuehrt = true;
+		this.serviceImmerAusgefuehrt = true;
 	}
-
+	
+	public void service() {
+		//Service ausführen.
+		this.serviceAusgefuehrt = true;		
+	}
+	
 	@Override
 	public void retour() {
-
+		if(zustand() != Zustand.verliehen)
+			return;
+		
+		super.retour();
+		
+		if(!this.serviceAusgefuehrt) this.serviceImmerAusgefuehrt = false;
+		this.serviceAusgefuehrt = false;
 	}
-
+	
 	@Override
 	public boolean kontrolle() {
-		return false;
+		if(this.serviceImmerAusgefuehrt)
+			return super.kontrolle();
+		else
+			return false;
 	}
-
 }
