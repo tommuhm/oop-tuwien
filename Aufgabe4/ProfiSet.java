@@ -1,2 +1,2 @@
-public class ProfiSet extends Set {
+public class ProfiSet implements Set {
 }
