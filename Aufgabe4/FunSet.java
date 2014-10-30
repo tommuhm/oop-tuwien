@@ -14,7 +14,6 @@ public class FunSet extends Set {
 	
 	public FunSet(int maxVerleihungen) {
 		super();
-		super.
 		this.maxVerleihungen = maxVerleihungen;
 	}
 	
@@ -22,7 +21,6 @@ public class FunSet extends Set {
 	public void verleihe(String kunde) {
 		
 	}
-
 	@Override
 	public String kunde() {
 		return null;
@@ -32,7 +30,7 @@ public class FunSet extends Set {
 	public void retour() {
 
 	}
-
+	
 	@Override
 	public boolean kontrolle() {
 		return false;
@@ -43,7 +41,7 @@ public class FunSet extends Set {
 	}
 
 	public void artikelHinzufuegen(Artikel a) {
-		artikelListe.add(a);
+		super.artikelHinzufuegen(a);
 	}
 
 	@Override
