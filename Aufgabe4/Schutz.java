@@ -9,22 +9,21 @@ public abstract class Schutz extends Set implements KategorieSchutz {
 	@Override
 	public void verleihe(String kunde) {
 		if (zustand() == Zustand.verleihbar) {
-	  	setZustand(Zustand.verliehen);
+			super.verleihe(kunde);
 			anzVerleihbar--;
 		}
 	}
 
 	@Override
-	public void retour() {
-
-	}
-
-	@Override
 	public boolean kontrolle() {
-		if (anz)
+		if (anzVerleihbar <= 0)
+			return false;
 
+		if (!super.kontrolle())
+			return false;
 
-		return false;
+		setZustand(Zustand.verleihbar);
+		return true;
 	}
 
 }
