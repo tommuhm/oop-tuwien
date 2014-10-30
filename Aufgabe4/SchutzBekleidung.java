@@ -1,4 +1,4 @@
-public abstract class SchutzBekleidung extends Schutz implements ISchutz, IBekleidung {
+public abstract class SchutzBekleidung extends Schutz implements KategorieSchutz, KategorieBekleidung {
 
 	@Override
 	public void verleihe(String kunde) {
