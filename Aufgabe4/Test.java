@@ -20,7 +20,7 @@ public class Test {
 		lawinensuchgeraet1 = new Schutz("Lawinensuchgerät", 2);
 
 		HashSet<Artikel> schutzArtikel = new HashSet<Artikel>();
-		schutzArtikel.add(new SchutzBekleidung("Helm 2",20));
+		schutzArtikel.add(new SchutzBekleidung("Helm 2",1));
 		schutzArtikel.add(new Jacke("DaunenXS"));
 		schutzArtikel.add(new Schutz("Lawinengerät", 100));
 		
@@ -106,8 +106,22 @@ public class Test {
 		System.out.println("Lawinensuchgerät wird kontrolliert:");
 		lawinensuchgeraet1.kontrolle();
 		System.out.println(lawinensuchgeraet1);
-		System.out.println("Zusatnd ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.");
+		System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
 		
+		
+		System.out.println("Verleihe SchutzSet an Hans:");
+		schutzSet.verleihe("Hans");
+		System.out.println(schutzSet);
+		System.out.println("Hans gibt das Set zurück: (Verleihanzahl von Helm 2 ist bei 0)");
+		schutzSet.retour();
+		System.out.println(schutzSet);
+		System.out.println("SchutzSet wird kontrolliert: (Der Zustand wird gebraucht bleibe, da Verleihanzahl = 0)");
+		schutzSet.kontrolle();
+		System.out.println(schutzSet);
+		System.out.println("Verleihe SchutzSet an Peter:");
+		schutzSet.verleihe("Peter");
+		System.out.println(schutzSet);
+		System.out.println("Konnte nicht geborgt werden, da verbraucht. \n\n");
 	}
 
 	private static void testBekleidungVerleih() {
