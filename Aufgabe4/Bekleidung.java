@@ -24,10 +24,10 @@ public class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 	}
 
 
-	//Fuehrt eine Kontrolle auf den Gegenstand aus. Returned FALSE, wenn der Ggstd unbrauchbar ist, 
-	//	d.h., wenn die Kontrolle negativ ausgefallen ist (wird bestimmt durch einen Zufallsgenerator,
-	//	welcher zu einem 1/6 Wahrscheinlichkeit die Kontrolle negativ ausfallen laesst..
-	//		ansonsten wird der Zustand des Ggstands auf verleihbar gesetzt.
+	// Fuehrt eine Kontrolle auf den Gegenstand aus. Returned FALSE, wenn der Ggstd unbrauchbar ist, 
+	// d.h., wenn die Kontrolle negativ ausgefallen ist (wird bestimmt durch einen Zufallsgenerator,
+	// welcher zu einem 1/6 Wahrscheinlichkeit die Kontrolle negativ ausfallen laesst.
+	// ansonsten wird der Zustand des Ggstands auf verleihbar gesetzt.
 	// Prueft zusaetzlich noch ob der Zustand desinfiziert ist oder gerade benutzt wird, 
 	// letzteres impliziert, dass die Kontrolle nicht durchgefuehrt werden kann.
 	@Override

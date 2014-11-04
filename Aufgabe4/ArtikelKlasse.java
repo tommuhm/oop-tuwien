@@ -51,10 +51,10 @@ public abstract class ArtikelKlasse implements Artikel {
 		}
 	}
 
-	//Fuehrt eine Kontrolle auf den Gegenstand aus. Returned FALSE, wenn der Ggstd unbrauchbar ist, 
-	//	d.h., wenn die Kontrolle negativ ausgefallen ist (wird bestimmt durch einen Zufallsgenerator,
-	//	welcher zu einem 1/6 Wahrscheinlichkeit die Kontrolle negativ ausfallen laesst..
-	//		ansonsten wird der Zustand des Ggstands auf verleihbar gesetzt.
+	// Fuehrt eine Kontrolle auf den Gegenstand aus. Returned FALSE, wenn der Ggstd unbrauchbar ist, 
+	// d.h., wenn die Kontrolle negativ ausgefallen ist (wird bestimmt durch einen Zufallsgenerator,
+	// welcher zu einem 1/6 Wahrscheinlichkeit die Kontrolle negativ ausfallen laesst.
+	// ansonsten wird der Zustand des Ggstands auf verleihbar gesetzt.
 	@Override
 	public boolean kontrolle() {
 		if (zustand() == Zustand.benutzt) {
