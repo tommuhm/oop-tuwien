@@ -3,17 +3,20 @@ public class SchutzBekleidung extends ArtikelKlasse implements KategorieSchutz, 
 	private boolean desinfiziert;
 	private int anzVerleihbar;
 
+	//Vorbedingung: name darf nicht NULL sein, anzVerleihbar muss groesser 0 sein.
 	public SchutzBekleidung(String name, int anzVerleihbar) {
 		super(name);
 		this.anzVerleihbar = anzVerleihbar;
 		this.desinfiziert = true;
 	}
 
+	//Nachbedingung: Bekleidung wird desinfiziert.
 	@Override
 	public void desinfiziere() {
 		desinfiziert = true;
 	}
 
+	//Nachbedingung: Bekleidung wird verliehen, die Anzahl sinkt um 1, kleidung ist nicht mehr desinfiziert.
 	@Override
 	public void verleihe(String kunde) {
 		if (zustand() == Zustand.verleihbar) {
@@ -23,6 +26,7 @@ public class SchutzBekleidung extends ArtikelKlasse implements KategorieSchutz, 
 		}
 	}
 
+	//siehe ArtikelKlasse, zusaetzlich wird geprueft ob eine gueltige Anzahl im Stock sind und die Kleidung desinfiziert ist.
 	@Override
 	public boolean kontrolle() {
 		if (zustand() != Zustand.benutzt)
