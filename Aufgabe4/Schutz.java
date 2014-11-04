@@ -39,14 +39,6 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 	}
 
 	@Override
-	public void retour() {
-		if (zustand() == Zustand.verliehen) {
-			super.retour();
-			anzVerleihbar++;
-		}
-	}
-
-	@Override
 	public boolean kontrolle() {
 		if (zustand() != Zustand.benutzt)
 			return false;
