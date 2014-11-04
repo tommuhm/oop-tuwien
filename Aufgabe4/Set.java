@@ -4,8 +4,8 @@ public abstract class Set extends ArtikelKlasse {
 
 	private ArrayList<Artikel> artikelListe;
 
-	public Set() {
-		super();
+	public Set(String name) {
+		super(name);
 		this.artikelListe = new ArrayList<Artikel>();
 	}
 
