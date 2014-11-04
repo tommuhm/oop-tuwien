@@ -1,15 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public abstract class Set extends ArtikelKlasse {
 
-	private ArrayList<Artikel> artikelListe;
+	private HashSet<Artikel> artikelListe;
 
-	public Set() {
-		super();
-		this.artikelListe = new ArrayList<Artikel>();
+	public Set(String name) {
+		super(name);
+		this.artikelListe = new HashSet<Artikel>();
 	}
 
-	public ArrayList<Artikel> getArtikelSet() {
+	public HashSet<Artikel> getArtikelSet() {
 		return this.artikelListe;
 	}
 
