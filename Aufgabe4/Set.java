@@ -42,7 +42,7 @@ public abstract class Set implements Artikel {
 
 	public void service() {
 		if (zustand() == Zustand.benutzt) {
-
+			//TODO nothing to do in set.
 		}
 	}
 

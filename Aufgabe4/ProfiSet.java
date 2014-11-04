@@ -9,9 +9,9 @@ public class ProfiSet extends Set {
 		this.serviceImmerAusgefuehrt = true;
 	}
 	
+	@Override
 	public void service() {
-		//Service ausführen.
-		this.serviceAusgefuehrt = true;		
+		this.serviceAusgefuehrt = true;
 	}
 	
 	@Override
@@ -31,5 +31,13 @@ public class ProfiSet extends Set {
 			return super.kontrolle();
 		else
 			return false;
+	}
+	
+	@Override
+	public void verleihe(String kunde) {
+		if(zustand() != Zustand.verleihbar)	
+			return;
+		
+		super.verleihe(kunde);	
 	}
 }

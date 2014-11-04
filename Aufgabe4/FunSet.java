@@ -20,7 +20,8 @@ public class FunSet extends Set {
 	}
 	
 	public void service() {
-		this.serviceCount = 0;		
+		if(this.serviceCount <= 3)
+			this.serviceCount = 0;		
 	}
 	
 	@Override
@@ -38,7 +39,15 @@ public class FunSet extends Set {
 			return;
 		
 		maxVerleihungen--;
-		super.verleihe(kunde);
-		
+		super.verleihe(kunde);	
 	}
+	
+	@Override
+	public boolean kontrolle() {
+		if(serviceCount >= 4 && maxVerleihungen <= 0)
+			return false;
+		
+		return super.kontrolle();
+	}
+	
 }
