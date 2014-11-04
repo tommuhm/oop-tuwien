@@ -56,5 +56,8 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 		setZustand(Zustand.verleihbar);
 		return true;
 	}
-
+	
+	public HashSet<Artikel> getArticleSet() {
+		return articleSet;
+	}
 }
