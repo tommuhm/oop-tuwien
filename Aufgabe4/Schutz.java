@@ -6,12 +6,14 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 
 	private HashSet<Artikel> artikelSet;
 
+	//Vorbedingung: Name darf nicht NULL sein, anzVerleihbar > 0
 	public Schutz(String name, int anzVerleihbar) {
 		super(name);
 		this.artikelSet = null;
 		this.anzVerleihbar = anzVerleihbar;
 	}
 
+	//Vorbedingung: Name, artikelSet darf nicht NULL sein, artikelSet sollte nicht leer sein und muss min. 1 Schutzartikel enthalten.
 	public Schutz(String name, HashSet<Artikel> artikelSet) {
 		super(name);
 		boolean hatSchutzArtikel = false;
@@ -29,7 +31,8 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 		this.artikelSet = artikelSet;
 		this.anzVerleihbar = anzVerleihbar;
 	}
-
+	//Vorbedingung: kunde darf nicht NULL sein.
+	//Nachbedingung: die Anzahl der verleihbaren Artikel wird um 1 verringert.
 	@Override
 	public void verleihe(String kunde) {
 		if (zustand() == Zustand.verleihbar) {
@@ -38,6 +41,7 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 		}
 	}
 
+	//siehe ArtikelKlasse, zusaetzlich 
 	@Override
 	public boolean kontrolle() {
 		if (zustand() != Zustand.benutzt)
