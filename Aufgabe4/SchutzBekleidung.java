@@ -5,7 +5,7 @@ public class SchutzBekleidung extends ArtikelKlasse implements KategorieSchutz, 
 	}
 
 	@Override
-	public void desinfiziert() {
+	public void desinfiziere() {
 
 	}
 }
