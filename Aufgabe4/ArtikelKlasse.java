@@ -4,6 +4,7 @@ public abstract class ArtikelKlasse implements Artikel {
 	private String kunde;
 	private String name;
 
+	//String darf nicht NULL sein, der Zustand vom erzeugten Objekt wechselt auf verleihbar.
 	public ArtikelKlasse(String name) {
 		this.zustand = Zustand.verleihbar;
 		this.name = name;
@@ -21,7 +22,8 @@ public abstract class ArtikelKlasse implements Artikel {
 	public Zustand zustand() {
 		return this.zustand;
 	}
-
+	//kunde darf nicht NULL sein.
+	//ein Gegenstand wird an einem Kunden verliehen. Der Zustand des Ggstd wechselt in verliehen. 
 	@Override
 	public void verleihe(String kunde) {
 		if (this.zustand == Zustand.verleihbar) {
@@ -41,6 +43,7 @@ public abstract class ArtikelKlasse implements Artikel {
 		return this.kunde;
 	}
 
+	//Ggstd wird zurueckgegeben. Zustand wechselt auf benutzt.
 	@Override
 	public void retour() {
 		if (zustand() == Zustand.verliehen) {
@@ -48,6 +51,10 @@ public abstract class ArtikelKlasse implements Artikel {
 		}
 	}
 
+	//Fuehrt eine Kontrolle auf den Gegenstand aus. Returned FALSE, wenn der Ggstd unbrauchbar ist, 
+	//	d.h., wenn die Kontrolle negativ ausgefallen ist (wird bestimmt durch einen Zufallsgenerator,
+	//	welcher zu einem 1/6 Wahrscheinlichkeit die Kontrolle negativ ausfallen laesst..
+	//		ansonsten wird der Zustand des Ggstands auf verleihbar gesetzt.
 	@Override
 	public boolean kontrolle() {
 		if (zustand() == Zustand.benutzt) {
