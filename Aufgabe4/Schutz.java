@@ -4,25 +4,29 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 
 	private int anzVerleihbar;
 
-	private boolean hasSet;
-	private HashSet<Artikel> articleSet;
+	private HashSet<Artikel> artikelSet;
 
 	public Schutz(String name, int anzVerleihbar) {
 		super(name);
-		this.articleSet = null;
+		this.artikelSet = null;
 		this.anzVerleihbar = anzVerleihbar;
 	}
 
-	public Schutz(String name, HashSet<Artikel> articleSet, int anzVerleihbar) {
+	public Schutz(String name, HashSet<Artikel> artikelSet) {
 		super(name);
-		boolean hasSchutzArticle = false;
-		for (Artikel artikel : articleSet) {
+		boolean hatSchutzArtikel = false;
+		int anzVerleihbar = Integer.MAX_VALUE;
+		for (Artikel artikel : artikelSet) {
 			if (artikel instanceof KategorieSchutz) {
-				hasSchutzArticle = true;
+				hatSchutzArtikel = true;
+				KategorieSchutz schutzArtikle = (KategorieSchutz) artikel;
+				if (anzVerleihbar > schutzArtikle.getAnzVerleihbar()) {
+					anzVerleihbar = schutzArtikle.getAnzVerleihbar();
+				}
 			}
 		}
-		assert hasSchutzArticle;
-		this.articleSet = articleSet;
+		assert hatSchutzArtikel;
+		this.artikelSet = artikelSet;
 		this.anzVerleihbar = anzVerleihbar;
 	}
 
@@ -56,8 +60,13 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 		setZustand(Zustand.verleihbar);
 		return true;
 	}
-	
-	public HashSet<Artikel> getArticleSet() {
-		return articleSet;
+
+	public HashSet<Artikel> getArtikelSet() {
+		return artikelSet;
+	}
+
+	@Override
+	public int getAnzVerleihbar() {
+		return anzVerleihbar;
 	}
 }
