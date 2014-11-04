@@ -15,14 +15,14 @@ public class Test {
 	static Artikel helm1, jacke1, lawinensuchgeraet1, schutzSet, funSet, profiSet, skiwachs;
 	
 	public static void main(String[] args) {
-		helm1 = new SchutzBekleidung("Helm XL", 20);
+		helm1 = new SchutzBekleidung("Helm XL", 200);
 		jacke1 = new Jacke("DaunenXL");
-		lawinensuchgeraet1 = new Schutz("Lawinensuchgerät", 100);
+		lawinensuchgeraet1 = new Schutz("Lawinensuchgerät", 2);
 
 		HashSet<Artikel> schutzArtikel = new HashSet<Artikel>();
-		schutzArtikel.add(helm1);
-		schutzArtikel.add(jacke1);
-		schutzArtikel.add(lawinensuchgeraet1);
+		schutzArtikel.add(new SchutzBekleidung("Helm 2",20));
+		schutzArtikel.add(new Jacke("DaunenXS"));
+		schutzArtikel.add(new Schutz("Lawinengerät", 100));
 		
 		schutzSet = new Schutz("Schutzset 1A!", schutzArtikel);
 		
@@ -98,9 +98,16 @@ public class Test {
 		System.out.println("Lawinensuchgerät wird kontrolliert:");
 		lawinensuchgeraet1.kontrolle();
 		System.out.println(lawinensuchgeraet1);
-		System.out.println("Verleihe Lawinensuchgerät an Peter:");
+		System.out.println("Verleihe Lawinensuchgerät an Peter: (nun ist die restliche Verleihanzahl bei 0)");
 		lawinensuchgeraet1.verleihe("Peter");
 		System.out.println(lawinensuchgeraet1);
+		System.out.println("Nun wird retouniert von Peter: ");
+		lawinensuchgeraet1.retour();
+		System.out.println("Lawinensuchgerät wird kontrolliert:");
+		lawinensuchgeraet1.kontrolle();
+		System.out.println(lawinensuchgeraet1);
+		System.out.println("Zusatnd ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.");
+		
 	}
 
 	private static void testBekleidungVerleih() {
