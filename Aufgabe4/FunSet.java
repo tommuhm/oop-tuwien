@@ -13,8 +13,8 @@ public class FunSet extends Set {
 	private int maxVerleihungen;
 	private int serviceCount;
 	
-	public FunSet(int maxVerleihungen) {
-		super();
+	public FunSet(String name, int maxVerleihungen) {
+		super(name);
 		this.maxVerleihungen = maxVerleihungen;
 		this.serviceCount = 0;
 	}

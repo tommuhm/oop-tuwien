@@ -3,8 +3,8 @@ public class ProfiSet extends Set {
 	private boolean serviceAusgefuehrt;
 	private boolean serviceImmerAusgefuehrt;
 	
-	public ProfiSet() {
-		super();
+	public ProfiSet(String name) {
+		super(name);
 		this.serviceAusgefuehrt = true;
 		this.serviceImmerAusgefuehrt = true;
 	}
