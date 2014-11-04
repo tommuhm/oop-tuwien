@@ -1,8 +1,28 @@
-public abstract class Schutz extends Set implements KategorieSchutz {
+import java.util.HashSet;
+
+public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 
 	private int anzVerleihbar;
 
-	public Schutz(int anzVerleihbar) {
+	private boolean hasSet;
+	private HashSet<Artikel> articleSet;
+
+	public Schutz(String name, int anzVerleihbar) {
+		super(name);
+		this.articleSet = null;
+		this.anzVerleihbar = anzVerleihbar;
+	}
+
+	public Schutz(String name, HashSet<Artikel> articleSet, int anzVerleihbar) {
+		super(name);
+		boolean hasSchutzArticle = false;
+		for (Artikel artikel : articleSet) {
+			if (artikel instanceof KategorieSchutz) {
+				hasSchutzArticle = true;
+			}
+		}
+		assert hasSchutzArticle;
+		this.articleSet = articleSet;
 		this.anzVerleihbar = anzVerleihbar;
 	}
 
@@ -11,6 +31,14 @@ public abstract class Schutz extends Set implements KategorieSchutz {
 		if (zustand() == Zustand.verleihbar) {
 			super.verleihe(kunde);
 			anzVerleihbar--;
+		}
+	}
+
+	@Override
+	public void retour() {
+		if (zustand() == Zustand.verliehen) {
+			super.retour();
+			anzVerleihbar++;
 		}
 	}
 

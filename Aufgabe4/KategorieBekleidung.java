@@ -1,4 +1,4 @@
-public interface KategorieBekleidung extends Artikel {
+public interface KategorieBekleidung {
 
 	public void desinfiziert();
 }

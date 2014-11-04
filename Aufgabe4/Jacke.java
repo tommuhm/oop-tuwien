@@ -1,7 +1,11 @@
-public class Jacke extends Bekleidung{
-	
-	public void desinfiziert() {
-		
+public class Jacke extends Bekleidung {
+
+	public Jacke(int anzVerleihbar) {
+		super("Jacke", anzVerleihbar);
 	}
-	
+
+	public void desinfiziert() {
+
+	}
+
 }

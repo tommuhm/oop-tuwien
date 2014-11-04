@@ -1,14 +1,12 @@
-public abstract class Bekleidung extends Set implements KategorieBekleidung {
+public abstract class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 
-	private Zustand zustand;
 	private boolean desinfiziert;
-	private int anzVerleihbar;
 
-	public Bekleidung(int anzVerleihbar) {
-		this.anzVerleihbar = anzVerleihbar;
-		this.zustand = Zustand.verleihbar;
+	public Bekleidung(String name) {
+		super(name);
 		this.desinfiziert = true;
 	}
+
 	public void desinfiziere() {
 		this.desinfiziert = true;
 	}
@@ -16,31 +14,23 @@ public abstract class Bekleidung extends Set implements KategorieBekleidung {
 	@Override
 	public void verleihe(String kunde) {
 		if (zustand() == Zustand.verleihbar) {
-			this.desinfiziert = false;
 			super.verleihe(kunde);
-			if (anzVerleihbar > 1) {
-				anzVerleihbar--;
-			}
+			this.desinfiziert = false;
 		}
-	}
-
-	@Override
-	public void retour() {
-		if (zustand() == Zustand.verliehen) {
-			anzVerleihbar++;
-			zustand = Zustand.benutzt;
-		}		
 	}
 
 	@Override
 	public boolean kontrolle() {
+		if (zustand() != Zustand.benutzt)
+			return false;
 
-		if (this.desinfiziert != true ) { 
+		if (desinfiziert != true)
 			return false;
-		} 	
-		else if (!super.kontrolle()) {
+
+		if (!super.kontrolle())
 			return false;
-		}
-		return false;
+
+		setZustand(Zustand.verleihbar);
+		return true;
 	}
 }
