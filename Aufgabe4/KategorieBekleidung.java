@@ -1,4 +1,4 @@
 public interface KategorieBekleidung {
 
-	public void desinfiziert();
+	public void desinfiziere();
 }

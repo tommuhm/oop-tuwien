@@ -1,4 +1,4 @@
-public abstract class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
+public class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 
 	private boolean desinfiziert;
 
@@ -7,6 +7,7 @@ public abstract class Bekleidung extends ArtikelKlasse implements KategorieBekle
 		this.desinfiziert = true;
 	}
 
+	@Override
 	public void desinfiziere() {
 		this.desinfiziert = true;
 	}
@@ -33,4 +34,5 @@ public abstract class Bekleidung extends ArtikelKlasse implements KategorieBekle
 		setZustand(Zustand.verleihbar);
 		return true;
 	}
+
 }
