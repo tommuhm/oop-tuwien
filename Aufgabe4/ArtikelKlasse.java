@@ -2,12 +2,13 @@ public abstract class ArtikelKlasse implements Artikel {
 
 	private Zustand zustand;
 	private String kunde;
+	private String name;
 
-	public ArtikelKlasse() {
+	public ArtikelKlasse(String name) {
 		this.zustand = Zustand.verleihbar;
+		this.name = name;
 	}
-
-
+	
 	protected void setZustand(Zustand zustand) {
 		this.zustand = zustand;
 	}
