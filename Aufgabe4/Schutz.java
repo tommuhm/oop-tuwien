@@ -57,7 +57,6 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 		if (!super.kontrolle())
 			return false;
 
-		setZustand(Zustand.verleihbar);
 		return true;
 	}
 

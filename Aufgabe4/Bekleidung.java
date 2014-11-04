@@ -41,7 +41,6 @@ public class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 		if (!super.kontrolle())
 			return false;
 
-		setZustand(Zustand.verleihbar);
 		return true;
 	}
 

@@ -9,19 +9,12 @@ public abstract class ArtikelKlasse implements Artikel {
 		this.zustand = Zustand.verleihbar;
 		this.name = name;
 	}
-	
-	protected void setZustand(Zustand zustand) {
-		this.zustand = zustand;
-	}
-
-	protected void setKunde(String kunde) {
-		this.kunde = kunde;
-	}
 
 	@Override
 	public Zustand zustand() {
 		return this.zustand;
 	}
+
 	//kunde darf nicht NULL sein.
 	//ein Gegenstand wird an einem Kunden verliehen. Der Zustand des Ggstd wechselt in verliehen. 
 	@Override
@@ -29,12 +22,6 @@ public abstract class ArtikelKlasse implements Artikel {
 		if (this.zustand == Zustand.verleihbar) {
 			this.zustand = Zustand.verliehen;
 			this.kunde = kunde;
-		}
-	}
-
-	public void service() {
-		if (zustand() == Zustand.benutzt) {
-			//TODO nothing to do in set.
 		}
 	}
 
@@ -59,18 +46,17 @@ public abstract class ArtikelKlasse implements Artikel {
 	public boolean kontrolle() {
 		if (zustand() == Zustand.benutzt) {
 			//Prüfen. Artikel fällt 1:6 weg.
-			if(Math.random() > (1/6)) {
-				this.setZustand(Zustand.verleihbar);				
+			if (Math.random() > (1 / 6)) {
+				this.zustand = Zustand.verleihbar;
 				return true;
-			}
-			else
+			} else
 				return false;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.name + " Zustand: " + this.zustand + " Kunde: " + this.kunde;	
+		return this.name + " Zustand: " + this.zustand + " Kunde: " + this.kunde;
 	}
 }

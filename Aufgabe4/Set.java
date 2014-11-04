@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public abstract class Set extends ArtikelKlasse {
@@ -18,5 +17,10 @@ public abstract class Set extends ArtikelKlasse {
 		artikelListe.add(a);
 	}
 
+	public void service() {
+		if (zustand() == Zustand.benutzt) {
+			//TODO nothing to do in set.
+		}
+	}
 
 }
