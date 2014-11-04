@@ -10,7 +10,7 @@ public class FunSet extends Set {
 		this.serviceCount = 0;
 	}
 
-	// Nachbedingung: ServiceCount wird auf 0 gesetzt.
+	// Nachbedingung: ServiceCount wird auf 0 gesetzt, falls der serviceCount kleiner als 3 ist.
 	public void service() {
 		if (this.serviceCount <= 3) // Note: Angabe unklar - wissen nicht was passiert, falls der Artikel 4 mal gebraucht wurde, ohne dass ein Service durchgefuehrt worden ist.
 			this.serviceCount = 0;
