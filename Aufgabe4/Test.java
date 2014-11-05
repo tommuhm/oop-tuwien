@@ -53,10 +53,14 @@ public class Test {
 
 		skiwachs = new DiverseArtikel("Skiwachs");
 
-//		testUntertypen();
-//		testProfiSetVerleih();
-//		testFunSetVerleih();
-//		testSchutzVerleih();
+		testUntertypen();
+		System.out.print("\n\n");
+		testProfiSetVerleih();
+		System.out.print("\n\n");
+		testFunSetVerleih();
+		System.out.print("\n\n");
+		testSchutzVerleih();
+		System.out.print("\n\n");
 		testBekleidungVerleih();
 	}
 
@@ -172,7 +176,7 @@ public class Test {
 			lawinensuchgeraet1.kontrolle();
 			System.out.println(lawinensuchgeraet1);
 			assert lawinensuchgeraet1.zustand() == Zustand.benutzt;
-			System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
+			System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.");
 		}
 	}
 
