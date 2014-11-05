@@ -54,9 +54,10 @@ public class Test {
 		skiwachs = new DiverseArtikel("Skiwachs");
 
 //		testUntertypen();
-		testSchutzVerleih();
 //		testProfiSetVerleih();
 //		testFunSetVerleih();
+//		testSchutzVerleih();
+		testBekleidungVerleih();
 	}
 
 	private static void testUntertypen() {
@@ -175,5 +176,31 @@ public class Test {
 		}
 	}
 
+	private static void testBekleidungVerleih() {
+		if (jacke1.zustand() == Zustand.verleihbar) {
+			System.out.println("Verleihe Jacke an Hans:");
+			jacke1.verleihe("Hans");
+			System.out.println(jacke1);
+		}
+		if (jacke1.zustand() == Zustand.verliehen) {
+			System.out.println("Hans gibt das Jacke zurück:");
+			jacke1.retour();
+			System.out.println(jacke1);
+		}
+		if (jacke1.zustand() == Zustand.benutzt) {
+			System.out.println("Jacke wird kontrolliert:");
+			boolean kontrolle = jacke1.kontrolle();
+			assert kontrolle == false;
+			System.out.println("Jacke ist immer noch im benutzt Zustand sie nicht desinfiziert ist:");
+			System.out.println(jacke1);
+			System.out.println("Jacke wird desinfiziert:");
+			((KategorieBekleidung)jacke1).desinfiziere();
+			System.out.println(jacke1);
+			System.out.println("Jacke kann nun kontrolliert werden:");
+			jacke1.kontrolle();
+			System.out.println("Zustand der Jacke ist nun defekt oder verleihbar:");
+			System.out.println(jacke1);
+		}
+	}
 
 }
