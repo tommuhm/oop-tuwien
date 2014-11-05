@@ -2,19 +2,24 @@ public class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 
 	private boolean desinfiziert;
 
-	//name darf nicht NULL sein. desinfiziert wird auf true gesetzt, da Bekleidung neu ist.
+	// Vorbedingung: Name darf nicht NULL sein
+	// Nachbedingung: der Zustand des erzeugten Objektes ist verleihbar
+	// Nachbedingung: das erzeugten Objekt ist desinfiziert
 	public Bekleidung(String name) {
 		super(name);
 		this.desinfiziert = true;
 	}
 
-	//setzt desinfiziert auf TRUE, das Kleidungsstueck wird desinfiziert.
+	// Nachbedingung: das Objekt ist definfiziert
 	@Override
 	public void desinfiziere() {
 		this.desinfiziert = true;
 	}
 
-	//Bekleidung wird verliehen, wenn der Zustand dies erlaubt.
+	// Vorbedingung: nur aufrufbar wenn Artikel verleihbar ist
+	// Vorbedingung: Kunde darf nicht NULL sein.
+	// Nachbedingung: Der Zustand des Objektes ist verliehen
+	// Nachbedingung: Das Objekt ist nicht mehr desinfiziert
 	@Override
 	public void verleihe(String kunde) {
 		if (zustand() == Zustand.verleihbar) {
@@ -23,13 +28,11 @@ public class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 		}
 	}
 
-
-	// Fuehrt eine Kontrolle auf den Gegenstand aus. Returned FALSE, wenn der Ggstd unbrauchbar ist, 
-	// d.h., wenn die Kontrolle negativ ausgefallen ist (wird bestimmt durch einen Zufallsgenerator,
-	// welcher zu einem 1/6 Wahrscheinlichkeit die Kontrolle negativ ausfallen laesst.
-	// ansonsten wird der Zustand des Ggstands auf verleihbar gesetzt.
-	// Prueft zusaetzlich noch ob der Zustand desinfiziert ist oder gerade benutzt wird, 
-	// letzteres impliziert, dass die Kontrolle nicht durchgefuehrt werden kann.
+	// Vorbedingung: nur aufrufbar wenn Artikel benutzt ist
+	// Nachbedingung: Gibt False zureck wenn Objekt nicht desinfiziert ist, Zustand bleibt unveraendert
+	// Nachbedingung: Der Zustand des Objektes ist defekt wenn kontrolle fehlschlaegt - Wahrscheinlichkeit von 1/6
+	// Nachbedingung: Der Zustand des Objektes ist verleihbar kontrolle erfolgreich - Wahrscheinlichkeit von 5/6
+	// Nachbedingung: Gibt True zurueck die Kontrolle erfolgreich ist und False wenn sie fehlschlaegt
 	@Override
 	public boolean kontrolle() {
 		if (zustand() != Zustand.benutzt)

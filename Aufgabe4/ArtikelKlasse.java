@@ -4,8 +4,8 @@ public abstract class ArtikelKlasse implements Artikel {
 	private String kunde;
 	private String name;
 
-	// Vorbedingung: String darf nicht NULL sein
-	// Nachbedingung: der Zustand des erzeugten Objekts ist verleihbar
+	// Vorbedingung: Name darf nicht NULL sein
+	// Nachbedingung: der Zustand des erzeugten Objektes ist verleihbar
 	public ArtikelKlasse(String name) {
 		this.zustand = Zustand.verleihbar;
 		this.name = name;
