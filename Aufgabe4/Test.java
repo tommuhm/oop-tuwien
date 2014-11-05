@@ -146,40 +146,33 @@ public class Test {
 			lawinensuchgeraet1.verleihe("Hans");
 			System.out.println(lawinensuchgeraet1);
 		}
-		System.out.println("Verleihe Lawinensuchgerät an Peter:");
-		lawinensuchgeraet1.verleihe("Peter");
-		System.out.println(lawinensuchgeraet1);
-		System.out.println("Konnte also von Peter nicht geborgt werden, da bereits verborgt.");
-		System.out.println("Hans gibt das Gerät zurück:");
-		lawinensuchgeraet1.retour();
-		System.out.println(lawinensuchgeraet1);
-		System.out.println("Lawinensuchgerät wird kontrolliert:");
-		lawinensuchgeraet1.kontrolle();
-		System.out.println(lawinensuchgeraet1);
-		System.out.println("Verleihe Lawinensuchgerät an Peter: (nun ist die restliche Verleihanzahl bei 0)");
-		lawinensuchgeraet1.verleihe("Peter");
-		System.out.println(lawinensuchgeraet1);
-		System.out.println("Nun wird retouniert von Peter: ");
-		lawinensuchgeraet1.retour();
-		System.out.println("Lawinensuchgerät wird kontrolliert:");
-		lawinensuchgeraet1.kontrolle();
-		System.out.println(lawinensuchgeraet1);
-		System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
-
-
-		System.out.println("Verleihe SchutzSet an Hans:");
-		schutzSet.verleihe("Hans");
-		System.out.println(schutzSet);
-		System.out.println("Hans gibt das Set zurück: (Verleihanzahl von Helm 2 ist bei 0)");
-		schutzSet.retour();
-		System.out.println(schutzSet);
-		System.out.println("SchutzSet wird kontrolliert: (Der Zustand wird gebraucht bleibe, da Verleihanzahl = 0)");
-		schutzSet.kontrolle();
-		System.out.println(schutzSet);
-		System.out.println("Verleihe SchutzSet an Peter:");
-		schutzSet.verleihe("Peter");
-		System.out.println(schutzSet);
-		System.out.println("Konnte nicht geborgt werden, da verbraucht. \n\n");
+		if (lawinensuchgeraet1.zustand() == Zustand.verliehen) {
+			System.out.println("Hans gibt das Lawinensuchgerät zurück:");
+			lawinensuchgeraet1.retour();
+			System.out.println(lawinensuchgeraet1);
+		}
+		if (lawinensuchgeraet1.zustand() == Zustand.benutzt) {
+			System.out.println("Lawinensuchgerät wird kontrolliert:");
+			lawinensuchgeraet1.kontrolle();
+			System.out.println(lawinensuchgeraet1);
+		}
+		if (lawinensuchgeraet1.zustand() == Zustand.verleihbar) {
+			System.out.println("Verleihe Lawinensuchgerät an Peter: (nun ist die restliche Verleihanzahl bei 0)");
+			lawinensuchgeraet1.verleihe("Peter");
+			System.out.println(lawinensuchgeraet1);
+		}
+		if (lawinensuchgeraet1.zustand() == Zustand.verliehen) {
+			System.out.println("Nun wird retouniert von Peter: ");
+			lawinensuchgeraet1.retour();
+			System.out.println(lawinensuchgeraet1);
+		}
+		if (lawinensuchgeraet1.zustand() == Zustand.benutzt) {
+			System.out.println("Lawinensuchgerät wird kontrolliert:");
+			lawinensuchgeraet1.kontrolle();
+			System.out.println(lawinensuchgeraet1);
+			assert lawinensuchgeraet1.zustand() == Zustand.benutzt;
+			System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
+		}
 	}
 
 
