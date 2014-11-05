@@ -45,8 +45,8 @@ public class Test {
 		skiwachs = new DiverseArtikel("Skiwachs");
 		
 		testUntertypen();
-		
 		testSchutzVerleih();
+		testProfiSetVerleih();
 	}
 
 	private static void testUntertypen() {
@@ -159,6 +159,36 @@ public class Test {
 	}
 
 	private static void testProfiSetVerleih() {
-
+		System.out.println("Verleihe profiSet an Hermann Maier.");
+		profiSet.verleihe("Hermann Maier");
+		System.out.println(profiSet);
+		System.out.println("Hermann Maier gibt das Set zurück");
+		profiSet.retour();
+		System.out.println(profiSet);
+		System.out.println("Bode Miller borgt nun das Set: ");
+		profiSet.verleihe("Bode Miller");
+		System.out.println(profiSet);
+		System.out.println("Nicht möglich: Zustand ist noch gebraucht. -> Jetzt wird erst Kontrolle ausgeführt. Anschließend gleich Service.");
+		profiSet.kontrolle();
+		System.out.println(profiSet);
+		((Set) profiSet).service();
+		System.out.println(profiSet);
+		System.out.println("Nun borgt Bode Miller das Set aus:");
+		profiSet.verleihe("Bode Miller");
+		System.out.println(profiSet);
+		System.out.println("Bode Miller gibt das Set zurück.");
+		profiSet.retour();
+		System.out.println(profiSet);
+		System.out.println("Das ProfiSet wird nun kontrolliert, aber kein Service.");
+		profiSet.kontrolle();
+		System.out.println(profiSet);
+		System.out.println("Nun borgt Michaela Kirchgasserer das Set aus");
+		profiSet.verleihe("Michaela Kirchgasserer");
+		System.out.println(profiSet);
+		System.out.println("Jetzt gibt sie es zurück. Es wird kontrolliert, durch den fehlenden Service ist es aber nicht brauchbar:");
+		profiSet.retour();
+		profiSet.kontrolle();
+		System.out.println(profiSet);
+		System.out.println("Das Profiset, kann durch fehlenden Service nicht mehr repariert werden.\n\n");
 	}
 }
