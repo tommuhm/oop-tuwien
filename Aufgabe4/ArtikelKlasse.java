@@ -4,7 +4,8 @@ public abstract class ArtikelKlasse implements Artikel {
 	private String kunde;
 	private String name;
 
-	//String darf nicht NULL sein, der Zustand vom erzeugten Objekt wechselt auf verleihbar.
+	// Vorbedingung: String darf nicht NULL sein
+	// Nachbedingung: der Zustand des erzeugten Objekts ist verleihbar
 	public ArtikelKlasse(String name) {
 		this.zustand = Zustand.verleihbar;
 		this.name = name;
@@ -15,8 +16,14 @@ public abstract class ArtikelKlasse implements Artikel {
 		return this.zustand;
 	}
 
-	//kunde darf nicht NULL sein.
-	//ein Gegenstand wird an einem Kunden verliehen. Der Zustand des Ggstd wechselt in verliehen. 
+	@Override
+	public String kunde() {
+		return this.kunde;
+	}
+
+	// Vorbedingung: nur aufrufbar wenn Artikel verleihbar ist
+	// Vorbedingung: Kunde darf nicht NULL sein.
+	// Nachbedingung: Der Zustand des Objektes ist verliehen
 	@Override
 	public void verleihe(String kunde) {
 		if (this.zustand == Zustand.verleihbar) {
@@ -25,12 +32,8 @@ public abstract class ArtikelKlasse implements Artikel {
 		}
 	}
 
-	@Override
-	public String kunde() {
-		return this.kunde;
-	}
-
-	//Ggstd wird zurueckgegeben. Zustand wechselt auf benutzt.
+	// Vorbedingung: nur aufrufbar wenn Artikel verliehen ist
+	// Nachbedingung: Der Zustand des Objektes ist benutzt
 	@Override
 	public void retour() {
 		if (zustand() == Zustand.verliehen) {
@@ -38,14 +41,14 @@ public abstract class ArtikelKlasse implements Artikel {
 		}
 	}
 
-	// Fuehrt eine Kontrolle auf den Gegenstand aus. Returned FALSE, wenn der Ggstd unbrauchbar ist, 
-	// d.h., wenn die Kontrolle negativ ausgefallen ist (wird bestimmt durch einen Zufallsgenerator,
-	// welcher zu einem 1/6 Wahrscheinlichkeit die Kontrolle negativ ausfallen laesst.
-	// ansonsten wird der Zustand des Ggstands auf verleihbar gesetzt.
+	// Vorbedingung: nur aufrufbar wenn Artikel benutzt ist
+	// Nachbedingung: Der Zustand des Objektes ist defekt wenn kontrolle fehlschlaegt - Wahrscheinlichkeit von 1/6
+	// Nachbedingung: Der Zustand des Objektes ist verleihbar kontrolle erfolgreich - Wahrscheinlichkeit von 5/6
+	// Nachbedingung: Gibt True zurueck die Kontrolle erfolgreich ist und False wenn sie fehlschlaegt
 	@Override
 	public boolean kontrolle() {
 		if (zustand() == Zustand.benutzt) {
-			//Prüfen. Artikel fällt 1:6 weg.
+			// Prüfen. Artikel fällt 1:6 weg.
 			if (Math.random() > (1 / 6)) {
 				this.zustand = Zustand.verleihbar;
 				return true;
