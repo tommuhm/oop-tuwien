@@ -61,4 +61,9 @@ public class SchutzBekleidung extends ArtikelKlasse implements KategorieSchutz, 
 	public int getAnzVerleihbar() {
 		return anzVerleihbar;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString() + ", moegliche Verleihungen: " + anzVerleihbar + ", desinfiziert " + desinfiziert;
+	}
 }

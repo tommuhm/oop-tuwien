@@ -47,4 +47,9 @@ public class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + ", desinfiziert " + desinfiziert;
+	}
+
 }

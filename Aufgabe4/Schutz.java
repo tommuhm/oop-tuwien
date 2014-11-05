@@ -76,13 +76,18 @@ public class Schutz extends ArtikelKlasse implements KategorieSchutz {
 		return artikelSet;
 	}
 
+	public boolean istSchutzSet() {
+		return isSet;
+	}
+
 	// Nachbedinung: Gibt zuereck wie oft der Artikel noch verliehen werden kann
 	@Override
 	public int getAnzVerleihbar() {
 		return anzVerleihbar;
 	}
 
-	public boolean istSchutzSet() {
-		return isSet;
+	@Override
+	public String toString() {
+		return super.toString() + ", moegliche Verleihungen: " + anzVerleihbar;
 	}
 }
