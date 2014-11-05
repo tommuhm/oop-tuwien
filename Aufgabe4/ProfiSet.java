@@ -36,13 +36,13 @@ public class ProfiSet extends Set {
 	}
 
 	// Vorbedingung: nur aufrufbar wenn Artikel benutzt ist
-	// Nachbedingung: Gibt False zureck wenn das Service nicht jedem ausleihen ausgefuehrt wurde
+	// Nachbedingung: Gibt False zureck wenn das Service nicht nach jedem ausleihen ausgefuehrt wurde
 	// Nachbedingung: Der Zustand des Artikels ist defekt wenn kontrolle fehlschlaegt - Wahrscheinlichkeit von 1/6
 	// Nachbedingung: Der Zustand des Artikels ist verleihbar kontrolle erfolgreich - Wahrscheinlichkeit von 5/6
 	// Nachbedingung: Gibt True zurueck die Kontrolle erfolgreich ist und False wenn sie fehlschlaegt
 	@Override
 	public boolean kontrolle() {
-		if (this.serviceImmerAusgefuehrt)
+		if (serviceAusgefuehrt && serviceImmerAusgefuehrt)
 			return super.kontrolle();
 		else
 			return false;

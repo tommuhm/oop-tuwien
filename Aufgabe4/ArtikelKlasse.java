@@ -38,6 +38,7 @@ public abstract class ArtikelKlasse implements Artikel {
 	public void retour() {
 		if (zustand() == Zustand.verliehen) {
 			this.zustand = Zustand.benutzt;
+			this.kunde = "";
 		}
 	}
 
@@ -62,6 +63,6 @@ public abstract class ArtikelKlasse implements Artikel {
 
 	@Override
 	public String toString() {
-		return this.name + " Zustand: " + this.zustand + " Kunde: " + this.kunde;
+		return this.name + " Zustand: " + this.zustand + ", Kunde: " + this.kunde;
 	}
 }
