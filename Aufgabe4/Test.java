@@ -29,7 +29,7 @@ public class Test {
 		Artikel fSki = new DiverseArtikel("Superfunski 200");
 		Artikel fSkistoecke = new DiverseArtikel("Funstöcke 200");
 		Artikel fSkischuhe = new DiverseArtikel("Funboots 200");
-		funSet = new FunSet("Superfunset", 200);
+		funSet = new FunSet("Superfunset", 1);
 		((FunSet)funSet).artikelHinzufuegen(fSki);
 		((FunSet)funSet).artikelHinzufuegen(fSkistoecke);
 		((FunSet)funSet).artikelHinzufuegen(fSkischuhe);
@@ -133,8 +133,31 @@ public class Test {
 	}
 
 	private static void testFunSetVerleih() {
-
+		System.out.println("Verleihe Funset an Hans:");
+		funSet.verleihe("Hans");
+		System.out.println(funSet);
+		System.out.println("Verleihe Funset an Peter:");
+		funSet.verleihe("Peter");
+		System.out.println(funSet);
+		System.out.println("Konnte also von Peter nicht geborgt werden, da bereits verborgt.");
+		System.out.println("Hans gibt das Funset zurück:");
+		funSet.retour();
+		System.out.println(funSet);
+		System.out.println("Funset wird kontrolliert:");
+		funSet.kontrolle();
+		System.out.println(funSet);
+		System.out.println("Verleihe Lawinensuchgerät an Peter: (nun ist die restliche Verleihanzahl bei 0)");
+		funSet.verleihe("Peter");
+		System.out.println(funSet);
+		System.out.println("Nun wird retouniert von Peter: ");
+		funSet.retour();
+		System.out.println("Lawinensuchgerät wird kontrolliert:");
+		funSet.kontrolle();
+		((Set)funSet).service();
+		System.out.println(funSet);
+		System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
 	}
+
 	private static void testProfiSetVerleih() {
 
 	}
