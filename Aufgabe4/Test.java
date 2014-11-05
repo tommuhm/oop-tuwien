@@ -44,10 +44,10 @@ public class Test {
 
 		skiwachs = new DiverseArtikel("Skiwachs");
 
-		testUntertypen();
-		testSchutzVerleih();
+//		testUntertypen();
+//		testSchutzVerleih();
 		testProfiSetVerleih();
-		testFunSetVerleih();
+//		testFunSetVerleih();
 	}
 
 	private static void testUntertypen() {
@@ -160,36 +160,29 @@ public class Test {
 	}
 
 	private static void testProfiSetVerleih() {
-		System.out.println("Verleihe profiSet an Hermann Maier.");
-		profiSet.verleihe("Hermann Maier");
-		System.out.println(profiSet);
-		System.out.println("Hermann Maier gibt das Set zurück");
-		profiSet.retour();
-		System.out.println(profiSet);
-		System.out.println("Bode Miller borgt nun das Set: ");
-		profiSet.verleihe("Bode Miller");
-		System.out.println(profiSet);
-		System.out.println("Nicht möglich: Zustand ist noch gebraucht. -> Jetzt wird erst Kontrolle ausgeführt. Anschließend gleich Service.");
-		profiSet.kontrolle();
-		System.out.println(profiSet);
-		((Set) profiSet).service();
-		System.out.println(profiSet);
-		System.out.println("Nun borgt Bode Miller das Set aus:");
-		profiSet.verleihe("Bode Miller");
-		System.out.println(profiSet);
-		System.out.println("Bode Miller gibt das Set zurück.");
-		profiSet.retour();
-		System.out.println(profiSet);
-		System.out.println("Das ProfiSet wird nun kontrolliert, aber kein Service.");
-		profiSet.kontrolle();
-		System.out.println(profiSet);
-		System.out.println("Nun borgt Michaela Kirchgasserer das Set aus");
-		profiSet.verleihe("Michaela Kirchgasserer");
-		System.out.println(profiSet);
-		System.out.println("Jetzt gibt sie es zurück. Es wird kontrolliert, durch den fehlenden Service ist es aber nicht brauchbar:");
-		profiSet.retour();
-		profiSet.kontrolle();
-		System.out.println(profiSet);
-		System.out.println("Das Profiset, kann durch fehlenden Service nicht mehr repariert werden.\n\n");
+		if (profiSet.zustand() == Zustand.verleihbar) {
+			System.out.println("Verleihe profiSet an Hermann Maier.");
+			profiSet.verleihe("Hermann Maier");
+			System.out.println(profiSet);
+		}
+		if (profiSet.zustand() == Zustand.verliehen) {
+			System.out.println("Hermann Maier gibt das Set zurück");
+			profiSet.retour();
+			System.out.println(profiSet);
+		}
+		if (profiSet.zustand() == Zustand.benutzt) {
+			System.out.println("Kontrolle wird ausgefuehrt.");
+			boolean kontrolle = profiSet.kontrolle();
+			assert kontrolle == false;
+			System.out.println("Kontrolle ist fehlgeschlagen da Service noch nicht ausgefuehrt wurde: ");
+			System.out.println(profiSet);
+			System.out.println("Service wird ausgefuehrt.");
+			((Set)profiSet).service();
+			System.out.println("Kontrolle wird ausgefuehrt.");
+			kontrolle = profiSet.kontrolle();
+			assert kontrolle == true;
+			System.out.println("Kontrolle war nun erfolgreich: ");
+			System.out.println(profiSet);
+		}
 	}
 }
