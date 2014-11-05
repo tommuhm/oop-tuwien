@@ -47,7 +47,7 @@ public class Test {
 //		testUntertypen();
 //		testSchutzVerleih();
 		testProfiSetVerleih();
-//		testFunSetVerleih();
+		testFunSetVerleih();
 	}
 
 	private static void testUntertypen() {
@@ -81,8 +81,54 @@ public class Test {
 
 		assert skiwachs instanceof Artikel;
 		assert skiwachs instanceof DiverseArtikel;
+	}
 
+	private static void testProfiSetVerleih() {
+		if (profiSet.zustand() == Zustand.verleihbar) {
+			System.out.println("Verleihe profiSet an Hermann Maier.");
+			profiSet.verleihe("Hermann Maier");
+			System.out.println(profiSet);
+		}
+		if (profiSet.zustand() == Zustand.verliehen) {
+			System.out.println("Hermann Maier gibt das Set zurück");
+			profiSet.retour();
+			System.out.println(profiSet);
+		}
+		if (profiSet.zustand() == Zustand.benutzt) {
+			System.out.println("Kontrolle wird ausgefuehrt.");
+			boolean kontrolle = profiSet.kontrolle();
+			assert kontrolle == false;
+			System.out.println("Kontrolle ist fehlgeschlagen da Service noch nicht ausgefuehrt wurde: ");
+			System.out.println(profiSet);
+			System.out.println("Service wird ausgefuehrt.");
+			((Set) profiSet).service();
+			System.out.println("Kontrolle wird ausgefuehrt.");
+			kontrolle = profiSet.kontrolle();
+			assert kontrolle == true;
+			System.out.println("Kontrolle wurde ausgefuehrt Zustand ist defekt oder verleihbar:");
+			System.out.println(profiSet);
+		}
+	}
 
+	private static void testFunSetVerleih() {
+		if (funSet.zustand() == Zustand.verleihbar) {
+			System.out.println("Verleihe Funset an Hans:");
+			funSet.verleihe("Hans");
+			System.out.println(funSet);
+		}
+		if (funSet.zustand() == Zustand.verliehen) {
+			System.out.println("Hans gibt das Funset zurück:");
+			funSet.retour();
+			System.out.println(funSet);
+		}
+		if (funSet.zustand() == Zustand.benutzt) {
+			System.out.println("Funset wird kontrolliert:");
+			funSet.kontrolle();
+			System.out.println(funSet);
+			assert funSet.zustand() == Zustand.benutzt;
+			System.out.println("Funset ist immer noch im benutzt Zustand da die Anzahl der moeglichen Verleihungen 0 ist:");
+			System.out.println(funSet);
+		}
 	}
 
 	private static void testSchutzVerleih() {
@@ -125,64 +171,5 @@ public class Test {
 		System.out.println("Konnte nicht geborgt werden, da verbraucht. \n\n");
 	}
 
-	private static void testBekleidungVerleih() {
 
-	}
-
-	private static void testSchutzBekleidungVerleih() {
-
-	}
-
-	private static void testFunSetVerleih() {
-		System.out.println("Verleihe Funset an Hans:");
-		funSet.verleihe("Hans");
-		System.out.println(funSet);
-		System.out.println("Verleihe Funset an Peter:");
-		funSet.verleihe("Peter");
-		System.out.println(funSet);
-		System.out.println("Konnte also von Peter nicht geborgt werden, da bereits verborgt.");
-		System.out.println("Hans gibt das Funset zurück:");
-		funSet.retour();
-		System.out.println(funSet);
-		System.out.println("Funset wird kontrolliert:");
-		funSet.kontrolle();
-		System.out.println(funSet);
-		System.out.println("Verleihe Lawinensuchgerät an Peter: (nun ist die restliche Verleihanzahl bei 0)");
-		funSet.verleihe("Peter");
-		System.out.println(funSet);
-		System.out.println("Nun wird retouniert von Peter: ");
-		funSet.retour();
-		System.out.println("Lawinensuchgerät wird kontrolliert:");
-		funSet.kontrolle();
-		((Set) funSet).service();
-		System.out.println(funSet);
-		System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
-	}
-
-	private static void testProfiSetVerleih() {
-		if (profiSet.zustand() == Zustand.verleihbar) {
-			System.out.println("Verleihe profiSet an Hermann Maier.");
-			profiSet.verleihe("Hermann Maier");
-			System.out.println(profiSet);
-		}
-		if (profiSet.zustand() == Zustand.verliehen) {
-			System.out.println("Hermann Maier gibt das Set zurück");
-			profiSet.retour();
-			System.out.println(profiSet);
-		}
-		if (profiSet.zustand() == Zustand.benutzt) {
-			System.out.println("Kontrolle wird ausgefuehrt.");
-			boolean kontrolle = profiSet.kontrolle();
-			assert kontrolle == false;
-			System.out.println("Kontrolle ist fehlgeschlagen da Service noch nicht ausgefuehrt wurde: ");
-			System.out.println(profiSet);
-			System.out.println("Service wird ausgefuehrt.");
-			((Set)profiSet).service();
-			System.out.println("Kontrolle wird ausgefuehrt.");
-			kontrolle = profiSet.kontrolle();
-			assert kontrolle == true;
-			System.out.println("Kontrolle war nun erfolgreich: ");
-			System.out.println(profiSet);
-		}
-	}
 }
