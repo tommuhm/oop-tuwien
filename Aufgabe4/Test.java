@@ -1,10 +1,19 @@
 /*
  * Fehlende Untertypbeziehungen:
- * SchutzBekleidung hat variablen und Code für AnzahlVerleihbar und desinfiziert,
+ * SchutzBekleidung hat Variablen und Methoden für Anzahl-Verleihbar und desinfiziert,
  * diese sollten jedoch eher geerbt werden von Schutz/Bekleidung; jedoch ist Mehrfach-
- * vererbung nicht möglich.
- * 
- * 
+ * vererbung in Java nicht möglich.
+ *
+ * Aufgabe 4:
+ *  Die Programmarchitekur wurde gemeinsam auf Papier ausgearbeitet.
+ *
+ *  Set, FunSet, ProfiSet, DiverseArtikel, Test -> Ulrich Aschl
+ *  Artikel, Zustand, KategorieSchutz, Schutz, SchutzBekleidung, Test -> Thomas Muhm
+ *  ArtikelKlasse, KategorieBekleidung, Bekleidung, Jacke -> David Jaffry
+ *
+ *  Die TestCases wurden von Ulrich Aschl und Thomas Muhm geschrieben.
+ *  Die Zusicherungen wurden von David Jaffry und Thomas Muhm geschrieben.
+ *
  */
 
 
@@ -45,9 +54,9 @@ public class Test {
 		skiwachs = new DiverseArtikel("Skiwachs");
 
 //		testUntertypen();
-//		testSchutzVerleih();
-		testProfiSetVerleih();
-		testFunSetVerleih();
+		testSchutzVerleih();
+//		testProfiSetVerleih();
+//		testFunSetVerleih();
 	}
 
 	private static void testUntertypen() {
@@ -132,9 +141,11 @@ public class Test {
 	}
 
 	private static void testSchutzVerleih() {
-		System.out.println("Verleihe Lawinensuchgerät an Hans:");
-		lawinensuchgeraet1.verleihe("Hans");
-		System.out.println(lawinensuchgeraet1);
+		if (lawinensuchgeraet1.zustand() == Zustand.verleihbar) {
+			System.out.println("Verleihe Lawinensuchgerät an Hans:");
+			lawinensuchgeraet1.verleihe("Hans");
+			System.out.println(lawinensuchgeraet1);
+		}
 		System.out.println("Verleihe Lawinensuchgerät an Peter:");
 		lawinensuchgeraet1.verleihe("Peter");
 		System.out.println(lawinensuchgeraet1);
