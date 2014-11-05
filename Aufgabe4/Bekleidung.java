@@ -3,8 +3,8 @@ public class Bekleidung extends ArtikelKlasse implements KategorieBekleidung {
 	private boolean desinfiziert;
 
 	// Vorbedingung: Name darf nicht NULL sein
-	// Nachbedingung: der Zustand des erzeugten Artikels ist verleihbar
-	// Nachbedingung: der erzeugte Artikel ist desinfiziert
+	// Nachbedingung: der Zustand des Artikels ist verleihbar
+	// Nachbedingung: der Artikel ist desinfiziert
 	public Bekleidung(String name) {
 		super(name);
 		this.desinfiziert = true;

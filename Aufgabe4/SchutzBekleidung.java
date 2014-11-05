@@ -3,20 +3,27 @@ public class SchutzBekleidung extends ArtikelKlasse implements KategorieSchutz, 
 	private boolean desinfiziert;
 	private int anzVerleihbar;
 
-	//Vorbedingung: name darf nicht NULL sein, anzVerleihbar muss groesser 0 sein.
+	// Vorbedingung: Name darf nicht NULL sein
+	// Vorbedingung: anzVerleihbar muss groeßer als 0 sein
+	// Nachbedingung: der Zustand des Artikels ist verleihbar
+	// Nachbedingung: der Artikel ist desinfiziert
 	public SchutzBekleidung(String name, int anzVerleihbar) {
 		super(name);
 		this.anzVerleihbar = anzVerleihbar;
 		this.desinfiziert = true;
 	}
 
-	//Nachbedingung: Bekleidung wird desinfiziert.
+	// Nachbedingung: der Artikel ist definfiziert
 	@Override
 	public void desinfiziere() {
 		desinfiziert = true;
 	}
 
-	//Nachbedingung: Bekleidung wird verliehen, die Anzahl sinkt um 1, kleidung ist nicht mehr desinfiziert.
+	// Vorbedingung: nur aufrufbar wenn Artikel verleihbar ist
+	// Vorbedingung: Kunde darf nicht NULL sein.
+	// Nachbedingung: Der Zustand des Artikels ist verliehen
+	// Nachbedingung: die Anzahl der moeglichen Verleihungen wird um eins verringert.
+	// Nachbedingung: Der Artikel ist nicht mehr desinfiziert
 	@Override
 	public void verleihe(String kunde) {
 		if (zustand() == Zustand.verleihbar) {
@@ -26,7 +33,12 @@ public class SchutzBekleidung extends ArtikelKlasse implements KategorieSchutz, 
 		}
 	}
 
-	//siehe ArtikelKlasse, zusaetzlich wird geprueft ob eine gueltige Anzahl im Stock sind und die Kleidung desinfiziert ist.
+	// Vorbedingung: nur aufrufbar wenn Artikel benutzt ist
+	// Vorbedingung: die Anzahl an moeglichen Verleichungen muss groeser als 0 sein
+	// Vorbedingung: Gibt False zureck wenn der Artikel nicht desinfiziert ist, Zustand bleibt unveraendert
+	// Nachbedingung: Der Zustand des Artikels ist defekt wenn kontrolle fehlschlaegt - Wahrscheinlichkeit von 1/6
+	// Nachbedingung: Der Zustand des Artikels ist verleihbar kontrolle erfolgreich - Wahrscheinlichkeit von 5/6
+	// Nachbedingung: Gibt True zurueck die Kontrolle erfolgreich ist und False wenn sie fehlschlaegt
 	@Override
 	public boolean kontrolle() {
 		if (zustand() != Zustand.benutzt)
@@ -44,6 +56,7 @@ public class SchutzBekleidung extends ArtikelKlasse implements KategorieSchutz, 
 		return true;
 	}
 
+	// Nachbedinung: Gibt zuereck wie oft der Artikel noch verliehen werden kann
 	@Override
 	public int getAnzVerleihbar() {
 		return anzVerleihbar;

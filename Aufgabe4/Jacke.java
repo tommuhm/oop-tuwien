@@ -1,6 +1,8 @@
 public class Jacke extends Bekleidung {
 
-	//String darf nicht NULL sein
+	// Vorbedingung: Name darf nicht NULL sein
+	// Nachbedingung: der Zustand des Artikels ist verleihbar
+	// Nachbedingung: der Artikel ist desinfiziert
 	public Jacke(String name) {
 		super("Jacke: " + name);
 	}
