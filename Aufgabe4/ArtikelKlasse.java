@@ -5,7 +5,7 @@ public abstract class ArtikelKlasse implements Artikel {
 	private String name;
 
 	// Vorbedingung: Name darf nicht NULL sein
-	// Nachbedingung: der Zustand des erzeugten Objektes ist verleihbar
+	// Nachbedingung: der Zustand des erzeugten Artikels ist verleihbar
 	public ArtikelKlasse(String name) {
 		this.zustand = Zustand.verleihbar;
 		this.name = name;
@@ -23,7 +23,7 @@ public abstract class ArtikelKlasse implements Artikel {
 
 	// Vorbedingung: nur aufrufbar wenn Artikel verleihbar ist
 	// Vorbedingung: Kunde darf nicht NULL sein.
-	// Nachbedingung: Der Zustand des Objektes ist verliehen
+	// Nachbedingung: Der Zustand des Artikels ist verliehen
 	@Override
 	public void verleihe(String kunde) {
 		if (this.zustand == Zustand.verleihbar) {
@@ -33,7 +33,7 @@ public abstract class ArtikelKlasse implements Artikel {
 	}
 
 	// Vorbedingung: nur aufrufbar wenn Artikel verliehen ist
-	// Nachbedingung: Der Zustand des Objektes ist benutzt
+	// Nachbedingung: Der Zustand des Artikels ist benutzt
 	@Override
 	public void retour() {
 		if (zustand() == Zustand.verliehen) {
@@ -42,8 +42,8 @@ public abstract class ArtikelKlasse implements Artikel {
 	}
 
 	// Vorbedingung: nur aufrufbar wenn Artikel benutzt ist
-	// Nachbedingung: Der Zustand des Objektes ist defekt wenn kontrolle fehlschlaegt - Wahrscheinlichkeit von 1/6
-	// Nachbedingung: Der Zustand des Objektes ist verleihbar kontrolle erfolgreich - Wahrscheinlichkeit von 5/6
+	// Nachbedingung: Der Zustand des Artikels ist defekt wenn kontrolle fehlschlaegt - Wahrscheinlichkeit von 1/6
+	// Nachbedingung: Der Zustand des Artikels ist verleihbar kontrolle erfolgreich - Wahrscheinlichkeit von 5/6
 	// Nachbedingung: Gibt True zurueck die Kontrolle erfolgreich ist und False wenn sie fehlschlaegt
 	@Override
 	public boolean kontrolle() {
