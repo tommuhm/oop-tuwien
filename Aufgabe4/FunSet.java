@@ -67,4 +67,8 @@ public class FunSet extends Set {
 		return super.kontrolle();
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + ", moegliche Verleihungen: " + maxVerleihungen;
+	}
 }
