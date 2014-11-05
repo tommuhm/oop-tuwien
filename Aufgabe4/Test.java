@@ -13,40 +13,41 @@ import java.util.HashSet;
 public class Test {
 
 	static Artikel helm1, jacke1, lawinensuchgeraet1, schutzSet, funSet, profiSet, skiwachs;
-	
+
 	public static void main(String[] args) {
 		helm1 = new SchutzBekleidung("Helm XL", 200);
 		jacke1 = new Jacke("DaunenXL");
 		lawinensuchgeraet1 = new Schutz("Lawinensuchgerät", 2);
 
 		HashSet<Artikel> schutzArtikel = new HashSet<Artikel>();
-		schutzArtikel.add(new SchutzBekleidung("Helm 2",1));
+		schutzArtikel.add(new SchutzBekleidung("Helm 2", 1));
 		schutzArtikel.add(new Jacke("DaunenXS"));
 		schutzArtikel.add(new Schutz("Lawinengerät", 100));
-		
+
 		schutzSet = new Schutz("Schutzset 1A!", schutzArtikel);
-		
+
 		Artikel fSki = new DiverseArtikel("Superfunski 200");
 		Artikel fSkistoecke = new DiverseArtikel("Funstöcke 200");
 		Artikel fSkischuhe = new DiverseArtikel("Funboots 200");
 		funSet = new FunSet("Superfunset", 1);
-		((FunSet)funSet).artikelHinzufuegen(fSki);
-		((FunSet)funSet).artikelHinzufuegen(fSkistoecke);
-		((FunSet)funSet).artikelHinzufuegen(fSkischuhe);
-		
+		((FunSet) funSet).artikelHinzufuegen(fSki);
+		((FunSet) funSet).artikelHinzufuegen(fSkistoecke);
+		((FunSet) funSet).artikelHinzufuegen(fSkischuhe);
+
 		Artikel pSki = new DiverseArtikel("Profiski 3000");
 		Artikel pSkistoecke = new DiverseArtikel("Profistöcke 3000");
 		Artikel pSkischuhe = new DiverseArtikel("Profischuhe 3000");
 		profiSet = new ProfiSet("Pro-Set 3000");
-		((ProfiSet)profiSet).artikelHinzufuegen(pSkischuhe);
-		((ProfiSet)profiSet).artikelHinzufuegen(pSkistoecke);
-		((ProfiSet)profiSet).artikelHinzufuegen(pSki);
-		
+		((ProfiSet) profiSet).artikelHinzufuegen(pSkischuhe);
+		((ProfiSet) profiSet).artikelHinzufuegen(pSkistoecke);
+		((ProfiSet) profiSet).artikelHinzufuegen(pSki);
+
 		skiwachs = new DiverseArtikel("Skiwachs");
-		
+
 		testUntertypen();
 		testSchutzVerleih();
 		testProfiSetVerleih();
+		testFunSetVerleih();
 	}
 
 	private static void testUntertypen() {
@@ -61,27 +62,27 @@ public class Test {
 		assert lawinensuchgeraet1 instanceof KategorieSchutz;
 		assert !(lawinensuchgeraet1 instanceof KategorieBekleidung);
 		assert !(lawinensuchgeraet1 instanceof SchutzBekleidung);
-		
+
 		assert lawinensuchgeraet1 instanceof KategorieSchutz;
 		assert !(lawinensuchgeraet1 instanceof KategorieBekleidung);
 		assert !(lawinensuchgeraet1 instanceof SchutzBekleidung);
-	
+
 		assert schutzSet instanceof KategorieSchutz;
 		assert !(schutzSet instanceof KategorieBekleidung);
 		assert !(schutzSet instanceof SchutzBekleidung);
-		
+
 		assert funSet instanceof Set;
 		assert funSet instanceof FunSet;
 		assert !(funSet instanceof ProfiSet);
-		
+
 		assert profiSet instanceof Set;
 		assert profiSet instanceof ProfiSet;
 		assert !(profiSet instanceof FunSet);
-		
+
 		assert skiwachs instanceof Artikel;
 		assert skiwachs instanceof DiverseArtikel;
-		
-		
+
+
 	}
 
 	private static void testSchutzVerleih() {
@@ -107,8 +108,8 @@ public class Test {
 		lawinensuchgeraet1.kontrolle();
 		System.out.println(lawinensuchgeraet1);
 		System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
-		
-		
+
+
 		System.out.println("Verleihe SchutzSet an Hans:");
 		schutzSet.verleihe("Hans");
 		System.out.println(schutzSet);
@@ -153,7 +154,7 @@ public class Test {
 		funSet.retour();
 		System.out.println("Lawinensuchgerät wird kontrolliert:");
 		funSet.kontrolle();
-		((Set)funSet).service();
+		((Set) funSet).service();
 		System.out.println(funSet);
 		System.out.println("Zustand ist noch immer auf \"benutzt\", weil Verleihanzahl == 0.\n\n");
 	}
