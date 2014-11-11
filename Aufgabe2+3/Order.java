@@ -43,7 +43,7 @@ public class Order {
 	public float getAmountOfMoney() {
 		return amountOfMoney;
 	}
-
+	//POSTCONDITION: Outgoing Bill has been created
 	public OutgoingBill createOutgoingBill(boolean inCash) {
 		return new OutgoingBill(service, amountOfMoney, new Date(), inCash, person);
 	}
