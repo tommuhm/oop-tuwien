@@ -35,7 +35,7 @@ public class Accounting {
 	}
 
 	// GOOD: this method is a good example for dynamic binding: We decide of what type the bill is and put it in the right map. -> Less duplicate code.
-	// POSTCONDITION: adds Bill to the right Map
+	// POSTCONDITION: OutgoingBillMap or IncomingBillMap contains bill
 	public void addBill(Bill bill) {
 		float amountOfMoney = bill.getAmountOfMoney();
 		if (bill instanceof OutgoingBill) {
