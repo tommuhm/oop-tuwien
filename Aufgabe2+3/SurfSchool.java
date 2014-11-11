@@ -10,18 +10,20 @@ public class SurfSchool {
 	}
 
 	// PRECONDITION: course must not be null and courses must not already contain the course
-	// BAD: if-clause with !(courses.contains(course)) would have been good.
+	// POSTCONDITION: courses contains course
 	public Course addCourse(Course course) {
 		this.courses.add(course);
 		return course;
 	}
 
 	// PRECONDITION: course and student must not be null, course must not already contain the student.
+	// POSTCONDITION: the course's students contains student
 	public void addStudent(Course course, Student student) {
 		course.addStudent(student);
 	}
 
 	// PRECONDITION: course and student must not be null, course must not already contain the student.
+	// POSTCONDITION: the course's students doesn't contain student
 	public void removeStudent(Course course, Student student) {
 		course.removeStudent(student);
 	}

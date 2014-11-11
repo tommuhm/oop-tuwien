@@ -32,22 +32,25 @@ public class Course {
 	}
 
 	// PRECONDITION: student must not be null
+	// POSTCONDITION: students contains student
 	public void addStudent(Student student) {
 		this.students.add(student);
 	}
 
 	// PRECONDITION: student must not be null, students contain student
+	// POSTCONDITION: students doesn't contain student
 	public void removeStudent(Student student) {
 		this.students.remove(student);
 	}
 
 	// PRECONDITION: date must not be null, dates must not already contain date
-	// BAD: We should have checked if dates contains date.
+	// POSTCONDITION: dates contains date
 	public void addDate(Date date) {
 		this.dates.add(date);
 	}
 
 	// PRECONDITION: date must not be null, dates has to contain date
+	// POSTCONDITION: dates doesn't contain date
 	public void removeDate(Date date) {
 		this.dates.remove(date);
 	}

@@ -24,6 +24,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Test {
@@ -113,28 +114,24 @@ public class Test {
 	
 	// POSTCONDITION: surfstore, surf200Rent, surf220Rent, surf220Sale, helmMediumRent, ulrich, tom and david must not be null
 	private static void borrowSurfarticleTest() {
-		Date d = new Date();
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.HOUR, -4);
+		System.out.println("Ulrich borrows surf200Rent at " + c.getTime());
+		ulrichRentals = surfstore.borrowArticle(ulrich, surf200Rent, c.getTime(), 3);
 
-		// ERROR: deprecated methods should not be used, calendar object should be used instead.
-		d.setHours(4); 
-		System.out.println("Ulrich borrows surf200Rent at " + d);
-		ulrichRentals = surfstore.borrowArticle(ulrich, surf200Rent, d, 3);
-
-		// ERROR: deprecated methods should not be used, calendar object should be used instead.
-		d.setDate(10);
-		// ERROR: deprecated methods should not be used, calendar object should be used instead.
-		d.setHours(5);
-		System.out.println("David borrows surf220Sale at " + d);
+		c.add(Calendar.DAY_OF_MONTH, -10);
+		c.add(Calendar.HOUR, -4);
+		System.out.println("David borrows surf220Sale at " + c.getTime());
 		System.out.println("Sale articles can't be borrowed");
-		davidRental = surfstore.borrowArticle(david, surf220Sale, d, 1);
+		davidRental = surfstore.borrowArticle(david, surf220Sale, c.getTime(), 1);
 
-		System.out.println("David borrows surf220Rent at " + d);
-		davidRental = surfstore.borrowArticle(david, surf220Rent, d, 1);
+		System.out.println("David borrows surf220Rent at " + c.getTime());
+		davidRental = surfstore.borrowArticle(david, surf220Rent, c.getTime(), 1);
 
-		d.setHours(6);
-		System.out.println("Tom borrows 7 times helmMediumRent at " + d);
+		c.add(Calendar.HOUR, -4);
+		System.out.println("Tom borrows 7 times helmMediumRent at " + c.getTime());
 		System.out.println("Tom couldn't borrow helmMediumRent - only 5 available - he borrowed 5");
-		tomRentals = surfstore.borrowArticle(tom, helmMediumRent, d, 7);
+		tomRentals = surfstore.borrowArticle(tom, helmMediumRent, c.getTime(), 7);
 	}
 
 	// PRECONDITION: ulrich, david, tom, ulrichRentals, davidRentals, tomRentals and surfstore must not be null
