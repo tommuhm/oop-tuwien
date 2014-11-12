@@ -13,13 +13,13 @@
  * 	Gemeinsame Planung der Programmarchitektur
  * 
  * Aufgabe 3:
- * 	COMMENTS wurden von allen Gruppenmitgliedern gemeinsam an einem einzelnem Gerät geschrieben.
+ * 	COMMENTS wurden von allen Gruppenmitgliedern gemeinsam an einem einzelnem Geraet geschrieben.
  * 
  * 
- * Wieso nicht genügend GOODs markiert wurden:
- *  Da wir unseren Klassenzusammenhalt im Allgemeinen als eher hoch einschätzen (bis auf den Surfstore), wussten wir nicht genau, in welchen Dateien wir den 
- *  Klassenzusammenhalt eher hervorheben sollten. Wir wollten ebenso nicht die Dateien nur mit GOOD-Kommentaren über Klassenzusammenhalt
- *  überfluten.
+ * Wieso nicht genuegend GOODs markiert wurden:
+ *  Da wir unseren Klassenzusammenhalt im Allgemeinen als eher hoch einschaetzen (bis auf den Surfstore), wussten wir nicht genau, in welchen Dateien wir den
+ *  Klassenzusammenhalt eher hervorheben sollten. Wir wollten ebenso nicht die Dateien nur mit GOOD-Kommentaren ueber Klassenzusammenhalt
+ *  ueberfluten.
  * 
  */
 
@@ -179,10 +179,9 @@ public class Test {
 		Teacher teacher = new Teacher("Prof. Surf");
 		ArrayList<Date> dates = new ArrayList<Date>();
 		for (int i = 0; i < 6; i++) {
-			Date d = new Date();
-			// ERROR: deprecated methods should not be used, calendar object should be used instead
-			d.setDate(i + 1); 		
-			dates.add(d);
+			Calendar c = Calendar.getInstance();
+			c.add(Calendar.HOUR, 1);
+			dates.add(c.getTime());
 		}
 
 		System.out.println("Creating the surf course.");
