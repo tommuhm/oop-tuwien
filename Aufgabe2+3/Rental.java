@@ -19,9 +19,8 @@ public class Rental {
 		return article;
 	}
 
-	// POSTCONDITION: value has to be greater than zero
+	// POSTCONDITION: returns a positive value for the price
 	public float getPriceByNow() {
-		// BAD: getHours should only return values between 1 and 23; if > 23 => getDays
 		if (this.getHours() < 24) {
 			return article.getPricePerHour() * this.getHours();
 		} else {
@@ -29,12 +28,12 @@ public class Rental {
 		}
 	}
 
-	// POSTCONDITION: value has to be greater than zero
+	// POSTCONDITION: returns the number of hour which have passed since the borrow dateTime
 	public int getHours() {
 		return (int) Math.ceil((new Date().getTime() - date.getTime()) / 1000 / 60 / 60);
 	}
 
-	// POSTCONDITION: value has to be greater than zero
+	// POSTCONDITION: returns the number of days which have passed since the borrow dateTime
 	public int getDays() {
 		return (int) Math.ceil((new Date().getTime() - date.getTime()) / 1000 / 60 / 60 / 24);
 	}

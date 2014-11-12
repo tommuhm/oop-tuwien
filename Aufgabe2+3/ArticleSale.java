@@ -25,9 +25,11 @@ public class ArticleSale extends Article {
 	}
 
 	// PRECONDITION: amount has to be greater than zero
+	// POSTCONDITION: totalAmount is decreased by amount and soldCounter is increased by amount
+	// POSTCONDITION: returns true if the specified amount has been sold, otherwise false
 	public boolean sellArticle(int amount) {
 		if (isAvailable(amount)) {
-			removeAmount(amount);
+			super.removeAmount(amount);
 			soldCount += amount;
 			return true;
 		}
@@ -40,7 +42,8 @@ public class ArticleSale extends Article {
 				+ "\t| Name: " + this.getName()
 				+ "\t| Size: " + this.getSize()
 				+ "\t| Price: " + this.getPriceSale() + "€"
-				+ "\t| Total: " + this.getTotalAmount();
+				+ "\t| Total: " + this.getTotalAmount()
+				+ "\t| Sold: " + this.getSoldCount();
 	}
 
 }

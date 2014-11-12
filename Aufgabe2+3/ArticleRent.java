@@ -28,15 +28,18 @@ public class ArticleRent extends Article {
 		return pricePerDay;
 	}
 
-	public int getCurrentAmount() {
-		return currentAmount;
-	}
-
 	public int getRentedCount() {
 		return rentedCount;
 	}
 
+	private int getCurrentAmount() {
+		return currentAmount;
+	}
+
 	// PRECONDITION: amount has to be greater than zero
+	// PRECONDITION: amount has to be greater or equal to totalAmount
+	// POSTCONDITION: currentAmount is decreased by amount and rentedCounter is increased by amount
+	// POSTCONDITION: returns true if the specified amount has been borrowed, otherwise false
 	public boolean borrowArticle(int amount) {
 		if (isAvailable(amount)) {
 			currentAmount -= amount;
@@ -47,11 +50,11 @@ public class ArticleRent extends Article {
 	}
 
 	// PRECONDITION: amount has to be greater than zero
+	// POSTCONDITION: currentAmount is increased by amount
 	public void returnArticle(int amount) {
 		currentAmount += amount;
 	}
 
-	@Override
 	// PRECONDITION: amount has to be greater than zero
 	// GOOD: Uses super.method -> no duplicate code
 	public void addAmount(int amount) {
@@ -59,18 +62,25 @@ public class ArticleRent extends Article {
 		currentAmount += amount;
 	}
 
-	@Override
 	// PRECONDITION: amount has to be greater or equal to totalAmount
-	// POSTCONDITION: currentAmount has to be greater or equal to totalAmount
+	// POSTCONDITION: currentAmount and totalAmount are decreased by amount
+	// GOOD: Uses super.method -> no duplicate code
+	@Override
 	public void removeAmount(int amount) {
-		super.removeAmount(amount);
-		currentAmount -= amount;
+		if (isAvailable(amount)) {
+			super.removeAmount(amount);
+			currentAmount -= amount;
+		}
 	}
 
 	@Override
 	// PRECONDITION: amount has to be greater than zero
+	// POSTCONDITION: returns true if the specified amount is available, otherwise false
 	public boolean isAvailable(int amount) {
-		return currentAmount >= amount;
+		if (super.isAvailable(amount)) {
+			return currentAmount >= amount;
+		}
+		return false;
 	}
 
 	@Override
@@ -82,6 +92,7 @@ public class ArticleRent extends Article {
 				+ "\t| Price/Day: " + this.getPricePerDay() + "€"
 				+ "\t| Total: " + this.getTotalAmount()
 				+ "\t| Available: " + this.getCurrentAmount()
-				+ "\t| Rented: " + (this.getTotalAmount() - this.getCurrentAmount());
+				+ "\t| Rented: " + (this.getTotalAmount() - this.getCurrentAmount()
+				+ "\t| Rented " + this.getRentedCount() + " time(s).");
 	}
 }

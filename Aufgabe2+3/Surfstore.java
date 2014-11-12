@@ -17,12 +17,13 @@ public class Surfstore {
 		accounting = new Accounting(balanceAccount, balanceCash);
 	}
 
-
+	// POSTCONDITION: returns all articles from the stock
 	public Collection<Article> getArticles() {
 		return stockManagement.getArticles().values();
 	}
 
 	// PRECONDITION: person must not be null
+	// POSTCONDITION: returns all rented articles for the specified person
 	public ArrayList<Rental> getRentedArticles(Person person) {
 		return stockManagement.getRentedArticleMap().get(person);
 	}
@@ -48,26 +49,27 @@ public class Surfstore {
 	}
 
 	// PRECONDITION: customer must not be null
-	// POSTCONDITION: customers has to contain the customer
+	// POSTCONDITION: customers contains the specified customer
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
 
 	// PRECONDITION: course must not be null
-	// POSTCONDITION: surfSchool has to contain the course
+	// POSTCONDITION: surfSchool contains the specified course
 	public Course addCourse(Course course) {
 		return surfSchool.addCourse(course);
 	}
 
 	// PRECONDITION: order must not be null
-	// POSTCONDITION: accounting has to contain the order
+	// POSTCONDITION: accounting contains the specified order
 	public Order addOrder(Order order) {
 		accounting.addOrder(order);
 		return order;
 	}
 
 	// PRECONDITION: article must not be null, priceBuy has to be equal or greater than zero, amount has to be greater than zero
-	// POSTCONDITION: accounting has to contain the bill and stockManagement has to contain the article
+	// POSTCONDITION: a new bill for the purchase is added to accounting
+	// POSTCONDITION: stockManagement contains the article
 	public Article buyArticles(Article article, float priceBuy, int amount, boolean inCash) {
 		IncomingBill bill = new IncomingBill(article.getName() + ": " + amount, priceBuy, new Date(), inCash);
 		accounting.addBill(bill);
@@ -75,6 +77,8 @@ public class Surfstore {
 	}
 
 	// PRECONDITION: article and person must not be null, amount has to be greater than zero
+	// POSTCONDITION: sale successful: returns true and a new bill for the sale is added to accounting
+	// POSTCONDITION: sale failed: returns false
 	public boolean sellArticles(Article article, int amount, boolean inCash, Person person) {
 		if (stockManagement.sellArticle(article, amount)) {
 			OutgoingBill bill = new OutgoingBill(article.getName() + ": " + amount, ((ArticleSale) article).getPriceSale(), new Date(), inCash, person);
@@ -86,12 +90,13 @@ public class Surfstore {
 	}
 
 	// PRECONDITION: article must not be null, amount has to be greater than zero
+	// POSTCONDITION: returns true if the specified amount is discarded, otherwise false
 	public boolean discardArticles(Article article, int amount) {
 		return stockManagement.removeArticle(article, amount);
 	}
 
 	// PRECONDITION: person, article and issueDate must not be null, amount has to be greater than zero
-	// POSTCONDITION: rentals must not be null
+	// POSTCONDITION: returns all successfully rented articles
 	public ArrayList<Rental> borrowArticle(Person person, Article article, Date issueDate, int amount) {
 		ArrayList<Rental> rentals = new ArrayList<Rental>();
 		for (int i = 0; i < amount; i++) {
@@ -103,6 +108,7 @@ public class Surfstore {
 	}
 
 	// PRECONDITION: person and rentals must not be null
+	// POSTCONDITION: returns the bill for the returned objects
 	public OutgoingBill returnArticles(Person person, ArrayList<Rental> rentals, boolean inCash) {
 		float price = 0f;
 		int amount = 0;
@@ -134,6 +140,7 @@ public class Surfstore {
 	}
 
 	// PRECONDITION: course must not be null
+	// POSTCONDITION: returns bills for each person in the specified course
 	public ArrayList<OutgoingBill> createBillsForSurfSchool(Course course) {
 		ArrayList<OutgoingBill> outgoingBills = surfSchool.createOutgoingBills(course);
 
