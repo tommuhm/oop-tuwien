@@ -41,7 +41,7 @@ public class ArticleSale extends Article {
 		return "| ID: " + this.getId()
 				+ "\t| Name: " + this.getName()
 				+ "\t| Size: " + this.getSize()
-				+ "\t| Price: " + this.getPriceSale() + "€"
+				+ "\t| Price: " + this.getPriceSale() + " Euro"
 				+ "\t| Total: " + this.getTotalAmount()
 				+ "\t| Sold: " + this.getSoldCount();
 	}

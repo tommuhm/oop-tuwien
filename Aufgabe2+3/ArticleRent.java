@@ -88,8 +88,8 @@ public class ArticleRent extends Article {
 		return "| ID: " + this.getId()
 				+ "\t| Name: " + this.getName()
 				+ "\t| Size: " + this.getSize()
-				+ "\t| Price/Hour: " + this.getPricePerHour() + "€"
-				+ "\t| Price/Day: " + this.getPricePerDay() + "€"
+				+ "\t| Price/Hour: " + this.getPricePerHour() + " Euro"
+				+ "\t| Price/Day: " + this.getPricePerDay() + " Euro"
 				+ "\t| Total: " + this.getTotalAmount()
 				+ "\t| Available: " + this.getCurrentAmount()
 				+ "\t| Rented: " + (this.getTotalAmount() - this.getCurrentAmount()
