@@ -17,16 +17,20 @@ public class Wood<T> {
 		return null;
 	}
 
+	public LeveledIter<Wood> sub() {
+		// TODO
+		return null;
+	}
+
 	public LeveledIter<Wood> iterator() {
 		WoodIter rootIterator = new WoodIter();
 
 		WoodyNode current = node;
 		while (current != null) {
 			rootIterator.add(this);
-			current = current.getNext();
+			current = current.next();
 		}
 
-		// TODO - gibt die wurzeln aller baeume zurueck
 		return rootIterator;
 	}
 
@@ -46,6 +50,17 @@ class WoodyNode<T> {
 		this.wert = wert;
 	}
 
+	public void add(Wood wood) {
+		WoodyNode node = wood.getNode();
+
+		node.prev = prev;
+		prev.next = node;
+
+		node.next = this;
+		this.prev = node;
+
+	}
+
 	public Wood<T> getWood() {
 		return wood;
 	}
@@ -54,56 +69,43 @@ class WoodyNode<T> {
 		return sub;
 	}
 
-	public boolean hasNext() {
-		if (next != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public boolean hasPrev() {
-		if (prev != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public WoodyNode<T> getNext() {
+	public WoodyNode<T> next() {
 		return next;
 	}
 
-	public WoodyNode<T> getPrev() {
+	public WoodyNode<T> previous() {
 		return prev;
 	}
 }
 
 class WoodIter implements LeveledIter<Wood> {
 
-	WoodyNode node = null;
+	WoodyNode prev = null;
+	WoodyNode next = null;
 
 	@Override
 	public LeveledIter<Wood> sub() {
-		Wood sub = node.getSub();
+		LeveledIter<Wood> subIter = null;
 
-		LeveledIter<Wood> subIter;
-		if (sub == null) {
-			subIter = null;
-		} else {
-			subIter = sub.iterator();
+		if (next != null) {
+			Wood sub = next.getSub();
+
+			if (sub != null) {
+				subIter = sub.iterator();
+			}
 		}
-
 		return subIter;
 	}
 
 	@Override
 	public void add(Wood wood) {
-		if (node == null) {
-			node = wood.getNode();
-		} else {
-			// TODO
+		if (next == null) {
+			next = wood.getNode();
 		}
+		if (prev != null) {
+		}
+
+			// TODO
 	}
 
 	@Override
@@ -113,7 +115,7 @@ class WoodIter implements LeveledIter<Wood> {
 
 	@Override
 	public boolean hasNext() {
-		if (node != null && node.hasNext()) {
+		if (next != null) {
 			return true;
 		} else {
 			return false;
@@ -123,7 +125,9 @@ class WoodIter implements LeveledIter<Wood> {
 	@Override
 	public Wood next() {
 		if (hasNext()) {
-			return node.getNext().getWood();
+			prev = next;
+			next = next.next();
+			return prev.getWood();
 		} else {
 			return null;
 		}
@@ -131,7 +135,7 @@ class WoodIter implements LeveledIter<Wood> {
 
 	@Override
 	public boolean hasPrevious() {
-		if (node != null && node.hasPrev()) {
+		if (prev != null) {
 			return true;
 		} else {
 			return false;
@@ -141,7 +145,9 @@ class WoodIter implements LeveledIter<Wood> {
 	@Override
 	public Wood pervious() {
 		if (hasPrevious()) {
-			return node.getPrev().getWood();
+			prev = prev.previous();
+			next = prev;
+			return next.getWood();
 		} else {
 			return null;
 		}
