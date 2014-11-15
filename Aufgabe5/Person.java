@@ -10,7 +10,15 @@ public abstract class Person implements Prec {
 	@Override
 	public boolean prec(Object y) {
 		if (y instanceof Person) {
-			return this.name == ((Person) y).name;
+			String nameI, nameY;
+			nameI = name.toLowerCase();
+			nameY = ((Person) y).name.toLowerCase();
+
+			nameI = nameI.replaceAll(" ", "");
+			nameY = nameY.replaceAll(" ", "");
+			
+			
+			return nameI.compareTo(nameY) <= 0; //Equals oder nameI ist alphabetisch kleiner 
 		}
 
 		return false;
