@@ -1,4 +1,6 @@
 
+// TODO remvoe hasPrevious, hasNext
+
 public class Wood<T> {
 
 	private WoodyNode node;
@@ -7,31 +9,32 @@ public class Wood<T> {
 		this.node = new WoodyNode(this, wert);
 	}
 
-	// TODO - remove class - how to get node from wood without getter? we need it in the iterator
-	public WoodyNode getNode() {
-		return node;
-	}
-
+	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood> contains(Wood wood) {
+		WoodIter woodIter = new WoodIter();
+
+		LeveledIter<Wood> rootIter = this.iterator();
+		while (rootIter.hasNext()) {
+
+		}
+
+
+
 		// TODO - gibt iterator ueber alle gleichen elemente zureck (nicht identisch)
 		return null;
 	}
 
-	public LeveledIter<Wood> sub() {
-		// TODO
-		return null;
-	}
-
+	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood> iterator() {
-		WoodIter rootIterator = new WoodIter();
+		WoodIter rootIter = new WoodIter();
 
 		WoodyNode current = node;
 		while (current != null) {
-			rootIterator.add(this);
-			current = current.next();
+			rootIter.add(this);
+			current = current.next;
 		}
 
-		return rootIterator;
+		return rootIter;
 	}
 
 
@@ -39,39 +42,36 @@ public class Wood<T> {
 
 		private Wood<T> wood;
 		private T wert;
-		private Wood<T> sub;
 		private WoodyNode<T> next;
 		private WoodyNode<T> prev;
+		private LeveledIter<Wood> subIter;
 
-		public WoodyNode(Wood<T> wood, T wert) {
+		private WoodyNode(Wood<T> wood, T wert) {
 			this.wood = wood;
 			this.wert = wert;
 		}
 
-		public void add(Wood wood) {
-			WoodyNode node = wood.getNode();
+		private void add(Wood wood) {
+			WoodyNode node = wood.node;
 
-			node.prev = prev;
-			prev.next = node;
+			if (prev != null) {
+				node.prev = prev;
+				prev.next = node;
+			}
 
 			node.next = this;
 			this.prev = node;
+
+			subIter = new WoodIter();
 		}
 
-		public Wood<T> getWood() {
-			return wood;
-		}
-
-		public Wood<T> getSub() {
-			return sub;
-		}
-
-		public WoodyNode<T> next() {
-			return next;
-		}
-
-		public WoodyNode<T> previous() {
-			return prev;
+		private void remove() {
+			if (prev != null) {
+				prev.next = next;
+			}
+			if (next != null) {
+				next.prev = prev;
+			}
 		}
 	}
 
@@ -86,29 +86,33 @@ public class Wood<T> {
 			LeveledIter<Wood> subIter = null;
 
 			if (next != null) {
-				Wood sub = next.getSub();
-
-				if (sub != null) {
-					subIter = sub.iterator();
-				}
+				// TODO - clone iter?
+				subIter = next.subIter;
 			}
 			return subIter;
 		}
 
+		// TODO - ist das aktuelle element danach das neue?
 		@Override
 		public void add(Wood wood) {
-			if (next == null) {
-				next = wood.getNode();
+			if (next != null) {
+				next.add(wood);
+				next = wood.node;
+			} else if (next == null && prev != null) {
+				prev.add(wood);
 			}
-			if (prev != null) {
-			}
-
-			// TODO
+			next = wood.node;
 		}
 
+
+		// TODO - delete subtree?
+		// TODO - NoSuchElementException
 		@Override
 		public void remove() {
-			// TODO
+			if (next != null) {
+				next.remove();
+				next = next.next;
+			}
 		}
 
 		@Override
@@ -121,17 +125,6 @@ public class Wood<T> {
 		}
 
 		@Override
-		public Wood next() {
-			if (hasNext()) {
-				prev = next;
-				next = next.next();
-				return prev.getWood();
-			} else {
-				return null;
-			}
-		}
-
-		@Override
 		public boolean hasPrevious() {
 			if (prev != null) {
 				return true;
@@ -140,12 +133,25 @@ public class Wood<T> {
 			}
 		}
 
+		// TODO - NoSuchElementException
+		@Override
+		public Wood next() {
+			if (hasNext()) {
+				prev = next;
+				next = next.next;
+				return prev.wood;
+			} else {
+				return null;
+			}
+		}
+
+		// TODO - NoSuchElementException
 		@Override
 		public Wood previous() {
 			if (hasPrevious()) {
-				prev = prev.previous();
+				prev = prev.prev;
 				next = prev;
-				return next.getWood();
+				return next.wood;
 			} else {
 				return null;
 			}
