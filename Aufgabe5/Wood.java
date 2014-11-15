@@ -1,60 +1,90 @@
 
 public class Wood<T> {
 
-	private Wood<T> prev;
-	private Wood<T> next;
-	private Wood<T> sub;
+	private WoodyNode node;
 
-	public LeveledIter<T> contains(T e) {
+	public LeveledIter<Wood> contains(Wood wood) {
 		// TODO - gibt iterator ueber alle gleichen elemente zureck (nicht identisch)
 		return null;
 	}
 
-	public LeveledIter<T> iterator() {
-		WoodIter<Wood> rootIterator = new WoodIter<Wood>();
-		rootIterator.add(this);
+	public LeveledIter<Wood> iterator() {
+		WoodIter rootIterator = new WoodIter();
+
+		WoodyNode current = node;
+		while (current != null) {
+			rootIterator.add(this);
+			current = current.getNext();
+		}
 
 		// TODO - gibt die wurzeln aller baeume zurueck
-		return null;
+		return rootIterator;
 	}
 
 
 }
 
-class WoodIter<Wood> implements LeveledIter {
+class WoodIter implements LeveledIter<Wood> {
+
+	WoodyNode node = null;
 
 	@Override
 	public LeveledIter<Wood> sub() {
-		return null;
+		if (node != null) {
+			return node.getSub();
+		} else {
+			return null;
+		}
 	}
 
 	@Override
-	public void add(Object o) {
-
-	}
-
-	@Override
-	public boolean hasNext() {
-		return false;
-	}
-
-	@Override
-	public Wood next() {
-		return null;
+	public void add(Wood wood) {
+		if (node == null) {
+			node = new WoodyNode(wood);
+		} else {
+			// TODO
+		}
 	}
 
 	@Override
 	public void remove() {
-
+		// TODO
 	}
 
 	@Override
-	public Wood pervious() {
-		return null;
+	public boolean hasNext() {
+		if (node != null && node.hasNext()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public Wood next() {
+		if (hasNext()) {
+			return node.getNext();
+		} else {
+			return null;
+		}
 	}
 
 	@Override
 	public boolean hasPrevious() {
-		return false;
+		if (node != null && node.hasPrev()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+
+	@Override
+	public Wood pervious() {
+		if (hasPrevious()) {
+			return node.getPrev();
+		} else {
+			return null;
+		}
+	}
+
 }
