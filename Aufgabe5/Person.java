@@ -14,8 +14,8 @@ public abstract class Person implements Prec {
 			nameI = name.toLowerCase();
 			nameY = ((Person) y).name.toLowerCase();
 
-			nameI = nameI.replaceAll(" ", "");
-			nameY = nameY.replaceAll(" ", "");
+			nameI = nameI.replaceAll("\\s+","");;
+			nameY = nameY.replaceAll("\\s+","");
 			
 			
 			return nameI.compareTo(nameY) <= 0; //Equals oder nameI ist alphabetisch kleiner 
