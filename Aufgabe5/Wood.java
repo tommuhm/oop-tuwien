@@ -23,7 +23,7 @@ public class Wood<T> {
 		}
 
 
-		// TODO - gibt iterator ueber alle gleichen elemente zureck (nicht identisch)
+		// TODO - gibt iterator ueber alle gleichen elemente zureck (AUCH identisch)!!!!!
 		return null;
 	}
 
