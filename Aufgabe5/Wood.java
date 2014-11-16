@@ -1,12 +1,16 @@
 
 // TODO remvoe hasPrevious, hasNext
 
+import java.util.NoSuchElementException;
+
 public class Wood<T> {
 
-	private WoodyNode node;
+	private WoodyNode<T> node;
+	private T wert;
 
 	public Wood(T wert) {
-		this.node = new WoodyNode(this, wert);
+		this.wert = wert;
+		this.node = new WoodyNode<T>(this);
 	}
 
 	// TODO - immer erst zureck zum ersten element iterieren?
@@ -17,7 +21,6 @@ public class Wood<T> {
 		while (rootIter.hasNext()) {
 
 		}
-
 
 
 		// TODO - gibt iterator ueber alle gleichen elemente zureck (nicht identisch)
@@ -41,14 +44,12 @@ public class Wood<T> {
 	private class WoodyNode<T> {
 
 		private Wood<T> wood;
-		private T wert;
 		private WoodyNode<T> next;
 		private WoodyNode<T> prev;
 		private LeveledIter<Wood> subIter;
 
-		private WoodyNode(Wood<T> wood, T wert) {
+		private WoodyNode(Wood<T> wood) {
 			this.wood = wood;
-			this.wert = wert;
 		}
 
 		private void add(Wood wood) {
@@ -107,30 +108,28 @@ public class Wood<T> {
 
 		// TODO - delete subtree?
 		// TODO - NoSuchElementException
+		// TODO      * @throws IllegalStateException if the {@code next} method has not
+		//         yet been called, or the {@code remove} method has already
+		//         been called after the last call to the {@code next}
+		//         method
 		@Override
 		public void remove() {
 			if (next != null) {
-				next.remove();
+				next.remove(); // TODO is des jetzt is richtige element? oder sollt net eig prev entfernt werden?
 				next = next.next;
+			} else {
+				throw new IllegalStateException("remove can only be called after next has been called");
 			}
 		}
 
 		@Override
 		public boolean hasNext() {
-			if (next != null) {
-				return true;
-			} else {
-				return false;
-			}
+			return next != null;
 		}
 
 		@Override
 		public boolean hasPrevious() {
-			if (prev != null) {
-				return true;
-			} else {
-				return false;
-			}
+			return prev != null;
 		}
 
 		// TODO - NoSuchElementException
@@ -141,7 +140,7 @@ public class Wood<T> {
 				next = next.next;
 				return prev.wood;
 			} else {
-				return null;
+				throw new NoSuchElementException("no next element");
 			}
 		}
 
@@ -149,11 +148,11 @@ public class Wood<T> {
 		@Override
 		public Wood previous() {
 			if (hasPrevious()) {
-				prev = prev.prev;
 				next = prev;
+				prev = prev.prev;
 				return next.wood;
 			} else {
-				return null;
+				throw new NoSuchElementException("no previous element");
 			}
 		}
 	}
