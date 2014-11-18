@@ -17,27 +17,26 @@ public class Wood<T> {
 		return value;
 	}
 
-	private WoodyNode<Wood<T>> getNode() {
+	protected WoodyNode<Wood<T>> getNode() {
 		return node;
 	}
 
 	// TODO - equals checks in person etc
 	// TODO - immer erst zureck zum ersten element iterieren?
-	public LeveledIter<T> contains(T element) {
-		LeveledIterImpl<T> leveledIter = new LeveledIterImpl<T>();
+	public LeveledIter<Wood<T>> contains(T element) {
+		LeveledIterImpl<Wood<T>> leveledIter = new LeveledIterImpl<Wood<T>>();
 
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
 			WoodyNode<Wood<T>> node = rootIter.next().getNode();
 
-			// TODO nur element einfuefen? WTF?
 			if (node.getElement().getValue().equals(element)) {
-				leveledIter.add(node.getElement().getValue());
+				leveledIter.add(node.getElement());
 			}
 
 			LeveledIter<Wood<T>> subIter = node.getSub();
 			if (node.getSub().hasNext()) {
-				LeveledIter<T> subElements = subIter.next().contains(element);
+				LeveledIter<Wood<T>> subElements = subIter.next().contains(element);
 				while (subElements.hasNext()) {
 					leveledIter.add(subElements.next());
 				}

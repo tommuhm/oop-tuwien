@@ -7,15 +7,16 @@ public class SortedWood<T extends Prec> extends Wood<T>{
 		// TODO
 	}
 
-	public Iter<T> sorted() {
+	public Iter<Wood<T>> sorted() {
 		LeveledIter<Wood<T>> iter = super.iterator();
+		LeveledIter<Wood<T>> allIter = new LeveledIterImpl<Wood<T>>();
 		WoodyNode<T> start = new WoodyNode<T>(null);
 		WoodyNode<T> current = start;
-		getAllWoodyNodes(current, iter);
+		getAllWoodyNodes(allIter, iter);
 		
 		WoodyNode<T> sorted = sortWoodyNodes(start);
 		
-		return null;
+		return allIter;
 	}
 
 	private WoodyNode<T> sortWoodyNodes(WoodyNode<T> start) {
@@ -41,19 +42,12 @@ public class SortedWood<T extends Prec> extends Wood<T>{
 		WoodyNode<T> temp = x;
 	}
 
-	private void getAllWoodyNodes(WoodyNode<T> current, LeveledIter<Wood<T>> iter) {
-		
-		Wood<T> tempWood = null;
-		while((tempWood = iter.next()) != null) {
-			
-			LeveledIter<Wood<T>> sub = iter.sub();
-			if(sub.hasNext()) {
-				getAllWoodyNodes(current, sub);
-			}
-			
-			current.add(tempWood);
-			
-		} while (iter.hasNext());
+	private void getAllWoodyNodes(LeveledIter<Wood<T>> allIter, LeveledIter<Wood<T>> iter) {
+		while (iter.hasNext()) {
+			Wood<T> node = iter.next();
+			allIter.add(node);
+			getAllWoodyNodes(allIter, iter.sub());
+		}
 	}
 
 	public boolean prec(T x) {
