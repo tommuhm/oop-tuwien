@@ -8,32 +8,26 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
 
 	public Iter<T> sorted() {
 		LeveledIter<Wood<T>> iter = super.iterator();
-		
-		SortedWoodyNode<T> start = null;
-		SortedWoodyNode<T> current = null;
-		getAlleSortedWoodyNodes(start, current, iter);
+		WoodyNode<T> start = new WoodyNode<T>(null);
+		WoodyNode<T> current = start;
+		getAlleSortedWoodyNodes(current, iter);
 		
 		return null;
 	}
 
-	private void getAlleSortedWoodyNodes(
-			SortedWood<T>.SortedWoodyNode<T> start,
-			SortedWood<T>.SortedWoodyNode<T> current, LeveledIter<Wood<T>> iter) {
+	private void getAlleSortedWoodyNodes(WoodyNode<T> current, LeveledIter<Wood<T>> iter) {
 		
-		//Wood<T>
-		
-		do {
+		Wood<T> tempWood = null;
+		while((tempWood = iter.next()) != null) {
+			
 			LeveledIter<Wood<T>> sub = iter.sub();
 			if(sub != null) {
-				getAlleSortedWoodyNodes(start, current, sub);
+				getAlleSortedWoodyNodes(current, sub);
 			}
 			
-			
+			current.add(tempWood);
 			
 		} while (iter.hasNext());
-		
-		
-		
 	}
 
 	@Override
@@ -42,7 +36,7 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
 		return false;
 	}
 	
-	public class SortedIterator<T> implements Iter<T> {
+	/*public class SortedIterator<T> implements Iter<T> {
 		private WoodyNode<T> current;
 		
 		public SortedIterator(WoodyNode<T> current) {
@@ -79,18 +73,5 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
 		}
 		
 		
-	}
-	
-	private class SortedWoodyNode<E> {
-		private E wert;
-		private SortedWoodyNode<E> next;
-		private SortedWoodyNode<E> prev;		
-		
-		public SortedWoodyNode(E wert) {
-			this.wert = wert;
-		}
-		
-		
-		
-	}
+	}*/
 }
