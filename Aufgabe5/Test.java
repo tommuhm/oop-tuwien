@@ -222,8 +222,12 @@ public class Test {
 		
 		System.out.println(sw_sw_iter.toString());
 		
+		System.out.println();
 		
+		//4
 		
+		Wood<Person> test4_wood = woodPerson;
+		System.out.println(test4_wood.toString());
 		
 		
 		
