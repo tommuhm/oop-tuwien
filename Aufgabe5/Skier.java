@@ -7,5 +7,9 @@ public class Skier extends Person {
 		super(name);
 		this.gewicht = gewicht;
 	}
+	
+	public String toString() {
+		return ( "Name: " + super.name + " Gewicht: " + gewicht);
+	}
 
 }
