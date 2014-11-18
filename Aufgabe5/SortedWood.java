@@ -13,10 +13,32 @@ public class SortedWood<T extends Prec> extends Wood<T>{
 		WoodyNode<T> current = start;
 		getAllWoodyNodes(current, iter);
 		
-		current.
-		//sortWoodyNodes(current)
+		WoodyNode<T> sorted = sortWoodyNodes(start);
 		
 		return null;
+	}
+
+	private WoodyNode<T> sortWoodyNodes(WoodyNode<T> start) {
+		WoodyNode<T> currentOut, currentIn;
+		currentOut = start;
+		currentIn = start;
+		
+		WoodyNode<T> sorted = new WoodyNode<T>(null);
+		
+		while((currentOut = currentOut.getNext()) != null) {
+			currentIn = currentOut;
+			while((currentIn = currentIn.getNext()) != null) {
+				
+				
+			}
+		}
+		
+		
+		return null;
+	}
+	
+	private void swap (WoodyNode<T> x, WoodyNode<T> y) {
+		WoodyNode<T> temp = x;
 	}
 
 	private void getAllWoodyNodes(WoodyNode<T> current, LeveledIter<Wood<T>> iter) {
@@ -25,7 +47,7 @@ public class SortedWood<T extends Prec> extends Wood<T>{
 		while((tempWood = iter.next()) != null) {
 			
 			LeveledIter<Wood<T>> sub = iter.sub();
-			if(sub != null) {
+			if(sub.hasNext()) {
 				getAllWoodyNodes(current, sub);
 			}
 			
@@ -35,7 +57,10 @@ public class SortedWood<T extends Prec> extends Wood<T>{
 	}
 
 	public boolean prec(T x) {
-		// TODO Auto-generated method stub
+		boolean b = true;
+		
+		//WTF IST MIT PUNTIGAM?!
+		
 		return false;
 	}
 	

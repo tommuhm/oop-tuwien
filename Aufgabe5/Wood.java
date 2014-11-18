@@ -6,26 +6,48 @@ import java.util.NoSuchElementException;
 public class Wood<T> {
 
 	private WoodyNode<Wood<T>> node;
+	private T value;
 
-	public Wood(T wert) {
+	public Wood(T value) {
+		this.value = value;
 		this.node = new WoodyNode<Wood<T>>(this);
 	}
 
+	protected T getValue() {
+		return value;
+	}
+
+	private WoodyNode<Wood<T>> getNode() {
+		return node;
+	}
+
+	// TODO - equals checks in person etc
 	// TODO - immer erst zureck zum ersten element iterieren?
-	public LeveledIter<Wood<T>> contains(Wood<T> wood) {
-//		WoodIter woodIter = new WoodIter<T>();
+	public LeveledIter<T> contains(T element) {
+		LeveledIterImpl<T> leveledIter = new LeveledIterImpl<T>();
 
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
+			WoodyNode<Wood<T>> node = rootIter.next().getNode();
 
+			// TODO nur element einfuefen? WTF?
+			if (node.getElement().getValue().equals(element)) {
+				leveledIter.add(node.getElement().getValue());
+			}
+
+			LeveledIter<Wood<T>> subIter = node.getSub();
+			if (node.getSub().hasNext()) {
+				LeveledIter<T> subElements = subIter.next().contains(element);
+				while (subElements.hasNext()) {
+					leveledIter.add(subElements.next());
+				}
+			}
 		}
 
-
-		// TODO - gibt iterator ueber alle gleichen elemente zureck (nicht identisch)!!!!!
-		return null;
+		return leveledIter;
 	}
 
-	// TODO - erstes element erst nach aufruf von next !
+	// TODO - erstes element erst nach aufruf von next ! - testen sollte funken wenns richtig implementiert is !!! (denk i)
 	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood<T>> iterator() {
 		LeveledIterImpl<Wood<T>> rootIter = new LeveledIterImpl<Wood<T>>(node);
