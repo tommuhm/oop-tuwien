@@ -140,12 +140,36 @@ public class Test {
 
 		System.out.println();
 		
+		//Lets remove snowboarder6 (he is next on snowboarderTestLevel 3)
+		snowboarderTestLevel3.previous();
 		snowboarderTestLevel3.remove();
-		System.out.println(snowboarder0.toString());
+		System.out.println(woodSnowboarder0.toString());
+		
+		//Now lets add him/her again, but this time on level2.
+		snowboarderTestLevel2.add(woodSnowboarder6);
+		System.out.println(woodSnowboarder0.toString());
 		
 		
 	
 		//2
+		SortedWood<Person> woodPerson = null;
+		
+		LeveledIter<Wood<Person>> it_pers = null;
+		Iter<Wood<Skier>> it_skier = woodSkier0.sorted(); 
+		Iter<Wood<Snowboarder>> it_snowboarder = woodSnowboarder0.sorted(); 
+
+		Wood<Skier> ski_temp;
+		Wood<Snowboarder> sb_temp;
+		
+		while(it_skier.hasNext()) {
+			ski_temp = it_skier.next();
+			if(woodPerson == null) {
+				woodPerson = new SortedWood<Person>(ski_temp.getElement());
+				it_pers = woodPerson.iterator();
+			} else {
+				it_pers.add(ski_temp);
+			}
+		}
 		
 		/*
 		Erzeugen Sie eine Datenstruktur vom Typ SortedWood<Person>.
