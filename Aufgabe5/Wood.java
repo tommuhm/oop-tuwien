@@ -11,6 +11,10 @@ public class Wood<T> {
 		this.node = new WoodyNode<Wood<T>>(this);
 	}
 
+	protected T getElement() {
+		return element;
+	}
+
 	public LeveledIter<Wood<T>> contains(T element) {
 		LeveledIterImpl<Wood<T>> leveledIter = new LeveledIterImpl<Wood<T>>();
 
@@ -18,7 +22,7 @@ public class Wood<T> {
 		while (rootIter.hasNext()) {
 			Wood<T> node = rootIter.next();
 
-			if (node.element.equals(element)) {
+			if (node.getElement().equals(element)) {
 				leveledIter.add(node);
 			}
 
