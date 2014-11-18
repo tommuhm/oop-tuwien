@@ -59,6 +59,7 @@ public class Wood<T> {
 
 		protected WoodyNode(F element) {
 			this.element = element;
+			this.subIter = new LeveledIterImpl<F>();
 		}
 
 		protected F getElement() {
@@ -66,7 +67,7 @@ public class Wood<T> {
 		}
 
 		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
-		private void add(F element) {
+		private void addBefore(F element) {
 			WoodyNode<F> node = new WoodyNode<F>(element);
 
 			if (prev != null) {
@@ -76,8 +77,19 @@ public class Wood<T> {
 
 			node.next = this;
 			this.prev = node;
+		}
 
-			subIter = new LeveledIterImpl<F>();
+		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
+		private void addAfter(F element) {
+			WoodyNode<F> node = new WoodyNode<F>(element);
+
+			if (next != null) {
+				node.next = next;
+				next.prev = node;
+			}
+
+			node.prev = this;
+			this.next = node;
 		}
 
 		private void remove() {
@@ -116,16 +128,17 @@ public class Wood<T> {
 			return subIter;
 		}
 
-		// TODO - ist das aktuelle element danach das neue?
 		@Override
 		public void add(E element) {
 			if (next != null) {
-				next.add(element);
-				next = new WoodyNode<E>(element);
+				next.addBefore(element);
+				next = next.prev;
 			} else if (next == null && prev != null) {
-				prev.add(element);
+				prev.addAfter(element);
+				next = prev.next;
+			} else {
+				next = new WoodyNode<E>(element);
 			}
-			next = new WoodyNode<E>(element);
 		}
 
 		// TODO - delete subtree?
