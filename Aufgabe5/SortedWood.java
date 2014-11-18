@@ -6,7 +6,7 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 		super(wert);
 	}
 	
-	// Nachbedingung: 
+	// Nachbedingung: sortiert alle Nodes in sortedIter 
 	public Iter<Wood<T>> sorted() {
 		LeveledIter<Wood<T>> iter = this.iterator();
 		LeveledIter<Wood<T>> allIter = new LeveledIterImpl<Wood<T>>();
@@ -19,7 +19,7 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 		return sortedIter;
 	}
 
-	//Nachbedingung: sortiert alle WoodyNodes von allIter in sortedIter mit Hilfe von instertSorted
+	//Nachbedingung: sortiert alle WoodyNodes in sortedIter mit Hilfe von instertSorted
 	private void sortWoodyNodes(LeveledIter<Wood<T>> sortedIter,
 			LeveledIter<Wood<T>> allIter) {
 		Wood<T> wood;
@@ -82,7 +82,7 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	}
 
 	// Vorbedingung: x darf nicht null sein  
-	// Nachbedingung: true, wenn für alle Elemente aus this und alle Elemente aus x auch this.prec(x) gilt
+	// Nachbedingung: true, wenn für alle Elemente aus diesem Objekt und alle Elemente aus x auch this.prec(x) gilt
 	@Override
 	public boolean prec(SortedWood<T> x) {
 		Iter<Wood<T>> itThis = this.sorted();
