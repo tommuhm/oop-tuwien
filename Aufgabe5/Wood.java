@@ -6,11 +6,19 @@ import java.util.NoSuchElementException;
 public class Wood<T> {
 
 	private WoodyNode<Wood<T>> node;
-	private T wert;
+	private T value;
 
-	public Wood(T wert) {
-		this wert = wert;
+	public Wood(T value) {
+		this.value = value;
 		this.node = new WoodyNode<Wood<T>>(this);
+	}
+
+	protected T getValue() {
+		return value;
+	}
+
+	private WoodyNode<Wood<T>> getNode() {
+		return node;
 	}
 
 	// TODO - equals checks in person etc
@@ -20,19 +28,23 @@ public class Wood<T> {
 
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
-			WoodyNode<Wood<T>> node = rootIter.next().node;
+			WoodyNode<Wood<T>> node = rootIter.next().getNode();
 
-			node.getElement()
-
-			if (ele.equals(element)) {
-
+			// TODO nur element einfuefen? WTF?
+			if (node.getElement().getValue().equals(element)) {
+				leveledIter.add(node.getElement().getValue());
 			}
-			
+
+			LeveledIter<Wood<T>> subIter = node.getSub();
+			if (node.getSub().hasNext()) {
+				LeveledIter<T> subElements = subIter.next().contains(element);
+				while (subElements.hasNext()) {
+					leveledIter.add(subElements.next());
+				}
+			}
 		}
 
-
-		// TODO - gibt iterator ueber alle gleichen elemente zureck (nicht identisch)!!!!!
-		return null;
+		return leveledIter;
 	}
 
 	// TODO - erstes element erst nach aufruf von next ! - testen sollte funken wenns richtig implementiert is !!! (denk i)
