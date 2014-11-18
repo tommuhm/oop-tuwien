@@ -73,7 +73,7 @@ public class Wood<T> {
 		private F element;
 		private WoodyNode<F> next;
 		private WoodyNode<F> prev;
-		private LeveledIter<F> subIter;
+		private LeveledIterImpl<F> subIter;
 
 		// Vorbedingung: element darf nicht null sein
 		// Nachbedingung: erstellt einen neuen Iterator
@@ -129,8 +129,8 @@ public class Wood<T> {
 	// LevelIter implementation
 	protected class LeveledIterImpl<E> implements LeveledIter<E> {
 
-		WoodyNode<E> prev = null;
-		WoodyNode<E> next = null;
+		private WoodyNode<E> prev = null;
+		private WoodyNode<E> next = null;
 
 		protected LeveledIterImpl() {
 		}
@@ -145,12 +145,18 @@ public class Wood<T> {
 		// Nachbedingung: gibt die Substruktur vom naesten node zurueck
 		@Override
 		public LeveledIter<E> sub() {
-			// kein null
-			LeveledIter<E> subIter = null;
+			LeveledIterImpl<E> subIter = null;
 
 			if (next != null) {
-				// TODO - clone iter?
 				subIter = next.subIter;
+
+				if (subIter.hasNext()) {
+					WoodyNode<E> subElm = subIter.next;
+					new LeveledIterImpl<E>(subElm);
+				} else if (subIter.hasPrevious()) {
+					WoodyNode<E> subElm = subIter.prev;
+					new LeveledIterImpl<E>(subElm);
+				}
 			}
 			return subIter;
 		}
