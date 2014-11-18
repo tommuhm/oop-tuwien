@@ -6,19 +6,15 @@ import java.util.NoSuchElementException;
 public class Wood<T> {
 
 	private WoodyNode<Wood<T>> node;
-	private T value;
+	private T element;
 
-	public Wood(T value) {
-		this.value = value;
+	public Wood(T element) {
+		this.element = element;
 		this.node = new WoodyNode<Wood<T>>(this);
 	}
 
-	protected T getValue() {
-		return value;
-	}
-
-	protected WoodyNode<Wood<T>> getNode() {
-		return node;
+	protected T getElement() {
+		return element;
 	}
 
 	// TODO - equals checks in person etc
@@ -28,9 +24,9 @@ public class Wood<T> {
 
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
-			WoodyNode<Wood<T>> node = rootIter.next().getNode();
+			Wood<T> node = rootIter.next();
 
-			if (node.getElement().getValue().equals(element)) {
+			if (node.getElement().equals(element)) {
 				leveledIter.add(node.getElement());
 			}
 
