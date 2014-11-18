@@ -136,6 +136,8 @@ public class Wood<T> {
 			} else if (next == null && prev != null) {
 				prev.addAfter(element);
 				next = prev.next;
+			} else {
+				next = new WoodyNode<E>(element);
 			}
 		}
 
