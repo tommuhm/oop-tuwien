@@ -1,5 +1,6 @@
 
-public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
+//public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
+public class SortedWood<T extends Prec> extends Wood<T>{
 
 	public SortedWood(T wert) {
 		super(wert);
@@ -10,19 +11,19 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
 		LeveledIter<Wood<T>> iter = super.iterator();
 		WoodyNode<T> start = new WoodyNode<T>(null);
 		WoodyNode<T> current = start;
-		getAlleSortedWoodyNodes(current, iter);
+		getAllWoodyNodes(current, iter);
 		
 		return null;
 	}
 
-	private void getAlleSortedWoodyNodes(WoodyNode<T> current, LeveledIter<Wood<T>> iter) {
+	private void getAllWoodyNodes(WoodyNode<T> current, LeveledIter<Wood<T>> iter) {
 		
 		Wood<T> tempWood = null;
 		while((tempWood = iter.next()) != null) {
 			
 			LeveledIter<Wood<T>> sub = iter.sub();
 			if(sub != null) {
-				getAlleSortedWoodyNodes(current, sub);
+				getAllWoodyNodes(current, sub);
 			}
 			
 			current.add(tempWood);
@@ -30,7 +31,6 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
 		} while (iter.hasNext());
 	}
 
-	@Override
 	public boolean prec(T x) {
 		// TODO Auto-generated method stub
 		return false;
