@@ -46,6 +46,8 @@ public class Test {
 		Skier bubblegum = new Skier("Bubblegum", 130);
 		Skier flameking = new Skier("Flameking", 200);
 		Skier magicman = new Skier("Magicman", 195);
+		Skier henriette = new Skier("Henriette", 70);
+		Skier mo = new Skier("Mo", 160);
 		
 		Wood<Skier> woodSkier0 = new SortedWood<Skier>(finn);
 		Wood<Skier> woodSkier1 = new SortedWood<Skier>(jake);
@@ -54,6 +56,8 @@ public class Test {
 		Wood<Skier> woodSkier4 = new SortedWood<Skier>(bubblegum);
 		Wood<Skier> woodSkier5 = new SortedWood<Skier>(flameking);
 		Wood<Skier> woodSkier6 = new SortedWood<Skier>(magicman);
+		Wood<Skier> woodSkier7 = new SortedWood<Skier>(henriette);
+		Wood<Skier> woodSkier8 = new SortedWood<Skier>(mo);
 		
 		LeveledIter<Wood<Skier>> lvlItS = woodSkier0.iterator();
 		lvlItS.next();
@@ -76,9 +80,9 @@ public class Test {
 		subLvlItS3.next();
 		LeveledIter<Wood<Skier>> subLvlItS4 = subLvlItS3.sub(); //add Substructure
 		subLvlItS4.next();
-		subLvlItS3.add(woodSkier5);
+		subLvlItS3.add(woodSkier7);
 		if (subLvlItS1.hasPrevious()) subLvlItS1.previous();
-		subLvlItS1.add(woodSkier6);
+		subLvlItS1.add(woodSkier8);
 		
 		ItStoString(lvlItS);
 		
