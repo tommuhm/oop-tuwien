@@ -10,32 +10,41 @@ public class SortedWood<T extends Prec> extends Wood<T>{
 	public Iter<Wood<T>> sorted() {
 		LeveledIter<Wood<T>> iter = super.iterator();
 		LeveledIter<Wood<T>> allIter = new LeveledIterImpl<Wood<T>>();
-		WoodyNode<T> start = new WoodyNode<T>(null);
-		WoodyNode<T> current = start;
+		LeveledIter<Wood<T>> sortedIter = new LeveledIterImpl<Wood<T>>();
+
 		getAllWoodyNodes(allIter, iter);
 		
-		WoodyNode<T> sorted = sortWoodyNodes(start);
+		sortWoodyNodes(sortedIter, allIter);
 		
-		return allIter;
+		return sortedIter;
 	}
 
-	private WoodyNode<T> sortWoodyNodes(WoodyNode<T> start) {
-		WoodyNode<T> currentOut, currentIn;
-		currentOut = start;
-		currentIn = start;
+	private void sortWoodyNodes(LeveledIter<Wood<T>> sortedIter, LeveledIter<Wood<T>> allIter) {
+		Wood<T> wood;
 		
-		WoodyNode<T> sorted = new WoodyNode<T>(null);
-		
-		while((currentOut = currentOut.getNext()) != null) {
-			currentIn = currentOut;
-			while((currentIn = currentIn.getNext()) != null) {
-				
-				
-			}
+		while(allIter.hasNext()) {
+			wood = allIter.next();
+			insertSorted(sortedIter, wood);
+		}
+	}
+	
+	private void insertSorted(LeveledIter<Wood<T>> sortedIter, Wood<T> wood) {
+		// Zurücksetzen auf erstes Element.
+		while(sortedIter.hasPrevious()) {
+			sortedIter.previous();
 		}
 		
+		sortedIter.previous(); //TODO Ist das richtig?
 		
-		return null;
+		Wood<T> temp = null;
+		while(sortedIter.hasNext()) {
+			temp = sortedIter.next();
+			if(((Prec) temp).prec(wood)) {
+				sortedIter.previous();
+				sortedIter.add(wood);
+				return;
+			}
+		}
 	}
 	
 	private void swap (WoodyNode<T> x, WoodyNode<T> y) {
