@@ -112,21 +112,36 @@ public class Test {
 		System.out.println(woodSnowboarder0);
 		
 		
-		Iter<Wood<Snowboarder>> it = woodSnowboarder0.sorted();
+		Iter<Wood<Snowboarder>> itSnow = woodSnowboarder0.sorted();
 		Snowboarder snowboarder = null;
-		while(it.hasNext()) it.next();
-		while(it.hasPrevious()) {
-			snowboarder = it.previous().getElement();
+		while(itSnow.hasNext()) itSnow.next();
+		while(itSnow.hasPrevious()) {
+			snowboarder = itSnow.previous().getElement();
 			System.out.println(snowboarder);
 		}
+
+		System.out.println();
 		
+		Iter<Wood<Skier>> itSkier = woodSkier0.sorted();
+		Skier skier = null;
+		while(itSkier.hasNext()) {
+			skier = itSkier.next().getElement();
+			System.out.println(skier);
+		}
+
+		System.out.println();
 		
+		LeveledIter<Wood<Snowboarder>> iter_cont_snow = woodSnowboarder0.contains(snowboarder4);
+		Wood<Snowboarder> tempWood = null;
+		while(iter_cont_snow.hasNext()) {
+			tempWood = iter_cont_snow.next();
+			System.out.println(tempWood.toString());
+		}
+
+		System.out.println();
 		
-		
-		
-		
-		
-		
+		snowboarderTestLevel3.remove();
+		System.out.println(snowboarder0.toString());
 		
 		
 	
