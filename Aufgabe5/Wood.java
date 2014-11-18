@@ -20,13 +20,13 @@ public class Wood<T> {
 
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
-			Wood<T> node = rootIter.next();
 
+			LeveledIter<Wood<T>> subIter = rootIter.sub();
+			Wood<T> node = rootIter.next();
 			if (node.getElement().equals(element)) {
 				leveledIter.add(node);
 			}
 
-			LeveledIter<Wood<T>> subIter = rootIter.sub();
 			if (subIter.hasNext()) {
 				LeveledIter<Wood<T>> subElements = subIter.next().contains(element);
 				while (subElements.hasNext()) {
@@ -38,7 +38,6 @@ public class Wood<T> {
 		return leveledIter;
 	}
 
-	// TODO - erstes element erst nach aufruf von next ! - testen sollte funken wenns richtig implementiert is !!! (denk i)
 	public LeveledIter<Wood<T>> iterator() {
 		LeveledIterImpl<Wood<T>> rootIter = new LeveledIterImpl<Wood<T>>(node);
 
