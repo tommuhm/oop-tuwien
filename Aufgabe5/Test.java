@@ -13,9 +13,9 @@ public class Test {
 		Wood<String> woodString2 = new Wood<String>("ThisIsWood");
 		Wood<String> woodString3 = new Wood<String>("iWood");
 		Wood<String> woodString4 = new Wood<String>("noWood");
-		Wood<String> woodString5 = new Wood<String>("coldWood");
-		Wood<String> woodString6 = new Wood<String>("warmWood");
-		Wood<String> woodString7 = new Wood<String>("hardWood");
+		Wood<String> woodString5 = new Wood<String>("coldWood", "greatWood", "megaWood", "leftWood");
+		Wood<String> woodString6 = new Wood<String>("warmWood", "softWood", "rightWood");
+		Wood<String> woodString7 = new Wood<String>("hardWood", "fooWood");
 		
 		LeveledIter<Wood<String>> lvlItStr = woodString0.iterator();
 		lvlItStr.next();
@@ -35,8 +35,6 @@ public class Test {
 		if (subLvlItStr1.hasPrevious()) subLvlItStr1.previous();
 		if (subLvlItStr1.hasPrevious()) subLvlItStr1.previous(); //Nothing happens
 		subLvlItStr1.add(woodString7);
-		
-		ItStrtoString(lvlItStr);
 				
 		
 		Skier finn = new Skier("Finn", 180);
@@ -48,16 +46,22 @@ public class Test {
 		Skier magicman = new Skier("Magicman", 195);
 		Skier henriette = new Skier("Henriette", 70);
 		Skier mo = new Skier("Mo", 160);
+		Skier smo = new Skier("SMO", 160);
+		Skier cmo = new Skier("CMO", 120);
+		Skier zmo = new Skier("ZMO", 90);
+		Skier tmo = new Skier("TMO", 80);
+		Skier amo = new Skier("AMO", 10);
+		
 		
 		Wood<Skier> woodSkier0 = new SortedWood<Skier>(finn);
-		Wood<Skier> woodSkier1 = new SortedWood<Skier>(jake);
-		Wood<Skier> woodSkier2 = new SortedWood<Skier>(bmo);
+		Wood<Skier> woodSkier1 = new SortedWood<Skier>(jake,cmo);
+		Wood<Skier> woodSkier2 = new SortedWood<Skier>(bmo, amo, tmo);
 		Wood<Skier> woodSkier3 = new SortedWood<Skier>(tiffany);
 		Wood<Skier> woodSkier4 = new SortedWood<Skier>(bubblegum);
-		Wood<Skier> woodSkier5 = new SortedWood<Skier>(flameking);
+		Wood<Skier> woodSkier5 = new SortedWood<Skier>(flameking, zmo);
 		Wood<Skier> woodSkier6 = new SortedWood<Skier>(magicman);
 		Wood<Skier> woodSkier7 = new SortedWood<Skier>(henriette);
-		Wood<Skier> woodSkier8 = new SortedWood<Skier>(mo);
+		Wood<Skier> woodSkier8 = new SortedWood<Skier>(mo, smo);
 		
 		LeveledIter<Wood<Skier>> lvlItS = woodSkier0.iterator();
 		lvlItS.next();
@@ -96,13 +100,20 @@ public class Test {
 		Snowboarder lsp = new Snowboarder("LSP", 140);
 		Snowboarder choosegoose = new Snowboarder("Choosegoose", 75);
 		Snowboarder marcelline = new Snowboarder("Marcelline", 140);
+		Snowboarder dmo = new Snowboarder("DMO", 40);
+		Snowboarder rmo = new Snowboarder("RMO", 50);
+		Snowboarder qmo = new Snowboarder("QMO", 60);
+		Snowboarder mmo = new Snowboarder("MMO", 30);
+		Snowboarder lmo = new Snowboarder("LMO", 190);
+		Snowboarder kmo = new Snowboarder("KMO", 180);
+		Snowboarder umo = new Snowboarder("UMO", 80);
 		
 		
 		Wood<Snowboarder> woodBoarder0 = new SortedWood<Snowboarder>(iceking);
-		Wood<Snowboarder> woodBoarder1 = new SortedWood<Snowboarder>(gunter);
-		Wood<Snowboarder> woodBoarder2 = new SortedWood<Snowboarder>(ricardio);
-		Wood<Snowboarder> woodBoarder3 = new SortedWood<Snowboarder>(rainicorn);
-		Wood<Snowboarder> woodBoarder4 = new SortedWood<Snowboarder>(cinnamonbun);
+		Wood<Snowboarder> woodBoarder1 = new SortedWood<Snowboarder>(gunter, dmo);
+		Wood<Snowboarder> woodBoarder2 = new SortedWood<Snowboarder>(ricardio, rmo, umo);
+		Wood<Snowboarder> woodBoarder3 = new SortedWood<Snowboarder>(rainicorn, qmo, kmo);
+		Wood<Snowboarder> woodBoarder4 = new SortedWood<Snowboarder>(cinnamonbun, mmo, lmo);
 		Wood<Snowboarder> woodBoarder5 = new SortedWood<Snowboarder>(starchy);	
 		Wood<Snowboarder> woodBoarder6 = new SortedWood<Snowboarder>(lsp);
 		Wood<Snowboarder> woodBoarder7 = new SortedWood<Snowboarder>(choosegoose);	
@@ -135,11 +146,6 @@ public class Test {
 		
 		ItBtoString(lvlItB);
 	
-		
-
-		
-
-
 		//2
 		
 		/*
@@ -168,28 +174,6 @@ public class Test {
 		Wood<Snowboarder> woodPerson5 = new SortedWood<Snowboarder>(finn);
 		Wood<Snowboarder> woodPerson6 = new SortedWood<Snowboarder>(finn);
 */
-	}
-	private static void ItStrtoString(LeveledIter<Wood<String>> it) {
-		lvlcounter = 0;
-		stagecounter = 0;
-		stringAusgabe(it);	
-	}
-	
-	private static void stringAusgabe(LeveledIter<Wood<String>> it) {
-
-		while (it.hasNext())  {
-			stagecounter ++;
-			System.out.print(lvlcounter + "-" + stagecounter + ": " + it.next().toString() + "   ");
-			if (it.sub().hasNext()) {
-				lvlcounter ++;
-				System.out.print('\n');
-				stringAusgabe(it.sub());
-				lvlcounter --;
-			} else if (it.hasNext()) {
-				stringAusgabe(it);
-				stagecounter --;
-			}
-		}
 	}
 	
 	private static void ItStoString(LeveledIter<Wood<Skier>> it) {
