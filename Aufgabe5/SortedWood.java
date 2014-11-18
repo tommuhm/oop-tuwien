@@ -3,7 +3,6 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<Sorte
 
 	public SortedWood(T wert) {
 		super(wert);
-		// TODO
 	}
 
 	public Iter<Wood<T>> sorted() {
