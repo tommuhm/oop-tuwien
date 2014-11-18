@@ -1,10 +1,12 @@
 
 public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<SortedWood<T>> {
 
+	// Vorbedingung: wert darf nicht null sein
 	public SortedWood(T wert) {
 		super(wert);
 	}
-
+	
+	// Nachbedingung: 
 	public Iter<Wood<T>> sorted() {
 		LeveledIter<Wood<T>> iter = this.iterator();
 		LeveledIter<Wood<T>> allIter = new LeveledIterImpl<Wood<T>>();
@@ -17,6 +19,7 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<Sorte
 		return sortedIter;
 	}
 
+	//Nachbedingung: sortiert alle WoodyNodes von allIter in sortedIter mit Hilfe von instertSorted
 	private void sortWoodyNodes(LeveledIter<Wood<T>> sortedIter,
 			LeveledIter<Wood<T>> allIter) {
 		Wood<T> wood;
@@ -31,6 +34,7 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<Sorte
 		}
 	}
 
+	//Nachbedingung: fuegt wood an der richtigen Stelle von sortedIter ein
 	private void insertSorted(LeveledIter<Wood<T>> sortedIter, Wood<T> wood) {
 		Wood<T> temp = null;
 
@@ -53,7 +57,8 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<Sorte
 			sortedIter.previous();
 		}
 	}
-
+	
+	// Nachbedingung: alle Elemente von iter werden in einem Level von allIter eingefuegt
 	private void getAllWoodyNodes(LeveledIter<Wood<T>> allIter,
 			LeveledIter<Wood<T>> iter) {
 		while (iter.hasNext()) {
@@ -63,6 +68,8 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<Sorte
 		}
 	}
 
+	// Vorbedingung: x darf nicht null sein  
+	// Nachbedingung: true, wenn für alle Elemente aus this und alle Elemente aus x auch this.prec(x) gilt
 	@Override
 	public boolean prec(SortedWood<T> x) {
 		Iter<Wood<T>> itThis = this.sorted();
