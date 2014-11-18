@@ -15,4 +15,10 @@ public abstract class Person implements Prec<Person> {
 
 		return nameI.compareTo(nameY) <= 0; //Equals oder nameI ist alphabetisch kleiner 
 	}
+
+	public boolean equals(Person p) {
+		    if (p instanceof Person) {
+		    	return p.name.equals(this.name);
+		    } else return false;
+	}
 }
