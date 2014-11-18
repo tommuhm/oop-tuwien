@@ -219,7 +219,7 @@ public class Test {
 
 		while (it.hasNext())  {
 			stagecounter ++;
-			System.out.print(lvlcounter + "-" + stagecounter + ": " + (SortedWood<>) it.next().sorted().toString() + "   ");
+			System.out.print(lvlcounter + "-" + stagecounter + ": " + ((SortedWood<Skier>) it.next()).sorted().toString() + "   ");
 			if (it.sub().hasNext()) {
 				lvlcounter ++;
 				System.out.print('\n');
@@ -242,7 +242,7 @@ public class Test {
 
 		while (it.hasNext())  {
 			stagecounter ++;
-			System.out.print(lvlcounter + "-" + stagecounter + ": " + it.next().sorted().toString() + "   "); //TODO: absteigend
+			System.out.print(lvlcounter + "-" + stagecounter + ": " + ((SortedWood<Snowboarder>) it.next()).sorted().toString() + "   "); //TODO: absteigend
 			if (it.sub().hasNext()) {
 				lvlcounter ++;
 				System.out.print('\n');
