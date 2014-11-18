@@ -1,5 +1,5 @@
-//public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
-public class SortedWood<T extends Prec> extends Wood<T> {
+
+public class SortedWood<T extends Prec<T>> extends Wood<T> {
 
 	public SortedWood(T wert) {
 		super(wert);
