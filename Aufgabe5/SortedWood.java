@@ -6,7 +6,7 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 		super(wert);
 	}
 	
-	// Nachbedingung: sortiert alle Nodes in sortedIter
+	// Nachbedingung: 
 	public Iter<Wood<T>> sorted() {
 		LeveledIter<Wood<T>> iter = this.iterator();
 		LeveledIter<Wood<T>> allIter = new LeveledIterImpl<Wood<T>>();
@@ -19,7 +19,7 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 		return sortedIter;
 	}
 
-	//Nachbedingung: sortiert alle WoodyNodes in sortedIter mit der Hilfemethode instertSorted
+	//Nachbedingung: sortiert alle WoodyNodes von allIter in sortedIter mit Hilfe von instertSorted
 	private void sortWoodyNodes(LeveledIter<Wood<T>> sortedIter,
 			LeveledIter<Wood<T>> allIter) {
 		Wood<T> wood;
@@ -69,6 +69,11 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	// Nachbedingung: alle Elemente von iter werden in einem Level von allIter eingefuegt
 	private void getAllWoodyNodes(LeveledIter<Wood<T>> allIter,
 			LeveledIter<Wood<T>> iter) {
+		
+		while(iter.hasPrevious()) { //iter zurücksetzen auf erstes element
+			iter.previous();
+		}
+		
 		while (iter.hasNext()) {
 			getAllWoodyNodes(allIter, iter.sub());
 			Wood<T> node = iter.next();
