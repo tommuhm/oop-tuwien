@@ -2,8 +2,7 @@
 public class Test {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-		
+
 		//1
 		
 		//TODO gib für person körpergewicht und grösse aus
@@ -66,6 +65,8 @@ public class Test {
 		while (lvlIt.hasNext())  {
 		
 			= lvlIt.next();
+			
+			//jedes element rein gehen und schaun ob elem gibt.
 	    
 		//2
 		
@@ -94,23 +95,6 @@ public class Test {
 		Wood<Snowboarder> woodPerson4 = new SortedWood<Snowboarder>(finn);
 		Wood<Snowboarder> woodPerson5 = new SortedWood<Snowboarder>(finn);
 		Wood<Snowboarder> woodPerson6 = new SortedWood<Snowboarder>(finn);
-
-		
-=======
-		// TODO Auto-generated method stub
->>>>>>> 515c4066ecc063af2521f9a218e91e9e25adad6c
-
-
-		Wood<String> woodString = new Wood<String>("asd");
-
-		new WoodyNode<String>(woodString, "");
-
-		SortedWood<Skier> woodSkier = new SortedWood<Skier>();
-		SortedWood<Snowboarder> woodSnowboarder = new SortedWood<Snowboarder>();
-
-
-
-
 	}
 
 
