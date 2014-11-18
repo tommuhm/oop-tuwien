@@ -1,5 +1,5 @@
 
-public class Skier extends Person<Skier> {
+public class Skier extends Person {
 
 	private double gewicht;
 

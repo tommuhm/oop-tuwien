@@ -1,5 +1,5 @@
 
-public abstract class Person<T extends Person> implements Prec<T> {
+public abstract class Person implements Prec<Person> {
 
 	public String name;
 
