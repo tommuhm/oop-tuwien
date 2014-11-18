@@ -157,6 +157,10 @@ public class Wood<T> {
 					WoodyNode<E> subElm = subIter.prev;
 					new LeveledIterImpl<E>(subElm);
 				}
+
+				while (subIter.hasPrevious()) {
+					subIter.previous();
+				}
 			}
 			return subIter;
 		}
