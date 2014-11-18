@@ -24,20 +24,26 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 			LeveledIter<Wood<T>> allIter) {
 		Wood<T> wood;
 
+		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 		while(allIter.hasPrevious()) { //Zurücksetzen.
+			// Nachbedingung: wechselt zum vorherigen Element
 			allIter.previous();
 		}
-		
+		// Nachbedingung: gibt an, ob es noch ein naechstes Element gibt
 		while (allIter.hasNext()) {
 			wood = allIter.next();
+			// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 			while (sortedIter.hasPrevious()) { //Zurücksetzen
+				// Nachbedingung: wechselt zum vorherigen Element
 				sortedIter.previous();
 			}
 			
 			insertSorted(sortedIter, wood);
 		}
 
+		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 		while (sortedIter.hasPrevious()) {
+			// Nachbedingung: wechselt zum vorherigen Element
 			sortedIter.previous();
 		}
 	}
@@ -50,18 +56,24 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 			while (sortedIter.hasNext()) {
 				temp = sortedIter.next();
 				if (wood.getElement().prec(temp.getElement())) {
+					// Nachbedingung: wechselt zum vorherigen Element
 					sortedIter.previous();
+					// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
 					sortedIter.add(wood);
 					return;
 				}
 			}
 			// Wenn ich hier ankomme wurde wood nirgends eingefügt => größer.
+			// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
 			sortedIter.add(wood); // Wird ganz zum schluss eingefügt.
 		} else {
+			// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
 			sortedIter.add(wood);
 		}
-		// Zurücksetzen auf erstes Element.
+		// Zurücksetzen auf erstes Element
+		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 		while (sortedIter.hasPrevious()) {
+			// Nachbedingung: wechselt zum vorherigen Element
 			sortedIter.previous();
 		}
 	}
@@ -70,13 +82,17 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	private void getAllWoodyNodes(LeveledIter<Wood<T>> allIter,
 			LeveledIter<Wood<T>> iter) {
 		
+		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 		while(iter.hasPrevious()) { //iter zurücksetzen auf erstes element
+			// Nachbedingung: wechselt zum vorherigen Element
 			iter.previous();
 		}
 		
 		while (iter.hasNext()) {
+			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 			getAllWoodyNodes(allIter, iter.sub());
 			Wood<T> node = iter.next();
+			// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
 			allIter.add(node);
 		}
 	}

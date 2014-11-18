@@ -25,15 +25,18 @@ public class Wood<T> {
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
 
+			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 			LeveledIter<Wood<T>> subIter = rootIter.sub();
 			Wood<T> node = rootIter.next();
 			if (node.getElement().equals(element)) {
+				// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
 				leveledIter.add(node);
 			}
 
 			if (subIter.hasNext()) {
 				LeveledIter<Wood<T>> subElements = subIter.next().contains(element);
 				while (subElements.hasNext()) {
+					// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
 					leveledIter.add(subElements.next());
 				}
 			}
@@ -46,7 +49,9 @@ public class Wood<T> {
 	public LeveledIter<Wood<T>> iterator() {
 		LeveledIterImpl<Wood<T>> rootIter = new LeveledIterImpl<Wood<T>>(node);
 
+		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 		while (rootIter.hasPrevious()) {
+			// Nachbedingung: wechselt zum vorherigen Element
 			rootIter.previous();
 		}
 
@@ -62,6 +67,7 @@ public class Wood<T> {
 
 	private void toStringHelper(StringBuilder out, String indent, LeveledIter<Wood<T>> iter) {
 		while (iter.hasNext()) {
+			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 			LeveledIter<Wood<T>> sub = iter.sub();
 			out.append(indent + iter.next().getElement() + "\n");
 			toStringHelper(out, indent + "-", sub);
@@ -79,6 +85,7 @@ public class Wood<T> {
 		// Nachbedingung: erstellt einen neuen Iterator
 		protected WoodyNode(F element) {
 			this.element = element;
+			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 			this.subIter = new LeveledIterImpl<F>();
 		}
 
@@ -115,7 +122,8 @@ public class Wood<T> {
 			node.prev = this;
 			this.next = node;
 		}
-
+		
+		// Nachbedingung: entfernt alle Elemente vom derzeitigen Wood
 		private void remove() {
 			if (prev != null) {
 				prev.next = next;
@@ -148,17 +156,21 @@ public class Wood<T> {
 			LeveledIterImpl<E> subIter = null;
 
 			if (next != null) {
+				// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 				subIter = next.subIter;
 
 				if (subIter.hasNext()) {
 					WoodyNode<E> subElm = subIter.next;
 					new LeveledIterImpl<E>(subElm);
+					// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 				} else if (subIter.hasPrevious()) {
 					WoodyNode<E> subElm = subIter.prev;
 					new LeveledIterImpl<E>(subElm);
 				}
 
+				// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 				while (subIter.hasPrevious()) {
+					// Nachbedingung: wechselt zum vorherigen Element
 					subIter.previous();
 				}
 			}
@@ -224,6 +236,7 @@ public class Wood<T> {
 		// Nachbedingung: wechselt auf die vorherige Node
 		@Override
 		public E previous() {
+			// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 			if (hasPrevious()) {
 				next = prev;
 				prev = prev.prev;
