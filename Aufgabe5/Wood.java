@@ -49,6 +49,21 @@ public class Wood<T> {
 		return rootIter;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder out = new StringBuilder();
+		toStringHelper(out, "", iterator());
+		return out.toString();
+	}
+
+	private void toStringHelper(StringBuilder out, String indent, LeveledIter<Wood<T>> iter) {
+		while (iter.hasNext()) {
+//			System.out.println(iter.next().getElement());
+			LeveledIter<Wood<T>> sub = iter.sub();
+			toStringHelper(out, indent + "-", iter.sub());
+			out.append(indent + iter.next().getElement() + "\n");
+		}
+	}
 
 	protected class WoodyNode<F> {
 
