@@ -20,7 +20,7 @@ public abstract class Person implements Prec<Person> {
 	}
 
 	// Vorbedingung: o darf nicht null sein
-	// Nachbedingun: true, wenn o gleich this ist
+	// Nachbedingun: true, wenn o gleich dem aktuellen Objekt ist
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Person) {
