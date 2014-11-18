@@ -7,18 +7,18 @@ public class Snowboarder extends Person {
 		super(name);
 		this.groesse = groesse;
 	}
-	
+
 	@Override
-	public boolean equals(Person p) {
-		if (p instanceof Skier) {
-			return false;
-		} else if ( p instanceof Snowboarder) {
-			return p.name.equals(this.name);
+	public boolean equals(Object o) {
+		if (o instanceof Snowboarder) {
+			return super.equals(o) && ((Snowboarder) o).groesse == this.groesse;
 		}
+
 		return false;
 	}
-	
+
+	@Override
 	public String toString() {
-		return ( "Name: " + super.name + " Groesse: " + groesse);
+		return super.toString() + " Groesse: " + groesse;
 	}
 }

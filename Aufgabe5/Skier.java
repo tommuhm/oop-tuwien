@@ -9,17 +9,17 @@ public class Skier extends Person {
 	}
 
 	@Override
-	public boolean equals(Person p) {
-		if (p instanceof Skier) {
-			return p.name.equals(this.name);
-		} else if ( p instanceof Snowboarder) {
-			return false;
+	public boolean equals(Object o) {
+		if (o instanceof Skier) {
+			return super.equals(o) && ((Skier) o).gewicht == this.gewicht;
 		}
+
 		return false;
 	}
 
+	@Override
 	public String toString() {
-		return ( "Name: " + super.name + " Gewicht: " + gewicht);
+		return super.toString() + " Gewicht: " + gewicht;
 	}
 
 }
