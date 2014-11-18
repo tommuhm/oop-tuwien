@@ -1,19 +1,19 @@
 
-public class SortedWood<T extends Prec> extends Wood<T> implements Prec {
+public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<T> {
 
 	public SortedWood(T wert) {
 		super(wert);
 		// TODO
 	}
 
-	@Override
-	public boolean prec(Object x) {
-		// TODO
-		return false;
-	}
-
 	public LeveledIter<T> sorted() {
 		// TODO
 		return null;
+	}
+
+	@Override
+	public boolean prec(T x) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
