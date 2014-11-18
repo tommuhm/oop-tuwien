@@ -1,5 +1,5 @@
 
-public class Snowboarder extends Person {
+public class Snowboarder extends Person<Snowboarder> {
 
 	private int groesse;
 
