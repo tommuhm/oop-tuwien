@@ -142,7 +142,7 @@ public class Test {
 		SortedWood<Snowboarder> woodBoarder10 = new SortedWood<Snowboarder>(rmo);
 		SortedWood<Snowboarder> woodBoarder11 = new SortedWood<Snowboarder>(umo);
 		SortedWood<Snowboarder> woodBoarder12 = new SortedWood<Snowboarder>(qmo);
-		SortedWood<Snowboarder> woodBoarder13= new SortedWood<Snowboarder>(kmo);
+		SortedWood<Snowboarder> woodBoarder13 = new SortedWood<Snowboarder>(kmo);
 		SortedWood<Snowboarder> woodBoarder14 = new SortedWood<Snowboarder>(mmo);
 		SortedWood<Snowboarder> woodBoarder15 = new SortedWood<Snowboarder>(lmo);
 		
@@ -209,17 +209,17 @@ public class Test {
 */
 	}
 	
-	private static void ItStoString(LeveledIter<SortedWood<Skier>> it) {
+	private static void ItStoString(LeveledIter<Wood<Skier>> it) {
 		lvlcounter = 0;
 		stagecounter = 0;
 		skierAusgabe(it);	
 	}
 	
-	private static void skierAusgabe(LeveledIter<SortedWood<Skier>> it) {
+	private static void skierAusgabe(LeveledIter<Wood<Skier>> it) {
 
 		while (it.hasNext())  {
 			stagecounter ++;
-			System.out.print(lvlcounter + "-" + stagecounter + ": " + it.next().sorted().toString() + "   ");
+			System.out.print(lvlcounter + "-" + stagecounter + ": " + (SortedWood<>) it.next().sorted().toString() + "   ");
 			if (it.sub().hasNext()) {
 				lvlcounter ++;
 				System.out.print('\n');
@@ -232,13 +232,13 @@ public class Test {
 		}
 	}
 	
-	private static void ItBtoString(LeveledIter<SortedWood<Snowboarder>> it) {
+	private static void ItBtoString(LeveledIter<Wood<Snowboarder>> it) {
 		lvlcounter = 0;
 		stagecounter = 0;
 		boarderAusgabe(it);	
 	}
 	
-	private static void boarderAusgabe(LeveledIter<SortedWood<Snowboarder>> it) {
+	private static void boarderAusgabe(LeveledIter<Wood<Snowboarder>> it) {
 
 		while (it.hasNext())  {
 			stagecounter ++;
