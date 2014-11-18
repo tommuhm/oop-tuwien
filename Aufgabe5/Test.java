@@ -64,37 +64,37 @@ public class Test {
 		Skier tmo = new Skier("TMO", 80);
 		Skier amo = new Skier("AMO", 10);
 		
-		SortedWood<Skier> woodSkier0 = new SortedWood<Skier>(finn);
-		SortedWood<Skier> woodSkier1 = new SortedWood<Skier>(jake);
-		SortedWood<Skier> woodSkier2 = new SortedWood<Skier>(bmo);
-		SortedWood<Skier> woodSkier3 = new SortedWood<Skier>(tiffany);
-		SortedWood<Skier> woodSkier4 = new SortedWood<Skier>(bubblegum);
-		SortedWood<Skier> woodSkier5 = new SortedWood<Skier>(flameking);
-		SortedWood<Skier> woodSkier6 = new SortedWood<Skier>(magicman);
-		SortedWood<Skier> woodSkier7 = new SortedWood<Skier>(henriette);
-		SortedWood<Skier> woodSkier8 = new SortedWood<Skier>(mo);
-		SortedWood<Skier> woodSkier9 = new SortedWood<Skier>(smo);
-		SortedWood<Skier> woodSkier10 = new SortedWood<Skier>(cmo);
-		SortedWood<Skier> woodSkier11 = new SortedWood<Skier>(zmo);
-		SortedWood<Skier> woodSkier12 = new SortedWood<Skier>(tmo);
-		SortedWood<Skier> woodSkier13 = new SortedWood<Skier>(amo);
+		SortedWood<Person> woodSkier0 = new SortedWood<Person>(finn);
+		SortedWood<Person> woodSkier1 = new SortedWood<Person>(jake);
+		SortedWood<Person> woodSkier2 = new SortedWood<Person>(bmo);
+		SortedWood<Person> woodSkier3 = new SortedWood<Person>(tiffany);
+		SortedWood<Person> woodSkier4 = new SortedWood<Person>(bubblegum);
+		SortedWood<Person> woodSkier5 = new SortedWood<Person>(flameking);
+		SortedWood<Person> woodSkier6 = new SortedWood<Person>(magicman);
+		SortedWood<Person> woodSkier7 = new SortedWood<Person>(henriette);
+		SortedWood<Person> woodSkier8 = new SortedWood<Person>(mo);
+		SortedWood<Person> woodSkier9 = new SortedWood<Person>(smo);
+		SortedWood<Person> woodSkier10 = new SortedWood<Person>(cmo);
+		SortedWood<Person> woodSkier11 = new SortedWood<Person>(zmo);
+		SortedWood<Person> woodSkier12 = new SortedWood<Person>(tmo);
+		SortedWood<Person> woodSkier13 = new SortedWood<Person>(amo);
 		
-		LeveledIter<Wood<Skier>> lvlItS = woodSkier0.iterator();
+		LeveledIter<Wood<Person>> lvlItS = woodSkier0.iterator();
 		lvlItS.next();
 		lvlItS.add(woodSkier1);
 		lvlItS.add(woodSkier9);
 		lvlItS.add(woodSkier10);
 		lvlItS.add(woodSkier11);
-		LeveledIter<Wood<Skier>> subLvlItS1 = lvlItS.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItS1 = lvlItS.sub(); //add Substructure
 		subLvlItS1.next();
 		subLvlItS1.add(woodSkier2);
-		LeveledIter<Wood<Skier>> subLvlItS2 = subLvlItS1.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItS2 = subLvlItS1.sub(); //add Substructure
 		subLvlItS2.next();
 		subLvlItS2.add(woodSkier3);
 		subLvlItS2.add(woodSkier4);
 		subLvlItS2.add(woodSkier13);
 		subLvlItS2.add(woodSkier12);
-		LeveledIter<Wood<Skier>> subLvlItS3 = subLvlItS2.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItS3 = subLvlItS2.sub(); //add Substructure
 		subLvlItS3.next();
 		subLvlItS3.add(woodSkier5);
 		subLvlItS3.next();
@@ -103,13 +103,13 @@ public class Test {
 		if (lvlItS.hasPrevious()) lvlItS.previous();
 		if (lvlItS.hasPrevious()) lvlItS.previous(); //Nothing happens
 		subLvlItS3.next();
-		LeveledIter<Wood<Skier>> subLvlItS4 = subLvlItS3.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItS4 = subLvlItS3.sub(); //add Substructure
 		subLvlItS4.next();
 		subLvlItS3.add(woodSkier7);
 		if (subLvlItS1.hasPrevious()) subLvlItS1.previous();
 		subLvlItS1.add(woodSkier8);
 		
-		ItStoString(lvlItS);
+		IttoString(lvlItS);
 		
 		
 		Snowboarder iceking = new Snowboarder("Iceking", 170);
@@ -129,29 +129,29 @@ public class Test {
 		Snowboarder kmo = new Snowboarder("KMO", 180);
 		Snowboarder umo = new Snowboarder("UMO", 80);
 		
-		SortedWood<Snowboarder> woodBoarder0 = new SortedWood<Snowboarder>(iceking);
-		SortedWood<Snowboarder> woodBoarder1 = new SortedWood<Snowboarder>(gunter);
-		SortedWood<Snowboarder> woodBoarder2 = new SortedWood<Snowboarder>(ricardio);
-		SortedWood<Snowboarder> woodBoarder3 = new SortedWood<Snowboarder>(rainicorn);
-		SortedWood<Snowboarder> woodBoarder4 = new SortedWood<Snowboarder>(cinnamonbun);
-		SortedWood<Snowboarder> woodBoarder5 = new SortedWood<Snowboarder>(starchy);	
-		SortedWood<Snowboarder> woodBoarder6 = new SortedWood<Snowboarder>(lsp);
-		SortedWood<Snowboarder> woodBoarder7 = new SortedWood<Snowboarder>(choosegoose);	
-		SortedWood<Snowboarder> woodBoarder8 = new SortedWood<Snowboarder>(marcelline);
-		SortedWood<Snowboarder> woodBoarder9 = new SortedWood<Snowboarder>(dmo);
-		SortedWood<Snowboarder> woodBoarder10 = new SortedWood<Snowboarder>(rmo);
-		SortedWood<Snowboarder> woodBoarder11 = new SortedWood<Snowboarder>(umo);
-		SortedWood<Snowboarder> woodBoarder12 = new SortedWood<Snowboarder>(qmo);
-		SortedWood<Snowboarder> woodBoarder13 = new SortedWood<Snowboarder>(kmo);
-		SortedWood<Snowboarder> woodBoarder14 = new SortedWood<Snowboarder>(mmo);
-		SortedWood<Snowboarder> woodBoarder15 = new SortedWood<Snowboarder>(lmo);
+		SortedWood<Person> woodBoarder0 = new SortedWood<Person>(iceking);
+		SortedWood<Person> woodBoarder1 = new SortedWood<Person>(gunter);
+		SortedWood<Person> woodBoarder2 = new SortedWood<Person>(ricardio);
+		SortedWood<Person> woodBoarder3 = new SortedWood<Person>(rainicorn);
+		SortedWood<Person> woodBoarder4 = new SortedWood<Person>(cinnamonbun);
+		SortedWood<Person> woodBoarder5 = new SortedWood<Person>(starchy);	
+		SortedWood<Person> woodBoarder6 = new SortedWood<Person>(lsp);
+		SortedWood<Person> woodBoarder7 = new SortedWood<Person>(choosegoose);	
+		SortedWood<Person> woodBoarder8 = new SortedWood<Person>(marcelline);
+		SortedWood<Person> woodBoarder9 = new SortedWood<Person>(dmo);
+		SortedWood<Person> woodBoarder10 = new SortedWood<Person>(rmo);
+		SortedWood<Person> woodBoarder11 = new SortedWood<Person>(umo);
+		SortedWood<Person> woodBoarder12 = new SortedWood<Person>(qmo);
+		SortedWood<Person> woodBoarder13 = new SortedWood<Person>(kmo);
+		SortedWood<Person> woodBoarder14 = new SortedWood<Person>(mmo);
+		SortedWood<Person> woodBoarder15 = new SortedWood<Person>(lmo);
 		
-		LeveledIter<Wood<Snowboarder>> lvlItB = woodBoarder0.iterator();
+		LeveledIter<Wood<Person>> lvlItB = woodBoarder0.iterator();
 		lvlItB.next();
 		lvlItB.add(woodBoarder1);
 		lvlItB.add(woodBoarder9);
 		lvlItB.add(woodBoarder10);
-		LeveledIter<Wood<Snowboarder>> subLvlItB1 = lvlItB.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItB1 = lvlItB.sub(); //add Substructure
 		subLvlItB1.next();
 		subLvlItB1.add(woodBoarder2);
 		subLvlItB1.add(woodBoarder11);
@@ -159,27 +159,29 @@ public class Test {
 		subLvlItB1.add(woodBoarder13);
 		subLvlItB1.add(woodBoarder14);
 		subLvlItB1.add(woodBoarder15);
-		LeveledIter<Wood<Snowboarder>> subLvlItB2 = subLvlItB1.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItB2 = subLvlItB1.sub(); //add Substructure
 		subLvlItB2.next();
 		subLvlItB2.add(woodBoarder3);
 		subLvlItB2.add(woodBoarder4);
 		if (lvlItB.hasPrevious()) lvlItB.previous();
-		LeveledIter<Wood<Snowboarder>> subLvlItB3 = subLvlItB2.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItB3 = subLvlItB2.sub(); //add Substructure
 		subLvlItB3.next();
 		subLvlItB3.add(woodBoarder5);
 		subLvlItB2.next();
-		LeveledIter<Wood<Snowboarder>> subLvlItB4 = subLvlItB2.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItB4 = subLvlItB2.sub(); //add Substructure
 		subLvlItB4.next();
 		subLvlItB4.add(woodBoarder6);
-		LeveledIter<Wood<Snowboarder>> subLvlItB5 = subLvlItB4.sub(); //add Substructure
+		LeveledIter<Wood<Person>> subLvlItB5 = subLvlItB4.sub(); //add Substructure
 		subLvlItB5.next();
 		subLvlItB5.add(woodBoarder7);
 		if (subLvlItB5.hasPrevious()) subLvlItB5.previous();
 		subLvlItB5.add(woodBoarder8);
 		
-		ItBtoString(lvlItB);
+		IttoString(lvlItB);
 	
 		//2
+		
+		LeveledIter<Wood<Person>> lvlIt = woodBoarder0.iterator();
 		
 		/*
 		Erzeugen Sie eine Datenstruktur vom Typ SortedWood<Person>.
@@ -206,20 +208,32 @@ public class Test {
 		Wood<Snowboarder> woodPerson4 = new SortedWood<Snowboarder>(finn);
 		Wood<Snowboarder> woodPerson5 = new SortedWood<Snowboarder>(finn);
 		Wood<Snowboarder> woodPerson6 = new SortedWood<Snowboarder>(finn);
+		
+		//4
+		 
+
+
+
+
+		//5
+
+
+
+
 */
 	}
 	
-	private static void ItStoString(LeveledIter<Wood<Skier>> it) {
+	private static void IttoString(LeveledIter<Wood<Person>> it) {
 		lvlcounter = 0;
 		stagecounter = 0;
 		skierAusgabe(it);	
 	}
 	
-	private static void skierAusgabe(LeveledIter<Wood<Skier>> it) {
+	private static void skierAusgabe(LeveledIter<Wood<Person>> it) {
 
 		while (it.hasNext())  {
 			stagecounter ++;
-			System.out.print(lvlcounter + "-" + stagecounter + ": " + ((SortedWood<Skier>) it.next()).sorted().toString() + "   ");
+			System.out.print(lvlcounter + "-" + stagecounter + ": " + ((SortedWood<Person>) it.next()).sorted().toString() + "   ");
 			if (it.sub().hasNext()) {
 				lvlcounter ++;
 				System.out.print('\n');
@@ -227,29 +241,6 @@ public class Test {
 				lvlcounter --;
 			} else if (it.hasNext()) {
 				skierAusgabe(it);
-				stagecounter --;
-			}
-		}
-	}
-	
-	private static void ItBtoString(LeveledIter<Wood<Snowboarder>> it) {
-		lvlcounter = 0;
-		stagecounter = 0;
-		boarderAusgabe(it);	
-	}
-	
-	private static void boarderAusgabe(LeveledIter<Wood<Snowboarder>> it) {
-
-		while (it.hasNext())  {
-			stagecounter ++;
-			System.out.print(lvlcounter + "-" + stagecounter + ": " + ((SortedWood<Snowboarder>) it.next()).sorted().toString() + "   "); //TODO: absteigend
-			if (it.sub().hasNext()) {
-				lvlcounter ++;
-				System.out.print('\n');
-				boarderAusgabe(it.sub());
-				lvlcounter --;
-			} else if (it.hasNext()) {
-				boarderAusgabe(it);
 				stagecounter --;
 			}
 		}
