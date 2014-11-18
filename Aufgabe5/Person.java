@@ -1,5 +1,5 @@
 
-public abstract class Person implements Prec {
+public abstract class Person implements Prec<Person> {
 
 	private String name;
 
@@ -8,21 +8,11 @@ public abstract class Person implements Prec {
 	}
 
 	@Override
-	public boolean prec(Object y) {
-		if (y instanceof Person) {
-			String nameI, nameY;
-			nameI = name.toLowerCase();
-			nameY = ((Person) y).name.toLowerCase();
+	public boolean prec(Person y) {
 
-			nameI = nameI.replaceAll("\\s+","");;
-			nameY = nameY.replaceAll("\\s+","");
-			
-			
-			return nameI.compareTo(nameY) <= 0; //Equals oder nameI ist alphabetisch kleiner 
-		}
+		String nameI = name.replaceAll("\\s+","").toLowerCase();
+		String nameY = y.name.replaceAll("\\s+","").toLowerCase();
 
-		return false;
+		return nameI.compareTo(nameY) <= 0; //Equals oder nameI ist alphabetisch kleiner 
 	}
-
-
 }
