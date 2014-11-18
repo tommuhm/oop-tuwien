@@ -1,6 +1,4 @@
 
-// TODO remvoe hasPrevious, hasNext
-
 import java.util.NoSuchElementException;
 
 public class Wood<T> {
@@ -13,12 +11,6 @@ public class Wood<T> {
 		this.node = new WoodyNode<Wood<T>>(this);
 	}
 
-	protected T getElement() {
-		return element;
-	}
-
-	// TODO - equals checks in person etc
-	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood<T>> contains(T element) {
 		LeveledIterImpl<Wood<T>> leveledIter = new LeveledIterImpl<Wood<T>>();
 
@@ -26,12 +18,12 @@ public class Wood<T> {
 		while (rootIter.hasNext()) {
 			Wood<T> node = rootIter.next();
 
-			if (node.getElement().equals(element)) {
-				leveledIter.add(node.getElement());
+			if (node.element.equals(element)) {
+				leveledIter.add(node);
 			}
 
-			LeveledIter<Wood<T>> subIter = node.getSub();
-			if (node.getSub().hasNext()) {
+			LeveledIter<Wood<T>> subIter = rootIter.sub();
+			if (subIter.hasNext()) {
 				LeveledIter<Wood<T>> subElements = subIter.next().contains(element);
 				while (subElements.hasNext()) {
 					leveledIter.add(subElements.next());
@@ -43,7 +35,6 @@ public class Wood<T> {
 	}
 
 	// TODO - erstes element erst nach aufruf von next ! - testen sollte funken wenns richtig implementiert is !!! (denk i)
-	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood<T>> iterator() {
 		LeveledIterImpl<Wood<T>> rootIter = new LeveledIterImpl<Wood<T>>(node);
 
@@ -70,26 +61,12 @@ public class Wood<T> {
 			return element;
 		}
 
-		protected LeveledIter<F> getSub() {
-			return subIter;
-		}
-
-		// TODO needed?
-		protected WoodyNode<F> getNext() {
-			return next;
-		}
-
-		// TODO needed?
-		protected WoodyNode<F> getPrev() {
-			return prev;
-		}
-
 		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
 		private void add(F element) {
 			WoodyNode<F> node = new WoodyNode<F>(element);
 
 			if (prev != null) {
-				node.prev = getPrev();
+				node.prev = prev;
 				prev.next = node;
 			}
 
@@ -177,7 +154,7 @@ public class Wood<T> {
 		public E next() {
 			if (hasNext()) {
 				prev = next;
-				next = next.getNext();
+				next = next.next;
 			} else {
 				throw new NoSuchElementException("no next element");
 			}
@@ -188,7 +165,7 @@ public class Wood<T> {
 		public E previous() {
 			if (hasPrevious()) {
 				next = prev;
-				prev = prev.getPrev();
+				prev = prev.prev;
 			} else {
 				throw new NoSuchElementException("no previous element");
 			}
