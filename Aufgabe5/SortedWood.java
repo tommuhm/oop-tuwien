@@ -13,6 +13,9 @@ public class SortedWood<T extends Prec> extends Wood<T>{
 		WoodyNode<T> current = start;
 		getAllWoodyNodes(current, iter);
 		
+		current.
+		//sortWoodyNodes(current)
+		
 		return null;
 	}
 

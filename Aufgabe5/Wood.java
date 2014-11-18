@@ -5,17 +5,15 @@ import java.util.NoSuchElementException;
 
 public class Wood<T> {
 
-	private WoodyNode<T> node;
-	private T wert;
+	private WoodyNode<Wood<T>> node;
 
 	public Wood(T wert) {
-		this.wert = wert;
-		this.node = new WoodyNode<T>(this);
+		this.node = new WoodyNode<Wood<T>>(this);
 	}
 
 	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood<T>> contains(Wood<T> wood) {
-		WoodIter woodIter = new WoodIter();
+//		WoodIter woodIter = new WoodIter<T>();
 
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
@@ -23,48 +21,65 @@ public class Wood<T> {
 		}
 
 
-		// TODO - gibt iterator ueber alle gleichen elemente zureck (AUCH identisch)!!!!!
+		// TODO - gibt iterator ueber alle gleichen elemente zureck (nicht identisch)!!!!!
 		return null;
 	}
 
+	// TODO - erstes element erst nach aufruf von next !
 	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood<T>> iterator() {
-		WoodIter rootIter = new WoodIter();
+		LeveledIterImpl<Wood<T>> rootIter = new LeveledIterImpl<Wood<T>>(node);
 
-		WoodyNode<T> current = node;
-		while (current != null) {
-			rootIter.add(this);
-			current = current.next;
+		while (rootIter.hasPrevious()) {
+			rootIter.previous();
 		}
 
 		return rootIter;
 	}
 
 
-	public class WoodyNode<R> {
+	protected class WoodyNode<F> {
 
-		private Wood<R> wood;
-		private WoodyNode<R> next;
-		private WoodyNode<R> prev;
-		private LeveledIter<Wood<R>> subIter;
+		private F element;
+		private WoodyNode<F> next;
+		private WoodyNode<F> prev;
+		private LeveledIter<F> subIter;
 
-		private WoodyNode(Wood<R> wood) {
-			this.wood = wood;
+		protected WoodyNode(F element) {
+			this.element = element;
 		}
 
-		private void add(Wood<R> wood) {
-			// TODO HAEFTIG !! OIDA !! FETT
-			WoodyNode<R> node = (WoodyNode<R>) wood.node;
+		protected F getElement() {
+			return element;
+		}
+
+		protected LeveledIter<F> getSub() {
+			return subIter;
+		}
+
+		// TODO needed?
+		protected WoodyNode<F> getNext() {
+			return next;
+		}
+
+		// TODO needed?
+		protected WoodyNode<F> getPrev() {
+			return prev;
+		}
+
+		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
+		private void add(F element) {
+			WoodyNode<F> node = new WoodyNode<F>(element);
 
 			if (prev != null) {
-				node.prev = prev;
+				node.prev = getPrev();
 				prev.next = node;
 			}
 
 			node.next = this;
 			this.prev = node;
 
-			subIter = new WoodIter<R>();
+			subIter = new LeveledIterImpl<F>();
 		}
 
 		private void remove() {
@@ -78,14 +93,23 @@ public class Wood<T> {
 	}
 
 	// LevelIter implementation
-	public class WoodIter<E> implements LeveledIter<Wood<E>> {
+	protected class LeveledIterImpl<E> implements LeveledIter<E> {
 
 		WoodyNode<E> prev = null;
 		WoodyNode<E> next = null;
 
+		protected LeveledIterImpl() {
+		}
+
+		protected LeveledIterImpl(WoodyNode<E> node) {
+			next = node;
+			prev = node.prev;
+		}
+
 		@Override
-		public LeveledIter<Wood<E>> sub() {
-			LeveledIter<Wood<E>> subIter = null;
+		public LeveledIter<E> sub() {
+			// kein null
+			LeveledIter<E> subIter = null;
 
 			if (next != null) {
 				// TODO - clone iter?
@@ -96,18 +120,15 @@ public class Wood<T> {
 
 		// TODO - ist das aktuelle element danach das neue?
 		@Override
-		public void add(Wood<E> wood) {
+		public void add(E element) {
 			if (next != null) {
-				next.add(wood);
-				// TODO HAEFTIG !! OIDA !! FETT
-				next = (WoodyNode<E>) wood.node;
+				next.add(element);
+				next = new WoodyNode<E>(element);
 			} else if (next == null && prev != null) {
-				prev.add(wood);
+				prev.add(element);
 			}
-			// TODO HAEFTIG !! OIDA !! FETT
-			next = (WoodyNode<E>) wood.node;
+			next = new WoodyNode<E>(element);
 		}
-
 
 		// TODO - delete subtree?
 		// TODO - NoSuchElementException
@@ -135,28 +156,26 @@ public class Wood<T> {
 			return prev != null;
 		}
 
-		// TODO - NoSuchElementException
 		@Override
-		public Wood<E> next() {
+		public E next() {
 			if (hasNext()) {
 				prev = next;
-				next = next.next;
-				return prev.wood;
+				next = next.getNext();
 			} else {
 				throw new NoSuchElementException("no next element");
 			}
+			return prev.getElement();
 		}
 
-		// TODO - NoSuchElementException
 		@Override
-		public Wood<E> previous() {
+		public E previous() {
 			if (hasPrevious()) {
 				next = prev;
-				prev = prev.prev;
-				return next.wood;
+				prev = prev.getPrev();
 			} else {
 				throw new NoSuchElementException("no previous element");
 			}
+			return next.getElement();
 		}
 	}
 
