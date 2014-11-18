@@ -24,8 +24,16 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<Sorte
 			LeveledIter<Wood<T>> allIter) {
 		Wood<T> wood;
 
+		while(allIter.hasPrevious()) { //Zurücksetzen.
+			allIter.previous();
+		}
+		
 		while (allIter.hasNext()) {
 			wood = allIter.next();
+			while (sortedIter.hasPrevious()) { //Zurücksetzen
+				sortedIter.previous();
+			}
+			
 			insertSorted(sortedIter, wood);
 		}
 
