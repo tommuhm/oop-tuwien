@@ -24,8 +24,16 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 			LeveledIter<Wood<T>> allIter) {
 		Wood<T> wood;
 
+		while(allIter.hasPrevious()) { //Zurücksetzen.
+			allIter.previous();
+		}
+		
 		while (allIter.hasNext()) {
 			wood = allIter.next();
+			while (sortedIter.hasPrevious()) { //Zurücksetzen
+				sortedIter.previous();
+			}
+			
 			insertSorted(sortedIter, wood);
 		}
 
@@ -61,6 +69,11 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	// Nachbedingung: alle Elemente von iter werden in einem Level von allIter eingefuegt
 	private void getAllWoodyNodes(LeveledIter<Wood<T>> allIter,
 			LeveledIter<Wood<T>> iter) {
+		
+		while(iter.hasPrevious()) { //iter zurücksetzen auf erstes element
+			iter.previous();
+		}
+		
 		while (iter.hasNext()) {
 			getAllWoodyNodes(allIter, iter.sub());
 			Wood<T> node = iter.next();
