@@ -90,6 +90,9 @@ public class Test {
 		Snowboarder cinnamonbun = new Snowboarder("Cinnamonbun", 180);
 		Snowboarder starchy = new Snowboarder("Starchy", 70);
 		Snowboarder lsp = new Snowboarder("LSP", 140);
+		Snowboarder choosegoose = new Snowboarder("Choosegoose", 75);
+		Snowboarder marcelline = new Snowboarder("Marcelline", 140);
+		
 		
 		Wood<Snowboarder> woodBoarder0 = new SortedWood<Snowboarder>(iceking);
 		Wood<Snowboarder> woodBoarder1 = new SortedWood<Snowboarder>(gunter);
@@ -98,6 +101,8 @@ public class Test {
 		Wood<Snowboarder> woodBoarder4 = new SortedWood<Snowboarder>(cinnamonbun);
 		Wood<Snowboarder> woodBoarder5 = new SortedWood<Snowboarder>(starchy);	
 		Wood<Snowboarder> woodBoarder6 = new SortedWood<Snowboarder>(lsp);
+		Wood<Snowboarder> woodBoarder7 = new SortedWood<Snowboarder>(choosegoose);	
+		Wood<Snowboarder> woodBoarder8 = new SortedWood<Snowboarder>(marcelline);
 		
 
 		LeveledIter<Wood<Snowboarder>> lvlItB = woodBoarder0.iterator();
@@ -120,9 +125,9 @@ public class Test {
 		subLvlItB4.add(woodBoarder6);
 		LeveledIter<Wood<Snowboarder>> subLvlItB5 = subLvlItB4.sub(); //add Substructure
 		subLvlItB5.next();
-		subLvlItB5.add(woodBoarder5);
+		subLvlItB5.add(woodBoarder7);
 		if (subLvlItB5.hasPrevious()) subLvlItB5.previous();
-		subLvlItB5.add(woodBoarder6);
+		subLvlItB5.add(woodBoarder8);
 		
 		ItBtoString(lvlItB);
 	
