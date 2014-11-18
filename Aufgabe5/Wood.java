@@ -6,18 +6,28 @@ import java.util.NoSuchElementException;
 public class Wood<T> {
 
 	private WoodyNode<Wood<T>> node;
+	private T wert;
 
 	public Wood(T wert) {
+		this wert = wert;
 		this.node = new WoodyNode<Wood<T>>(this);
 	}
 
+	// TODO - equals checks in person etc
 	// TODO - immer erst zureck zum ersten element iterieren?
-	public LeveledIter<Wood<T>> contains(Wood<T> wood) {
-//		WoodIter woodIter = new WoodIter<T>();
+	public LeveledIter<T> contains(T element) {
+		LeveledIterImpl<T> leveledIter = new LeveledIterImpl<T>();
 
 		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
+			WoodyNode<Wood<T>> node = rootIter.next().node;
 
+			node.getElement()
+
+			if (ele.equals(element)) {
+
+			}
+			
 		}
 
 
@@ -25,7 +35,7 @@ public class Wood<T> {
 		return null;
 	}
 
-	// TODO - erstes element erst nach aufruf von next !
+	// TODO - erstes element erst nach aufruf von next ! - testen sollte funken wenns richtig implementiert is !!! (denk i)
 	// TODO - immer erst zureck zum ersten element iterieren?
 	public LeveledIter<Wood<T>> iterator() {
 		LeveledIterImpl<Wood<T>> rootIter = new LeveledIterImpl<Wood<T>>(node);
