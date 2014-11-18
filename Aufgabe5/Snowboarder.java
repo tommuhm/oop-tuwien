@@ -7,5 +7,8 @@ public class Snowboarder extends Person {
 		super(name);
 		this.groesse = groesse;
 	}
-
+	
+	public String toString() {
+		return ( "Name: " + super.name + " Groesse: " + groesse);
+	}
 }
