@@ -16,9 +16,7 @@ public class Skier extends Person {
 	public boolean equals(Object o) {
 		if (o instanceof Skier) {
 			return super.equals(o) && ((Skier) o).gewicht == this.gewicht;
-		}
-
-		return false;
+		} return false;
 	}
 
 	@Override

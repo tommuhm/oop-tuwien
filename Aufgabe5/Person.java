@@ -25,9 +25,7 @@ public abstract class Person implements Prec<Person> {
 	public boolean equals(Object o) {
 		if (o instanceof Person) {
 			return ((Person) o).name.equals(this.name);
-		}
-
-		return false;
+		} return false;
 	}
 
 	@Override
