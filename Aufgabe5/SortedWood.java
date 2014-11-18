@@ -1,5 +1,5 @@
 
-public class SortedWood<T extends Prec<T>> extends Wood<T> {
+public class SortedWood<T extends Prec<T>> extends Wood<T> implements Prec<SortedWood<T>> {
 
 	public SortedWood(T wert) {
 		super(wert);
@@ -64,6 +64,7 @@ public class SortedWood<T extends Prec<T>> extends Wood<T> {
 		}
 	}
 
+	@Override
 	public boolean prec(SortedWood<T> x) {
 		Iter<Wood<T>> itThis = this.sorted();
 		Iter<Wood<T>> itX = x.sorted();
