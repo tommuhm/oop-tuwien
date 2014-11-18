@@ -14,10 +14,10 @@ public class Wood<T> {
 	}
 
 	// TODO - immer erst zureck zum ersten element iterieren?
-	public LeveledIter<Wood> contains(Wood wood) {
+	public LeveledIter<Wood<T>> contains(Wood<T> wood) {
 		WoodIter woodIter = new WoodIter();
 
-		LeveledIter<Wood> rootIter = this.iterator();
+		LeveledIter<Wood<T>> rootIter = this.iterator();
 		while (rootIter.hasNext()) {
 
 		}
@@ -28,10 +28,10 @@ public class Wood<T> {
 	}
 
 	// TODO - immer erst zureck zum ersten element iterieren?
-	public LeveledIter<Wood> iterator() {
+	public LeveledIter<Wood<T>> iterator() {
 		WoodIter rootIter = new WoodIter();
 
-		WoodyNode current = node;
+		WoodyNode<T> current = node;
 		while (current != null) {
 			rootIter.add(this);
 			current = current.next;
@@ -41,19 +41,20 @@ public class Wood<T> {
 	}
 
 
-	private class WoodyNode<T> {
+	public class WoodyNode<R> {
 
-		private Wood<T> wood;
-		private WoodyNode<T> next;
-		private WoodyNode<T> prev;
-		private LeveledIter<Wood> subIter;
+		private Wood<R> wood;
+		private WoodyNode<R> next;
+		private WoodyNode<R> prev;
+		private LeveledIter<Wood<R>> subIter;
 
-		private WoodyNode(Wood<T> wood) {
+		private WoodyNode(Wood<R> wood) {
 			this.wood = wood;
 		}
 
-		private void add(Wood wood) {
-			WoodyNode node = wood.node;
+		private void add(Wood<R> wood) {
+			// TODO HAEFTIG !! OIDA !! FETT
+			WoodyNode<R> node = (WoodyNode<R>) wood.node;
 
 			if (prev != null) {
 				node.prev = prev;
@@ -63,7 +64,7 @@ public class Wood<T> {
 			node.next = this;
 			this.prev = node;
 
-			subIter = new WoodIter();
+			subIter = new WoodIter<R>();
 		}
 
 		private void remove() {
@@ -77,14 +78,14 @@ public class Wood<T> {
 	}
 
 	// LevelIter implementation
-	private class WoodIter implements LeveledIter<Wood> {
+	public class WoodIter<E> implements LeveledIter<Wood<E>> {
 
-		WoodyNode prev = null;
-		WoodyNode next = null;
+		WoodyNode<E> prev = null;
+		WoodyNode<E> next = null;
 
 		@Override
-		public LeveledIter<Wood> sub() {
-			LeveledIter<Wood> subIter = null;
+		public LeveledIter<Wood<E>> sub() {
+			LeveledIter<Wood<E>> subIter = null;
 
 			if (next != null) {
 				// TODO - clone iter?
@@ -95,14 +96,16 @@ public class Wood<T> {
 
 		// TODO - ist das aktuelle element danach das neue?
 		@Override
-		public void add(Wood wood) {
+		public void add(Wood<E> wood) {
 			if (next != null) {
 				next.add(wood);
-				next = wood.node;
+				// TODO HAEFTIG !! OIDA !! FETT
+				next = (WoodyNode<E>) wood.node;
 			} else if (next == null && prev != null) {
 				prev.add(wood);
 			}
-			next = wood.node;
+			// TODO HAEFTIG !! OIDA !! FETT
+			next = (WoodyNode<E>) wood.node;
 		}
 
 
@@ -134,7 +137,7 @@ public class Wood<T> {
 
 		// TODO - NoSuchElementException
 		@Override
-		public Wood next() {
+		public Wood<E> next() {
 			if (hasNext()) {
 				prev = next;
 				next = next.next;
@@ -146,7 +149,7 @@ public class Wood<T> {
 
 		// TODO - NoSuchElementException
 		@Override
-		public Wood previous() {
+		public Wood<E> previous() {
 			if (hasPrevious()) {
 				next = prev;
 				prev = prev.prev;
