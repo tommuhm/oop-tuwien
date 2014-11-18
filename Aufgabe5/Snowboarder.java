@@ -11,7 +11,7 @@ public class Snowboarder extends Person {
 	}
 
 	// Vorbedingung: o darf nicht null sein
-	// Nachbedingun: true, wenn o gleich this ist
+	// Nachbedingun: true, wenn o gleich dem aktuellen Objekt ist
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Snowboarder) {
