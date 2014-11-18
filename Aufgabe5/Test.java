@@ -58,12 +58,42 @@ public class Test {
 		LeveledIter<Wood> subLvlIt1_1 = subLvlIt1.sub();
 		subLvlIt1_1.add(woodString3);
 		
-		//AUSGABE
+		//Ausgabe
+		int lvlcounter = 0;
+		int stagecounter = 0;
 		
+		while (lvlIt.hasNext())  {
+		
+			= lvlIt.next();
+	    
 		//2
 		
-		Wood<Skier> woodPerson3 = new SortedWood<Skier>(woodPerson0);
+		/*
+		Erzeugen Sie eine Datenstruktur vom Typ SortedWood<Person>.
+		Lesen Sie über Iteratoren alle Elemente aus den in Punkt 1 erzeugten Datenstrukturen 
+		der Typen SortedWood<Skier> und SortedWood<Snowboarder> aus 
+		und fügen Sie diese in die neue Datenstruktur ein. 
+		Überprüfen Sie die Funktionalität der Datenstruktur wie in Punkt 1,
+		allerdings ohne Köpergewichte bzw. Körpergrößen auszugeben.
+		*/
 		
+		Wood<Skier> woodPerson = new SortedWood<Skier>(woodPerson0);
+		Wood<Skier> woodPerson7 = new SortedWood<Skier>();
+		Wood<Skier> woodPerson8 = new SortedWood<Skier>(finn);
+	
+
+		
+		
+		//3
+		
+		Wood<Skier> woodPerson3 = new SortedWood<Skier>(woodPerson0);
+		Wood<Skier> woodPerson7 = new SortedWood<Skier>();
+		Wood<Skier> woodPerson8 = new SortedWood<Skier>(finn);
+		
+		Wood<Snowboarder> woodPerson4 = new SortedWood<Snowboarder>(finn);
+		Wood<Snowboarder> woodPerson5 = new SortedWood<Snowboarder>(finn);
+		Wood<Snowboarder> woodPerson6 = new SortedWood<Snowboarder>(finn);
+
 		
 
 	}
