@@ -58,10 +58,9 @@ public class Wood<T> {
 
 	private void toStringHelper(StringBuilder out, String indent, LeveledIter<Wood<T>> iter) {
 		while (iter.hasNext()) {
-//			System.out.println(iter.next().getElement());
 			LeveledIter<Wood<T>> sub = iter.sub();
-			toStringHelper(out, indent + "-", iter.sub());
 			out.append(indent + iter.next().getElement() + "\n");
+			toStringHelper(out, indent + "-", sub);
 		}
 	}
 
