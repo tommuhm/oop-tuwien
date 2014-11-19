@@ -34,7 +34,7 @@ public class Wood<T> {
 	}
 
 	private void containsHelper(LeveledIterImpl containsIter, LeveledIter<T> nextLevel, T compareElement) {
-		if (nextLevel.hasNext()) {
+		while (nextLevel.hasNext()) {
 			containsHelper(containsIter, nextLevel.sub(), compareElement);
 
 			LeveledIterImpl sub = (LeveledIterImpl) nextLevel.sub();
