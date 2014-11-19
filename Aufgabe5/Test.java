@@ -224,16 +224,16 @@ public class Test {
 		Iter<Snowboarder> snowIter = woodSnowboarder0.iterator();
 
 		while (skierIter.hasNext()) {
-			iterPers.add(skierIter.next());
+			iterPers.add(skierIter.next()); // change to iterPers and '\n' skierIter.next(); ?
 		}
 		while (snowIter.hasNext()) {
-			iterPers.add(snowIter.next());
+			iterPers.add(snowIter.next()); // change to iterPers and '\n' snowIter.next(); ?
 		}
 
 		System.out.println(printifyIterator(iterPers));
 
 		System.out.println("Contains Test von Person-Tree:");
-		LeveledIter<Person> containsTest = persWood.contains(person);
+		LeveledIter<Person> containsTest = persWood.contains(person); // cast?
 		System.out.println(printifyIterator(containsTest));
 		System.out.println();
 		
