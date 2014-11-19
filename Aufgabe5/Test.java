@@ -214,12 +214,40 @@ public class Test {
 
 	private static void test4() {
 		System.out.println("4. Test");
+		System.out.println("Erstellen eines Person-Baums mit Skier und Snowboardern:");
+
+		Person person = new Skier("Test", 12);
+		Wood<Person> persWood = new Wood<Person>(person);
+		LeveledIter<Person> iterPers = persWood.iterator();
+
+		Iter<Skier> skierIter = woodSkier0.iterator();
+		Iter<Snowboarder> snowIter = woodSnowboarder0.iterator();
+
+		while (skierIter.hasNext()) {
+			iterPers.add(skierIter.next());
+		}
+		while (snowIter.hasNext()) {
+			iterPers.add(snowIter.next());
+		}
+
+		System.out.println(printifyIterator(iterPers));
+
+		System.out.println("Contains Test von Person-Tree:");
+		LeveledIter<Person> containsTest = persWood.contains(person);
+		System.out.println(printifyIterator(containsTest));
 		System.out.println();
+		
+		// TODO: http://pastebin.com/jx2cZDA3 might help?
+		
 	}
 
 	private static void test5() {
 		System.out.println("5. Test");
 		System.out.println();
+
+		//prec
+		//sortedWood methoden
+		
 	}
 
 	private static String printifyIterator(LeveledIter iter) {
