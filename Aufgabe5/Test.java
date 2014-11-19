@@ -214,7 +214,29 @@ public class Test {
 
 	private static void test4() {
 		System.out.println("4. Test");
+		System.out.println("Erstellen eines Person-Baums mit Skier und Snowboardern:");
+
+		Person person = new Skier("Test", 12);
+		Wood<Person> persWood = new Wood<Person>(person);
+		LeveledIter<Person> iterPers = persWood.iterator();
+
+		Iter<Skier> skierIter = woodSkier0.iterator();
+		Iter<Snowboarder> snowIter = woodSnowboarder0.iterator();
+
+		while (skierIter.hasNext()) {
+			iterPers.add(skierIter.next());
+		}
+		while (snowIter.hasNext()) {
+			iterPers.add(snowIter.next());
+		}
+
+		System.out.println(printifyIterator(iterPers));
+
+		System.out.println("Contains Test von Sorted-Person-Tree:");
+		LeveledIter<Person> containsTest = persWood.contains(person);
+		System.out.println(printifyIterator(containsTest));
 		System.out.println();
+		
 	}
 
 	private static void test5() {
