@@ -8,83 +8,15 @@
 
 public class Test {
 
+	private static SortedWood<Skier> woodSkier0;
+	private static SortedWood<Snowboarder> woodSnowboarder0;
+
 	public static void main(String[] args) {
-
 		test1();
-
-		//1
-
-
-		//2 - unfortunately we couldn't get it right in any other way. We are sorry! It is bad, and we should feel bad.
-//		SortedWood<Person> woodPerson = null;
-//
-//		LeveledIter<Person> it_pers = null;
-//		Iter<Skier> it_skier = woodSkier0.sorted();
-//		Iter<Snowboarder> it_snowboarder = woodSnowboarder0.sorted();
-//
-//		Person ski_temp;
-//		Snowboarder sb_temp;
-//
-//		while (it_skier.hasNext()) {
-//			ski_temp = it_skier.next();
-//			if (woodPerson == null) {
-//				woodPerson = new SortedWood<Person>(ski_temp);
-//				it_pers = woodPerson.iterator();
-//			} else {
-//				it_pers.add(ski_temp);
-//			}
-//		}
-//
-//		while (it_snowboarder.hasNext()) {
-//			sb_temp = it_snowboarder.next();
-//			if (woodPerson == null) {
-//				woodPerson = new SortedWood<Person>(sb_temp);
-//				it_pers = woodPerson.iterator();
-//			} else {
-//				it_pers.add(sb_temp);
-//			}
-//		}
-//
-//		System.out.println(woodPerson.toString());
-//
-//		System.out.println();
-
-
-		//3
-//		Skier sk0 = new Skier("Sk00", 100);
-//		Skier sk1 = new Skier("Sk01", 100);
-//		Skier sk2 = new Skier("Sk02", 100);
-//		Skier sk3 = new Skier("Sk03", 100);
-//		Snowboarder sb0 = new Snowboarder("Sn00", 120);
-//		Snowboarder sb1 = new Snowboarder("Sn01", 120);
-//		Snowboarder sb2 = new Snowboarder("Sn02", 120);
-//
-//		SortedWood<Person> sw0 = new SortedWood<Person>(sk0);
-//		LeveledIter<Person> iterTemp = sw0.iterator();
-//		iterTemp.add(sk1);
-//		iterTemp.add(sb0);
-//		iterTemp.add(sb1);
-//
-//		SortedWood<Person> sw1 = new SortedWood<Person>(sk2);
-//		iterTemp = sw1.iterator();
-//		iterTemp.add(sk2);
-//		iterTemp.add(sk3);
-//		iterTemp.add(sb2);
-//
-//		SortedWood<SortedWood<Person>> sw_sw_pers = new SortedWood<SortedWood<Person>>(sw0);
-//		LeveledIter<Wood<SortedWood<Person>>> sw_sw_iter = sw_sw_pers.iterator();
-//		sw_sw_iter.add(new Wood<SortedWood<Person>>(sw1));
-//
-//		System.out.println(sw_sw_iter.toString());
-//
-//		System.out.println();
-//
-//		//4
-//
-//		Wood<Person> test4_wood = woodPerson;
-//		System.out.println(test4_wood.toString());
-
-
+		test2();
+		test3();
+		test4();
+		test5();
 	}
 
 	private static void test1() {
@@ -112,7 +44,7 @@ public class Test {
 		testLevel3.add("Test7");
 		testLevel3.add("Test8");
 
-		System.out.println(printIterator(testLevel1));
+		System.out.println(printifyIterator(testLevel1));
 
 		System.out.println("erstellen eines Skier-Baumes:");
 
@@ -126,7 +58,7 @@ public class Test {
 		Skier skier7 = new Skier("skier7", 70);
 		Skier skier8 = new Skier("skier8", 80);
 
-		SortedWood<Skier> woodSkier0 = new SortedWood<Skier>(skier0);
+		woodSkier0 = new SortedWood<Skier>(skier0);
 
 		LeveledIter<Skier> skierTestLevel1 = woodSkier0.iterator();
 		skierTestLevel1.add(skier1);
@@ -142,7 +74,7 @@ public class Test {
 		skierTestLevel3.add(skier7);
 		skierTestLevel3.add(skier8);
 
-		System.out.println(printIterator(skierTestLevel1));
+		System.out.println(printifyIterator(skierTestLevel1));
 
 		System.out.println("erstellen eines Snowboarder-Baumes:");
 
@@ -156,7 +88,7 @@ public class Test {
 		Snowboarder snowboarder7 = new Snowboarder("Snowboarder7", 150);
 		Snowboarder snowboarder8 = new Snowboarder("Snowboarder8", 150);
 
-		SortedWood<Snowboarder> woodSnowboarder0 = new SortedWood<Snowboarder>(snowboarder0);
+		woodSnowboarder0 = new SortedWood<Snowboarder>(snowboarder0);
 
 		LeveledIter<Snowboarder> snowboarderTestLevel1 = woodSnowboarder0.iterator();
 		snowboarderTestLevel1.next();
@@ -173,7 +105,7 @@ public class Test {
 		snowboarderTestLevel3.add(snowboarder8);
 		snowboarderTestLevel3.add(snowboarder4);
 
-		System.out.println(printIterator(snowboarderTestLevel1));
+		System.out.println(printifyIterator(snowboarderTestLevel1));
 
 		System.out.println("Ausgabe der sortierten Skier in aufsteigender Reihenfolge");
 
@@ -198,67 +130,99 @@ public class Test {
 
 		LeveledIter<Snowboarder> iterContainsSnow = woodSnowboarder0.contains(snowboarder4);
 
-		System.out.println(printIterator(iterContainsSnow));
+		System.out.println(printifyIterator(iterContainsSnow));
 
 		LeveledIter<String> iterContainsString = test1.contains("Test9");
 
-		System.out.println(printIterator(iterContainsString));
+		System.out.println(printifyIterator(iterContainsString));
 
 		System.out.println("Contains Test");
 
-
 		System.out.println("Datenstruktur vor dem entfernen von Snowboarder6");
 
-		System.out.println(printIterator(snowboarderTestLevel1));
+		System.out.println(printifyIterator(snowboarderTestLevel1));
 		snowboarderTestLevel3.previous();
 		snowboarderTestLevel3.remove();
-		System.out.println(printIterator(snowboarderTestLevel1));
+		System.out.println(printifyIterator(snowboarderTestLevel1));
 
 		System.out.println("Datenstruktur nach dem entfernen von Snowboarder6");
 
 		System.out.println("Datenstruktur nach dem einfuegen von Snowboarder6 in Ebene2");
 
 		snowboarderTestLevel2.add(snowboarder6);
-		System.out.println(printIterator(snowboarderTestLevel1));
+		System.out.println(printifyIterator(snowboarderTestLevel1));
+		System.out.println();
 	}
 
 	private static void test2() {
-		SortedWood<Person> woodPerson = null;
+		System.out.println("2. Test");
 
-		LeveledIter<Person> it_pers = null;
-		Iter<Skier> it_skier = woodSkier0.sorted();
-		Iter<Snowboarder> it_snowboarder = woodSnowboarder0.sorted();
+		System.out.println("Erstellen eines Person-Baums mit Skier und Snowboardern:");
 
-		Person ski_temp;
-		Snowboarder sb_temp;
+		Person person = new Skier("Test", 12);
+		SortedWood<Person> persWood = new SortedWood<Person>(person);
+		LeveledIter<Person> iterPers = persWood.iterator();
 
-		while (it_skier.hasNext()) {
-			ski_temp = it_skier.next();
-			if (woodPerson == null) {
-				woodPerson = new SortedWood<Person>(ski_temp);
-				it_pers = woodPerson.iterator();
-			} else {
-				it_pers.add(ski_temp);
-			}
+		Iter<Skier> skierIter = woodSkier0.sorted();
+		Iter<Snowboarder> snowIter = woodSnowboarder0.sorted();
+
+		while (skierIter.hasNext()) {
+			iterPers.add(skierIter.next());
+		}
+		while (snowIter.hasNext()) {
+			iterPers.add(snowIter.next());
 		}
 
-		while (it_snowboarder.hasNext()) {
-			sb_temp = it_snowboarder.next();
-			if (woodPerson == null) {
-				woodPerson = new SortedWood<Person>(sb_temp);
-				it_pers = woodPerson.iterator();
-			} else {
-				it_pers.add(sb_temp);
-			}
-		}
+		System.out.println(printifyIterator(iterPers));
 
-		System.out.println(woodPerson.toString());
-
+		System.out.println("Contains Test von Sorted-Person-Tree:");
+		LeveledIter<Person> containsTest = persWood.contains(person);
+		System.out.println(printifyIterator(containsTest));
 		System.out.println();
-
 	}
 
-	private static String printIterator(LeveledIter iter) {
+	private static void test3() {
+		System.out.println("3. Test");
+
+		Skier sk0 = new Skier("Sk00", 100);
+		Skier sk1 = new Skier("Sk01", 100);
+		Skier sk2 = new Skier("Sk02", 100);
+		Skier sk3 = new Skier("Sk03", 100);
+		Snowboarder sb0 = new Snowboarder("Sn00", 120);
+		Snowboarder sb1 = new Snowboarder("Sn01", 120);
+		Snowboarder sb2 = new Snowboarder("Sn02", 120);
+
+		SortedWood<Person> sw0 = new SortedWood<Person>(sk0);
+		LeveledIter<Person> iterTemp = sw0.iterator();
+		iterTemp.add(sk1);
+		iterTemp.add(sb0);
+		iterTemp.add(sb1);
+
+		SortedWood<Person> sw1 = new SortedWood<Person>(sk2);
+		iterTemp = sw1.iterator();
+		iterTemp.add(sk2);
+		iterTemp.add(sk3);
+		iterTemp.add(sb2);
+
+		SortedWood<SortedWood<Person>> sw_sw_pers = new SortedWood<SortedWood<Person>>(sw0);
+		LeveledIter<SortedWood<Person>> sw_sw_iter = sw_sw_pers.iterator();
+		sw_sw_iter.add(sw1);
+
+		System.out.println(printifyIterator(sw_sw_iter));
+		System.out.println();
+	}
+
+	private static void test4() {
+		System.out.println("4. Test");
+		System.out.println();
+	}
+
+	private static void test5() {
+		System.out.println("5. Test");
+		System.out.println();
+	}
+
+	private static String printifyIterator(LeveledIter iter) {
 		while (iter.hasPrevious()) iter.previous();
 
 		StringBuilder out = new StringBuilder();
