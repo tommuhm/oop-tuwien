@@ -242,6 +242,10 @@ public class Test {
 	private static void test5() {
 		System.out.println("5. Test");
 		System.out.println();
+
+		//prec
+		//sortedWood methoden
+		
 	}
 
 	private static String printifyIterator(LeveledIter iter) {
