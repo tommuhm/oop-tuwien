@@ -232,7 +232,7 @@ public class Test {
 
 		System.out.println(printifyIterator(iterPers));
 
-		System.out.println("Contains Test von Sorted-Person-Tree:");
+		System.out.println("Contains Test von Person-Tree:");
 		LeveledIter<Person> containsTest = persWood.contains(person);
 		System.out.println(printifyIterator(containsTest));
 		System.out.println();
