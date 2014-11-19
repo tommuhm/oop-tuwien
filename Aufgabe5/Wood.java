@@ -50,6 +50,29 @@ public class Wood<T> {
 		return rootIter;
 	}
 
+	@Override
+	public String toString() {
+		LeveledIter<T> iter = this.iterator();
+		StringBuilder out = new StringBuilder();
+
+		while (iter.hasPrevious()) iter.previous();
+
+		toStringHelper(out, "", iter);
+
+		while (iter.hasPrevious()) iter.previous();
+
+		return out.toString();
+	}
+
+	private void toStringHelper(StringBuilder out, String indent, LeveledIter<T> iter) {
+		while (iter.hasNext()) {
+			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
+			LeveledIter sub = iter.sub();
+			out.append(indent + iter.next() + "\n");
+			toStringHelper(out, indent + "--", sub);
+		}
+	}
+
 	protected class WoodyNode {
 
 		private T element;
