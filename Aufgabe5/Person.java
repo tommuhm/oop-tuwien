@@ -23,9 +23,7 @@ public abstract class Person implements Prec<Person> {
 	// Nachbedingung: true, wenn die Attribute von o gleich den Attributen des aktuellen Objekts sind
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof Person) {
-			return ((Person) o).name.equals(this.name);
-		} return false;
+		return this.toString().equals(o.toString());
 	}
 
 	// Nachbedinung: gibt den namen der person zurueck
