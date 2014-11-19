@@ -181,17 +181,17 @@ public class Wood<T> {
 			next.subIter = sub;
 		}
 
-		// TODO - delete subtree?
-		// TODO - NoSuchElementException
+		// CHECK CHECK!
+		// TODO - delete subtree? Wird ja eigentlich erledigt indem einfach die Referenz auf next verloren geht.
 		// TODO      * @throws IllegalStateException if the {@code next} method has not
 		//         yet been called, or the {@code remove} method has already
 		//         been called after the last call to the {@code next}
 		//         method
 		// Nachbedingung: entfernt die Node
 		@Override
-		public void remove() {
+		public void remove() throws IllegalStateException {
 			if (next != null) {
-				next.remove(); // TODO is des jetzt is richtige element? oder sollt net eig prev entfernt werden?
+				next.remove(); 
 				next = next.next;
 			} else {
 				throw new IllegalStateException("remove can only be called after next has been called");
