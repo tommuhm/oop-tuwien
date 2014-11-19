@@ -5,12 +5,12 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	public SortedWood(T wert) {
 		super(wert);
 	}
-	
+
 	// Nachbedingung: sortiert alle Nodes in sortedIter 
-	public Iter<Wood<T>> sorted() {
-		LeveledIter<Wood<T>> iter = this.iterator();
-		LeveledIter<Wood<T>> allIter = new LeveledIterImpl<Wood<T>>();
-		LeveledIter<Wood<T>> sortedIter = new LeveledIterImpl<Wood<T>>();
+	public Iter<T> sorted() {
+		LeveledIter<T> iter = this.iterator();
+		LeveledIter<T> allIter = new LeveledIterImpl();
+		LeveledIter<T> sortedIter = new LeveledIterImpl();
 
 		getAllWoodyNodes(allIter, iter);
 
@@ -20,12 +20,12 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	}
 
 	//Nachbedingung: sortiert alle WoodyNodes in sortedIter mit Hilfe von instertSorted
-	private void sortWoodyNodes(LeveledIter<Wood<T>> sortedIter,
-			LeveledIter<Wood<T>> allIter) {
-		Wood<T> wood;
+	private void sortWoodyNodes(LeveledIter<T> sortedIter,
+															LeveledIter<T> allIter) {
+		T wood;
 
 		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
-		while(allIter.hasPrevious()) { //Zurücksetzen.
+		while (allIter.hasPrevious()) { //Zurücksetzen.
 			// Nachbedingung: wechselt zum vorherigen Element
 			allIter.previous();
 		}
@@ -37,7 +37,7 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 				// Nachbedingung: wechselt zum vorherigen Element
 				sortedIter.previous();
 			}
-			
+
 			insertSorted(sortedIter, wood);
 		}
 
@@ -49,13 +49,13 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	}
 
 	//Nachbedingung: fuegt wood an der richtigen Stelle von sortedIter ein
-	private void insertSorted(LeveledIter<Wood<T>> sortedIter, Wood<T> wood) {
-		Wood<T> temp = null;
+	private void insertSorted(LeveledIter<T> sortedIter, T wood) {
+		T temp = null;
 
 		if (sortedIter.hasNext()) {
 			while (sortedIter.hasNext()) {
 				temp = sortedIter.next();
-				if (wood.getElement().prec(temp.getElement())) {
+				if (wood.prec(temp)) {
 					// Nachbedingung: wechselt zum vorherigen Element
 					sortedIter.previous();
 					// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
@@ -77,21 +77,21 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 			sortedIter.previous();
 		}
 	}
-	
+
 	// Nachbedingung: alle Elemente von iter werden in einem Level von allIter eingefuegt
-	private void getAllWoodyNodes(LeveledIter<Wood<T>> allIter,
-			LeveledIter<Wood<T>> iter) {
-		
+	private void getAllWoodyNodes(LeveledIter<T> allIter,
+																LeveledIter<T> iter) {
+
 		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
-		while(iter.hasPrevious()) { //iter zurücksetzen auf erstes element
+		while (iter.hasPrevious()) { //iter zurücksetzen auf erstes element
 			// Nachbedingung: wechselt zum vorherigen Element
 			iter.previous();
 		}
-		
+
 		while (iter.hasNext()) {
 			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 			getAllWoodyNodes(allIter, iter.sub());
-			Wood<T> node = iter.next();
+			T node = iter.next();
 			// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
 			allIter.add(node);
 		}
@@ -101,13 +101,13 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	// Nachbedingung: true, wenn für alle Elemente aus diesem Objekt und alle Elemente aus x auch this.prec(x) gilt
 	@Override
 	public boolean prec(SortedWood<T> x) {
-		Iter<Wood<T>> itThis = this.sorted();
-		Iter<Wood<T>> itX = x.sorted();
+		Iter<T> itThis = this.sorted();
+		Iter<T> itX = x.sorted();
 
 		while (itThis.hasNext() && itX.hasNext()) {
-			Wood<T> wThis = itThis.next();
-			Wood<T> wX = itX.next();
-			if (!wThis.getElement().prec(wX.getElement())) {
+			T wThis = itThis.next();
+			T wX = itX.next();
+			if (!wThis.prec(wX)) {
 				return false;
 			}
 		}
