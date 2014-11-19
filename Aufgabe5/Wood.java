@@ -50,6 +50,7 @@ public class Wood<T> {
 		return rootIter;
 	}
 
+	// Nachbedinung: gibt die baumstruktur aus, sub baeume sind jeweils mit '--' eingerueckt
 	@Override
 	public String toString() {
 		LeveledIter<T> iter = this.iterator();
@@ -64,6 +65,7 @@ public class Wood<T> {
 		return out.toString();
 	}
 
+	// Nachbedinung: speichert die elemente des iterators iter in den out string builder, indent ist die Einrueckung der zeilen
 	private void toStringHelper(StringBuilder out, String indent, LeveledIter<T> iter) {
 		while (iter.hasNext()) {
 			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
