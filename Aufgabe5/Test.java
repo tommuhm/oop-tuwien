@@ -237,6 +237,8 @@ public class Test {
 		System.out.println(printifyIterator(containsTest));
 		System.out.println();
 		
+		// TODO: http://pastebin.com/jx2cZDA3 might help?
+		
 	}
 
 	private static void test5() {
