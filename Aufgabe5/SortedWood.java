@@ -73,7 +73,7 @@ public class SortedWood<T extends Prec<? super T>> extends Wood<T> implements Pr
 	}
 
 	// Vorbedingung: x darf nicht null sein  
-	// Nachbedingung: true, wenn für alle Elemente aus diesem Objekt und alle Elemente aus x auch this.prec(x) gilt
+	// Nachbedingung: true, wenn fuer alle Elemente aus diesem Objekt und alle Elemente aus x auch this.prec(x) gilt
 	@Override
 	public boolean prec(SortedWood<T> x) {
 		Iter<T> itThis = this.sorted();
