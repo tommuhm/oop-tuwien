@@ -69,7 +69,7 @@ public class Wood<T> {
 	private void toStringHelper(StringBuilder out, String indent, LeveledIter<T> iter) {
 		while (iter.hasNext()) {
 			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
-			LeveledIter sub = iter.sub();
+			LeveledIter<T> sub = iter.sub();
 			out.append(indent + iter.next() + "\n");
 			toStringHelper(out, indent + "--", sub);
 		}
