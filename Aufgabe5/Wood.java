@@ -3,14 +3,14 @@ import java.util.NoSuchElementException;
 
 public class Wood<T> {
 
-	private WoodyNode<Wood<T>> node;
+	private WoodyNode node;
 	private T element;
 
 	// Vorbedingung: element darf nicht null sein
 	// Nachbedingung: eine node mit this wurde erstellt
 	public Wood(T element) {
 		this.element = element;
-		this.node = new WoodyNode<Wood<T>>(this);
+		this.node = new WoodyNode(element);
 	}
 	
 	protected T getElement() {
@@ -19,35 +19,33 @@ public class Wood<T> {
 
 	// Vorbedingung: element darf nicht null sein
 	// Nachbedingung: sucht alle Elemente in der Datenstruktur, die gleich element sind. Das Ergebnis ist leveledIter, der ueber alle gefundenen gleichen Elemente iteriert
-	public LeveledIter<Wood<T>> contains(T element) {
-		LeveledIterImpl<Wood<T>> leveledIter = new LeveledIterImpl<Wood<T>>();
+	public LeveledIter<T> contains(T element) {
+		LeveledIterImpl containsIter = new LeveledIterImpl();
 
-		LeveledIter<Wood<T>> rootIter = this.iterator();
-		while (rootIter.hasNext()) {
+		LeveledIter<T> rootLevel = this.iterator();
+		containsHelper(containsIter, rootLevel, element);
 
-			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
-			LeveledIter<Wood<T>> subIter = rootIter.sub();
-			Wood<T> node = rootIter.next();
-			if (node.getElement().equals(element)) {
-				// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
-				leveledIter.add(node);
-			}
-
-			if (subIter.hasNext()) {
-				LeveledIter<Wood<T>> subElements = subIter.next().contains(element);
-				while (subElements.hasNext()) {
-					// Nachbedingung: fuegt ein neues Element zum derzeitigen Wood hinzu
-					leveledIter.add(subElements.next());
-				}
-			}
+		while (containsIter.hasPrevious()) {
+			// Nachbedingung: wechselt zum vorherigen Element
+			containsIter.previous();
 		}
 
-		return leveledIter;
+		return containsIter;
+	}
+
+	private void containsHelper(LeveledIterImpl containsIter, LeveledIter<T> nextLevel, T compareElement) {
+		if (nextLevel.hasNext()) {
+			containsHelper(containsIter, nextLevel.sub(), compareElement);
+			T element = nextLevel.next();
+			if (element.equals(compareElement)) {
+				containsIter.add(element);
+			}
+		}
 	}
 
 	// Nachbedingung: initialisiert einen Iterator und setzt den Pointer vor das erste Element
-	public LeveledIter<Wood<T>> iterator() {
-		LeveledIterImpl<Wood<T>> rootIter = new LeveledIterImpl<Wood<T>>(node);
+	public LeveledIter<T> iterator() {
+		LeveledIterImpl rootIter = new LeveledIterImpl(node);
 
 		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 		while (rootIter.hasPrevious()) {
@@ -65,39 +63,39 @@ public class Wood<T> {
 		return out.toString();
 	}
 
-	private void toStringHelper(StringBuilder out, String indent, LeveledIter<Wood<T>> iter) {
+	private void toStringHelper(StringBuilder out, String indent, LeveledIter<T> iter) {
 		while (iter.hasNext()) {
 			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
-			LeveledIter<Wood<T>> sub = iter.sub();
-			out.append(indent + iter.next().getElement() + "\n");
+			LeveledIter<T> sub = iter.sub();
+			out.append(indent + iter.next() + "\n");
 			toStringHelper(out, indent + "-", sub);
 		}
 	}
 
-	protected class WoodyNode<F> {
+	protected class WoodyNode {
 
-		private F element;
-		private WoodyNode<F> next;
-		private WoodyNode<F> prev;
-		private LeveledIterImpl<F> subIter;
+		private T element;
+		private WoodyNode next;
+		private WoodyNode prev;
+		private LeveledIterImpl subIter;
 
 		// Vorbedingung: element darf nicht null sein
 		// Nachbedingung: erstellt einen neuen Iterator
-		protected WoodyNode(F element) {
+		protected WoodyNode(T element) {
 			this.element = element;
 			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
-			this.subIter = new LeveledIterImpl<F>();
+			this.subIter = new LeveledIterImpl();
 		}
 
-		protected F getElement() {
+		protected T getElement() {
 			return element;
 		}
 
 		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
 		// Vorbedingung: element darf nicht null sein
 		// Nachbedingung: fuegt element vor der aktuellen Node ein
-		private void addBefore(F element) {
-			WoodyNode<F> node = new WoodyNode<F>(element);
+		private void addBefore(T element) {
+			WoodyNode node = new WoodyNode(element);
 
 			if (prev != null) {
 				node.prev = prev;
@@ -111,8 +109,8 @@ public class Wood<T> {
 		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
 		// Vorbedingung: element darf nicht null sein
 		// Nachbedingung: fuegt element nach der aktuellen Node ein
-		private void addAfter(F element) {
-			WoodyNode<F> node = new WoodyNode<F>(element);
+		private void addAfter(T element) {
+			WoodyNode node = new WoodyNode(element);
 
 			if (next != null) {
 				node.next = next;
@@ -135,37 +133,37 @@ public class Wood<T> {
 	}
 
 	// LevelIter implementation
-	protected class LeveledIterImpl<E> implements LeveledIter<E> {
+	protected class LeveledIterImpl implements LeveledIter<T> {
 
-		private WoodyNode<E> prev = null;
-		private WoodyNode<E> next = null;
+		private WoodyNode prev = null;
+		private WoodyNode next = null;
 
 		protected LeveledIterImpl() {
 		}
 
 		// Vorbedingung: node darf nicht null sein
 		// Nachbedingung: fuegt eine node ein
-		protected LeveledIterImpl(WoodyNode<E> node) {
+		protected LeveledIterImpl(WoodyNode node) {
 			next = node;
 			prev = node.prev;
 		}
 
 		// Nachbedingung: gibt die Substruktur vom naesten node zurueck
 		@Override
-		public LeveledIter<E> sub() {
-			LeveledIterImpl<E> subIter = null;
+		public LeveledIter<T> sub() {
+			LeveledIterImpl subIter = null;
 
 			if (next != null) {
 				// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 				subIter = next.subIter;
 
 				if (subIter.hasNext()) {
-					WoodyNode<E> subElm = subIter.next;
-					new LeveledIterImpl<E>(subElm);
+					WoodyNode subElm = subIter.next;
+					new LeveledIterImpl(subElm);
 					// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 				} else if (subIter.hasPrevious()) {
-					WoodyNode<E> subElm = subIter.prev;
-					new LeveledIterImpl<E>(subElm);
+					WoodyNode subElm = subIter.prev;
+					new LeveledIterImpl(subElm);
 				}
 
 				// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
@@ -180,7 +178,7 @@ public class Wood<T> {
 		// Vorbedingung: element darf nicht null
 		// Nachbedingung: fuegt ein element zu WoodyNode hinzu
 		@Override
-		public void add(E element) {
+		public void add(T element) {
 			if (next != null) {
 				next.addBefore(element);
 				next = next.prev;
@@ -188,7 +186,7 @@ public class Wood<T> {
 				prev.addAfter(element);
 				next = prev.next;
 			} else {
-				next = new WoodyNode<E>(element);
+				next = new WoodyNode(element);
 			}
 		}
 
@@ -223,7 +221,7 @@ public class Wood<T> {
 
 		// Nachbedingung: wechselt auf die naechste Node
 		@Override
-		public E next() {
+		public T next() {
 			if (hasNext()) {
 				prev = next;
 				next = next.next;
@@ -235,7 +233,7 @@ public class Wood<T> {
 
 		// Nachbedingung: wechselt auf die vorherige Node
 		@Override
-		public E previous() {
+		public T previous() {
 			// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 			if (hasPrevious()) {
 				next = prev;
