@@ -36,9 +36,11 @@ public class Wood<T> {
 	private void containsHelper(LeveledIterImpl containsIter, LeveledIter<T> nextLevel, T compareElement) {
 		if (nextLevel.hasNext()) {
 			containsHelper(containsIter, nextLevel.sub(), compareElement);
+
+			LeveledIterImpl sub = (LeveledIterImpl) nextLevel.sub();
 			T element = nextLevel.next();
 			if (element.equals(compareElement)) {
-				containsIter.add(element);
+				containsIter.add(element, sub);
 			}
 		}
 	}
@@ -54,22 +56,6 @@ public class Wood<T> {
 		}
 
 		return rootIter;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder out = new StringBuilder();
-		toStringHelper(out, "", iterator());
-		return out.toString();
-	}
-
-	private void toStringHelper(StringBuilder out, String indent, LeveledIter<T> iter) {
-		while (iter.hasNext()) {
-			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
-			LeveledIter<T> sub = iter.sub();
-			out.append(indent + iter.next() + "\n");
-			toStringHelper(out, indent + "-", sub);
-		}
 	}
 
 	protected class WoodyNode {
@@ -188,6 +174,11 @@ public class Wood<T> {
 			} else {
 				next = new WoodyNode(element);
 			}
+		}
+
+		private void add(T element, LeveledIterImpl sub) {
+			add(element);
+			next.subIter = sub;
 		}
 
 		// TODO - delete subtree?
