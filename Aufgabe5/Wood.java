@@ -4,17 +4,10 @@ import java.util.NoSuchElementException;
 public class Wood<T> {
 
 	private WoodyNode node;
-	private T element;
 
 	// Vorbedingung: element darf nicht null sein
-	// Nachbedingung: eine node mit this wurde erstellt
 	public Wood(T element) {
-		this.element = element;
 		this.node = new WoodyNode(element);
-	}
-	
-	protected T getElement() {
-		return element;
 	}
 
 	// Vorbedingung: element darf nicht null sein
@@ -26,13 +19,14 @@ public class Wood<T> {
 		containsHelper(containsIter, rootLevel, element);
 
 		while (containsIter.hasPrevious()) {
-			// Nachbedingung: wechselt zum vorherigen Element
 			containsIter.previous();
 		}
 
 		return containsIter;
 	}
 
+	// Vorbedingung: containsIter, nextLevel, compareElement duerfen nicht Null sein
+	// Nachbedingung: containsIter enthaelt alle elemment aus nextLevel die gleich dem compareElement sind
 	private void containsHelper(LeveledIterImpl containsIter, LeveledIter<T> nextLevel, T compareElement) {
 		while (nextLevel.hasNext()) {
 			containsHelper(containsIter, nextLevel.sub(), compareElement);
@@ -45,13 +39,11 @@ public class Wood<T> {
 		}
 	}
 
-	// Nachbedingung: initialisiert einen Iterator und setzt den Pointer vor das erste Element
+	// Nachbedingung: gibt einen iterator fuer die komplette baumstruktur zureck, der pointer steht auf der ersten stelle der aktuelle ebene
 	public LeveledIter<T> iterator() {
 		LeveledIterImpl rootIter = new LeveledIterImpl(node);
 
-		// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 		while (rootIter.hasPrevious()) {
-			// Nachbedingung: wechselt zum vorherigen Element
 			rootIter.previous();
 		}
 
@@ -66,48 +58,41 @@ public class Wood<T> {
 		private LeveledIterImpl subIter;
 
 		// Vorbedingung: element darf nicht null sein
-		// Nachbedingung: erstellt einen neuen Iterator
-		protected WoodyNode(T element) {
+		private WoodyNode(T element) {
 			this.element = element;
-			// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 			this.subIter = new LeveledIterImpl();
 		}
 
-		protected T getElement() {
+		// Nachbedingung: gibt das element des nodes mit dem generischen type t zurueck
+		private T getElement() {
 			return element;
 		}
 
-		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
 		// Vorbedingung: element darf nicht null sein
-		// Nachbedingung: fuegt element vor der aktuellen Node ein
+		// Nachbedingung: fuegt element vor dem aktuellen Node ein
 		private void addBefore(T element) {
 			WoodyNode node = new WoodyNode(element);
-
 			if (prev != null) {
 				node.prev = prev;
 				prev.next = node;
 			}
-
 			node.next = this;
 			this.prev = node;
 		}
 
-		// TODO concureent modif error? was passiert bei mehrere iteratoren gleichzeitig aenderungen?
 		// Vorbedingung: element darf nicht null sein
-		// Nachbedingung: fuegt element nach der aktuellen Node ein
+		// Nachbedingung: fuegt element nach dem aktuellen Node ein
 		private void addAfter(T element) {
 			WoodyNode node = new WoodyNode(element);
-
 			if (next != null) {
 				node.next = next;
 				next.prev = node;
 			}
-
 			node.prev = this;
 			this.next = node;
 		}
-		
-		// Nachbedingung: entfernt alle Elemente vom derzeitigen Wood
+
+		// Nachbedingung: entfernt das aktuelle elemente aus der (verketteten) liste
 		private void remove() {
 			if (prev != null) {
 				prev.next = next;
@@ -118,43 +103,40 @@ public class Wood<T> {
 		}
 	}
 
-	// LevelIter implementation
 	protected class LeveledIterImpl implements LeveledIter<T> {
 
+		boolean removeDone = false;
 		private WoodyNode prev = null;
 		private WoodyNode next = null;
 
+		// Nachbedingung: erstellt einen leeren Iterator
 		protected LeveledIterImpl() {
 		}
 
 		// Vorbedingung: node darf nicht null sein
-		// Nachbedingung: fuegt eine node ein
-		protected LeveledIterImpl(WoodyNode node) {
+		// Nachbedingung: erstellt einen Iterator mit der Baum-Struktur des node elements
+		private LeveledIterImpl(WoodyNode node) {
 			next = node;
 			prev = node.prev;
 		}
 
-		// Nachbedingung: gibt die Substruktur vom naesten node zurueck
+		// Nachbedingung: gibt den Sub-Baum des naechsten elements zureck
 		@Override
 		public LeveledIter<T> sub() {
 			LeveledIterImpl subIter = null;
 
 			if (next != null) {
-				// Nachbedingung: wechselt in die Substruktur vom derzeitigen Wood
 				subIter = next.subIter;
 
 				if (subIter.hasNext()) {
 					WoodyNode subElm = subIter.next;
 					new LeveledIterImpl(subElm);
-					// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 				} else if (subIter.hasPrevious()) {
 					WoodyNode subElm = subIter.prev;
 					new LeveledIterImpl(subElm);
 				}
 
-				// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 				while (subIter.hasPrevious()) {
-					// Nachbedingung: wechselt zum vorherigen Element
 					subIter.previous();
 				}
 			}
@@ -162,7 +144,7 @@ public class Wood<T> {
 		}
 
 		// Vorbedingung: element darf nicht null
-		// Nachbedingung: fuegt ein element zu WoodyNode hinzu
+		// Nachbedingung: fuegt ein element vor dem next element in den Iterator ein
 		@Override
 		public void add(T element) {
 			if (next != null) {
@@ -176,23 +158,21 @@ public class Wood<T> {
 			}
 		}
 
+		// Vorbedingung: element und sub duerfen nicht null
+		// Nachbedingung: fuegt ein element mit sub in den Iterator ein
 		private void add(T element, LeveledIterImpl sub) {
 			add(element);
 			next.subIter = sub;
 		}
 
-		// CHECK CHECK!
-		// TODO - delete subtree? Wird ja eigentlich erledigt indem einfach die Referenz auf next verloren geht.
-		// TODO      * @throws IllegalStateException if the {@code next} method has not
-		//         yet been called, or the {@code remove} method has already
-		//         been called after the last call to the {@code next}
-		//         method
-		// Nachbedingung: entfernt die Node
+		// Nachbedingung: entfernt den aktuellen Node (element das von dem letzten next() call zurueckgegben wurde)
+		// Nachbedingung: wirft eine illegal state exception wenn remove aufgerufen wird bevor next aufgerufen wurde
 		@Override
 		public void remove() throws IllegalStateException {
-			if (next != null) {
-				next.remove(); 
-				next = next.next;
+			if (removeDone == false && prev != null) {
+				removeDone = true;
+				prev.remove();
+				prev = prev.prev;
 			} else {
 				throw new IllegalStateException("remove can only be called after next has been called");
 			}
@@ -211,9 +191,11 @@ public class Wood<T> {
 		}
 
 		// Nachbedingung: wechselt auf die naechste Node
+		// Nachbedingung: wirft eine NoSuchElementException wenn das ende der liste erreicht wurde
 		@Override
 		public T next() {
 			if (hasNext()) {
+				removeDone = false;
 				prev = next;
 				next = next.next;
 			} else {
@@ -223,10 +205,11 @@ public class Wood<T> {
 		}
 
 		// Nachbedingung: wechselt auf die vorherige Node
+		// Nachbedingung: wirft eine NoSuchElementException wenn der anfang der liste erreicht wurde
 		@Override
 		public T previous() {
-			// Nachbedingung: gibt an, ob es noch ein vorheriges Element gibt
 			if (hasPrevious()) {
+				removeDone = false;
 				next = prev;
 				prev = prev.prev;
 			} else {
