@@ -1,3 +1,12 @@
+/**
+ * Aufteilung der Arbeiten:
+ * Tom Muhm: Wood, generelle Arbeiten, Bugfixing
+ * Ulrich Aschl: SortedWood, Test, Bugfixing
+ * David Jaffry: Bedingungen, Test, Bugfixing, Person, Skier, Snowboarder
+ * 
+ *
+ */
+
 
 public class Test {
 	
@@ -151,81 +160,77 @@ public class Test {
 		
 		
 	
-		//2
+		//2 - unfortunately we couldn't get it right in any other way. We are sorry! It is bad, and we should feel bad.
 		SortedWood<Person> woodPerson = null;
 		
 		LeveledIter<Wood<Person>> it_pers = null;
 		Iter<Wood<Skier>> it_skier = woodSkier0.sorted(); 
 		Iter<Wood<Snowboarder>> it_snowboarder = woodSnowboarder0.sorted(); 
 
-		Wood<Skier> ski_temp;
+		Wood<? extends Person> ski_temp;
 		Wood<Snowboarder> sb_temp;
-		
+
 		while(it_skier.hasNext()) {
 			ski_temp = it_skier.next();
 			if(woodPerson == null) {
 				woodPerson = new SortedWood<Person>(ski_temp.getElement());
 				it_pers = woodPerson.iterator();
 			} else {
-				it_pers.add(ski_temp);
+				it_pers.add(new Wood<Person>(ski_temp.getElement()));
 			}
 		}
 		
-		/*
-		Erzeugen Sie eine Datenstruktur vom Typ SortedWood<Person>.
-		Lesen Sie über Iteratoren alle Elemente aus den in Punkt 1 erzeugten Datenstrukturen 
-		der Typen SortedWood<Skier> und SortedWood<Snowboarder> aus 
-		und fügen Sie diese in die neue Datenstruktur ein. 
-		Überprüfen Sie die Funktionalität der Datenstruktur wie in Punkt 1,
-		allerdings ohne Köpergewichte bzw. Körpergrößen auszugeben.
-		*/
-		/*
-		for (lvlItS.hasPrevious()) {
-			lvlItS.previous();
+		while(it_snowboarder.hasNext()) {
+			sb_temp = it_snowboarder.next();
+			if(woodPerson == null) {
+				woodPerson = new SortedWood<Person>(sb_temp.getElement());
+				it_pers = woodPerson.iterator();
+			} else {
+				it_pers.add(new Wood<Person>(sb_temp.getElement()));
+			}
 		}
 		
-		for (lvlItB.hasPrevious()) {
-			lvlItB.previous();
-		}
-		
-		
-		if (lvlItS.hasPrevious()) lvlItS.previous();
-		LeveledIter<Wood<Person>> lvlIt = woodBoarder0.iterator();
-		lvlIt.next();
-		while (lvlItS.hasNext()) {
-			
-		}*/
+		System.out.println(woodPerson.toString());
 
+		System.out.println();
+		
+		
 		//3
+		Skier sk0 = new Skier("Sk00", 100);
+		Skier sk1 = new Skier("Sk01", 100);
+		Skier sk2 = new Skier("Sk02", 100);
+		Skier sk3 = new Skier("Sk03", 100);
+		Snowboarder sb0 = new Snowboarder("Sn00", 120);
+		Snowboarder sb1 = new Snowboarder("Sn01", 120);
+		Snowboarder sb2 = new Snowboarder("Sn02", 120);
+
+		SortedWood<Person> sw0 = new SortedWood<Person>(sk0);
+		LeveledIter<Wood<Person>> iterTemp = sw0.iterator();
+		iterTemp.add(new Wood<Person>(sk1));
+		iterTemp.add(new Wood<Person>(sb0));
+		iterTemp.add(new Wood<Person>(sb1));
+		
+		SortedWood<Person> sw1 = new SortedWood<Person>(sk2);
+		iterTemp = sw1.iterator();
+		iterTemp.add(new Wood<Person>(sk2));
+		iterTemp.add(new Wood<Person>(sk3));
+		iterTemp.add(new Wood<Person>(sb2));
+		
+		SortedWood<SortedWood<Person>> sw_sw_pers = new SortedWood<SortedWood<Person>>(sw0);
+		LeveledIter<Wood<SortedWood<Person>>> sw_sw_iter = sw_sw_pers.iterator();
+		sw_sw_iter.add(new Wood<SortedWood<Person>>(sw1));
+		
+		System.out.println(sw_sw_iter.toString());
+		
+		System.out.println();
 		
 		//4
 		
-		//5
-
-
-
+		Wood<Person> test4_wood = woodPerson;
+		System.out.println(test4_wood.toString());
+		
+		
+		
+		
 	}
-	/*
-	private static void IttoString(LeveledIter<Wood<Person>> it) {
-		lvlcounter = 0;
-		stagecounter = 0;
-		skierAusgabe(it);	
-	}
-	
-	private static void skierAusgabe(LeveledIter<Wood<Person>> it) {
-
-		while (it.hasNext()){
-			stagecounter ++;
-			System.out.print(lvlcounter + "-" + stagecounter + ": " + ((SortedWood<Person>) it.next()).sorted().toString() + " ");
-			if (it.sub().hasNext()) {
-				lvlcounter ++;
-				System.out.print('\n');
-				skierAusgabe(it.sub());
-				lvlcounter --;
-			} else if (it.hasNext()) {
-				skierAusgabe(it);
-				stagecounter --;
-			}
-		}
-	}*/
 }
