@@ -5,4 +5,19 @@ public class ModulGas extends Modul {
 		super(gewicht);
 	}
 
+	@Override
+	public boolean funktioniertFuer(PlanetGas planet) {
+		return true;
+	}
+	
+	@Override
+	public boolean funktioniertFuer(PlanetSchwachGrav planet) {
+		return false;
+	}
+	
+	@Override
+	public boolean funktioniertFuer(PlanetStarkGrav planet) {
+		return false;
+	}
+
 }

@@ -3,7 +3,21 @@ public class ModulDuesen extends ModulStark {
 
 	public ModulDuesen(int gewicht) {
 		super(gewicht);
-		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public boolean funktioniertFuer(PlanetGas planet) {
+		return false;
+	}
+
+	@Override
+	public boolean funktioniertFuer(PlanetSchwachGrav planet) {
+		return true;
+	}
+
+	@Override
+	public boolean funktioniertFuer(PlanetStarkGrav planet) {
+		return true;
 	}
 
 }
