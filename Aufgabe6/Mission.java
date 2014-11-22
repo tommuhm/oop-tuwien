@@ -74,6 +74,8 @@ public class Mission {
 		for(Himmelskoerper hTemp : ladung.keySet()) {
 			mTemp = ladung.get(hTemp);
 			if(hTemp.passtModul(m)) {
+				this.aktuelleLast -= mTemp.getGewicht();
+				this.aktuelleLast += m.getGewicht();
 				ladung.put(hTemp, m.clone());
 			}
 		}
