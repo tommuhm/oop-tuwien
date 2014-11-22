@@ -14,13 +14,13 @@ public class Mission {
 		this.raumsonde = new RaumSonde();
 	}
 	
-	public Modul add(Planet planet) {
+	public Modul add(Himmelskoerper himmelskoerper) {
 		//TODO implement add.
 		return null;
 	}
 	
 	
-	public Planet remove (String name) {
+	public Himmelskoerper remove (String name) {
 		//TODO implement remove.
 		return null;
 	}
