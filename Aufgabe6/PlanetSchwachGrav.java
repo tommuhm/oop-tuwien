@@ -4,4 +4,9 @@ public class PlanetSchwachGrav extends PlanetFest {
 		super(name);
 	}
 	
+	public boolean passtModul(Modul modul) {
+		return modul.funktioniertFuer(this);
+	}
+
+	
 }

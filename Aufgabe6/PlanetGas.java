@@ -4,4 +4,8 @@ public class PlanetGas extends Planet {
 		super(name);
 	}
 	
+	public boolean passtModul(Modul modul) {
+		return modul.funktioniertFuer(this);
+	}
+	
 }

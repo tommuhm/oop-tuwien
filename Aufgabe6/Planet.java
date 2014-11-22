@@ -10,4 +10,6 @@ public abstract class Planet {
 		return name;
 	}
 	
+	abstract public boolean passtModul(Modul modul);
+	
 }
