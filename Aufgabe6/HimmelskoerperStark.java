@@ -10,5 +10,5 @@ public class HimmelskoerperStark extends HimmelskoerperSchwach {
 	public boolean hasAtmosphaere() {
 		return atmosphaere;
 	}	
-
+	
 }

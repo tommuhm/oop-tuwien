@@ -7,4 +7,8 @@ public class HimmelskoerperSchwach extends Himmelskoerper {
 	public boolean passtModul(Modul modul) {
 		return modul.funktioniertFuer(this);
 	}
+	
+	public String toString() {
+		return getName();
+	}
 }

@@ -12,4 +12,5 @@ public abstract class Himmelskoerper {
 	
 	abstract public boolean passtModul(Modul modul);
 	
+	public abstract String toString();
 }
