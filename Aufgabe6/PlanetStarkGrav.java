@@ -1,4 +1,6 @@
-public class PlanetStarkGrav {
+public class PlanetStarkGrav extends PlanetFest {
 	
+	public String name;
 	public boolean atmosphaere;
+	
 }

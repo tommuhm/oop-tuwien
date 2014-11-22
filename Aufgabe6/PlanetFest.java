@@ -1,3 +1,5 @@
-public abstract class PlanetFest {
+public abstract class PlanetFest extends Planet {
+	
+	public String name;
 	
 }

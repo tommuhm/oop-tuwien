@@ -1,3 +1,5 @@
-public class PlanetSchwachGrav {
+public class PlanetSchwachGrav extends PlanetFest {
+	
+	public String name;
 	
 }
