@@ -6,17 +6,17 @@ public class ModulGas extends Modul {
 	}
 
 	@Override
-	public boolean funktioniertFuer(PlanetGas planet) {
+	public boolean funktioniertFuer(Gasplanet planet) {
 		return true;
 	}
 	
 	@Override
-	public boolean funktioniertFuer(PlanetSchwachGrav planet) {
+	public boolean funktioniertFuer(HimmelskoerperSchwach planet) {
 		return false;
 	}
 	
 	@Override
-	public boolean funktioniertFuer(PlanetStarkGrav planet) {
+	public boolean funktioniertFuer(HimmelskoerperStark planet) {
 		return false;
 	}
 

@@ -6,17 +6,17 @@ public class ModulFallschirm extends ModulStark {
 	}
 
 	@Override
-	public boolean funktioniertFuer(PlanetGas planet) {
+	public boolean funktioniertFuer(Gasplanet planet) {
 		return false;
 	}
 
 	@Override
-	public boolean funktioniertFuer(PlanetSchwachGrav planet) {
+	public boolean funktioniertFuer(HimmelskoerperSchwach planet) {
 		return false;
 	}
 
 	@Override
-	public boolean funktioniertFuer(PlanetStarkGrav planet) {
+	public boolean funktioniertFuer(HimmelskoerperStark planet) {
 		if(planet.hasAtmosphaere()) {
 			return true;
 		}

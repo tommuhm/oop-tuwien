@@ -7,7 +7,11 @@ public abstract class Modul {
 		this.gewicht = gewicht;		
 	}
 
-	abstract public boolean funktioniertFuer(PlanetGas planet);
-	abstract public boolean funktioniertFuer(PlanetSchwachGrav planet);
-	abstract public boolean funktioniertFuer(PlanetStarkGrav planet);
+	public int getGewicht() {
+		return gewicht;
+	}
+	
+	abstract public boolean funktioniertFuer(Gasplanet planet);
+	abstract public boolean funktioniertFuer(HimmelskoerperSchwach planet);
+	abstract public boolean funktioniertFuer(HimmelskoerperStark planet);
 }
