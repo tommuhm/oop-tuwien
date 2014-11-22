@@ -1,6 +1,6 @@
-public class PlanetGas extends Himmelskoerper { 
+public class Gasplanet extends Himmelskoerper { 
 
-	public PlanetGas(String name) {
+	public Gasplanet(String name) {
 		super(name);
 	}
 	
