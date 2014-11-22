@@ -5,12 +5,16 @@ public class Mission {
 
 	private String name;
 	private Raumsonde raumsonde;
-	
 	private Modul schwerstesModul;
-	
 	private HashMap<Himmelskoerper, Modul> ladung;
 	private int aktuelleLast;
+	//Invariante: name darf nicht null sein
+	//Invariante: raumsonde darf nicht null sein
+	//Invariante: ladung darf nicht null sein
+	//Invariante: aktuelleLast darf nur größer gleich 0 sein
 	
+	//Vorbedingung: Der Parameter name darf nicht null sein
+	//Vorbedingung: Der Parameter raumsonde darf nicht null sein
 	public Mission (String name, Raumsonde raumsonde){
 		this.name = name;
 		this.raumsonde = raumsonde;
@@ -19,7 +23,9 @@ public class Mission {
 		this.ladung = new HashMap<Himmelskoerper, Modul>();
 		this.schwerstesModul = null;
 	}
-	
+
+	//Vorbedingung: Der Parameter name darf nicht null sein
+	//Vorbedingung: Der Parameter nutzlast darf nicht kleiner gleich 0 sein
 	public Mission (String name, int nutzlast) {
 		this.name = name;
 		this.raumsonde = new Raumsonde(nutzlast);
@@ -29,6 +35,10 @@ public class Mission {
 		this.schwerstesModul = null;
 	}
 	
+	//Vorbedingung: himmelskoerper darf nicht null sein
+	//Nachbedingung: falls noch ausreichend platz ist muss anschließend der himmelskoerper und das passende Modul an ladung angehängt werden.
+	//Nachbedingung: falls ein himmelskoerper hinzugefügt wurde, müssen, wenn ausreichend platz, alle Module umgestellt werden.
+	//Nachbedingung: falls ein himmelskoerper hinzugefügt wurde, wird das passende Modul zurückgegeben.
 	public Modul add(Himmelskoerper himmelskoerper) {
 		Modul m = new ModulGas(200); //200 KG
 		if(himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) < raumsonde.getMaxNutzlast() ) { // Hier können keine anderen umgestellt werden.
@@ -60,6 +70,8 @@ public class Mission {
 		return null;
 	}
 	
+	//Vorbedingung: m ist nicht null
+	//Nachbedingung: Wenn möglich werden alle Module in ladung auf das neue Modul m umgestellt.
 	private void umstellenAuf(Modul m) {
 		Modul mTemp;
 		int last = 0;
@@ -86,7 +98,9 @@ public class Mission {
 		}
 	}
 
-	//Nachbedingung: Darf nur aufgerufen werden, wenn die Nutzlast anschließend nicht überstiegen wird.
+	//Vorbedingung: himmelskoerper und m dürfen nicht null sein.
+	//Nachbedingung: Darf nur aufgerufen werden, wenn die Nutzlast im Endeffekt nicht überstiegen wird.
+	//Nachbedingung: ladung muss himmelskoerper und m enthalten.
 	private void add(Himmelskoerper himmelskoerper, Modul m) {
 		this.ladung.put(himmelskoerper, m);
 		this.aktuelleLast += m.getGewicht();
@@ -96,6 +110,9 @@ public class Mission {
 		}
 	}
 	
+	//Vorbedingung: name darf nicht null sein
+	//Nachbedingung: wenn ein himmelskoerper mit den namens name in ladung ist wird dieser entfernt und die aktuelle last verringert.
+	//Nachbedingung: falls ein himmelskoerper entfernt wurde, wird dieser zurückgegeben.
 	public Himmelskoerper remove (String name) {
 		Himmelskoerper himmelskoerper = null;
 		for(Himmelskoerper hTemp : ladung.keySet()) {
@@ -113,12 +130,14 @@ public class Mission {
 		return himmelskoerper;
 	}
 
+	//Nachbedingung: gibt die aktuelle Liste an Himmelskoerpern aus.
 	public void missionslist() {
 		for(Himmelskoerper hTemp : ladung.keySet()) {
 			System.out.println(" " + hTemp.getName());
 		}
 	}
-	
+
+	//Nachbedingung: gibt den aktuellen Grad an Ladung aus. (In KG und Prozent)
 	public void utilization() { //Maybe nur in Prozent?
 		float fAktuell = this.aktuelleLast;
 		float fMax = this.raumsonde.getMaxNutzlast();
@@ -126,4 +145,11 @@ public class Mission {
 				
 		System.out.println(" " + this.aktuelleLast + "/" + this.raumsonde.getMaxNutzlast() + " (" + prozent +  "%)");
 	}
+
+	//Nachbedingung: Gibt name zurück
+	public String getName() {
+		return name;
+	}
+	
+	
 }
