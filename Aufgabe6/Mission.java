@@ -114,7 +114,7 @@ public class Mission {
 
 	public void missionslist() {
 		for(Himmelskoerper hTemp : ladung.keySet()) {
-			System.out.println(hTemp.getName());
+			System.out.println(" " + hTemp.getName());
 		}
 	}
 	
