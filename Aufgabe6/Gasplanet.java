@@ -8,4 +8,7 @@ public class Gasplanet extends Himmelskoerper {
 		return modul.funktioniertFuer(this);
 	}
 	
+	public String toString() {
+		return getName();
+	}
 }
