@@ -1,3 +1,11 @@
+/*
+ * Aufgabenaufteilung:
+ * David Jaffry: Himmelskoerper, Gasplanet, HimmelskoerperSchwach, HimmelskoerperStark, Test, Bedingungen
+ * Ulrich Aschl: Modul, ModulDuesen, ModulFallschirm, ModulFest, ModulGas, ModulStark, ModulSchwach, Raumsonde, Mission
+ * Tom Muhm: Modul, ModulDuesen, ModulFallschirm, ModulFest, ModulGas, ModulStark, ModulSchwach, Raumsonde, Mission //TODO
+ * 
+ * 
+ */
 
 public class Test {
 
