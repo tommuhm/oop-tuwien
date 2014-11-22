@@ -1,5 +1,6 @@
 public class PlanetGas extends Planet { 
-	
-	public String name;
 
+	public PlanetGas(String name) {
+		super(name);
+	}
 }
