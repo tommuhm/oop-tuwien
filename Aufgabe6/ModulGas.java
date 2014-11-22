@@ -19,5 +19,9 @@ public class ModulGas extends Modul {
 	public boolean funktioniertFuer(HimmelskoerperStark planet) {
 		return false;
 	}
-
+	
+	@Override
+	public Modul clone() {
+		return new ModulGas(this.getGewicht());
+	}
 }

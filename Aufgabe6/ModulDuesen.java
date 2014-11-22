@@ -20,4 +20,9 @@ public class ModulDuesen extends ModulStark {
 		return true;
 	}
 
+	@Override
+	public Modul clone() {
+		return new ModulDuesen(this.getGewicht());
+	}
+
 }

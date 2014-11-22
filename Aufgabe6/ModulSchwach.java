@@ -20,4 +20,8 @@ public class ModulSchwach extends ModulFest {
 		return false;
 	}
 
+	@Override
+	public Modul clone() {
+		return new ModulSchwach(this.getGewicht());
+	}
 }
