@@ -106,7 +106,8 @@ public class Mission {
 		}
 		
 		if(himmelskoerper != null) {
-			ladung.remove(himmelskoerper);
+			this.aktuelleLast -= (this.ladung.get(himmelskoerper)).getGewicht();
+			this.ladung.remove(himmelskoerper);
 		}
 		
 		return himmelskoerper;
