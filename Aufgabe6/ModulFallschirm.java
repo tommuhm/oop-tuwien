@@ -29,4 +29,9 @@ public class ModulFallschirm extends ModulStark {
 	public Modul clone() {
 		return new ModulFallschirm(this.getGewicht());
 	}
+
+	@Override
+	public String toString() {
+		return "Modul für starke Grav. mit Fallschirm: " + this.getGewicht() + " kg";
+	}
 }

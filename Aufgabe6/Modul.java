@@ -16,4 +16,6 @@ public abstract class Modul {
 	abstract public boolean funktioniertFuer(Gasplanet planet);
 	abstract public boolean funktioniertFuer(HimmelskoerperSchwach planet);
 	abstract public boolean funktioniertFuer(HimmelskoerperStark planet);
+	
+	public abstract String toString();
 }

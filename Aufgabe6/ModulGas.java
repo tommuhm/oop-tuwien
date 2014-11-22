@@ -24,4 +24,9 @@ public class ModulGas extends Modul {
 	public Modul clone() {
 		return new ModulGas(this.getGewicht());
 	}
+
+	@Override
+	public String toString() {
+		return "Modul für Gasplaneten: " + this.getGewicht() + " kg";
+	}
 }

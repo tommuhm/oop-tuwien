@@ -25,4 +25,8 @@ public class ModulDuesen extends ModulStark {
 		return new ModulDuesen(this.getGewicht());
 	}
 
+	@Override
+	public String toString() {
+		return "Modul für starke Grav. mit Düsen: " + this.getGewicht() + " kg";
+	}
 }

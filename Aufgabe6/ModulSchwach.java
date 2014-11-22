@@ -24,4 +24,9 @@ public class ModulSchwach extends ModulFest {
 	public Modul clone() {
 		return new ModulSchwach(this.getGewicht());
 	}
+
+	@Override
+	public String toString() {
+		return "Modul für schwache Gravitation: " + this.getGewicht() + " kg";
+	}
 }
