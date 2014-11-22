@@ -3,10 +3,13 @@ import java.util.HashMap;
 
 public class RaumSonde {
 
-	//HashMap<String, Planet> himmelskoerper;
+	private int maxNutzlast;
 	
-	public RaumSonde() {
-		
-		
+	public RaumSonde(int maxNutzlast) {
+		this.maxNutzlast = maxNutzlast;		
+	}
+
+	public int getMaxNutzlast() {
+		return maxNutzlast;
 	}
 }

@@ -1,21 +1,37 @@
+import java.util.HashMap;
+
 
 public class Mission {
 
 	private String name;
 	private RaumSonde raumsonde;
 	
+	private HashMap<Himmelskoerper, Modul> ladung;
+	private int aktuelleLast;
+	
 	public Mission (String name, RaumSonde raumsonde){
 		this.name = name;
 		this.raumsonde = raumsonde;
+		
+		this.aktuelleLast = 0;
 	}
 	
-	public Mission (String name) {
+	public Mission (String name, int nutzlast) {
 		this.name = name;
-		this.raumsonde = new RaumSonde();
+		this.raumsonde = new RaumSonde(nutzlast);
+
+		this.aktuelleLast = 0;
+		this.ladung = new HashMap<Himmelskoerper, Modul>();
 	}
 	
 	public Modul add(Himmelskoerper himmelskoerper) {
-		//TODO implement add.
+		Modul m = new ModulGas(200); //200 KG
+		
+		if(himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) < raumsonde.getMaxNutzlast() ) {
+			
+		}
+		
+		
 		return null;
 	}
 	
