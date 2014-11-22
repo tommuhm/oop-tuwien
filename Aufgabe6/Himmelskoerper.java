@@ -2,6 +2,7 @@ public abstract class Himmelskoerper {
 	
 	private String name;
 	
+	//Vorbedingung: name darf nicht null sein.
 	public Himmelskoerper(String name) {
 		this.name = name;
 	}
@@ -10,6 +11,7 @@ public abstract class Himmelskoerper {
 		return name;
 	}
 	
+	//Vorbedingung: modul darf nicht null sein!
 	abstract public boolean passtModul(Modul modul);
 	
 	public abstract String toString();
