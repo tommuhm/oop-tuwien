@@ -11,7 +11,7 @@ public class Test {
 		HimmelskoerperStark mars = new HimmelskoerperStark("Mars", true);
 		HimmelskoerperStark pluto = new HimmelskoerperStark("Pluto", false);
 		
-		System.out.println(" Himmelskoerper wurden erstellt.\n");
+		System.out.println("Himmelskoerper wurden erstellt.\n");
 		
 		//TODO toString
 		
@@ -20,7 +20,7 @@ public class Test {
 		RaumSonde curiosity = new RaumSonde(900);
 		RaumSonde opportunity = new RaumSonde(600);
 		
-		System.out.println(" Raumsonden wurden erstellt.\n");
+		System.out.println("Raumsonden wurden erstellt.\n");
 		
 		//TODO toString
 		
@@ -32,41 +32,41 @@ public class Test {
 		Mission oddity = new Mission("oddity to saturn", 800);
 		Mission possible = new Mission("opportunity to everywhere possible", opportunity);
 		
-		System.out.println(" Missionen wurden erstellt.\n");
+		System.out.println("Missionen wurden erstellt.\n");
 		
 		//TODO toString
 		
 		//add Planets to Mission
-		System.out.println(" fuege Planeten zu Mission hinzu.\n");
+		System.out.println("fuege Planeten zu Mission hinzu.\n");
 		
-		System.out.println(" notwendige Module:");
-		System.out.println("  MSL, Mars: " + msl.add(mars));
-		System.out.println("  spirit, Pluto: " + spirit.add(pluto));
-		System.out.println("  spirit, Mars: " + spirit.add(mars));
-		System.out.println("  majortom, Saturn: " + majortom.add(saturn));
-		System.out.println("  oddity, Saturn: " + oddity.add(saturn));
-		System.out.println("  possible, Ceres: " + possible.add(ceres));
-		System.out.println("  possible, Saturn: " + possible.add(saturn));
-		System.out.println("  possible, Mars: " + possible.add(mars));
-		System.out.println("  possible, Pluto: " + possible.add(pluto));
+		System.out.println("notwendige Module:");
+		System.out.println(" MSL, Mars: " + msl.add(mars));
+		System.out.println(" spirit, Pluto: " + spirit.add(pluto));
+		System.out.println(" spirit, Mars: " + spirit.add(mars));
+		System.out.println(" majortom, Saturn: " + majortom.add(saturn));
+		System.out.println(" oddity, Saturn: " + oddity.add(saturn));
+		System.out.println(" possible, Ceres: " + possible.add(ceres));
+		System.out.println(" possible, Saturn: " + possible.add(saturn));
+		System.out.println(" possible, Mars: " + possible.add(mars));
+		System.out.println(" possible, Pluto: " + possible.add(pluto));
 		
-		System.out.println(" Himmelskoerper zu Mission hinzugefuegt.\n");
+		System.out.println("Himmelskoerper zu Mission hinzugefuegt.\n");
 		
 		// toString
 
 		//remove Planets from Mission
-		System.out.println(" entferne Planeten von Mission.\n");
+		System.out.println("entferne Planeten von Mission.\n");
 		
-		System.out.println(" entfernte Planeten:");
-		System.out.println("  majortom: " + majortom.remove("Saturn"));
-		System.out.println("  possible: " + possible.remove("Ceres"));
-		System.out.println("  possible: " + possible.remove("Saturn"));
-		System.out.println("  possible: " + possible.remove("Geonosis"));
+		System.out.println("entfernte Planeten:");
+		System.out.println(" majortom: " + majortom.remove("Saturn"));
+		System.out.println(" possible: " + possible.remove("Ceres"));
+		System.out.println(" possible: " + possible.remove("Saturn"));
+		System.out.println(" possible: " + possible.remove("Geonosis"));
 		
-		System.out.println(" Himmelskoerper von Mission entfernt.\n");
+		System.out.println("Himmelskoerper von Mission entfernt.\n");
 		
 		//missionlist
-		System.out.println(" zeige die Namen aller Himmelskoerper einer Mission an.\n");
+		System.out.println("zeige die Namen aller Himmelskoerper einer Mission an.\n");
 		
 		msl.missionslist();
 		spirit.missionslist();
@@ -74,10 +74,10 @@ public class Test {
 		oddity.missionslist();
 		possible.missionslist();
 		
-		System.out.println(" Namen angezeigt.\n");
+		System.out.println("Namen angezeigt.\n");
 		
 		//utilization
-		System.out.println(" zeige Grad der Auslastung der Nutzlastmasse an.\n");
+		System.out.println("zeige Grad der Auslastung der Nutzlastmasse an.\n");
 
 		msl.utilization();
 		spirit.utilization();
@@ -85,7 +85,7 @@ public class Test {
 		oddity.utilization();
 		possible.utilization();
 		
-		System.out.println(" zeige Grad der Auslastung angezeigt.\n");
+		System.out.println("zeige Grad der Auslastung angezeigt.\n");
 		
 	}
 
