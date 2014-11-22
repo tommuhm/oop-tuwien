@@ -6,6 +6,8 @@ public class Mission {
 	private String name;
 	private RaumSonde raumsonde;
 	
+	private Modul schwerstesModul;
+	
 	private HashMap<Himmelskoerper, Modul> ladung;
 	private int aktuelleLast;
 	
@@ -14,6 +16,8 @@ public class Mission {
 		this.raumsonde = raumsonde;
 		
 		this.aktuelleLast = 0;
+		this.ladung = new HashMap<Himmelskoerper, Modul>();
+		this.schwerstesModul = null;
 	}
 	
 	public Mission (String name, int nutzlast) {
@@ -22,6 +26,7 @@ public class Mission {
 
 		this.aktuelleLast = 0;
 		this.ladung = new HashMap<Himmelskoerper, Modul>();
+		this.schwerstesModul = null;
 	}
 	
 	public Modul add(Himmelskoerper himmelskoerper) {
@@ -34,21 +39,21 @@ public class Mission {
 		m = new ModulSchwach(200);
 		if(himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) < raumsonde.getMaxNutzlast() ) {
 			this.add(himmelskoerper, m);
-			this.umstellenAuf(m);
+			this.umstellenAuf(schwerstesModul);
 			return m;
 		}
 
 		m = new ModulFallschirm(220);
 		if(himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) < raumsonde.getMaxNutzlast() ) {
 			this.add(himmelskoerper, m);
-			this.umstellenAuf(m);
+			this.umstellenAuf(schwerstesModul);
 			return m;
 		}
 		
 		m = new ModulDuesen(250);
 		if(himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) < raumsonde.getMaxNutzlast() ) {
 			this.add(himmelskoerper, m);
-			this.umstellenAuf(m);
+			this.umstellenAuf(schwerstesModul);
 			return m;
 		}
 		
@@ -85,6 +90,10 @@ public class Mission {
 	private void add(Himmelskoerper himmelskoerper, Modul m) {
 		this.ladung.put(himmelskoerper, m);
 		this.aktuelleLast += m.getGewicht();
+		
+		if(this.schwerstesModul == null || (this.schwerstesModul != null && this.schwerstesModul.getGewicht() < m.getGewicht())) {
+			this.schwerstesModul = m;
+		}
 	}
 	
 	public Himmelskoerper remove (String name) {
@@ -110,6 +119,10 @@ public class Mission {
 	}
 	
 	public void utilization() { //Maybe nur in Prozent?
-		System.out.println(this.aktuelleLast + "/" + this.raumsonde.getMaxNutzlast() + " (" + (this.raumsonde.getMaxNutzlast()/this.aktuelleLast*100) +  "%)");
+		float fAktuell = this.aktuelleLast;
+		float fMax = this.raumsonde.getMaxNutzlast();
+		float prozent =  fAktuell / fMax * 100;
+				
+		System.out.println(this.aktuelleLast + "/" + this.raumsonde.getMaxNutzlast() + " (" + prozent +  "%)");
 	}
 }
