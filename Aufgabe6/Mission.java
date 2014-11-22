@@ -123,6 +123,6 @@ public class Mission {
 		float fMax = this.raumsonde.getMaxNutzlast();
 		float prozent =  fAktuell / fMax * 100;
 				
-		System.out.println(this.aktuelleLast + "/" + this.raumsonde.getMaxNutzlast() + " (" + prozent +  "%)");
+		System.out.println(" " + this.aktuelleLast + "/" + this.raumsonde.getMaxNutzlast() + " (" + prozent +  "%)");
 	}
 }
