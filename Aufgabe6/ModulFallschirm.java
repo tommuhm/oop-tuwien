@@ -25,4 +25,8 @@ public class ModulFallschirm extends ModulStark {
 		}
 	}
 
+	@Override
+	public Modul clone() {
+		return new ModulFallschirm(this.getGewicht());
+	}
 }

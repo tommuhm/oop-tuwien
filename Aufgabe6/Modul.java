@@ -11,6 +11,8 @@ public abstract class Modul {
 		return gewicht;
 	}
 	
+	public abstract Modul clone();
+	
 	abstract public boolean funktioniertFuer(Gasplanet planet);
 	abstract public boolean funktioniertFuer(HimmelskoerperSchwach planet);
 	abstract public boolean funktioniertFuer(HimmelskoerperStark planet);
