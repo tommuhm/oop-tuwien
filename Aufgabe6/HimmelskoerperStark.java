@@ -10,8 +10,5 @@ public class HimmelskoerperStark extends HimmelskoerperSchwach {
 	public boolean hasAtmosphaere() {
 		return atmosphaere;
 	}	
-	
-	public boolean passtModul(Modul modul) {
-		return modul.funktioniertFuer(this);
-	}
+
 }
