@@ -7,6 +7,7 @@ public abstract class Himmelskoerper {
 		this.name = name;
 	}
 
+	//Nachbedingung: gibt name zurueck
 	public String getName() {
 		return name;
 	}

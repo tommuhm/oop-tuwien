@@ -8,6 +8,7 @@ public class HimmelskoerperStark extends HimmelskoerperSchwach {
 		this.atmosphaere = atmosphaere;
 	}
 	
+	//Nachbedingung: true, wenn der Himmelskoerper eine Atmosphaere hat
 	public boolean hasAtmosphaere() {
 		return atmosphaere;
 	}	
