@@ -3,6 +3,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		
+		//TODO remove and zusicherungen
+		
 		//Himmelskoerper
 		Gasplanet gasplanet = new Gasplanet("gasplanet");
 		HimmelskoerperSchwach himmelskoerperSchwach = new HimmelskoerperSchwach("himmelskoerperSchwach");
@@ -53,11 +55,14 @@ public class Test {
 
 		//remove Planets from Mission
 		System.out.println("Entferne Planeten von Mission:");
+		System.out.println(" Mission1: " + mission1.remove("himmelskoerperStarkmitAtmos"));
 		System.out.println(" Mission2: " + mission2.remove("gasplanet"));
 		System.out.println(" Mission4: " + mission4.remove("himmelskoerperStarkmitAtmos"));
 		System.out.println(" Mission4: " + mission4.remove("gasplanet"));
 		System.out.println(" Mission4: " + mission4.remove("Geonosis"));
 		System.out.println();
+		
+		//TODO remove funkt net?
 		
 		//utilization
 		System.out.println("Zeige endgültigen Grad der Auslastung der Nutzlastmasse an:");
