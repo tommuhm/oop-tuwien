@@ -1,8 +1,8 @@
-public abstract class Planet {
+public abstract class Himmelskoerper {
 	
 	private String name;
 	
-	public Planet(String name) {
+	public Himmelskoerper(String name) {
 		this.name = name;
 	}
 

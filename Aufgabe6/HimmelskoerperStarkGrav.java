@@ -1,8 +1,8 @@
-public class PlanetStarkGrav extends PlanetFest {
+public class HimmelskoerperStarkGrav extends HimmelskoerperFest {
 
 	private boolean atmosphaere;
 	
-	public PlanetStarkGrav(String name, boolean atmosphaere) {
+	public HimmelskoerperStarkGrav(String name, boolean atmosphaere) {
 		super(name);
 		this.atmosphaere = atmosphaere;
 	}

@@ -1,4 +1,4 @@
-public class PlanetGas extends Planet { 
+public class PlanetGas extends Himmelskoerper { 
 
 	public PlanetGas(String name) {
 		super(name);
