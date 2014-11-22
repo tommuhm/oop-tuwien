@@ -4,14 +4,14 @@ import java.util.HashMap;
 public class Mission {
 
 	private String name;
-	private RaumSonde raumsonde;
+	private Raumsonde raumsonde;
 	
 	private Modul schwerstesModul;
 	
 	private HashMap<Himmelskoerper, Modul> ladung;
 	private int aktuelleLast;
 	
-	public Mission (String name, RaumSonde raumsonde){
+	public Mission (String name, Raumsonde raumsonde){
 		this.name = name;
 		this.raumsonde = raumsonde;
 		
@@ -22,7 +22,7 @@ public class Mission {
 	
 	public Mission (String name, int nutzlast) {
 		this.name = name;
-		this.raumsonde = new RaumSonde(nutzlast);
+		this.raumsonde = new Raumsonde(nutzlast);
 
 		this.aktuelleLast = 0;
 		this.ladung = new HashMap<Himmelskoerper, Modul>();

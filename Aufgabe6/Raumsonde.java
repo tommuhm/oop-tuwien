@@ -1,11 +1,11 @@
 import java.util.HashMap;
 
 
-public class RaumSonde {
+public class Raumsonde {
 
 	private int maxNutzlast;
 	
-	public RaumSonde(int maxNutzlast) {
+	public Raumsonde(int maxNutzlast) {
 		this.maxNutzlast = maxNutzlast;		
 	}
 
