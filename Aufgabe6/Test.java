@@ -2,14 +2,13 @@
 public class Test {
 
 	public static void main(String[] args) {
-		
-		//TODO remove and zusicherungen
+		//TODO Zusicherungen
 		
 		//Himmelskoerper
 		Gasplanet gasplanet = new Gasplanet("gasplanet");
-		HimmelskoerperSchwach himmelskoerperSchwach = new HimmelskoerperSchwach("himmelskoerperSchwach");
-		HimmelskoerperStark himmelskoerperStarkmitAtmos = new HimmelskoerperStark("himmelskoerperStarkmitAtmos", true);
-		HimmelskoerperStark himmelskoerperStarkohneAtmos = new HimmelskoerperStark("himmelskoerperStarkohneAtmos", false);
+		HimmelskoerperSchwach hkSchwach = new HimmelskoerperSchwach("hkSchwach");
+		HimmelskoerperStark hkStarkAtmosphaere = new HimmelskoerperStark("hkStarkAtmosphaere", true);
+		HimmelskoerperStark hkStark = new HimmelskoerperStark("hkStark", false);
 		System.out.println("Himmelskoerper wurden erstellt.\n");
 		
 		//Raumsonden
@@ -32,53 +31,81 @@ public class Test {
 		//add Planets to Mission
 		System.out.println("Fuege Himmelskoerper zu Mission hinzu:");		
 		System.out.println("Folgende Himmelskoerper wurden hinzuegfügt:");
-		System.out.println(" Mission0, himmelskoerperStarkmitAtmos: " + mission0.add(himmelskoerperStarkmitAtmos));
-		System.out.println(" Mission1, himmelskoerperStarkohneAtmos: " + mission1.add(himmelskoerperStarkohneAtmos));
-		System.out.println(" Mission1, himmelskoerperStarkmitAtmos: " + mission1.add(himmelskoerperStarkmitAtmos));
+		System.out.println(" Mission0, hkStarkAtmosphaere: " + mission0.add(hkStarkAtmosphaere));
+		System.out.println(" Mission1, hkStark: " + mission1.add(hkStark));
+		System.out.println(" Mission1, hkStarkAtmosphaere: " + mission1.add(hkStarkAtmosphaere));
 		System.out.println(" Mission2, gasplanet: " + mission2.add(gasplanet));
 		System.out.println(" Mission3, gasplanet: " + mission3.add(gasplanet));
-		System.out.println(" Mission4, himmelskoerperSchwach: " + mission4.add(himmelskoerperSchwach));
+		System.out.println(" Mission4, hkSchwach: " + mission4.add(hkSchwach));
 		System.out.println(" Mission4, gasplanet: " + mission4.add(gasplanet));
-		System.out.println(" Mission4, himmelskoerperStarkmitAtmos: " + mission4.add(himmelskoerperStarkmitAtmos));
-		System.out.println(" Mission4, himmelskoerperStarkohneAtmos: " + mission4.add(himmelskoerperStarkohneAtmos));
+		System.out.println(" Mission4, hkStarkAtmosphaere: " + mission4.add(hkStarkAtmosphaere));
+		System.out.println(" Mission4, hkStark: " + mission4.add(hkStark));
 		
 		System.out.println("Himmelskoerper zu Mission hinzugefuegt.\n");
 		
 		//utilization
 		System.out.println("Zeige aktuellen Grad der Auslastung der Nutzlastmasse an.");
+		System.out.print("Mission0: ");
 		mission0.utilization();
+		System.out.print("Mission1: ");
 		mission1.utilization();
+		System.out.print("Mission2: ");
 		mission2.utilization();
+		System.out.print("Mission3: ");
 		mission3.utilization();
-		mission4.utilization();
-		System.out.println();
-
-		//remove Planets from Mission
-		System.out.println("Entferne Planeten von Mission:");
-		System.out.println(" Mission1: " + mission1.remove("himmelskoerperStarkmitAtmos"));
-		System.out.println(" Mission2: " + mission2.remove("gasplanet"));
-		System.out.println(" Mission4: " + mission4.remove("himmelskoerperStarkmitAtmos"));
-		System.out.println(" Mission4: " + mission4.remove("gasplanet"));
-		System.out.println(" Mission4: " + mission4.remove("Geonosis"));
-		System.out.println();
-		
-		//TODO remove funkt net?
-		
-		//utilization
-		System.out.println("Zeige endgültigen Grad der Auslastung der Nutzlastmasse an:");
-		mission0.utilization();
-		mission1.utilization();
-		mission2.utilization();
-		mission3.utilization();
+		System.out.print("Mission4: ");
 		mission4.utilization();
 		System.out.println();
 		
 		//missionlist
-		System.out.println("Zeige die Namen aller Himmelskoerper einer Mission an:");
+		System.out.println("Zeige die Namen aller Himmelskoerper der Missionen an:");
+		System.out.println("Mission0:");
 		mission0.missionslist();
+		System.out.println("Mission1:");
 		mission1.missionslist();
+		System.out.println("Mission2:");
 		mission2.missionslist();
+		System.out.println("Mission3:");
 		mission3.missionslist();
+		System.out.println("Mission4:");
+		mission4.missionslist();
+		System.out.println();
+		
+
+		//remove Planets from Mission
+		System.out.println("Entferne Planeten von Mission:");
+		System.out.println(" Mission1: " + mission1.remove("hkStarkAtmosphaere"));
+		System.out.println(" Mission2: " + mission2.remove("gasplanet"));
+		System.out.println(" Mission4: " + mission4.remove("hkStarkAtmosphaere"));
+		System.out.println(" Mission4: " + mission4.remove("gasplanet"));
+		System.out.println(" Mission4: " + mission4.remove("Geonosis"));
+		System.out.println();
+		
+		//utilization
+		System.out.println("Zeige endgültigen Grad der Auslastung der Nutzlastmasse an:");
+		System.out.print("Mission0: ");
+		mission0.utilization();
+		System.out.print("Mission1: ");
+		mission1.utilization();
+		System.out.print("Mission2: ");
+		mission2.utilization();
+		System.out.print("Mission3: ");
+		mission3.utilization();
+		System.out.print("Mission4: ");
+		mission4.utilization();
+		System.out.println();
+		
+		//missionlist
+		System.out.println("Zeige die Namen aller Himmelskoerper der Missionen an:");
+		System.out.println("Mission0:");
+		mission0.missionslist();
+		System.out.println("Mission1:");
+		mission1.missionslist();
+		System.out.println("Mission2:");
+		mission2.missionslist();
+		System.out.println("Mission3:");
+		mission3.missionslist();
+		System.out.println("Mission4:");
 		mission4.missionslist();
 		System.out.println();
 		
