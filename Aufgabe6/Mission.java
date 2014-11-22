@@ -88,17 +88,28 @@ public class Mission {
 	}
 	
 	public Himmelskoerper remove (String name) {
-		//TODO implement remove.
-		return null;
+		Himmelskoerper himmelskoerper = null;
+		for(Himmelskoerper hTemp : ladung.keySet()) {
+			if(hTemp.getName().equals(name)) {
+				himmelskoerper = hTemp;
+				break;
+			}
+		}
+		
+		if(himmelskoerper != null) {
+			ladung.remove(himmelskoerper);
+		}
+		
+		return himmelskoerper;
 	}
 
 	public void missionslist() {
-		//TODO implement
-		return;
+		for(Himmelskoerper hTemp : ladung.keySet()) {
+			System.out.println(hTemp.getName());
+		}
 	}
-
-	public void utilization() {
-		//TODO implement
-		return;
+	
+	public void utilization() { //Maybe nur in Prozent?
+		System.out.println(this.aktuelleLast + "/" + this.raumsonde.getMaxNutzlast() + " (" + (this.raumsonde.getMaxNutzlast()/this.aktuelleLast*100) +  "%)");
 	}
 }
