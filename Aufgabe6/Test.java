@@ -11,21 +11,17 @@ public class Test {
 		System.out.println("Himmelskoerper wurden erstellt.\n");
 		
 		//Raumsonden
-		
 		Raumsonde raumsonde0 = new Raumsonde(900);
 		Raumsonde raumsonde1 = new Raumsonde(600);
 		System.out.println("Raumsonden wurden erstellt.\n");
 		
 		//Missionen
-		
 		Mission mission0 = new Mission("Mission0", raumsonde0);
 		Mission mission1 = new Mission("Mission1", 600);
 		Mission mission2 = new Mission("Mission2", 100);
 		Mission mission3 = new Mission("Mission3", 800);
 		Mission mission4 = new Mission("Mission4", raumsonde1);
 		System.out.println("Missionen wurden erstellt.\n");
-		
-		//TODO toString
 		
 		//add Planets to Mission
 		System.out.println("Fuege Himmelskoerper zu Mission hinzu:");		
