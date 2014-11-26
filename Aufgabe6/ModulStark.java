@@ -6,4 +6,11 @@ public abstract class ModulStark extends ModulFest {
 		super(gewicht);
 	}
 
+	@Override
+	// Vorbedingung: planet darf nicht null sein
+	// Nachbedingung: gibt true zurueck
+	public boolean funktioniertFuer(HimmelskoerperSchwach planet) {
+		return true;
+	}
+
 }

@@ -8,13 +8,6 @@ public class ModulDuesen extends ModulStark {
 
 	@Override
 	// Vorbedingung: planet darf nicht null sein
-	// Nachbedingung: gibt true zurueck
-	public boolean funktioniertFuer(HimmelskoerperSchwach planet) {
-		return true;
-	}
-
-	@Override
-	// Vorbedingung: planet darf nicht null sein
 	// Nachbedingung: gibt false zurueck
 	public boolean funktioniertFuer(HimmelskoerperStark planet) {
 		return true;
