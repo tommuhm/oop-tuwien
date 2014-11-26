@@ -40,30 +40,35 @@ public class Mission {
 	// Nachbedingung: falls ein himmelskoerper hinzugefuegt wurde, muessen, wenn ausreichend platz, alle Module umgestellt werden.
 	// Nachbedingung: falls ein himmelskoerper hinzugefuegt wurde, wird das passende Modul zurueckgegeben.
 	public Modul add(Himmelskoerper himmelskoerper) {
+		Modul modul = findModul(himmelskoerper);
+
+		if (modul != null) {
+			this.add(himmelskoerper, modul);
+			this.umstellenAuf(schwerstesModul);
+			modul = ladung.get(himmelskoerper);
+		}
+
+		return modul;
+	}
+
+	private Modul findModul(Himmelskoerper himmelskoerper) {
 		Modul m = new ModulGas(200);
 		if (himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) <= raumsonde.getMaxNutzlast()) { // Hier koennen keine anderen umgestellt werden.
-			this.add(himmelskoerper, m);
 			return m;
 		}
 
 		m = new ModulSchwach(200);
 		if (himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) <= raumsonde.getMaxNutzlast()) {
-			this.add(himmelskoerper, m);
-			this.umstellenAuf(schwerstesModul);
 			return m;
 		}
 
 		m = new ModulFallschirm(220);
 		if (himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) <= raumsonde.getMaxNutzlast()) {
-			this.add(himmelskoerper, m);
-			this.umstellenAuf(schwerstesModul);
 			return m;
 		}
 
 		m = new ModulDuesen(250);
 		if (himmelskoerper.passtModul(m) && (this.aktuelleLast + m.getGewicht()) <= raumsonde.getMaxNutzlast()) {
-			this.add(himmelskoerper, m);
-			this.umstellenAuf(schwerstesModul);
 			return m;
 		}
 
