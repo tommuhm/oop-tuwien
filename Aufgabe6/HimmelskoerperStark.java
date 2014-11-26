@@ -1,4 +1,4 @@
-public class HimmelskoerperStark extends HimmelskoerperSchwach {
+public class HimmelskoerperStark extends Himmelskoerper {
 
 	private boolean atmosphaere;
 
@@ -6,6 +6,13 @@ public class HimmelskoerperStark extends HimmelskoerperSchwach {
 	public HimmelskoerperStark(String name, boolean atmosphaere) {
 		super(name);
 		this.atmosphaere = atmosphaere;
+	}
+
+	@Override
+	// Vorbedingung: modul darf nicht null sein
+	// Nachbedingung: true, wenn das Modul passt
+	public boolean passtModul(Modul modul) {
+		return modul.funktioniertFuer(this);
 	}
 
 	// Nachbedingung: true, wenn der Himmelskoerper eine Atmosphaere hat
