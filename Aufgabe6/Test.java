@@ -12,15 +12,15 @@ public class Test {
 	public static void main(String[] args) {
 
 		// Himmelskoerper
-		Gasplanet gasplanet = new Gasplanet("gasplanet");
-		HimmelskoerperSchwach hkSchwach = new HimmelskoerperSchwach("hkSchwach");
-		HimmelskoerperStark hkStarkAtmosphaere = new HimmelskoerperStark("hkStarkAtmosphaere", true);
-		HimmelskoerperStark hkStark = new HimmelskoerperStark("hkStark", false);
+		Himmelskoerper gasplanet = new Gasplanet("gasplanet");
+		Himmelskoerper hkSchwach = new HimmelskoerperSchwach("hkSchwach");
+		Himmelskoerper hkStarkAtmosphaere = new HimmelskoerperStark("hkStarkAtmosphaere", true);
+		Himmelskoerper hkStark = new HimmelskoerperStark("hkStark", false);
 		System.out.println("Himmelskoerper wurden erstellt.\n");
 
 		// Raumsonden
 		Raumsonde raumsonde0 = new Raumsonde(900);
-		Raumsonde raumsonde1 = new Raumsonde(600);
+		Raumsonde raumsonde1 = new Raumsonde(700);
 		System.out.println("Raumsonden wurden erstellt.\n");
 
 		// Missionen
@@ -48,27 +48,27 @@ public class Test {
 
 		// utilization
 		System.out.println("Zeige aktuellen Grad der Auslastung der Nutzlastmasse an.");
-		System.out.print("Mission0: ");
+		System.out.println("Mission0: 1xFallschirm fuer StarkAtmos- Himmelskoerper");
 		mission0.utilization();
-		System.out.print("Mission1: ");
+		System.out.println("Mission1: 2xDuesen fuer Stark- & StarkAtmos- Himmelskoerper");
 		mission1.utilization();
-		System.out.print("Mission2: ");
+		System.out.println("Mission2: kein Platz");
 		mission2.utilization();
-		System.out.print("Mission3: ");
+		System.out.println("Mission3: 1xGas fuer Gasplanet");
 		mission3.utilization();
-		System.out.print("Mission4: ");
+		System.out.println("Mission4: 1xGas & 2xFallschirm fuer Gas-, Schwach- & StarkAtmos- Himmelskoerper");
 		mission4.utilization();
 		System.out.println();
 
 		// missionlist
 		System.out.println("Zeige die Namen aller Himmelskoerper der Missionen an:");
-		System.out.println("Mission0:");
+		System.out.println("Mission0: ");
 		mission0.missionlist();
-		System.out.println("Mission1:");
+		System.out.println("Mission1: ");
 		mission1.missionlist();
-		System.out.println("Mission2:");
+		System.out.println("Mission2: ");
 		mission2.missionlist();
-		System.out.println("Mission3:");
+		System.out.println("Mission3: ");
 		mission3.missionlist();
 		System.out.println("Mission4:");
 		mission4.missionlist();
@@ -76,7 +76,7 @@ public class Test {
 
 
 		// remove Planets from Mission
-		System.out.println("Entferne Planeten von Mission:");
+		System.out.println("Entferne Planeten von Mission: (kein umschlichten)");
 		System.out.println(" Mission1: " + mission1.remove("hkStarkAtmosphaere"));
 		System.out.println(" Mission2: " + mission2.remove("gasplanet"));
 		System.out.println(" Mission4: " + mission4.remove("hkStarkAtmosphaere"));
@@ -86,15 +86,15 @@ public class Test {
 
 		// utilization
 		System.out.println("Zeige endgueltigen Grad der Auslastung der Nutzlastmasse an:");
-		System.out.print("Mission0: ");
+		System.out.println("Mission0: 1xFallschirm fuer StarkAtmos- Himmelskoerper");
 		mission0.utilization();
-		System.out.print("Mission1: ");
+		System.out.println("Mission1: 1xDuesen fuer Stark- Himmelskoerper");
 		mission1.utilization();
-		System.out.print("Mission2: ");
+		System.out.println("Mission2: kein Platz");
 		mission2.utilization();
-		System.out.print("Mission3: ");
+		System.out.println("Mission3: 1xGas fuer Gasplanet");
 		mission3.utilization();
-		System.out.print("Mission4: ");
+		System.out.println("Mission4: 1xFallschirm fuer Schwach- Himmelskoerper");
 		mission4.utilization();
 		System.out.println();
 
