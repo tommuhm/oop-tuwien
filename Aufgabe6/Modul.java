@@ -29,7 +29,7 @@ public abstract class Modul {
 	// Nachbedingung: gibt eine Object-Kopie des Moduls zurueck
 	public abstract Modul klonen();
 
-	// TODO
+	// Nachbedingung: gibt eine String-Representation der Eigenschaften des Moduls zurueck
 	@Override
 	public String toString() {
 		return gewicht + " kg";

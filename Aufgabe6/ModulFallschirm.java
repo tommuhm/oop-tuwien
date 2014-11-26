@@ -37,7 +37,7 @@ public class ModulFallschirm extends ModulStark {
 		return new ModulFallschirm(this.getGewicht());
 	}
 
-	// TODO
+	// Nachbedingung: gibt eine String-Representation der Eigenschaften des Moduls zurueck
 	@Override
 	public String toString() {
 		return "Modul fuer starke Grav. mit Fallschirm: " + super.toString();

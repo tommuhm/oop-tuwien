@@ -33,8 +33,8 @@ public class ModulGas extends Modul {
 		return new ModulGas(this.getGewicht());
 	}
 
-	// TODO
 	@Override
+	// Nachbedingung: gibt eine String-Representation der Eigenschaften des Moduls zurueck
 	public String toString() {
 		return "Modul fuer Gasplaneten: " + super.toString();
 	}

@@ -33,8 +33,8 @@ public class ModulDuesen extends ModulStark {
 		return new ModulDuesen(this.getGewicht());
 	}
 
-	// TODO
 	@Override
+	// Nachbedingung: gibt eine String-Representation der Eigenschaften des Moduls zurueck
 	public String toString() {
 		return "Modul fuer starke Grav. mit Duesen: " + super.toString();
 	}

@@ -33,8 +33,8 @@ public class ModulSchwach extends ModulFest {
 		return new ModulSchwach(this.getGewicht());
 	}
 
-	// TODO
 	@Override
+	// Nachbedingung: gibt eine String-Representation der Eigenschaften des Moduls zurueck
 	public String toString() {
 		return "Modul fuer schwache Gravitation: " + super.toString();
 	}

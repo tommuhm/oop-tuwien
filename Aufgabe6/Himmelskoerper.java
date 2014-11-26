@@ -15,7 +15,7 @@ public abstract class Himmelskoerper {
 	// Vorbedingung: modul darf nicht null sein!
 	abstract public boolean passtModul(Modul modul);
 
-	// TODO
+	// Nachbedingung: gibt den namen des himmelskoerpers zurueck
 	@Override
 	public String toString() {
 		return getName();
