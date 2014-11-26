@@ -8,13 +8,6 @@ public class ModulSchwach extends ModulFest {
 
 	@Override
 	// Vorbedingung: planet darf nicht null sein
-	// Nachbedingung: gibt false zurueck
-	public boolean funktioniertFuer(Gasplanet planet) {
-		return false;
-	}
-
-	@Override
-	// Vorbedingung: planet darf nicht null sein
 	// Nachbedingung: gibt true zurueck
 	public boolean funktioniertFuer(HimmelskoerperSchwach planet) {
 		return true;

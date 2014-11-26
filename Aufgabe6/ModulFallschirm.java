@@ -9,13 +9,6 @@ public class ModulFallschirm extends ModulStark {
 	@Override
 	// Vorbedingung: planet darf nicht null sein
 	// Nachbedingung: gibt false zurueck
-	public boolean funktioniertFuer(Gasplanet planet) {
-		return false;
-	}
-
-	@Override
-	// Vorbedingung: planet darf nicht null sein
-	// Nachbedingung: gibt false zurueck
 	public boolean funktioniertFuer(HimmelskoerperSchwach planet) {
 		return false;
 	}
