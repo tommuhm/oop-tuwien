@@ -105,7 +105,7 @@ public class Mission {
 		this.ladung.put(himmelskoerper, m);
 		this.aktuelleLast += m.getGewicht();
 
-		if (this.schwerstesModul == null || (this.schwerstesModul != null && this.schwerstesModul.getGewicht() < m.getGewicht())) {
+		if (this.schwerstesModul == null || this.schwerstesModul.getGewicht() < m.getGewicht()) {
 			this.schwerstesModul = m;
 		}
 	}
@@ -123,27 +123,27 @@ public class Mission {
 		}
 
 		if (himmelskoerper != null) {
-			this.aktuelleLast -= (this.ladung.get(himmelskoerper)).getGewicht();
+			this.aktuelleLast -= this.ladung.get(himmelskoerper).getGewicht();
 			this.ladung.remove(himmelskoerper);
 		}
 
 		return himmelskoerper;
 	}
 
-	// Nachbedingung: gibt die aktuelle Liste an Himmelskoerpern zurueck.
-	public void missionslist() {
+	// Nachbedingung: gibt die aktuelle Liste an Himmelskoerpern aus.
+	public void printMissionslist() {
 		for (Himmelskoerper hTemp : ladung.keySet()) {
-			System.out.println(" " + hTemp.getName());
+			System.out.println("\t" + hTemp.getName());
 		}
 	}
 
 	// Nachbedingung: gibt den aktuellen Grad an Ladung aus. (In KG und Prozent)
-	public void utilization() { //Maybe nur in Prozent?
+	public void printUtilization() {
 		float fAktuell = this.aktuelleLast;
 		float fMax = this.raumsonde.getMaxNutzlast();
 		float prozent = fAktuell / fMax * 100;
 
-		System.out.println(" " + this.aktuelleLast + "/" + this.raumsonde.getMaxNutzlast() + " (" + prozent + "%)");
+		System.out.println("\t" + fAktuell + "/" + fMax + " (" + prozent + "%)");
 	}
 
 }

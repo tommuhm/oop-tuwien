@@ -49,29 +49,29 @@ public class Test {
 		// utilization
 		System.out.println("Zeige aktuellen Grad der Auslastung der Nutzlastmasse an.");
 		System.out.print("Mission0: ");
-		mission0.utilization();
+		mission0.printUtilization();
 		System.out.print("Mission1: ");
-		mission1.utilization();
+		mission1.printUtilization();
 		System.out.print("Mission2: ");
-		mission2.utilization();
+		mission2.printUtilization();
 		System.out.print("Mission3: ");
-		mission3.utilization();
+		mission3.printUtilization();
 		System.out.print("Mission4: ");
-		mission4.utilization();
+		mission4.printUtilization();
 		System.out.println();
 
 		// missionlist
 		System.out.println("Zeige die Namen aller Himmelskoerper der Missionen an:");
 		System.out.println("Mission0:");
-		mission0.missionslist();
+		mission0.printMissionslist();
 		System.out.println("Mission1:");
-		mission1.missionslist();
+		mission1.printMissionslist();
 		System.out.println("Mission2:");
-		mission2.missionslist();
+		mission2.printMissionslist();
 		System.out.println("Mission3:");
-		mission3.missionslist();
+		mission3.printMissionslist();
 		System.out.println("Mission4:");
-		mission4.missionslist();
+		mission4.printMissionslist();
 		System.out.println();
 
 
@@ -87,29 +87,29 @@ public class Test {
 		// utilization
 		System.out.println("Zeige endgueltigen Grad der Auslastung der Nutzlastmasse an:");
 		System.out.print("Mission0: ");
-		mission0.utilization();
+		mission0.printUtilization();
 		System.out.print("Mission1: ");
-		mission1.utilization();
+		mission1.printUtilization();
 		System.out.print("Mission2: ");
-		mission2.utilization();
+		mission2.printUtilization();
 		System.out.print("Mission3: ");
-		mission3.utilization();
+		mission3.printUtilization();
 		System.out.print("Mission4: ");
-		mission4.utilization();
+		mission4.printUtilization();
 		System.out.println();
 
 		// missionlist
 		System.out.println("Zeige die Namen aller Himmelskoerper der Missionen an:");
 		System.out.println("Mission0:");
-		mission0.missionslist();
+		mission0.printMissionslist();
 		System.out.println("Mission1:");
-		mission1.missionslist();
+		mission1.printMissionslist();
 		System.out.println("Mission2:");
-		mission2.missionslist();
+		mission2.printMissionslist();
 		System.out.println("Mission3:");
-		mission3.missionslist();
+		mission3.printMissionslist();
 		System.out.println("Mission4:");
-		mission4.missionslist();
+		mission4.printMissionslist();
 		System.out.println();
 
 	}
