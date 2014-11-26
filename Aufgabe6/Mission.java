@@ -131,7 +131,7 @@ public class Mission {
 	}
 
 	// Nachbedingung: gibt die aktuelle Liste an Himmelskoerpern aus.
-	public void missionslist() {
+	public void missionlist() {
 		for (Himmelskoerper hTemp : ladung.keySet()) {
 			System.out.println(" " + hTemp.getName());
 		}

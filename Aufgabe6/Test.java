@@ -63,15 +63,15 @@ public class Test {
 		// missionlist
 		System.out.println("Zeige die Namen aller Himmelskoerper der Missionen an:");
 		System.out.println("Mission0:");
-		mission0.missionslist();
+		mission0.missionlist();
 		System.out.println("Mission1:");
-		mission1.missionslist();
+		mission1.missionlist();
 		System.out.println("Mission2:");
-		mission2.missionslist();
+		mission2.missionlist();
 		System.out.println("Mission3:");
-		mission3.missionslist();
+		mission3.missionlist();
 		System.out.println("Mission4:");
-		mission4.missionslist();
+		mission4.missionlist();
 		System.out.println();
 
 
@@ -101,15 +101,15 @@ public class Test {
 		// missionlist
 		System.out.println("Zeige die Namen aller Himmelskoerper der Missionen an:");
 		System.out.println("Mission0:");
-		mission0.missionslist();
+		mission0.missionlist();
 		System.out.println("Mission1:");
-		mission1.missionslist();
+		mission1.missionlist();
 		System.out.println("Mission2:");
-		mission2.missionslist();
+		mission2.missionlist();
 		System.out.println("Mission3:");
-		mission3.missionslist();
+		mission3.missionlist();
 		System.out.println("Mission4:");
-		mission4.missionslist();
+		mission4.missionlist();
 		System.out.println();
 
 	}
