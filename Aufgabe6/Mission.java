@@ -133,7 +133,7 @@ public class Mission {
 	// Nachbedingung: gibt die aktuelle Liste an Himmelskoerpern aus.
 	public void printMissionslist() {
 		for (Himmelskoerper hTemp : ladung.keySet()) {
-			System.out.println("\t" + hTemp.getName());
+			System.out.println(" " + hTemp.getName());
 		}
 	}
 
@@ -143,7 +143,7 @@ public class Mission {
 		float fMax = this.raumsonde.getMaxNutzlast();
 		float prozent = fAktuell / fMax * 100;
 
-		System.out.println("\t" + fAktuell + "/" + fMax + " (" + prozent + "%)");
+		System.out.println(" " + fAktuell + "/" + fMax + " (" + prozent + "%)");
 	}
 
 }
