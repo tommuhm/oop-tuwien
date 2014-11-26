@@ -1,45 +1,45 @@
 
 public class ModulFallschirm extends ModulStark {
 
-	//Vorbedingung: Parameter gewicht muss über 0 sein
+	// Vorbedingung: Parameter gewicht muss groesser als 0 sein
 	public ModulFallschirm(int gewicht) {
 		super(gewicht);
 	}
 
 	@Override
-	//Vorbedingung: planet darf nicht null sein
-	//Nachbedingung: überprüft ob ob das Modul für einen Gasplaneten funktioniert
+	// Vorbedingung: planet darf nicht null sein
+	// Nachbedingung: gibt false zurueck
 	public boolean funktioniertFuer(Gasplanet planet) {
 		return false;
 	}
 
 	@Override
-	//Vorbedingung: planet darf nicht null sein
-	//Nachbedingung: überprüft ob ob das Modul für einen HimmelskoerperSchwach funktioniert
+	// Vorbedingung: planet darf nicht null sein
+	// Nachbedingung: gibt false zurueck
 	public boolean funktioniertFuer(HimmelskoerperSchwach planet) {
 		return false;
 	}
 
 	@Override
-	//Vorbedingung: planet darf nicht null sein
-	//Nachbedingung: überprüft ob ob das Modul für einen HimmelskoerperStark funktioniert
+	// Vorbedingung: planet darf nicht null sein
+	// Nachbedingung: true wenn planet eine atmosphaere besitzt, sonst false
 	public boolean funktioniertFuer(HimmelskoerperStark planet) {
-		if(planet.hasAtmosphaere()) {
+		if (planet.hasAtmosphaere()) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
 
 	@Override
-	//Nachbedingung: result muss eine Kopie von Modul sein.
-	public Modul clone() {
+	// Nachbedingung: gibt eine Object-Kopie des Moduls zurueck
+	public Modul klonen() {
 		return new ModulFallschirm(this.getGewicht());
 	}
 
+	// TODO
 	@Override
 	public String toString() {
-		return "Modul für starke Grav. mit Fallschirm: " + this.getGewicht() + " kg";
+		return "Modul fuer starke Grav. mit Fallschirm: " + super.toString();
 	}
 }
