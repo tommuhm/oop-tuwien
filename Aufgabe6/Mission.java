@@ -84,7 +84,7 @@ public class Mission {
 			}
 		}
 
-		if (last >= this.raumsonde.getMaxNutzlast()) {
+		if (last > this.raumsonde.getMaxNutzlast()) {
 			return; //Nichts wurde veraendert.
 		}
 
@@ -131,14 +131,14 @@ public class Mission {
 	}
 
 	// Nachbedingung: gibt die aktuelle Liste an Himmelskoerpern aus.
-	public void printMissionslist() {
+	public void missionslist() {
 		for (Himmelskoerper hTemp : ladung.keySet()) {
 			System.out.println(" " + hTemp.getName());
 		}
 	}
 
 	// Nachbedingung: gibt den aktuellen Grad an Ladung aus. (In KG und Prozent)
-	public void printUtilization() {
+	public void utilization() {
 		float fAktuell = this.aktuelleLast;
 		float fMax = this.raumsonde.getMaxNutzlast();
 		float prozent = fAktuell / fMax * 100;
