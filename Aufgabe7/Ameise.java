@@ -67,7 +67,7 @@ public class Ameise extends Thread {
 				curKammer.removeAmeise();
 				curKammer = kammer;
 
-				if (curKammer.isFutterstelle() || curKammer.isAmeisenkollonie()) {
+				if (curKammer.isFutterstelle() || curKammer.isAmeisenkolonie()) {
 					dosis = maxDosis;
 				}
 			}
