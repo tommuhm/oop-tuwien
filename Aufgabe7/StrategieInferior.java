@@ -11,7 +11,7 @@ public class StrategieInferior implements Strategie {
 		try {
 		Thread.sleep(n);
 		} catch(InterruptedException ex) {
-			System.out.println("InterruptedException occured in StrategieRandom");
+			System.out.println("InterruptedException occured in StrategieInferior");
 		}
 	}
 }

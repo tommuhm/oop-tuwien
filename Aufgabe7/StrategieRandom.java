@@ -3,25 +3,25 @@ public class StrategieRandom implements Strategie {
 
 
 
-	public AntDirections dice() {
+	public AmeisenRichtungen dice() {
 
 		double dice = Math.random();
 
 		if ( dice < 1/4 ) {
-			return AntDirections.rechts;
+			return AmeisenRichtungen.rechts;
 		}
 			
 			else if ( dice < 1/2 ) {
-				return AntDirections.links;
+				return AmeisenRichtungen.links;
 			}
 			else if ( dice < 3/4 ) {
-				return AntDirections.oben;
+				return AmeisenRichtungen.oben;
 			}
 			else if (dice >= 3/4 ) {
-				return AntDirections.unten;
+				return AmeisenRichtungen.unten;
 			}
 		
-		return AntDirections.sleep; //should never happen
+		return AmeisenRichtungen.sleep; //should never happen
 
 		}
 
