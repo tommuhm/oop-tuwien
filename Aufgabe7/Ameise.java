@@ -5,11 +5,14 @@ public class Ameise extends Thread {
 	private static final long stackSize = 16000;
 	private static long ameiseNr = 0;
 
+	private final int maxDosis;
+
 	private Strategie strategie;
 	private Kammer[][] labyrinth;
 	private Kammer ameisenkolonie;
 	private Kammer curKammer;
 	private int dosis;
+	private boolean leitameise;
 
 	public Ameise(Kammer[][] labyrinth, Kammer ameisenkolonie, Strategie strategie) {
 		super(null, null, "Ameise-" + ameiseNr++, stackSize);
@@ -17,7 +20,14 @@ public class Ameise extends Thread {
 		this.strategie = strategie;
 		this.ameisenkolonie = ameisenkolonie;
 		this.curKammer = ameisenkolonie;
-		this.dosis = labyrinth.length * labyrinth[0].length; // TODO calc dosis?
+		this.maxDosis = labyrinth.length * labyrinth[0].length; // TODO calc dosis?
+		this.dosis = maxDosis;
+		this.leitameise = false;
+	}
+
+	public Ameise(Kammer[][] labyrinth, Kammer ameisenkolonie, Strategie strategie, boolean leitameise) {
+		this(labyrinth, ameisenkolonie, strategie);
+		this.leitameise = leitameise;
 	}
 
 	public void run() {
@@ -25,6 +35,10 @@ public class Ameise extends Thread {
 			while (dosis > 0) {
 				pause();
 				move();
+
+				if (leitameise) {
+					notify();
+				}
 			}
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException " + e.getMessage());
@@ -35,7 +49,7 @@ public class Ameise extends Thread {
 
 	private void pause() throws InterruptedException {
 		Random rand = new Random();
-		int waitTime = rand.nextInt(15)+5;
+		int waitTime = rand.nextInt(15) + 5;
 		this.sleep(waitTime);
 	}
 
@@ -48,6 +62,10 @@ public class Ameise extends Thread {
 				dosis--;
 				curKammer.removeAmeise();
 				curKammer = kammer;
+
+				if (curKammer.isFutterstelle() || curKammer.isAmeisenkollonie()) {
+					dosis = maxDosis;
+				}
 			}
 		}
 	}
