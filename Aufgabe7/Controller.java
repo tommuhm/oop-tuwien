@@ -14,26 +14,29 @@ public class Controller {
 	}
 	
 	public void start() {
-		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieDummy());
+		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieDummy(), true);
 		
 		synchronized (leitameise) {
-		leitameise.run();
-		
-		while(true) {
-			try {
-					leitameise.wait(); //Wait until leitameise says go!
-					Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
-					if(ameisenkolonie.addAmeise(neueAmeise)) {
-						System.out.println("Neue Ameise hinzugefügt.");
-					} else {
-						System.out.println("Neue Ameise NICHT hinzugefügt.");
-					}	
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			};
+			//leitameise.run();
+			leitameise.start();
 			
-		}
+			while(true) {
+				try {
+						leitameise.wait(); //Wait until leitameise says go!
+						/*Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
+						if(ameisenkolonie.addAmeise(neueAmeise)) {
+							System.out.println("Neue Ameise hinzugefügt.");
+						} else {
+							System.out.println("Neue Ameise NICHT hinzugefügt.");
+						}	*/
+						
+						System.out.println("Ameise hat genotified. >:^|");
+						
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+			}
 		}
 	}
 	
