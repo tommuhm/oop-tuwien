@@ -62,6 +62,14 @@ public class Kammer {
 	public boolean isStartpunkt() {
 		return startpunkt;
 	}
+
+	public boolean isMauerOben() {
+		return mauerOben;
+	}
+
+	public boolean isMauerRechts() {
+		return mauerRechts;
+	}
 	
 	
 }
