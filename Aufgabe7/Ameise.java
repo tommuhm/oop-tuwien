@@ -30,14 +30,19 @@ public class Ameise extends Thread {
 		this.leitameise = leitameise;
 	}
 
+	@Override
 	public void run() {
+		System.out.println("running: " + leitameise);
 		try {
 			while (dosis > 0) {
 				pause();
 				move();
 
 				if (leitameise) {
-					notify();
+					synchronized (this) {
+						notify();
+						wait();
+					}
 				}
 			}
 		} catch (InterruptedException e) {
@@ -45,7 +50,6 @@ public class Ameise extends Thread {
 //			e.printStackTrace();
 		}
 	}
-
 
 	private void pause() throws InterruptedException {
 		Random rand = new Random();
