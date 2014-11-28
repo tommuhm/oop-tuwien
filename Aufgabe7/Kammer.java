@@ -10,7 +10,7 @@ public class Kammer {
 	private boolean mauerOben;
 	private boolean mauerRechts;
 	private boolean futterstelle;
-	private boolean ameisenkollonie;
+	private boolean ameisenkolonie;
 	
 	public Kammer(int x, int y) {
 		this.x = x;
@@ -24,7 +24,7 @@ public class Kammer {
 		this.mauerOben = false;
 		this.mauerRechts = false;	
 		this.futterstelle = false;
-		this.ameisenkollonie = false;
+		this.ameisenkolonie = false;
 	}
 	
 	public Kammer(int x, int y, boolean mauerOben, boolean mauerRechts) {
@@ -33,9 +33,9 @@ public class Kammer {
 		this.mauerRechts = mauerRechts;
 	}
 	
-	public Kammer(int x, int y, boolean mauerOben, boolean mauerRechts, boolean startpunkt, boolean futterstelle) {
+	public Kammer(int x, int y, boolean mauerOben, boolean mauerRechts, boolean ameisenkolonie, boolean futterstelle) {
 		this(x, y, mauerOben, mauerRechts);
-		this.ameisenkollonie = startpunkt;
+		this.ameisenkolonie = ameisenkolonie;
 		this.futterstelle = futterstelle;
 	}
 	
@@ -66,8 +66,8 @@ public class Kammer {
 		return futterstelle;
 	}
 
-	public boolean isAmeisenkollonie() {
-		return ameisenkollonie;
+	public boolean isAmeisenkolonie() {
+		return ameisenkolonie;
 	}
 
 	public boolean isMauerOben() {
