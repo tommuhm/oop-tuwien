@@ -2,7 +2,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Kammer {
-	
+
+	private final int x;
+	private final int y;
 	private AtomicInteger dosis;
 	private AtomicInteger ameisencounter;
 	private boolean mauerOben;
@@ -10,7 +12,10 @@ public class Kammer {
 	private boolean futterstelle;
 	private boolean startpunkt;
 	
-	public Kammer() {
+	public Kammer(int x, int y) {
+		this.x = x;
+		this.y = y;
+		
 		this.dosis = new AtomicInteger();
 		this.ameisencounter = new AtomicInteger();
 		this.dosis.set(0);
@@ -22,14 +27,14 @@ public class Kammer {
 		this.startpunkt = false;
 	}
 	
-	public Kammer(boolean mauerOben, boolean mauerRechts) {
-		this();
+	public Kammer(int x, int y, boolean mauerOben, boolean mauerRechts) {
+		this(x, y);
 		this.mauerOben = mauerOben;
 		this.mauerRechts = mauerRechts;
 	}
 	
-	public Kammer(boolean mauerOben, boolean mauerRechts, boolean startpunkt, boolean futterstelle) {
-		this(mauerOben, mauerRechts);
+	public Kammer(int x, int y, boolean mauerOben, boolean mauerRechts, boolean startpunkt, boolean futterstelle) {
+		this(x, y, mauerOben, mauerRechts);
 		this.startpunkt = startpunkt;
 		this.futterstelle = futterstelle;
 	}
@@ -71,6 +76,14 @@ public class Kammer {
 
 	public boolean isMauerRechts() {
 		return mauerRechts;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 	
 	
