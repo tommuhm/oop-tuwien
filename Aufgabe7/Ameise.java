@@ -32,7 +32,6 @@ public class Ameise extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("running: " + leitameise);
 		try {
 			while (dosis > 0) {
 				pause();
@@ -61,6 +60,9 @@ public class Ameise extends Thread {
 		boolean moved = false;
 		while (!moved) {
 			Kammer kammer = strategie.naechsteKammer(labyrinth, curKammer);
+			if (kammer == null) {
+				break;
+			}
 			moved = kammer.addAmeise(this);
 			if (moved) {
 				dosis--;
@@ -72,6 +74,11 @@ public class Ameise extends Thread {
 				}
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		return getName() + ", X: " + curKammer.getX() + ", Y: " + curKammer.getY();
 	}
 
 }
