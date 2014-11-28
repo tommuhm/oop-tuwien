@@ -1,32 +1,32 @@
 
 public class StrategieDummy implements Strategie {
 
-	
-	public static Kammer naechsteKammer(Kammer[][] labyrinth, Position p) {
+	@Override
+	public static Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) {
 		Kammer temp;
 
 		//Eines nach links.
 		if(p.getX() > 0 && labyrinth.length > 0 && labyrinth[0].length > 0) {
-			temp = labyrinth[p.getY()][p.getX()-1];
+			temp = labyrinth[kammer.getY()][kammer.getX()-1];
 			if(!temp.isMauerRechts()) {
 				return temp;
 			}
 		}
 
 		//Eines nach rechts.
-		if(!labyrinth[p.getY()][p.getX()].isMauerRechts() && labyrinth.length > 0 && labyrinth[0].length > 0 && p.getX() < (labyrinth[0].length-1)) {
-			temp = labyrinth[p.getY()][p.getX()+1];
+		if(!labyrinth[kammer.getY()][kammer.getX()].isMauerRechts() && labyrinth.length > 0 && labyrinth[0].length > 0 && kammer.getX() < (labyrinth[0].length-1)) {
+			temp = labyrinth[kammer.getY()][kammer.getX()+1];
 			return temp;
 		}
 
 		//Eines nach oben.
-		if(!labyrinth[p.getY()][p.getX()].isMauerOben() && p.getY() > 0 && labyrinth.length > 0) {
-			temp = labyrinth[p.getY()-1][p.getX()];
+		if(!labyrinth[kammer.getY()][kammer.getX()].isMauerOben() && kammer.getY() > 0 && labyrinth.length > 0) {
+			temp = labyrinth[kammer.getY()-1][kammer.getX()];
 			return temp;
 		}
 
-		if(p.getY() >= 0 &&  p.getY() < (labyrinth.length-1)) {
-			temp = labyrinth[p.getY()+1][p.getX()];
+		if(p.getY() >= 0 && kammer.getY() < (labyrinth.length-1)) {
+			temp = labyrinth[kammer.getY()+1][kammer.getX()];
 			if(!temp.isMauerOben()) {
 				return temp;
 			}
