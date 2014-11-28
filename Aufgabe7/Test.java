@@ -23,7 +23,7 @@ public class Test {
 		laby[3][2] = new Kammer(2, 3, true, false);
 		laby[3][3] = new Kammer(3, 3, false, true);
 
-		Controller c1 = new Controller(laby, laby[1][3], laby[3][0]);
+		Controller c1 = new Controller(laby, laby[3][0], laby[1][3]);
 
 		c1.start();
 	}

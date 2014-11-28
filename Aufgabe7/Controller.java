@@ -15,22 +15,27 @@ public class Controller {
 	
 	public void start() {
 		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieDummy(), true);
+		ameisenkolonie.addAmeise(leitameise);
 		
 		synchronized (leitameise) {
-			//leitameise.run();
 			leitameise.start();
+			
 			
 			while(true) {
 				try {
 						leitameise.wait(); //Wait until leitameise says go!
-						/*Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
+						
+						Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
 						if(ameisenkolonie.addAmeise(neueAmeise)) {
 							System.out.println("Neue Ameise hinzugefügt.");
 						} else {
 							System.out.println("Neue Ameise NICHT hinzugefügt.");
-						}	*/
+						}	
+						neueAmeise.start();
 						
 						System.out.println("Ameise hat genotified. >:^|");
+						Thread.sleep(1000);
+						leitameise.notifyAll();
 						
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
