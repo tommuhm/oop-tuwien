@@ -2,6 +2,10 @@
 public class StrategieRandom implements Strategie {
 
 
+	
+	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) {
+		return null;
+	}
 
 	public AmeisenRichtungen dice() {
 

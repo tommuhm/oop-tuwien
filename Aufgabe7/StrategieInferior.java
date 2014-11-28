@@ -1,9 +1,11 @@
 
 public class StrategieInferior implements Strategie {
 
+
 	
-	
-	
+	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) {
+		return null;
+	}
 	
 	
 	
