@@ -85,6 +85,14 @@ public class Kammer {
 	public int getY() {
 		return y;
 	}
+
+	public int getDosis() {
+		return dosis.get();
+	}
+
+	public int getAmeisencounter() {
+		return ameisencounter.get();
+	}
 	
 	
 }
