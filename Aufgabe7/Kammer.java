@@ -37,14 +37,16 @@ public class Kammer {
 	public synchronized boolean addAmeise(Ameise ameise) { //TODO addDosis.
 		if(this.ameisencounter.get() < 2) {
 			this.ameisencounter.incrementAndGet();
-			this.addDosis(ameise.getDosis());
+			this.dosis.incrementAndGet();
 			return true;
 		}
 		return false;
 	}
 	
-	private void addDosis (int dosis) {
-		this.dosis.addAndGet(dosis);
+	public synchronized void reduziereDosis() {
+		if(this.dosis.get() > 0) {
+			this.dosis.decrementAndGet();
+		}
 	}
 	
 	public synchronized boolean removeAmeise() {
