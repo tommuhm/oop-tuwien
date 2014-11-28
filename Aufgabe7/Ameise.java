@@ -21,24 +21,15 @@ public class Ameise extends Thread {
 	}
 
 	public void run() {
-
 		try {
-
 			while (dosis > 0) {
 				pause();
-
 				move();
-
-
 			}
-
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException " + e.getMessage());
 //			e.printStackTrace();
 		}
-
-
-		System.out.println("Test");
 	}
 
 
