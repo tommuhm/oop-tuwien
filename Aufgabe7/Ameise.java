@@ -5,21 +5,19 @@ public class Ameise extends Thread {
 	private static final long stackSize = 16000;
 	private static long ameiseNr = 0;
 
+	private Strategie strategie;
 	private Kammer[][] labyrinth;
 	private Kammer ameisenkolonie;
-	private Strategie strategie;
-
-	private int dosis;
 	private Kammer curKammer;
+	private int dosis;
 
 	public Ameise(Kammer[][] labyrinth, Kammer ameisenkolonie, Strategie strategie) {
 		super(null, null, "Ameise-" + ameiseNr++, stackSize);
 		this.labyrinth = labyrinth;
-		this.ameisenkolonie = ameisenkolonie;
 		this.strategie = strategie;
+		this.ameisenkolonie = ameisenkolonie;
 		this.curKammer = ameisenkolonie;
-		// TODO
-		this.dosis = labyrinth.length * labyrinth[0].length;
+		this.dosis = labyrinth.length * labyrinth[0].length; // TODO calc dosis?
 	}
 
 	public void run() {
@@ -53,7 +51,7 @@ public class Ameise extends Thread {
 	private void move() {
 		boolean moved = false;
 		while (!moved) {
-			Kammer kammer = strategie.naechsteKammer();
+			Kammer kammer = strategie.naechsteKammer(labyrinth, curKammer);
 			moved = kammer.addAmeise(this);
 			if (moved) {
 				dosis--;
