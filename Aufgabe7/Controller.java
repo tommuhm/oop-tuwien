@@ -2,19 +2,39 @@
 public class Controller {
 	
 	private Kammer[][] labyrinth;
-	private Kammer startpunkt;
+	private Kammer ameisenkolonie;
 	private Kammer futterstelle;
 	private int groesse;
 	
-	public Controller(Kammer[][] labyrinth, Kammer startpunkt, Kammer futterstelle) {
+	public Controller(Kammer[][] labyrinth, Kammer ameisenkolonie, Kammer futterstelle) {
 		this.labyrinth = labyrinth;
-		this.startpunkt = startpunkt;
+		this.ameisenkolonie = ameisenkolonie;
 		this.futterstelle = futterstelle;
 		this.groesse = labyrinth.length * labyrinth[0].length; //Labyrinth != null!!!!!!
 	}
 	
 	public void start() {
-		//Ameise leitameise = new Ameise();
+		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieDummy());
+		
+		synchronized (leitameise) {
+		leitameise.run();
+		
+		while(true) {
+			try {
+					leitameise.wait(); //Wait until leitameise says go!
+					Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
+					if(ameisenkolonie.addAmeise(neueAmeise)) {
+						System.out.println("Neue Ameise hinzugefügt.");
+					} else {
+						System.out.println("Neue Ameise NICHT hinzugefügt.");
+					}	
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+			
+		}
+		}
 	}
 	
 }
