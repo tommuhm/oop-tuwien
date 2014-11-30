@@ -7,25 +7,24 @@ public class StrategieRandom implements Strategie {
 		return null;
 	}
 
-	public AmeisenRichtungen dice() {
+	public AmeisenRichtung dice() {
 
 		double dice = Math.random();
 
 		if ( dice < 1/4 ) {
-			return AmeisenRichtungen.rechts;
+			return AmeisenRichtung.rechts;
 		}
-			
 			else if ( dice < 1/2 ) {
-				return AmeisenRichtungen.links;
+				return AmeisenRichtung.links;
 			}
 			else if ( dice < 3/4 ) {
-				return AmeisenRichtungen.oben;
+				return AmeisenRichtung.oben;
 			}
 			else if (dice >= 3/4 ) {
-				return AmeisenRichtungen.unten;
+				return AmeisenRichtung.unten;
 			}
 		
-		return AmeisenRichtungen.sleep; //should never happen
+		return AmeisenRichtung.sleep; //should never happen
 
 		}
 
