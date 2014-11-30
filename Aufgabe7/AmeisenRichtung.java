@@ -1,6 +1,6 @@
 
 public enum AmeisenRichtung {
 	
-	links, rechts, oben, unten, sleep;
+	links, rechts, oben, unten;
 	
 }

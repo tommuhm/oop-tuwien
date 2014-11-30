@@ -1,9 +1,9 @@
 
 public class StrategieInferior implements Strategie {
 
-
+	//zuerst nach oben, dann rechts, dann unten, dann links
 	
-	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) {
+	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) throws InterruptedException {
 		return null;
 	}
 	
