@@ -68,7 +68,7 @@ public class StrategieSuperior implements Strategie {
 
 			} return getDirection(labyrinth, kammer, AmeisenRichtung.rechts);
 
-		default: return naechsteKammer(labyrinth, kammer); //should never happen.
+		default: return naechsteKammer(labyrinth, kammer); //should never happen. may cause a loop
 		}
 	}
 

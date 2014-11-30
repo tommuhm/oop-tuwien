@@ -49,7 +49,7 @@ public class StrategieInferior implements Strategie {
 				&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2) {
 			return labyrinth[kammer.getY()][kammer.getX() - 1];
 
-		} return naechsteKammer(labyrinth, kammer); //should never happen
+		} return naechsteKammer(labyrinth, kammer); //should never happen. may cause a loop
 	}
 
 
