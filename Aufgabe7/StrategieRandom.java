@@ -60,7 +60,7 @@ public class StrategieRandom implements Strategie {
 
 			} return naechsteKammer(labyrinth, kammer);
 			
-		default: return naechsteKammer(labyrinth, kammer); //should never happen. but if it might cause an eternal loop
+		default: return null; //should never happen.
 		}
 	}
 	
@@ -82,7 +82,7 @@ public class StrategieRandom implements Strategie {
 			return AmeisenRichtung.unten;
 		} 
 		
-		return dice(); //should never happen. but if it might cause an eternal loop
+		return AmeisenRichtung.rechts; //should never happen.
 	}
 
 
