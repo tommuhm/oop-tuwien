@@ -5,7 +5,7 @@ public class StrategieRandom implements Strategie {
 	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) throws InterruptedException { // TODO synchronized?
 		Random random = new Random();
 		
-		while (labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2 // sleep 1 zug lang bis feld frei ist. 
+		while (labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2 // sleep zug lang bis feld frei ist. 
 			&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2
 			&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2
 			&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
