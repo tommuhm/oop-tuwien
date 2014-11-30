@@ -2,24 +2,24 @@ import java.util.Random;
 
 
 public class StrategieSuperior implements Strategie {
-	
-	//random direction to start. if direction not available, use next direction counterclockwise instead of dicing again.
-	
+
+	//random direction to start. if direction not available, use next direction clockwise instead of dicing again.
+
 	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) throws InterruptedException { // TODO synchronized?
 		Random random = new Random();
-		
+
 		while (labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2 // sleep zug lang bis feld frei ist. 
-			&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2
-			&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2
-			&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
+				&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2
+				&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2
+				&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
 			sleep(random.nextInt(15) + 5); // TODO do not execute in synchronized -> manual // TODO lock labyrinth maybe?
 		}
-				
+
 		return getDirection(labyrinth,kammer, dice());
 	}
-	
+
 	private Kammer getDirection(Kammer[][] labyrinth, Kammer kammer, AmeisenRichtung dir) throws InterruptedException {
-		
+
 		switch (dir) {
 
 		case rechts: 
@@ -31,6 +31,28 @@ public class StrategieSuperior implements Strategie {
 					&& kammer.getX() < (labyrinth[0].length - 1)
 					&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
 				return labyrinth[kammer.getY()][kammer.getX() + 1];
+
+			} return getDirection(labyrinth, kammer, AmeisenRichtung.unten);
+
+		case unten:
+			if (!labyrinth[kammer.getY() - 1][kammer.getX()].isMauerOben() // kammer.isMauerUnten
+					&& labyrinth.length > 0
+					&& labyrinth[1].length > 0
+					&& kammer.getY() > 0 // TODO check that with teammates
+					&& kammer.getY() < (labyrinth[1].length - 1)
+					&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2) {
+				return labyrinth[kammer.getY() - 1][kammer.getX()];
+
+			} return getDirection(labyrinth, kammer, AmeisenRichtung.links);
+
+		case links: 
+			if (!labyrinth[kammer.getY()][kammer.getX() - 1].isMauerRechts() // kammer.isMauerLinks
+					&& labyrinth.length > 0
+					&& labyrinth[0].length > 0
+					&& kammer.getX() > 0 // TODO check that with teammates
+					&& kammer.getX() < (labyrinth[0].length - 1)
+					&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2) {
+				return labyrinth[kammer.getY()][kammer.getX() - 1];
 
 			} return getDirection(labyrinth, kammer, AmeisenRichtung.oben);
 
@@ -44,35 +66,13 @@ public class StrategieSuperior implements Strategie {
 					&& labyrinth[kammer.getY() + 1][kammer.getX()].getAmeisencounter() < 2) { //WTH? -1 @ Dummy?
 				return labyrinth[kammer.getY() + 1][kammer.getX()]; //WTH? -1 @ Dummy?
 
-			} return getDirection(labyrinth, kammer, AmeisenRichtung.links);
-
-		case links: 
-			if (!labyrinth[kammer.getY()][kammer.getX() - 1].isMauerRechts() // kammer.isMauerLinks
-					&& labyrinth.length > 0
-					&& labyrinth[0].length > 0
-					&& kammer.getX() > 0 // TODO check that with teammates
-					&& kammer.getX() < (labyrinth[0].length - 1)
-					&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2) {
-				return labyrinth[kammer.getY()][kammer.getX() - 1];
-
-			} return getDirection(labyrinth, kammer, AmeisenRichtung.unten);
-
-		case unten:
-			if (!labyrinth[kammer.getY() - 1][kammer.getX()].isMauerOben() // kammer.isMauerUnten
-					&& labyrinth.length > 0
-					&& labyrinth[1].length > 0
-					&& kammer.getY() > 0 // TODO check that with teammates
-					&& kammer.getY() < (labyrinth[1].length - 1)
-					&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2) {
-				return labyrinth[kammer.getY() - 1][kammer.getX()];
-
 			} return getDirection(labyrinth, kammer, AmeisenRichtung.rechts);
-			
-		default: return null; //should never happen.
+
+		default: return naechsteKammer(labyrinth, kammer); //should never happen.
 		}
 	}
-	
-	
+
+
 	public AmeisenRichtung dice() {
 
 		double dice = (int) (Math.random() * 4);
@@ -89,15 +89,14 @@ public class StrategieSuperior implements Strategie {
 		else if (dice == 3 ) {
 			return AmeisenRichtung.unten;
 		} 
-		
+
 		return AmeisenRichtung.rechts; //should never happen.
 	}
-	
-	
-	
+
+
 	public void sleep(int n) throws InterruptedException {
 		try {
-		Thread.sleep(n);
+			Thread.sleep(n);
 		} catch(InterruptedException ex) {
 			System.out.println("InterruptedException occured in StrategieSuperior");
 		}

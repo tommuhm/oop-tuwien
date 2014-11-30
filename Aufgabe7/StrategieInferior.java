@@ -15,16 +15,7 @@ public class StrategieInferior implements Strategie {
 			sleep(random.nextInt(15) + 5); // TODO do not execute in synchronized -> manual // TODO lock labyrinth maybe?
 		}
 
-		if (!kammer.isMauerRechts()
-				&& !labyrinth[kammer.getY()][kammer.getX()].isMauerRechts()
-				&& labyrinth.length > 0
-				&& labyrinth[0].length > 0
-				&& kammer.getX() > 0 // TODO check that with teammates
-				&& kammer.getX() < (labyrinth[0].length - 1)
-				&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
-			return labyrinth[kammer.getY()][kammer.getX() + 1];
-
-		} else if (!kammer.isMauerOben()
+		if (!kammer.isMauerOben()
 				&& !labyrinth[kammer.getY()][kammer.getX()].isMauerOben()
 				&& labyrinth.length > 0 
 				&& labyrinth[1].length > 0
@@ -33,13 +24,14 @@ public class StrategieInferior implements Strategie {
 				&& labyrinth[kammer.getY() + 1][kammer.getX()].getAmeisencounter() < 2) { //WTH? -1 @ Dummy?
 			return labyrinth[kammer.getY() + 1][kammer.getX()]; //WTH? -1 @ Dummy?
 
-		} else if (!labyrinth[kammer.getY()][kammer.getX() - 1].isMauerRechts() // kammer.isMauerLinks
+		} else if (!kammer.isMauerRechts()
+				&& !labyrinth[kammer.getY()][kammer.getX()].isMauerRechts()
 				&& labyrinth.length > 0
 				&& labyrinth[0].length > 0
 				&& kammer.getX() > 0 // TODO check that with teammates
 				&& kammer.getX() < (labyrinth[0].length - 1)
-				&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2) {
-			return labyrinth[kammer.getY()][kammer.getX() - 1];
+				&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
+			return labyrinth[kammer.getY()][kammer.getX() + 1];
 
 		} else if (!labyrinth[kammer.getY() - 1][kammer.getX()].isMauerOben() // kammer.isMauerUnten
 				&& labyrinth.length > 0
@@ -49,9 +41,16 @@ public class StrategieInferior implements Strategie {
 				&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2) {
 			return labyrinth[kammer.getY() - 1][kammer.getX()];
 
+		} else if (!labyrinth[kammer.getY()][kammer.getX() - 1].isMauerRechts() // kammer.isMauerLinks
+				&& labyrinth.length > 0
+				&& labyrinth[0].length > 0
+				&& kammer.getX() > 0 // TODO check that with teammates
+				&& kammer.getX() < (labyrinth[0].length - 1)
+				&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2) {
+			return labyrinth[kammer.getY()][kammer.getX() - 1];
+
 		} return naechsteKammer(labyrinth, kammer); //should never happen
 	}
-
 
 
 	public void sleep(int n) throws InterruptedException {

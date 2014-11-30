@@ -1,6 +1,8 @@
 import java.util.Random;
 
 public class StrategieRandom implements Strategie {
+	
+	// movement is completely random
 
 	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) throws InterruptedException { // TODO synchronized?
 		Random random = new Random();
