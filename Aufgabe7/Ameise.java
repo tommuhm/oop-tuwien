@@ -59,10 +59,10 @@ public class Ameise extends Thread {
 			if (feldAvailable == null) {
 				break;
 			}
-			int tempDosis = this.dosis == 0 ? 0 : 1;
-			moved = feldAvailable.addAmeise(dosis);
+			boolean tempDosis = this.dosis > 0 ? true : false;
+			moved = feldAvailable.addAmeise(tempDosis);
 			if (moved) {
-				dosis = dosis - tempDosis;
+				dosis = dosis - (tempDosis ? 1 : 0);
 				curFeld.removeAmeise();
 				curFeld = feldAvailable;
 
