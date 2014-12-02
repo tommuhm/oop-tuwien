@@ -42,7 +42,9 @@ public class Kammer {
 	public synchronized boolean addAmeise(Ameise ameise) { //TODO addDosis.
 		if(this.ameisencounter.get() < 2) {
 			this.ameisencounter.incrementAndGet();
-			this.dosis.incrementAndGet();
+			if(this.dosis.get() < 9) {
+				this.dosis.incrementAndGet();
+			}
 			return true;
 		}
 		return false;

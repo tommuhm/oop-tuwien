@@ -46,7 +46,8 @@ public class Ameise extends Thread {
 			}
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException " + e.getMessage());
-//			e.printStackTrace();
+			//e.printStackTrace();
+			this.interrupt();
 		}
 	}
 

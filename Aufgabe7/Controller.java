@@ -28,24 +28,32 @@ public class Controller {
 			
 			while(true) {
 				try {
-						leitameise.wait(); //Wait until leitameise says go!
+						if(leitameise.getDosis() <= 0) {
+							leitameise.interrupt();
+							for(Ameise temp : ameisen) {
+								temp.interrupt();
+							}
+							return;
+						} else {
+							leitameise.wait(); //Wait until leitameise says go!
 						
-						System.out.println(ameisen.size() + " < " + (groesse/10) + " = " + (ameisen.size() < (groesse/10)));
-						if(ameisen.size() < (groesse/10)) {
-							Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
-							if(ameisenkolonie.addAmeise(neueAmeise)) {
-								System.out.println("Neue Ameise hinzugefügt.");
-							} else {
-								System.out.println("Neue Ameise NICHT hinzugefügt.");
-							}	
+							System.out.println(ameisen.size() + " < " + (groesse/10) + " = " + (ameisen.size() < (groesse/10)));
+							if(ameisen.size() < (groesse/10)) {
+								Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
+								if(ameisenkolonie.addAmeise(neueAmeise)) {
+									System.out.println("Neue Ameise hinzugefügt.");
+								} else {
+									System.out.println("Neue Ameise NICHT hinzugefügt.");
+								}	
+								
+								ameisen.add(neueAmeise);
+								neueAmeise.start();
+							}
 							
-							ameisen.add(neueAmeise);
-							neueAmeise.start();
+							System.out.println("Ameise hat genotified. >:^|");
+							this.printLabyrinth();
+							leitameise.notifyAll();
 						}
-						
-						System.out.println("Ameise hat genotified. >:^|");
-						this.printLabyrinth();
-						leitameise.notifyAll();
 						
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
