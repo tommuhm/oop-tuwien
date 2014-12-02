@@ -19,7 +19,7 @@ public abstract class Strategie {
 				strategie = new StrategieRandom();
 				break;
 		}
-		strategieCounter = (strategieCounter+1) % 3;
+		strategieCounter = (strategieCounter + 1) % 3;
 		return strategie;
 	}
 
@@ -28,57 +28,57 @@ public abstract class Strategie {
 	public abstract Feld naechsteKammer(Feld[][] labyrinth, Feld feld);
 
 	public Feld checkOben(Feld[][] labyrinth, Feld feld) {
-		if (	//stepOne: check if kammer in borders
-				feld.getY() > 0 // there is actually a field above
-				&& feld.getY() < (labyrinth.length) // kammer still in borders
+		if (  //stepOne: check if kammer in borders
+				feld.getY() > 0 && // there is actually a field above
+						feld.getY() < (labyrinth.length) &&// kammer still in borders
 
-				//stepTwo: check if there's a wall
-				&& !feld.isMauerOben()
+						//stepTwo: check if there's a wall
+						!feld.hatMauerOben() &&
 
-				//stepThree: check if there are already two ants
-				&& labyrinth[feld.getY() - 1][feld.getX()].getAmeisencounter() < 2)
+						//stepThree: check if there are already two ants
+						labyrinth[feld.getY() - 1][feld.getX()].hatPlatz())
 			return labyrinth[feld.getY() - 1][feld.getX()];
 		return null;
 	}
 
 	public Feld checkRechts(Feld[][] labyrinth, Feld feld) {
-		if (	//stepOne: check if kammer in borders
-				feld.getX() >= 0
-				&& feld.getX() < (labyrinth[0].length - 1)
+		if (  //stepOne: check if kammer in borders
+				feld.getX() >= 0 &&
+						feld.getX() < (labyrinth[0].length - 1) &&
 
-				//stepTwo: check if there's a wall
-				&& !feld.isMauerRechts()
-				
-				//stepThree: check if there are already two ants
-				&& labyrinth[feld.getY()][feld.getX() + 1].getAmeisencounter() < 2)
+						//stepTwo: check if there's a wall
+						!feld.hatMauerRechts() &&
+
+						//stepThree: check if there are already two ants
+						labyrinth[feld.getY()][feld.getX() + 1].hatPlatz())
 			return labyrinth[feld.getY()][feld.getX() + 1];
 		return null;
 	}
 
 	public Feld checkLinks(Feld[][] labyrinth, Feld feld) {
-		if (	//stepOne: check if kammer in borders
-				feld.getX() > 0
-				&& feld.getX() < (labyrinth[0].length)
+		if (  //stepOne: check if kammer in borders
+				feld.getX() > 0 &&
+						feld.getX() < (labyrinth[0].length) &&
 
-				//stepTwo: check if there's a wall
-				&& !labyrinth[feld.getY()][feld.getX() - 1].isMauerRechts() // kammer.isMauerLinks
+						//stepTwo: check if there's a wall
+						!labyrinth[feld.getY()][feld.getX() - 1].hatMauerRechts() && // kammer.isMauerLinks
 
-				//stepThree: check if there are already two ants
-				&& labyrinth[feld.getY()][feld.getX() - 1].getAmeisencounter() < 2)
+						//stepThree: check if there are already two ants
+						labyrinth[feld.getY()][feld.getX() - 1].hatPlatz())
 			return labyrinth[feld.getY()][feld.getX() - 1];
 		return null;
 	}
 
 	public Feld checkUnten(Feld[][] labyrinth, Feld feld) {
-		if (	//stepOne: check if kammer in borders
-				feld.getY() >= 0
-				&& feld.getY() < (labyrinth.length - 1)
+		if (  //stepOne: check if kammer in borders
+				feld.getY() >= 0 &&
+						feld.getY() < (labyrinth.length - 1) &&
 
-				//stepTwo: check if there's a wall
-				&& !labyrinth[feld.getY() + 1][feld.getX()].isMauerOben() // kammer.isMauerUnten
+						//stepTwo: check if there's a wall
+						!labyrinth[feld.getY() + 1][feld.getX()].hatMauerOben() && // kammer.isMauerUnten
 
-				//stepThree: check if there are already two ants
-				&& labyrinth[feld.getY() + 1][feld.getX()].getAmeisencounter() < 2)
+						//stepThree: check if there are already two ants
+						labyrinth[feld.getY() + 1][feld.getX()].hatPlatz())
 			return labyrinth[feld.getY() + 1][feld.getX()];
 		return null;
 	}

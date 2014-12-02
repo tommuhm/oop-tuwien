@@ -50,13 +50,17 @@ public class Ameise extends Thread {
 			if (feld == null) {
 				break;
 			}
-			moved = feld.addAmeise(this);
+			if (dosis > 0) {
+				moved = feld.addAmeise(1);
+			} else {
+				moved = feld.addAmeise(0);
+			}
 			if (moved) {
 				dosis--;
 				curFeld.removeAmeise();
 				curFeld = feld;
 
-				if (curFeld.isFutterstelle() || curFeld.isAmeisenkolonie()) {
+				if (curFeld instanceof FeldFutterstelle || curFeld instanceof FeldAmeisenkolonie) {
 					dosis = maxDosis;
 				}
 			}

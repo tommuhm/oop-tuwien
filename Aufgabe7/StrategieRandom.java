@@ -6,7 +6,7 @@ public class StrategieRandom extends Strategie {
 	public Feld naechsteKammer(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
 
 		int counter = 0;
-		
+
 		if (checkOben(labyrinth, feld) != null)
 			counter++;
 		if (checkRechts(labyrinth, feld) != null)
