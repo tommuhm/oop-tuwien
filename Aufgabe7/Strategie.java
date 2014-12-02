@@ -4,20 +4,6 @@ public abstract class Strategie {
 	//rm Conditions: kammer.getY() >= 0 			 		&& labyrinth.length > 0  			&& labyrinth[0].length > 0 // x length > 0
 
 	public abstract Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer);
-	
-	public boolean checkRichtung(Kammer[][] labyrinth, Kammer kammer) {
-		if (	// check ob min ein zug frei ist
-				kammer.getX() > 0
-				&& kammer.getY() > 0
-				&& kammer.getX() < labyrinth[0].length
-				&& kammer.getY() < labyrinth.length
-				&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() == 2
-				&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() == 2
-				&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() == 2
-				&& labyrinth[kammer.getY() + 1][kammer.getX()].getAmeisencounter() == 2) 
-			return true;
-		return false;
-	}
 
 	public Kammer checkOben(Kammer[][] labyrinth, Kammer kammer) {
 		if (	//stepOne: check if kammer in borders

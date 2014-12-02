@@ -5,9 +5,6 @@ public class StrategieRandom extends Strategie {
 
 	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) { // TODO synchronized?
 
-		if (!checkRichtung(labyrinth, kammer))
-			return null;
-
 		switch (dice()) {
 
 		case 0: 

@@ -4,8 +4,9 @@ public class StrategieSuperior extends Strategie {
 	// enhanced random algorithm
 
 	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) { // TODO synchronized?
-		int counter = 0;
 
+		int counter = 0;
+		
 		if (checkOben(labyrinth, kammer) != null) 
 			counter++;
 		if (checkRechts(labyrinth, kammer) != null)
