@@ -22,7 +22,7 @@ public class Controller {
 	public void start() {
 
 		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieRandom(), groesse * 2, true);
-		ameisenkolonie.addAmeise(1);
+		ameisenkolonie.addAmeise(true);
 
 		synchronized (leitameise) {
 			leitameise.start();
@@ -47,7 +47,7 @@ public class Controller {
 						if (ameisen.size() < (groesse / 10) && ameisenkolonie.hatPlatz()) {
 							Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, Strategie.getNextStrategie(), anzahlZuege, false);
 							ameisen.add(neueAmeise);
-							ameisenkolonie.addAmeise(1);
+							ameisenkolonie.addAmeise(true);
 							neueAmeise.start();
 						}
 
