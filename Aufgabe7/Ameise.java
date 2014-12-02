@@ -46,19 +46,16 @@ public class Ameise extends Thread {
 	private void move() {
 		boolean moved = false;
 		while (!moved) {
-			Feld feld = strategie.naechsteKammer(labyrinth, curFeld);
-			if (feld == null) {
+			Feld feldAvailable = strategie.naechstesFeld(labyrinth, curFeld);
+			if (feldAvailable == null) {
 				break;
 			}
-			if (dosis > 0) {
-				moved = feld.addAmeise(1);
-			} else {
-				moved = feld.addAmeise(0);
-			}
+			int tempDosis = this.dosis == 0 ? 0 : 1;
+			moved = feldAvailable.addAmeise(dosis);
 			if (moved) {
-				dosis--;
+				dosis = dosis - tempDosis;
 				curFeld.removeAmeise();
-				curFeld = feld;
+				curFeld = feldAvailable;
 
 				if (curFeld instanceof FeldFutterstelle || curFeld instanceof FeldAmeisenkolonie) {
 					dosis = maxDosis;

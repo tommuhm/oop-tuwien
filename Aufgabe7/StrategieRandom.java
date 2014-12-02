@@ -3,8 +3,8 @@ public class StrategieRandom extends Strategie {
 
 	// enhanced random algorithm
 
-	public Feld naechsteKammer(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
-
+	@Override
+	public Feld naechstesFeld(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
 		int counter = 0;
 
 		if (checkOben(labyrinth, feld) != null)

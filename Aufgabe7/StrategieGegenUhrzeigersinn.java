@@ -1,7 +1,8 @@
 
 public class StrategieGegenUhrzeigersinn extends Strategie {
 
-	public Feld naechsteKammer(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
+	@Override
+	public Feld naechstesFeld(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
 
 		if (checkUnten(labyrinth, feld) != null)
 			return checkUnten(labyrinth, feld);

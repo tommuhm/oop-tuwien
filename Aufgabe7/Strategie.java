@@ -25,7 +25,7 @@ public abstract class Strategie {
 
 	//rm Conditions: kammer.getY() >= 0 			 		&& labyrinth.length > 0  			&& labyrinth[0].length > 0 // x length > 0
 
-	public abstract Feld naechsteKammer(Feld[][] labyrinth, Feld feld);
+	public abstract Feld naechstesFeld(Feld[][] labyrinth, Feld feld);
 
 	public Feld checkOben(Feld[][] labyrinth, Feld feld) {
 		if (  //stepOne: check if kammer in borders

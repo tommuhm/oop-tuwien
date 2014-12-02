@@ -1,6 +1,7 @@
 public class StrategieDummy extends Strategie {
 
-	public Feld naechsteKammer(Feld[][] labyrinth, Feld feld) {
+	@Override
+	public Feld naechstesFeld(Feld[][] labyrinth, Feld feld) {
 		Feld temp;
 
 		int i = (int) (Math.random() * 4);
