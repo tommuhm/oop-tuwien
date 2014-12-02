@@ -19,7 +19,6 @@ public class Leitameise extends Ameise {
 				}
 			}
 		} catch (InterruptedException e) {
-			System.out.println(this.toString());
 			this.interrupt();
 		}
 	}

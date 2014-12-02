@@ -28,13 +28,13 @@ public class Controller {
 
 			while(true) {
 				try {
-						if(leitameise.getDosis() <= 0) {
+						if(leitameise.getState() == Thread.State.TERMINATED) {
 							
 							leitameise.interrupt();
-							System.out.println("Leitameise: (" + leitameise.getCurKammer().getX() + "|" + leitameise.getCurKammer().getY() + ")");
-							for(Ameise temp : ameisen) {
-								temp.interrupt();
-								System.out.println("Ameise: (" + temp.getCurKammer().getX() + "|" + temp.getCurKammer().getY() + ")");
+							System.out.println(leitameise.toString());
+							for(Ameise ameise : ameisen) {
+								ameise.interrupt();
+								System.out.println(ameise.toString());
 							}
 							return;
 						} else {

@@ -28,7 +28,6 @@ public class Ameise extends Thread {
 				next();
 			}
 		} catch (InterruptedException e) {
-			System.out.println(this.toString());
 			this.interrupt();
 		}
 	}
@@ -64,17 +63,9 @@ public class Ameise extends Thread {
 		}
 	}
 
-	public int getDosis() {
-		return dosis;
-	}
-
-	public Kammer getCurKammer() {
-		return curKammer;
-	}
-
 	@Override
 	public String toString() {
-		return getName() + ", X: " + curKammer.getX() + ", Y: " + curKammer.getY();
+		return getName() + ": (" + curKammer.getX() + "|" + curKammer.getY() + ")";
 	}
 
 }
