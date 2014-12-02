@@ -19,7 +19,7 @@ public abstract class Strategie {
 				strategie = new StrategieSuperiorRandom();
 				break;
 		}
-		strategieCounter = (strategieCounter+1) % 4;
+		strategieCounter = (strategieCounter+1) % 3;
 		return strategie;
 	}
 
