@@ -76,9 +76,13 @@ public class Ameise extends Thread {
 			}
 		}
 	}
-	
+
 	public int getDosis() {
 		return dosis;
+	}
+
+	public Kammer getCurKammer() {
+		return curKammer;
 	}
 
 	@Override
