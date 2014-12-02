@@ -1,6 +1,28 @@
 
 public abstract class Strategie {
 
+	private static int strategieCounter = 0;
+
+	public static Strategie getNextStrategie() {
+		Strategie strategie;
+		switch (strategieCounter) {
+			case 0:
+				strategie = new StrategieImUhrzeigersinn();
+				break;
+			case 1:
+				strategie = new StrategieGegenUhrzeigersinn();
+				break;
+			case 2:
+				strategie = new StrategieRandom();
+				break;
+			default:
+				strategie = new StrategieRandom();
+				break;
+		}
+		strategieCounter = (strategieCounter+1) % 3;
+		return strategie;
+	}
+
 	//rm Conditions: kammer.getY() >= 0 			 		&& labyrinth.length > 0  			&& labyrinth[0].length > 0 // x length > 0
 
 	public abstract Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer);
