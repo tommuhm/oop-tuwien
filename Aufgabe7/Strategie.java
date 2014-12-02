@@ -2,36 +2,33 @@
 public abstract class Strategie {
 
 	private static int strategieCounter = 0;
+	// Invariante: strategieCounter darf nicht kleiner 0 sein.
 
-	// Vorbedingungen: labyrinth darf nicht null sein, feld darf nicht null sein.
-	// Nachbedingungen: gibt das nachste Feld zurueck, falls verfuegbar, ansonsten null.
+	// Vorbedingung: labyrinth darf nicht null sein.
+	// Vorbedingung: feld darf nicht null sein.
+	// Nachbedingung: gibt das nachste Feld zurueck, falls verfuegbar, ansonsten null.
 	public abstract Feld naechstesFeld(Feld[][] labyrinth, Feld feld);
 
 	
-	// Nachbedingung: gibt die Strategien in einem Zyklus zurueck
+	// Nachbedingung: strategieCounter wird um 1 erhöht.
+	// Nachbedingung: gibt ein neues Objekt vom Typ Strategie zurück, abhängig vom aktuellen Stand von strategieCounter.
 	public static Strategie getNextStrategie() {
-		Strategie strategie;
-		switch (strategieCounter) {
+		strategieCounter++;
+		switch (strategieCounter % 3) {
 		case 0:
-			strategie = new StrategieImUhrzeigersinn();
-			break;
+			return new StrategieImUhrzeigersinn();
 		case 1:
-			strategie = new StrategieGegenUhrzeigersinn();
-			break;
+			return new StrategieGegenUhrzeigersinn();
 		case 2:
-			strategie = new StrategieRandom();
-			break;
+			return new StrategieRandom();
 		default:
-			strategie = new StrategieRandom();
-			break;
+			return new StrategieRandom();
 		}
-		strategieCounter = (strategieCounter + 1) % 3;
-		return strategie;
 	}
 
-	
-	// Vorbedingungen: labyrinth darf nicht null sein, feld darf nicht null sein.
-	// Nachbedingungen: returned das obere Feld, falls es verfuegbar ist, ansonsten null.
+	// Vorbedingung: labyrinth darf nicht null sein.
+	// Vorbedingung: feld darf nicht null sein.
+	// Nachbedingung: gibt das obere Feld zurück falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkOben(Feld[][] labyrinth, Feld feld) {
 		if ( 	feld.getY() > 0 && 									// there is actually a field above
 				feld.getY() < (labyrinth.length) &&					// kammer still in borders
@@ -41,8 +38,9 @@ public abstract class Strategie {
 		return null;
 	}
 
-	
-	// same procedures and conditions as checkOben
+	// Vorbedingung: labyrinth darf nicht null sein.
+	// Vorbedingung: feld darf nicht null sein.
+	// Nachbedingung: gibt das rechte Feld zurück falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkRechts(Feld[][] labyrinth, Feld feld) {
 		if (	feld.getX() >= 0 &&
 				feld.getX() < (labyrinth[0].length - 1) &&
@@ -52,8 +50,9 @@ public abstract class Strategie {
 		return null;
 	}
 
-	
-	// same procedures and conditions as checkOben
+	// Vorbedingung: labyrinth darf nicht null sein.
+	// Vorbedingung: feld darf nicht null sein.
+	// Nachbedingung: gibt das linke Feld zurück falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkLinks(Feld[][] labyrinth, Feld feld) {
 		if (	feld.getX() > 0 &&
 				feld.getX() < (labyrinth[0].length) &&
@@ -63,8 +62,9 @@ public abstract class Strategie {
 		return null;
 	}
 
-	
-	// same procedures and conditions as checkOben
+	// Vorbedingung: labyrinth darf nicht null sein.
+	// Vorbedingung: feld darf nicht null sein.
+	// Nachbedingung: gibt das untere Feld zurück falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkUnten(Feld[][] labyrinth, Feld feld) {
 		if (	feld.getY() >= 0 &&
 				feld.getY() < (labyrinth.length - 1) &&
