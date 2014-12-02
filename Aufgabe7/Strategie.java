@@ -8,11 +8,10 @@ public abstract class Strategie {
 	public Kammer checkOben(Kammer[][] labyrinth, Kammer kammer) {
 		if (	//stepOne: check if kammer in borders
 				kammer.getY() > 0 // there is actually a field above
-				&& kammer.getY() < (labyrinth.length - 1) // kammer still in borders
+				&& kammer.getY() < (labyrinth.length) // kammer still in borders
 
 				//stepTwo: check if there's a wall
-				&& !kammer.isMauerOben() //%
-				&& !labyrinth[kammer.getY()][kammer.getX()].isMauerOben() //% should be the same
+				&& !kammer.isMauerOben()
 
 				//stepThree: check if there are already two ants
 				&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2) 
@@ -23,12 +22,11 @@ public abstract class Strategie {
 	public Kammer checkRechts(Kammer[][] labyrinth, Kammer kammer) {
 		if (	//stepOne: check if kammer in borders
 				kammer.getX() >= 0
-				&& kammer.getX() < (labyrinth[0].length - 2)
+				&& kammer.getX() < (labyrinth[0].length - 1)
 
 				//stepTwo: check if there's a wall
-				&& !kammer.isMauerRechts() //%
-				&& !labyrinth[kammer.getY()][kammer.getX()].isMauerRechts() //% should be the same
-
+				&& !kammer.isMauerRechts()
+				
 				//stepThree: check if there are already two ants
 				&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2)
 			return labyrinth[kammer.getY()][kammer.getX() + 1];
@@ -38,7 +36,7 @@ public abstract class Strategie {
 	public Kammer checkLinks(Kammer[][] labyrinth, Kammer kammer) {
 		if (	//stepOne: check if kammer in borders
 				kammer.getX() > 0
-				&& kammer.getX() < (labyrinth[0].length - 1)
+				&& kammer.getX() < (labyrinth[0].length)
 
 				//stepTwo: check if there's a wall
 				&& !labyrinth[kammer.getY()][kammer.getX() - 1].isMauerRechts() // kammer.isMauerLinks
@@ -52,7 +50,7 @@ public abstract class Strategie {
 	public Kammer checkUnten(Kammer[][] labyrinth, Kammer kammer) {
 		if (	//stepOne: check if kammer in borders
 				kammer.getY() >= 0
-				&& kammer.getY() < (labyrinth.length - 2)
+				&& kammer.getY() < (labyrinth.length - 1)
 
 				//stepTwo: check if there's a wall
 				&& !labyrinth[kammer.getY() + 1][kammer.getX()].isMauerOben() // kammer.isMauerUnten
