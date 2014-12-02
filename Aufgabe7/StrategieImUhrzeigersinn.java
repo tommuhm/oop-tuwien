@@ -4,7 +4,9 @@ public class StrategieImUhrzeigersinn extends Strategie {
 	// >>zuerst nach oben, dann rechts, dann unten, dann links.<< loops may be included since this is inferior
 
 	@Override
-	public Feld naechstesFeld(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
+	// Vorbedingungen: labyrinth darf nicht null sein, feld darf nicht null sein.
+	// Nachbedingungen: gibt das nachste Feld im Uhrzeigersinn, falls verfuegbar, zurueck, ansonsten null.
+	public Feld naechstesFeld(Feld[][] labyrinth, Feld feld) {
 
 		if (checkOben(labyrinth, feld) != null)
 			return checkOben(labyrinth, feld);
