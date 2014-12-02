@@ -11,8 +11,7 @@ public abstract class Strategie {
 				&& kammer.getY() < (labyrinth.length) // kammer still in borders
 
 				//stepTwo: check if there's a wall
-				&& !kammer.isMauerOben() //%
-				&& !labyrinth[kammer.getY()][kammer.getX()].isMauerOben() //% should be the same
+				&& !kammer.isMauerOben()
 
 				//stepThree: check if there are already two ants
 				&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2) 
@@ -26,9 +25,8 @@ public abstract class Strategie {
 				&& kammer.getX() < (labyrinth[0].length - 1)
 
 				//stepTwo: check if there's a wall
-				&& !kammer.isMauerRechts() //%
-				&& !labyrinth[kammer.getY()][kammer.getX()].isMauerRechts() //% should be the same
-
+				&& !kammer.isMauerRechts()
+				
 				//stepThree: check if there are already two ants
 				&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2)
 			return labyrinth[kammer.getY()][kammer.getX() + 1];
