@@ -19,7 +19,7 @@ public class Controller {
 	
 	public void start() {
 
-		Ameise leitameise = new Leitameise(labyrinth, ameisenkolonie, new StrategieSuperiorRandom(), groesse*2);
+		Ameise leitameise = new Leitameise(labyrinth, ameisenkolonie, new StrategieRandom(), groesse*2);
 		ameisenkolonie.addAmeise(leitameise);
 		//ameisen.add(leitameise); // TODO ?
 
