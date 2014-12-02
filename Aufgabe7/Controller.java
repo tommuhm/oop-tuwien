@@ -18,9 +18,9 @@ public class Controller {
 	}
 	
 	public void start() {
-		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieDummy(), true);
+		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieRandom(), true);
 		ameisenkolonie.addAmeise(leitameise);
-		ameisen.add(leitameise);
+		//ameisen.add(leitameise);
 		
 		synchronized (leitameise) {
 			leitameise.start();
@@ -29,17 +29,20 @@ public class Controller {
 			while(true) {
 				try {
 						if(leitameise.getDosis() <= 0) {
+							
 							leitameise.interrupt();
+							System.out.println("Leitameise: (" + leitameise.getCurKammer().getX() + "|" + leitameise.getCurKammer().getY() + ")");
 							for(Ameise temp : ameisen) {
 								temp.interrupt();
+								System.out.println("Ameise: (" + temp.getCurKammer().getX() + "|" + temp.getCurKammer().getY() + ")");
 							}
 							return;
 						} else {
-							leitameise.wait(); //Wait until leitameise says go!
+							leitameise.wait();
 						
 							System.out.println(ameisen.size() + " < " + (groesse/10) + " = " + (ameisen.size() < (groesse/10)));
 							if(ameisen.size() < (groesse/10)) {
-								Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieDummy());
+								Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieSuperior());
 								if(ameisenkolonie.addAmeise(neueAmeise)) {
 									System.out.println("Neue Ameise hinzugefügt.");
 								} else {
@@ -56,7 +59,7 @@ public class Controller {
 						}
 						
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					System.err.println("Im Controller wurde eine Exception geworfen.");
 					e.printStackTrace();
 				};
 			}
@@ -64,9 +67,10 @@ public class Controller {
 	}
 	
 	public synchronized void printLabyrinth() {
-	synchronized (labyrinth) {
+	//synchronized (labyrinth) {
+		int i = 0;
 		for(int y = 0; y < labyrinth.length; y++) {
-			synchronized (labyrinth[y]) { //Nötig?
+			//synchronized (labyrinth[y]) {
 				for(int x = 0; x < labyrinth[y].length; x++) {
 					if(y != 0) {
 						if(labyrinth[y][x].isMauerOben()) {
@@ -89,7 +93,7 @@ public class Controller {
 				System.out.println();
 				}
 			}				
-		}
-	}
+		//}
+	//}
 	
 }
