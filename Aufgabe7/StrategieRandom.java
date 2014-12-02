@@ -1,5 +1,5 @@
 
-public class StrategieSuperiorRandom extends Strategie {
+public class StrategieRandom extends Strategie {
 
 	// enhanced random algorithm
 
