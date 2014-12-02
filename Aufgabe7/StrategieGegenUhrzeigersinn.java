@@ -1,5 +1,5 @@
 
-public class StrategieInferiorGegenUhrzeigersinn extends Strategie {
+public class StrategieGegenUhrzeigersinn extends Strategie {
 
 	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) { // TODO synchronized?
 

@@ -7,16 +7,16 @@ public abstract class Strategie {
 		Strategie strategie;
 		switch (strategieCounter) {
 			case 0:
-				strategie = new StrategieInferiorUhrzeigersinn();
+				strategie = new StrategieImUhrzeigersinn();
 				break;
 			case 1:
-				strategie = new StrategieInferiorGegenUhrzeigersinn();
+				strategie = new StrategieGegenUhrzeigersinn();
 				break;
 			case 2:
-				strategie = new StrategieSuperiorRandom();
+				strategie = new StrategieRandom();
 				break;
 			default:
-				strategie = new StrategieSuperiorRandom();
+				strategie = new StrategieRandom();
 				break;
 		}
 		strategieCounter = (strategieCounter+1) % 3;
