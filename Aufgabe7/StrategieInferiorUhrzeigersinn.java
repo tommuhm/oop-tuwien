@@ -1,5 +1,5 @@
 
-public class StrategieInferior extends Strategie {
+public class StrategieInferiorUhrzeigersinn extends Strategie {
 
 	// >>zuerst nach oben, dann rechts, dann unten, dann links.<< loops may be included since this is inferior
 
