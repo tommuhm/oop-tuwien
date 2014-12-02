@@ -75,6 +75,10 @@ public class Ameise extends Thread {
 			}
 		}
 	}
+	
+	public int getDosis() {
+		return dosis;
+	}
 
 	@Override
 	public String toString() {
