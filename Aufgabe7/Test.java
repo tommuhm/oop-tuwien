@@ -1,6 +1,6 @@
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		Kammer[][] laby = new Kammer[4][5];
 
 		laby[0][0] = new Kammer(0, 0, true, false);
