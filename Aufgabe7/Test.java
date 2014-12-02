@@ -37,7 +37,7 @@ public class Test {
 		laby[3][3] = new Feld(3, 3, false, false);
 		laby[3][4] = new Feld(4, 3, false, true);
 
-		Controller c1 = new Controller(laby, ameisenkolonie, futterstelle);
+		Controller c1 = new Controller(laby, ameisenkolonie, futterstelle, laby.length * laby[0].length * 3);
 		c1.printLabyrinth();
 		c1.start();
 	}
@@ -83,7 +83,7 @@ public class Test {
 		laby[3][6] = new Feld(6, 3, false, false);
 		laby[3][7] = new Feld(7, 3, false, false);
 
-		Controller c2 = new Controller(laby, ameisenkolonie, futterstelle);
+		Controller c2 = new Controller(laby, ameisenkolonie, futterstelle, laby.length * laby[0].length);
 		c2.printLabyrinth();
 		c2.start();
 	}

@@ -11,31 +11,40 @@ public class Ameise extends Thread {
 	private Feld[][] labyrinth;
 	private Feld curFeld;
 	private int dosis;
+	private int anzahlZuege;
+	private boolean leitameise;
 
-	public Ameise(Feld[][] labyrinth, Feld ameisenkolonie, Strategie strategie) {
-		super(null, null, "Ameise-" + ameiseNr++, stackSize);
+	public Ameise(Feld[][] labyrinth, Feld ameisenkolonie, Strategie strategie, int anzahlZuege, boolean isLeitameise) {
+		super(null, null, (isLeitameise ? "Leit" : "") + "Ameise-" + ameiseNr++, stackSize);
 		this.labyrinth = labyrinth;
 		this.strategie = strategie;
 		this.curFeld = ameisenkolonie;
 		this.maxDosis = labyrinth.length * labyrinth[0].length; // TODO calc dosis?
 		this.dosis = maxDosis;
+		this.anzahlZuege = anzahlZuege;
+		this.leitameise = isLeitameise;
 	}
 
 	@Override
 	public void run() {
 		try {
-			while (dosis > 0) {
-				next();
+			while (anzahlZuege > 0) {
+				pause();
+				move();
+
+				if (leitameise) {
+					synchronized (this) {
+						anzahlZuege--;
+						notify();
+						wait();
+					}
+				}
 			}
 		} catch (InterruptedException e) {
 			this.interrupt();
 		}
 	}
 
-	protected void next() throws InterruptedException {
-		pause();
-		move();
-	}
 
 	private void pause() throws InterruptedException {
 		Random rand = new Random();

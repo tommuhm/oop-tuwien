@@ -4,22 +4,24 @@ import java.util.ArrayList;
 public class Controller {
 
 	private Feld[][] labyrinth;
-	private Feld ameisenkolonie;
-	private Feld futterstelle;
+	private FeldAmeisenkolonie ameisenkolonie;
+	private FeldFutterstelle futterstelle;
 	private ArrayList<Ameise> ameisen;
 	private int groesse;
+	private int anzahlZuege;
 
-	public Controller(Feld[][] labyrinth, FeldAmeisenkolonie ameisenkolonie, FeldFutterstelle futterstelle) {
+	public Controller(Feld[][] labyrinth, FeldAmeisenkolonie ameisenkolonie, FeldFutterstelle futterstelle, int anzahlZuege) {
 		this.labyrinth = labyrinth;
 		this.ameisenkolonie = ameisenkolonie;
 		this.futterstelle = futterstelle;
 		this.groesse = labyrinth.length * labyrinth[0].length; //Labyrinth != null!!!!!!
 		this.ameisen = new ArrayList<Ameise>();
+		this.anzahlZuege = anzahlZuege;
 	}
 
 	public void start() {
 
-		Ameise leitameise = new Leitameise(labyrinth, ameisenkolonie, new StrategieRandom(), groesse * 2);
+		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieRandom(), groesse * 2, true);
 		ameisenkolonie.addAmeise(1);
 
 		synchronized (leitameise) {
@@ -43,7 +45,7 @@ public class Controller {
 						leitameise.wait();
 
 						if (ameisen.size() < (groesse / 10) && ameisenkolonie.hatPlatz()) {
-							Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, Strategie.getNextStrategie());
+							Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, Strategie.getNextStrategie(), anzahlZuege, false);
 							ameisen.add(neueAmeise);
 							ameisenkolonie.addAmeise(1);
 							neueAmeise.start();
