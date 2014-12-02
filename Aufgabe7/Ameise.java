@@ -25,13 +25,17 @@ public class Ameise extends Thread {
 	public void run() {
 		try {
 			while (dosis > 0) {
-				pause();
-				move();
+				next();
 			}
 		} catch (InterruptedException e) {
 			System.out.println(this.toString());
 			this.interrupt();
 		}
+	}
+
+	protected void next() throws InterruptedException {
+		pause();
+		move();
 	}
 
 	private void pause() throws InterruptedException {

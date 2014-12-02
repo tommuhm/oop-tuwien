@@ -11,7 +11,7 @@ public class Leitameise extends Ameise {
 	public void run() {
 		try {
 			while (anzZuege > 0) {
-				super.run();
+				next();
 				synchronized (this) {
 					anzZuege--;
 					notify();
