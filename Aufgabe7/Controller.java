@@ -3,13 +3,13 @@ import java.util.ArrayList;
 
 public class Controller {
 
-	private Kammer[][] labyrinth;
-	private Kammer ameisenkolonie;
-	private Kammer futterstelle;
+	private Feld[][] labyrinth;
+	private Feld ameisenkolonie;
+	private Feld futterstelle;
 	private ArrayList<Ameise> ameisen;
 	private int groesse;
 
-	public Controller(Kammer[][] labyrinth, Kammer ameisenkolonie, Kammer futterstelle) {
+	public Controller(Feld[][] labyrinth, Feld ameisenkolonie, Feld futterstelle) {
 		this.labyrinth = labyrinth;
 		this.ameisenkolonie = ameisenkolonie;
 		this.futterstelle = futterstelle;
@@ -21,7 +21,7 @@ public class Controller {
 
 		Ameise leitameise = new Leitameise(labyrinth, ameisenkolonie, new StrategieRandom(), groesse * 2);
 		ameisenkolonie.addAmeise(leitameise);
-		//ameisen.add(leitameise); // TODO ?
+		ameisen.add(leitameise); // TODO ?
 
 		synchronized (leitameise) {
 			leitameise.start();
@@ -30,12 +30,12 @@ public class Controller {
 				try {
 					if (leitameise.getState() == Thread.State.TERMINATED) {
 
-						leitameise.interrupt();
 						System.out.println(leitameise.toString());
 						for (Ameise ameise : ameisen) {
 							ameise.interrupt();
 							System.out.println(ameise.toString());
 						}
+
 						return;
 					} else {
 						leitameise.wait();
@@ -47,7 +47,7 @@ public class Controller {
 						}
 
 						this.printLabyrinth();
-						leitameise.notifyAll();
+						leitameise.notify();
 					}
 
 				} catch (InterruptedException e) {
@@ -58,9 +58,16 @@ public class Controller {
 		}
 	}
 
+	private void printAmeisen() {
+		for (Ameise ameise : ameisen) {
+			ameise.interrupt();
+			System.out.println(ameise.toString());
+		}
+	}
+
+	// TODO how to sync???!
 	public synchronized void printLabyrinth() {
 		//synchronized (labyrinth) {
-		int i = 0;
 		for (int y = 0; y < labyrinth.length; y++) {
 			//synchronized (labyrinth[y]) {
 			for (int x = 0; x < labyrinth[y].length; x++) {
@@ -85,7 +92,4 @@ public class Controller {
 			System.out.println();
 		}
 	}
-	//}
-	//}
-
 }

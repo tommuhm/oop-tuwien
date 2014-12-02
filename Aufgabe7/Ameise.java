@@ -8,15 +8,15 @@ public class Ameise extends Thread {
 	private final int maxDosis;
 
 	private Strategie strategie;
-	private Kammer[][] labyrinth;
-	private Kammer curKammer;
+	private Feld[][] labyrinth;
+	private Feld curFeld;
 	private int dosis;
 
-	public Ameise(Kammer[][] labyrinth, Kammer ameisenkolonie, Strategie strategie) {
+	public Ameise(Feld[][] labyrinth, Feld ameisenkolonie, Strategie strategie) {
 		super(null, null, "Ameise-" + ameiseNr++, stackSize);
 		this.labyrinth = labyrinth;
 		this.strategie = strategie;
-		this.curKammer = ameisenkolonie;
+		this.curFeld = ameisenkolonie;
 		this.maxDosis = labyrinth.length * labyrinth[0].length; // TODO calc dosis?
 		this.dosis = maxDosis;
 	}
@@ -46,17 +46,17 @@ public class Ameise extends Thread {
 	private void move() {
 		boolean moved = false;
 		while (!moved) {
-			Kammer kammer = strategie.naechsteKammer(labyrinth, curKammer);
-			if (kammer == null) {
+			Feld feld = strategie.naechsteKammer(labyrinth, curFeld);
+			if (feld == null) {
 				break;
 			}
-			moved = kammer.addAmeise(this);
+			moved = feld.addAmeise(this);
 			if (moved) {
 				dosis--;
-				curKammer.removeAmeise();
-				curKammer = kammer;
+				curFeld.removeAmeise();
+				curFeld = feld;
 
-				if (curKammer.isFutterstelle() || curKammer.isAmeisenkolonie()) {
+				if (curFeld.isFutterstelle() || curFeld.isAmeisenkolonie()) {
 					dosis = maxDosis;
 				}
 			}
@@ -65,7 +65,7 @@ public class Ameise extends Thread {
 
 	@Override
 	public String toString() {
-		return getName() + ": (" + curKammer.getX() + "|" + curKammer.getY() + ")";
+		return getName() + ": (" + curFeld.getX() + "|" + curFeld.getY() + ")";
 	}
 
 }

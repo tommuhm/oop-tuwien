@@ -2,7 +2,7 @@ public class Leitameise extends Ameise {
 
 	private int anzZuege;
 
-	public Leitameise(Kammer[][] labyrinth, Kammer ameisenkolonie, Strategie strategie, int anzZuege) {
+	public Leitameise(Feld[][] labyrinth, Feld ameisenkolonie, Strategie strategie, int anzZuege) {
 		super(labyrinth, ameisenkolonie, strategie);
 		this.anzZuege = anzZuege;
 	}

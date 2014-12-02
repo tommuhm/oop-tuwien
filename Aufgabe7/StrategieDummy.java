@@ -1,15 +1,15 @@
 public class StrategieDummy extends Strategie {
 
-	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) {
-		Kammer temp;
+	public Feld naechsteKammer(Feld[][] labyrinth, Feld feld) {
+		Feld temp;
 
 		int i = (int) (Math.random() * 4);
 
 		if (i == 0) {
 			// Eines nach links.
-			if (kammer.getX() > 0 && labyrinth.length > 0
+			if (feld.getX() > 0 && labyrinth.length > 0
 					&& labyrinth[0].length > 0) {
-				temp = labyrinth[kammer.getY()][kammer.getX() - 1];
+				temp = labyrinth[feld.getY()][feld.getX() - 1];
 				if (!temp.isMauerRechts() && temp.getAmeisencounter() < 2) {
 					return temp;
 				}
@@ -19,11 +19,11 @@ public class StrategieDummy extends Strategie {
 
 		if (i == 1) {
 			// Eines nach rechts.
-			if (!kammer.isMauerRechts()
-					&& !labyrinth[kammer.getY()][kammer.getX()].isMauerRechts()
+			if (!feld.isMauerRechts()
+					&& !labyrinth[feld.getY()][feld.getX()].isMauerRechts()
 					&& labyrinth.length > 0 && labyrinth[0].length > 0
-					&& kammer.getX() < (labyrinth[0].length - 1)) {
-				temp = labyrinth[kammer.getY()][kammer.getX() + 1];
+					&& feld.getX() < (labyrinth[0].length - 1)) {
+				temp = labyrinth[feld.getY()][feld.getX() + 1];
 				if (temp.getAmeisencounter() < 2) {
 					return temp;
 				}
@@ -33,10 +33,10 @@ public class StrategieDummy extends Strategie {
 
 		if (i == 2) {
 			// Eines nach oben.
-			if (!kammer.isMauerOben()
-					&& !labyrinth[kammer.getY()][kammer.getX()].isMauerOben()
-					&& kammer.getY() > 0 && labyrinth.length > 0) {
-				temp = labyrinth[kammer.getY() - 1][kammer.getX()];
+			if (!feld.isMauerOben()
+					&& !labyrinth[feld.getY()][feld.getX()].isMauerOben()
+					&& feld.getY() > 0 && labyrinth.length > 0) {
+				temp = labyrinth[feld.getY() - 1][feld.getX()];
 				if (temp.getAmeisencounter() < 2) {
 					return temp;
 				}
@@ -45,8 +45,8 @@ public class StrategieDummy extends Strategie {
 		}
 
 		if (i == 3) {
-			if (kammer.getY() >= 0 && kammer.getY() < (labyrinth.length - 1)) {
-				temp = labyrinth[kammer.getY() + 1][kammer.getX()];
+			if (feld.getY() >= 0 && feld.getY() < (labyrinth.length - 1)) {
+				temp = labyrinth[feld.getY() + 1][feld.getX()];
 				if (!temp.isMauerOben() && temp.getAmeisencounter() < 2) {
 					return temp;
 				}

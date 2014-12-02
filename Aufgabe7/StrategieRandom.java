@@ -3,28 +3,28 @@ public class StrategieRandom extends Strategie {
 
 	// enhanced random algorithm
 
-	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) { // TODO synchronized?
+	public Feld naechsteKammer(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
 
 		int counter = 0;
 		
-		if (checkOben(labyrinth, kammer) != null) 
+		if (checkOben(labyrinth, feld) != null)
 			counter++;
-		if (checkRechts(labyrinth, kammer) != null)
+		if (checkRechts(labyrinth, feld) != null)
 			counter++;
-		if (checkLinks(labyrinth, kammer) != null)
+		if (checkLinks(labyrinth, feld) != null)
 			counter++;
-		if (checkUnten(labyrinth, kammer) != null)
+		if (checkUnten(labyrinth, feld) != null)
 			counter++;
 
-		if (checkOben(labyrinth, kammer) != null)
+		if (checkOben(labyrinth, feld) != null)
 			if (Math.random() * (counter--) <= 1)
-				return checkOben(labyrinth, kammer);
-		if (checkUnten(labyrinth, kammer) != null)
+				return checkOben(labyrinth, feld);
+		if (checkUnten(labyrinth, feld) != null)
 			if (Math.random() * (counter--) <= 1)
-				return checkUnten(labyrinth, kammer);
-		if (checkLinks(labyrinth, kammer) != null)
+				return checkUnten(labyrinth, feld);
+		if (checkLinks(labyrinth, feld) != null)
 			if (Math.random() * (counter--) <= 1)
-				return checkLinks(labyrinth, kammer);
-		return checkRechts(labyrinth, kammer);
+				return checkLinks(labyrinth, feld);
+		return checkRechts(labyrinth, feld);
 	}
 }

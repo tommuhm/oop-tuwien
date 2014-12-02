@@ -1,16 +1,16 @@
 
 public class StrategieGegenUhrzeigersinn extends Strategie {
 
-	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) { // TODO synchronized?
+	public Feld naechsteKammer(Feld[][] labyrinth, Feld feld) { // TODO synchronized?
 
-		if (checkUnten(labyrinth, kammer) != null)
-			return checkUnten(labyrinth, kammer);
-		else if (checkRechts(labyrinth, kammer) != null) 
-			return checkRechts(labyrinth, kammer);
-		else if (checkOben(labyrinth, kammer) != null) 
-			return checkOben(labyrinth, kammer);
-		else if (checkLinks(labyrinth, kammer) != null)		
-			return checkLinks(labyrinth, kammer);
+		if (checkUnten(labyrinth, feld) != null)
+			return checkUnten(labyrinth, feld);
+		else if (checkRechts(labyrinth, feld) != null)
+			return checkRechts(labyrinth, feld);
+		else if (checkOben(labyrinth, feld) != null)
+			return checkOben(labyrinth, feld);
+		else if (checkLinks(labyrinth, feld) != null)
+			return checkLinks(labyrinth, feld);
 		return null;
 	}
 }
