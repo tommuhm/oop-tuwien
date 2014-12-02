@@ -57,7 +57,7 @@ public class Ameise extends Thread {
 		this.sleep(waitTime);
 	}
 
-	private void move() throws InterruptedException {
+	private void move() {
 		boolean moved = false;
 		while (!moved) {
 			Kammer kammer = strategie.naechsteKammer(labyrinth, curKammer);
