@@ -18,6 +18,7 @@ public class Controller {
 	}
 	
 	public void start() {
+
 		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieSuperiorRandom(), true);
 		ameisenkolonie.addAmeise(leitameise);
 		//ameisen.add(leitameise);
@@ -42,7 +43,7 @@ public class Controller {
 						
 							System.out.println(ameisen.size() + " < " + (groesse/10) + " = " + (ameisen.size() < (groesse/10)));
 							if(ameisen.size() < (groesse/10)) {
-								Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieSuperiorRandom());
+								Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, new StrategieInferiorUhrzeigersinn());
 								if(ameisenkolonie.addAmeise(neueAmeise)) {
 									System.out.println("Neue Ameise hinzugefügt.");
 								} else {
