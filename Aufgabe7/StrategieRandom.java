@@ -1,98 +1,52 @@
-import java.util.Random;
 
-public class StrategieRandom implements Strategie {
-	
-	// movement is completely random
+public class StrategieRandom extends Strategie {
 
-	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) throws InterruptedException { // TODO synchronized?
-		Random random = new Random();
-		
-		while (labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2 // sleep zug lang bis feld frei ist. 
-			&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2
-			&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2
-			&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
-			sleep(random.nextInt(15) + 5); // TODO do not execute in synchronized -> manual // TODO lock labyrinth maybe?
-		}
-		
+	// movement is completely random, choosen by dicing. may dice an invalid movement, if so it will dice again
+
+	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) { // TODO synchronized?
+
+		if (!checkRichtung(labyrinth, kammer))
+			return null;
+
 		switch (dice()) {
 
-		case rechts: 
-			if (!kammer.isMauerRechts()
-					&& !labyrinth[kammer.getY()][kammer.getX()].isMauerRechts()
-					&& labyrinth.length > 0
-					&& labyrinth[0].length > 0
-					&& kammer.getX() > 0 // TODO check that with teammates
-					&& kammer.getX() < (labyrinth[0].length - 1)
-					&& labyrinth[kammer.getY()][kammer.getX() + 1].getAmeisencounter() < 2) {
-				return labyrinth[kammer.getY()][kammer.getX() + 1];
+		case 1: 
+			if (checkOben(labyrinth, kammer) != null) 
+				return checkOben(labyrinth, kammer);
+			return naechsteKammer(labyrinth, kammer);
 
-			} return naechsteKammer(labyrinth, kammer);
+		case 2: 
+			if (checkRechts(labyrinth, kammer) != null) 
+				return checkRechts(labyrinth, kammer);
+			return naechsteKammer(labyrinth, kammer);
 
-		case oben: 
-			if (!kammer.isMauerOben()
-					&& !labyrinth[kammer.getY()][kammer.getX()].isMauerOben()
-					&& labyrinth.length > 0 
-					&& labyrinth[1].length > 0
-					&& kammer.getY() > 0 // TODO check that with teammates
-					&& kammer.getY() < (labyrinth[1].length - 1)
-					&& labyrinth[kammer.getY() + 1][kammer.getX()].getAmeisencounter() < 2) { //WTH? -1 @ Dummy?
-				return labyrinth[kammer.getY() + 1][kammer.getX()]; //WTH? -1 @ Dummy?
+		case 3: 
+			if (checkUnten(labyrinth, kammer) != null)
+				return checkUnten(labyrinth, kammer);
+			return naechsteKammer(labyrinth, kammer);
 
-			} return naechsteKammer(labyrinth, kammer);
+		case 4:
+			if (checkLinks(labyrinth, kammer) != null)		
+				return checkLinks(labyrinth, kammer);
+			return naechsteKammer(labyrinth, kammer);
 
-		case links: 
-			if (!labyrinth[kammer.getY()][kammer.getX() - 1].isMauerRechts() // kammer.isMauerLinks
-					&& labyrinth.length > 0
-					&& labyrinth[0].length > 0
-					&& kammer.getX() > 0 // TODO check that with teammates
-					&& kammer.getX() < (labyrinth[0].length - 1)
-					&& labyrinth[kammer.getY()][kammer.getX() - 1].getAmeisencounter() < 2) {
-				return labyrinth[kammer.getY()][kammer.getX() - 1];
-
-			} return naechsteKammer(labyrinth, kammer);
-
-		case unten:
-			if (!labyrinth[kammer.getY() - 1][kammer.getX()].isMauerOben() // kammer.isMauerUnten
-					&& labyrinth.length > 0
-					&& labyrinth[1].length > 0
-					&& kammer.getY() > 0 // TODO check that with teammates
-					&& kammer.getY() < (labyrinth[1].length - 1)
-					&& labyrinth[kammer.getY() - 1][kammer.getX()].getAmeisencounter() < 2) {
-				return labyrinth[kammer.getY() - 1][kammer.getX()];
-
-			} return naechsteKammer(labyrinth, kammer);
-			
 		default: return null; //should never happen.
 		}
 	}
-	
-	
-	public AmeisenRichtung dice() {
+
+
+	public int dice() {
 
 		double dice = (int) (Math.random() * 4);
 
-		if ( dice == 0 ) {
-			return AmeisenRichtung.rechts;
-		}
-		else if ( dice == 1 ) {
-			return AmeisenRichtung.links;
-		}
-		else if ( dice == 2 ) {
-			return AmeisenRichtung.oben;
-		}
-		else if (dice == 3 ) {
-			return AmeisenRichtung.unten;
-		} 
-		
-		return AmeisenRichtung.rechts; //should never happen.
-	}
-
-
-	public void sleep(int n) throws InterruptedException {
-		try {
-			Thread.sleep(n);
-		} catch(InterruptedException ex) {
-			System.out.println("InterruptedException occured in StrategieRandom");
-		}
+		if ( dice == 0 ) 
+			return 1;
+		else if ( dice == 1 )
+			return 2;
+		else if ( dice == 2 )
+			return 3;
+		else if (dice == 3 )
+			return 4;
+		return 0; //should never happen.
 	}
 }
