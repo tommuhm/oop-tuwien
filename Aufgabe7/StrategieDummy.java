@@ -1,6 +1,5 @@
-public class StrategieDummy implements Strategie {
+public class StrategieDummy extends Strategie {
 
-	@Override
 	public Kammer naechsteKammer(Kammer[][] labyrinth, Kammer kammer) {
 		Kammer temp;
 
