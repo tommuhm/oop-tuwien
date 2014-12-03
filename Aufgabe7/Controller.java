@@ -45,6 +45,7 @@ public class Controller {
 							neueAmeise.start();
 						}
 
+						System.out.println("####################");
 						System.out.println(labyrinth);
 						leitameise.notify();
 					}

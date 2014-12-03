@@ -2,7 +2,7 @@ public class Test {
 
 	public static void main(String[] args) {
 
-//		testLabyrinth1();
+		testLabyrinth1();
 
 		testLabyrinth2();
 
