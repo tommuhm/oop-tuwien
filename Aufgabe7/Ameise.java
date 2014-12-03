@@ -8,21 +8,22 @@ public class Ameise extends Thread {
 	private final int maxDosis;
 
 	private Strategie strategie;
-	private Feld[][] labyrinth;
+	private Labyrinth labyrinth;
 	private Feld curFeld;
 	private int dosis;
 	private int anzahlZuege;
 	private boolean leitameise;
 
-	public Ameise(Feld[][] labyrinth, Feld ameisenkolonie, Strategie strategie, int anzahlZuege, boolean isLeitameise) {
+	public Ameise(Labyrinth labyrinth, Strategie strategie, int maxDosis, int anzahlZuege, boolean isLeitameise) {
 		super(null, null, (isLeitameise ? "Leit" : "") + "Ameise-" + ameiseNr++, stackSize);
 		this.labyrinth = labyrinth;
 		this.strategie = strategie;
-		this.curFeld = ameisenkolonie;
-		this.maxDosis = labyrinth.length * labyrinth[0].length; // TODO calc dosis?
+		this.curFeld = labyrinth.getAmeisenkolonie();
+		this.maxDosis = maxDosis;
 		this.dosis = maxDosis;
 		this.anzahlZuege = anzahlZuege;
 		this.leitameise = isLeitameise;
+		this.curFeld.addAmeise(dosis > 0 ? true : false);
 	}
 
 	@Override

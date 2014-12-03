@@ -8,4 +8,8 @@ public class FeldAmeisenkolonie extends Feld {
 		super(x, y, mauerOben, mauerRechts);
 	}
 
+	public FeldAmeisenkolonie(Feld feld) {
+		super(feld.getX(), feld.getY(), feld.hatMauerOben(), feld.hatMauerRechts());
+	}
+
 }

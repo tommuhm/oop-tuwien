@@ -3,26 +3,21 @@ import java.util.ArrayList;
 
 public class Controller {
 
-	private Feld[][] labyrinth;
-	private FeldAmeisenkolonie ameisenkolonie;
-	private FeldFutterstelle futterstelle;
 	private ArrayList<Ameise> ameisen;
-	private int groesse;
-	private int anzahlZuege;
+	private final Labyrinth labyrinth;
+	private final int anzahlZuege;
+	private final int maxDosis;
 
-	public Controller(Feld[][] labyrinth, FeldAmeisenkolonie ameisenkolonie, FeldFutterstelle futterstelle, int anzahlZuege) {
+	public Controller(Labyrinth labyrinth, int maxDosis, int anzahlZuege) {
 		this.labyrinth = labyrinth;
-		this.ameisenkolonie = ameisenkolonie;
-		this.futterstelle = futterstelle;
-		this.groesse = labyrinth.length * labyrinth[0].length; //Labyrinth != null!!!!!!
 		this.ameisen = new ArrayList<Ameise>();
 		this.anzahlZuege = anzahlZuege;
+		this.maxDosis = maxDosis;
 	}
 
 	public void start() {
 
-		Ameise leitameise = new Ameise(labyrinth, ameisenkolonie, new StrategieRandom(), groesse * 2, true);
-		ameisenkolonie.addAmeise(true);
+		Ameise leitameise = new Ameise(labyrinth, new StrategieRandom(), maxDosis, anzahlZuege, true);
 
 		synchronized (leitameise) {
 			leitameise.start();
@@ -44,14 +39,13 @@ public class Controller {
 					} else {
 						leitameise.wait();
 
-						if (ameisen.size() < (groesse / 10) && ameisenkolonie.hatPlatz()) {
-							Ameise neueAmeise = new Ameise(this.labyrinth, this.ameisenkolonie, Strategie.getNextStrategie(), anzahlZuege, false);
+						if (ameisen.size() < (labyrinth.getCols() * labyrinth.getCols() / 10) && labyrinth.getAmeisenkolonie().hatPlatz()) {
+							Ameise neueAmeise = new Ameise(this.labyrinth, Strategie.getNextStrategie(), maxDosis, anzahlZuege, false);
 							ameisen.add(neueAmeise);
-							ameisenkolonie.addAmeise(true);
 							neueAmeise.start();
 						}
 
-						this.printLabyrinth();
+						System.out.println(labyrinth);
 						leitameise.notify();
 					}
 				} catch (InterruptedException e) {
@@ -62,34 +56,4 @@ public class Controller {
 		}
 	}
 
-	// TODO how to sync???!
-	public synchronized void printLabyrinth() {
-		//synchronized (labyrinth) {
-
-		for (int y = 0; y < labyrinth.length; y++) {
-			//synchronized (labyrinth[y]) {
-			for (int x = 0; x < labyrinth[y].length; x++) {
-				if (y != 0) {
-					if (labyrinth[y][x].hatMauerOben()) {
-						System.out.print("--");
-					} else {
-						System.out.print("  ");
-					}
-				}
-			}
-			System.out.println();
-
-			for (int x = 0; x < labyrinth[y].length; x++) {
-				System.out.print(labyrinth[y][x].getDosis());
-				if (labyrinth[y][x].hatMauerRechts()) {
-					System.out.print("|");
-				} else {
-					System.out.print(" ");
-				}
-			}
-			System.out.println();
-		}
-
-		System.out.println("##############################################");
-	}
 }
