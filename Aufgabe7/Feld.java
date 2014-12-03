@@ -38,11 +38,11 @@ public class Feld {
 	}
 
 
-	// Vorbedingung: Dosis ist true wenn eine Dosis hinzugefügt werden soll; sonst false.
+	// Vorbedingung: Dosis ist true wenn eine Dosis hinzugefuegt werden soll; sonst false.
 	// Nachbedingung: Gibt false zurueck wenn der Feld gelocket ist
 	// Nachbedingung: ameisencounter wird um 1 erhöht falls ameisencounter 0 oder 1 ist.
 	// Nachbedingung: dosis wird um 1 erhöht falls ameisencounter erhöht wurde
-	// Nachbedingung: Gibt true zurück falls ameisencounter erhöht wurde, sonst false.
+	// Nachbedingung: Gibt true zurueck falls ameisencounter erhöht wurde, sonst false.
 	public synchronized boolean addAmeise(boolean dosis) {
 		if (!lock.isLocked()) {
 			if (this.hatPlatz()) {
@@ -58,7 +58,7 @@ public class Feld {
 
 	// Nachbedingung: Gibt false zurueck wenn der Feld gelocket ist
 	// Nachbedingung: ameisencounter wird um 1 verringert, sollte ameisencounter 1 oder 2 sein.
-	// Nachbedingung: Gibt true zurück falls ameisencounter verringert wurde, sonst false.
+	// Nachbedingung: Gibt true zurueck falls ameisencounter verringert wurde, sonst false.
 	public synchronized boolean removeAmeise() {
 		if (!lock.isLocked()) {
 			if (this.ameisencounter.get() > 0) {
