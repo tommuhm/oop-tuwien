@@ -93,7 +93,7 @@ public class Labyrinth {
 			output += "\n";
 
 			for (int x = 0; x < getCols(); x++) {
-				output += get(x,y).getDosis();
+				output += get(x, y).getDosis();
 				if (get(x, y).hatMauerRechts()) {
 					output += "|";
 				} else {
