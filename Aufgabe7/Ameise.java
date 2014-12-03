@@ -76,7 +76,7 @@ public class Ameise extends Thread {
 
 	@Override
 	public String toString() {
-		return getName() + ": (" + curFeld.getX() + "|" + curFeld.getY() + ")";
+		return getName() + " (x: " + curFeld.getX() + ", y: " + curFeld.getY() + ")";
 	}
 
 }

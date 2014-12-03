@@ -18,23 +18,27 @@ public class Controller {
 	public void start() {
 
 		Ameise leitameise = new Ameise(labyrinth, new StrategieRandom(), maxDosis, anzahlZuege, true);
+		ameisen.add(leitameise);
 
 		synchronized (leitameise) {
 			leitameise.start();
 
 			while (true) {
 				try {
-					if (leitameise.getState() == Thread.State.TERMINATED) {
 
+					boolean zuegeDone = false;
+					for (Ameise ameise : ameisen) {
+						if (ameise.getState() == Thread.State.TERMINATED) {
+							zuegeDone = true;
+							break;
+						}
+					}
+
+					if (zuegeDone) {
 						for (Ameise ameise : ameisen) {
 							ameise.interrupt();
-						}
-
-						System.out.println(leitameise);
-						for (Ameise ameise : ameisen) {
 							System.out.println(ameise);
 						}
-
 						break;
 					} else {
 						leitameise.wait();
