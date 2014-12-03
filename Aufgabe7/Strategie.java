@@ -1,8 +1,6 @@
+import java.util.Random;
 
 public abstract class Strategie {
-
-	private static int strategieCounter = 0;
-	// Invariante: strategieCounter darf nicht kleiner 0 sein.
 
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
@@ -10,11 +8,11 @@ public abstract class Strategie {
 	public abstract Feld naechstesFeld(Labyrinth labyrinth, Feld feld);
 
 
-	// Nachbedingung: strategieCounter wird um 1 erhöht.
-	// Nachbedingung: gibt ein neues Objekt vom Typ Strategie zurück, abhängig vom aktuellen Stand von strategieCounter.
+	// Nachbedingung: gibt eine zufaellige Strategie zurueck
 	public static Strategie getNextStrategie() {
-		strategieCounter++;
-		switch (strategieCounter % 3) {
+		Random rnd = new Random();
+
+		switch (rnd.nextInt(3)) {
 			case 0:
 				return new StrategieImUhrzeigersinn();
 			case 1:

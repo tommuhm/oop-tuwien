@@ -41,7 +41,7 @@ public class Feld {
 	// Nachbedingung: ameisencounter wird um 1 erhöht falls ameisencounter 0 oder 1 ist.
 	// Nachbedingung: dosis wird um 1 erhöht falls ameisencounter erhöht wurde
 	// Nachbedingung: Gibt true zurück falls dosis und ameisencounter erhöht wurden, sonst false.
-	public synchronized boolean addAmeise(boolean dosis) { //TODO addDosis.
+	public synchronized boolean addAmeise(boolean dosis) {
 		if (!lock.isLocked()) {
 			if (this.hatPlatz()) {
 				this.ameisencounter.incrementAndGet();
@@ -66,38 +66,42 @@ public class Feld {
 		return false;
 	}
 
-	public void lock() {
+	// Nachbedingung: blockiert das Feld damit keine Aenderungen gemacht wernden koennen
+	public synchronized void lock() {
 		lock.lock();
 	}
 
-	public void unlock() {
+	// Nachbedingung: gibt das aktuelle Feld wieder fuer Aenderungen frei
+	public synchronized void unlock() {
 		lock.unlock();
 	}
 
-	// Nachbedingung: Gibt true zurück wenn ameisencounter kleiner als 2 ist, sonst false.
-
+	// Nachbedingung: Gibt an ob auf dem Feld noch Platz fuer weitere Ameisen ist (max 2 Ameisen pro Feld)
 	public boolean hatPlatz() {
 		return ameisencounter.intValue() < 2;
 	}
 
-	// Nachbedingung: Gibt mauerOben zurück.
+	// Nachbedingung: Gibt an ob das Feld an der oberen Seite eine Mauer hat
 	public boolean hatMauerOben() {
 		return mauerOben;
 	}
 
-	// Nachbedingung: Gibt mauerRechts zurück.
+	// Nachbedingung: Gibt an ob das Feld an der rechten Seite eine Mauer hat
 	public boolean hatMauerRechts() {
 		return mauerRechts;
 	}
 
+	// Nachbedinung: Gibt die x Koordinate des Feldes zurueck
 	public int getX() {
 		return x;
 	}
 
+	// Nachbedinung: Gibt die x Koordinate des Feldes zurueck
 	public int getY() {
 		return y;
 	}
 
+	// Nachbedinung: Gibt die aktuelle Dosis des Feldes zureck
 	public int getDosis() {
 		return dosis.get();
 	}

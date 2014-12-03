@@ -46,7 +46,6 @@ public class Ameise extends Thread {
 		}
 	}
 
-
 	private void pause() throws InterruptedException {
 		Random rand = new Random();
 		int waitTime = rand.nextInt(15) + 5;
