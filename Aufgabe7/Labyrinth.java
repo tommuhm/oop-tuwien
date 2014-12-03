@@ -72,11 +72,13 @@ public class Labyrinth {
 
 		String output = "";
 
-		int duftspur = 0;
+		int maxDuft = 0;
 		for (int x = 0; x < getCols(); x++) {
 			for (int y = 0; y < getRows(); y++) {
-				duftspur += get(x, y).getDosis();
 				get(x, y).lock();
+				if (get(x, y).getDosis() > maxDuft) {
+					maxDuft = get(x, y).getDosis();
+				}
 			}
 		}
 
@@ -93,7 +95,8 @@ public class Labyrinth {
 			output += "\n";
 
 			for (int x = 0; x < getCols(); x++) {
-				output += get(x, y).getDosis();
+				int percentDosis = get(x, y).getDosis()*10/maxDuft;
+				output += percentDosis == 10 ? 9 : percentDosis;
 				if (get(x, y).hatMauerRechts()) {
 					output += "|";
 				} else {
