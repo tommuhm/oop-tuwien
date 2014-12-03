@@ -84,16 +84,16 @@ public class Labyrinth {
 			for (int x = 0; x < getCols(); x++) {
 				if (y != 0) {
 					if (get(x, y).hatMauerOben()) {
-						output += "--\n";
+						output += "--";
 					} else {
-						output += "  \n";
+						output += "  ";
 					}
 				}
 			}
-			System.out.println();
+			output += "\n";
 
 			for (int x = 0; x < getCols(); x++) {
-				System.out.print(get(x, y).getDosis());
+				output += get(x,y).getDosis();
 				if (get(x, y).hatMauerRechts()) {
 					output += "|";
 				} else {
