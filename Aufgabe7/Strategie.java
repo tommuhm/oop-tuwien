@@ -26,7 +26,7 @@ public abstract class Strategie {
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
 	// Nachbedingung: gibt das obere Feld zurueck falls vorhanden und nicht blockiert, sonst null.
-	public Feld checkOben(Labyrinth labyrinth, Feld feld) {
+	protected Feld checkOben(Labyrinth labyrinth, Feld feld) {
 		if (feld.getY() > 0 &&                      // there is actually a field above
 				feld.getY() < (labyrinth.getRows()) &&  // kammer still in borders
 				!feld.hatMauerOben() &&                // check if there's a wall
@@ -38,7 +38,7 @@ public abstract class Strategie {
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
 	// Nachbedingung: gibt das rechte Feld zurueck falls vorhanden und nicht blockiert, sonst null.
-	public Feld checkRechts(Labyrinth labyrinth, Feld feld) {
+	protected Feld checkRechts(Labyrinth labyrinth, Feld feld) {
 		if (feld.getX() >= 0 &&
 				feld.getX() < (labyrinth.getCols() - 1) &&
 				!feld.hatMauerRechts() &&
@@ -50,7 +50,7 @@ public abstract class Strategie {
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
 	// Nachbedingung: gibt das linke Feld zurueck falls vorhanden und nicht blockiert, sonst null.
-	public Feld checkLinks(Labyrinth labyrinth, Feld feld) {
+	protected Feld checkLinks(Labyrinth labyrinth, Feld feld) {
 		if (feld.getX() > 0 &&
 				feld.getX() < (labyrinth.getCols()) &&
 				!labyrinth.get(feld.getX() - 1, feld.getY()).hatMauerRechts() && // kammer.isMauerLinks
@@ -62,7 +62,7 @@ public abstract class Strategie {
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
 	// Nachbedingung: gibt das untere Feld zurueck falls vorhanden und nicht blockiert, sonst null.
-	public Feld checkUnten(Labyrinth labyrinth, Feld feld) {
+	protected Feld checkUnten(Labyrinth labyrinth, Feld feld) {
 		if (feld.getY() >= 0 &&
 				feld.getY() < (labyrinth.getRows() - 1) &&
 				!labyrinth.get(feld.getX(), feld.getY() + 1).hatMauerOben() && // kammer.isMauerUnten

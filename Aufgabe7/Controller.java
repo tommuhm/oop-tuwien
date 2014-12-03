@@ -16,8 +16,8 @@ public class Controller {
 		this.maxDosis = maxDosis;
 	}
 
-	// startet die Ameisenalgorithmen fuer das labyrinth
-	// nach jedem Zug der leitameise wird das komplette labyrinth ausgegeben und wenn moeglich eine neue Ameise in das Labyrinth geschickt
+	// startet die Ameisenalgorithmen fuer das Labyrinth
+	// nach jedem Zug der Leitameise wird das Labyrinth ausgegeben und wenn moeglich eine neue Ameise in das Labyrinth eingefuegt
 	// sobald eine Ameise mit allen Zuegen fertig ist (Zeiten der Zuege sind zufaellig) wird der Algorithmus abgebrochen
 	// und die Koordinaten der Ameisen ausgegeben
 	public void start() {

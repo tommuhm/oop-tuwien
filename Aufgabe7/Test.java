@@ -97,7 +97,7 @@ public class Test {
 		Labyrinth labyrinth = new Labyrinth(felder, ameisenkolonie, futterstelle);
 
 		int maxDosis = labyrinth.getRows();
-		int anzahlZuege = labyrinth.getRows() * labyrinth.getCols();
+		int anzahlZuege = labyrinth.getRows() * labyrinth.getCols()*2;
 
 		Controller c2 = new Controller(labyrinth, maxDosis, anzahlZuege);
 		c2.start();
