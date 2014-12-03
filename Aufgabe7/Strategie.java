@@ -25,7 +25,7 @@ public abstract class Strategie {
 
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
-	// Nachbedingung: gibt das obere Feld zurück falls vorhanden und nicht blockiert, sonst null.
+	// Nachbedingung: gibt das obere Feld zurueck falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkOben(Labyrinth labyrinth, Feld feld) {
 		if (feld.getY() > 0 &&                      // there is actually a field above
 				feld.getY() < (labyrinth.getRows()) &&  // kammer still in borders
@@ -37,7 +37,7 @@ public abstract class Strategie {
 
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
-	// Nachbedingung: gibt das rechte Feld zurück falls vorhanden und nicht blockiert, sonst null.
+	// Nachbedingung: gibt das rechte Feld zurueck falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkRechts(Labyrinth labyrinth, Feld feld) {
 		if (feld.getX() >= 0 &&
 				feld.getX() < (labyrinth.getCols() - 1) &&
@@ -49,7 +49,7 @@ public abstract class Strategie {
 
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
-	// Nachbedingung: gibt das linke Feld zurück falls vorhanden und nicht blockiert, sonst null.
+	// Nachbedingung: gibt das linke Feld zurueck falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkLinks(Labyrinth labyrinth, Feld feld) {
 		if (feld.getX() > 0 &&
 				feld.getX() < (labyrinth.getCols()) &&
@@ -61,7 +61,7 @@ public abstract class Strategie {
 
 	// Vorbedingung: labyrinth darf nicht null sein.
 	// Vorbedingung: feld darf nicht null sein.
-	// Nachbedingung: gibt das untere Feld zurück falls vorhanden und nicht blockiert, sonst null.
+	// Nachbedingung: gibt das untere Feld zurueck falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkUnten(Labyrinth labyrinth, Feld feld) {
 		if (feld.getY() >= 0 &&
 				feld.getY() < (labyrinth.getRows() - 1) &&
