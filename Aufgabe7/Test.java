@@ -1,3 +1,10 @@
+/*
+ * Aufgabenaufteilung: Planung zu dritt.
+ * David Jaffry: Strategie, StrategieGegenUhrzeigersinn, StrategieImUhrzeigerSinn, StrategieRandom
+ * Ulrich Aschl: Feld, FeldAmeisenkolonie, FeldFutterstelle, Controller, Test
+ * Thomas Muhm: Labyrinth, Feld, FeldAmeisenkolonie, FeldFutterstelle, Controller, Test
+ */
+
 public class Test {
 
 	public static void main(String[] args) {
