@@ -1,17 +1,17 @@
 /*
  * Aufgabenaufteilung: Planung zu dritt.
- * David Jaffry: Strategie, StrategieGegenUhrzeigersinn, StrategieImUhrzeigerSinn, StrategieRandom
+ * David Jaffry: Strategie, StrategieGegenUhrzeigersinn, StrategieImUhrzeigerSinn, StrategieRandom, Zusicherungen
  * Ulrich Aschl: Feld, FeldAmeisenkolonie, FeldFutterstelle, Controller, Test
- * Thomas Muhm: Labyrinth, Feld, FeldAmeisenkolonie, FeldFutterstelle, Controller, Test
+ * Thomas Muhm: Ameise, Labyrinth, Feld, FeldAmeisenkolonie, FeldFutterstelle, Controller, Test, Zusicherungen
  */
 
 public class Test {
 
 	public static void main(String[] args) {
 
-		//testLabyrinth1();
+		testLabyrinth1();
 
-		//testLabyrinth2();
+		testLabyrinth2();
 
 		testLabyrinth3();
 	}
@@ -68,7 +68,7 @@ public class Test {
 		felder[1][0] = new Feld(0, 1, false, false);
 		felder[1][1] = new Feld(1, 1, false, false);
 		felder[1][2] = new Feld(2, 1, false, false);
-		FeldFutterstelle futterstelle = new FeldFutterstelle(3, 1, false, false);
+		FeldFutterstelle futterstelle = new FeldFutterstelle(3, 2, false, false);
 		felder[1][3] = futterstelle;
 		felder[1][4] = new Feld(4, 1, false, false);
 		felder[1][5] = new Feld(5, 1, false, false);
@@ -104,7 +104,7 @@ public class Test {
 	}
 
 	private static void testLabyrinth3() {
-		Labyrinth labyrinth = new Labyrinth(40, 40);
+		Labyrinth labyrinth = new Labyrinth(10, 7);
 		int maxDosis = labyrinth.getRows() * labyrinth.getCols();
 		int anzahlZuege = labyrinth.getRows() * labyrinth.getCols() * 1;
 

@@ -1,8 +1,6 @@
 
 public class StrategieRandom extends Strategie {
 
-	// enhanced random algorithm
-
 	@Override
 	// Vorbedingungen: labyrinth darf nicht null sein, feld darf nicht null sein.
 	// Nachbedingungen: gibt das nachste Feld, ausgesucht durch einen randomizer, zurueck. falls nicht verfuegbar dann null.

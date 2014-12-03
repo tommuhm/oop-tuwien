@@ -7,6 +7,8 @@ public class Controller {
 	private final int anzahlZuege;
 	private final int maxDosis;
 
+	// Vorbedinung: labyrinth ist nicht null
+	// Vorbedinung: maxDosis und anzahlZuege ist groesser als 0 und unabhaengig von der groesse des labyrinthes
 	public Controller(Labyrinth labyrinth, int maxDosis, int anzahlZuege) {
 		this.labyrinth = labyrinth;
 		this.ameisen = new ArrayList<Ameise>();
@@ -14,8 +16,11 @@ public class Controller {
 		this.maxDosis = maxDosis;
 	}
 
+	// startet die Ameisenalgorithmen fuer das labyrinth
+	// nach jedem Zug der leitameise wird das komplette labyrinth ausgegeben und wenn moeglich eine neue Ameise in das Labyrinth geschickt
+	// sobald eine Ameise mit allen Zuegen fertig ist (Zeiten der Zuege sind zufaellig) wird der Algorithmus abgebrochen
+	// und die Koordinaten der Ameisen ausgegeben
 	public void start() {
-
 		Ameise leitameise = new Ameise(labyrinth, new StrategieRandom(), maxDosis, anzahlZuege, true);
 		ameisen.add(leitameise);
 
@@ -43,7 +48,7 @@ public class Controller {
 						leitameise.wait();
 
 						if (ameisen.size() < (labyrinth.getCols() * labyrinth.getCols() / 10) && labyrinth.getAmeisenkolonie().hatPlatz()) {
-							Ameise neueAmeise = new Ameise(this.labyrinth, Strategie.getNextStrategie(), maxDosis, anzahlZuege, false);
+							Ameise neueAmeise = new Ameise(this.labyrinth, Strategie.getRndStrategie(), maxDosis, anzahlZuege, false);
 							ameisen.add(neueAmeise);
 							neueAmeise.start();
 						}

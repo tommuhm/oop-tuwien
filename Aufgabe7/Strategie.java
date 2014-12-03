@@ -7,9 +7,8 @@ public abstract class Strategie {
 	// Nachbedingung: gibt das nachste Feld zurueck, falls verfuegbar, ansonsten null.
 	public abstract Feld naechstesFeld(Labyrinth labyrinth, Feld feld);
 
-
 	// Nachbedingung: gibt eine zufaellige Strategie zurueck
-	public static Strategie getNextStrategie() {
+	public static Strategie getRndStrategie() {
 		Random rnd = new Random();
 
 		switch (rnd.nextInt(3)) {
@@ -28,9 +27,9 @@ public abstract class Strategie {
 	// Vorbedingung: feld darf nicht null sein.
 	// Nachbedingung: gibt das obere Feld zurück falls vorhanden und nicht blockiert, sonst null.
 	public Feld checkOben(Labyrinth labyrinth, Feld feld) {
-		if (feld.getY() > 0 &&                  // there is actually a field above
-				feld.getY() < (labyrinth.getRows()) &&          // kammer still in borders
-				!feld.hatMauerOben() &&              // check if there's a wall
+		if (feld.getY() > 0 &&                      // there is actually a field above
+				feld.getY() < (labyrinth.getRows()) &&  // kammer still in borders
+				!feld.hatMauerOben() &&                // check if there's a wall
 				labyrinth.get(feld.getX(), feld.getY() - 1).hatPlatz()) // check if there are already two ants
 			return labyrinth.get(feld.getX(), feld.getY() - 1);
 		return null;

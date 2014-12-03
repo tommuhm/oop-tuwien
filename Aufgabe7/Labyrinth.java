@@ -8,6 +8,8 @@ public class Labyrinth {
 	private final int rows;
 	private final int cols;
 
+	// Vorbedinung: cols und rows muessen zw 1 und 50 liegen
+	// Nachbedinung: erstellt labyrinth mit zufaelligen maueren, start und end punkten
 	public Labyrinth(int cols, int rows) {
 		this.cols = cols;
 		this.rows = rows;
@@ -33,27 +35,27 @@ public class Labyrinth {
 		felder[ameisenkolonieY][ameisenkolonieX] = ameisenkolonie;
 		felder[futterstelleY][futterstelleX] = futterstelle;
 
-		// create dumb path from a to b
-		
+		// create path from a to b
 		int hoehe, breite;
 		hoehe = ameisenkolonieY - futterstelleY;
 		breite = ameisenkolonieX - futterstelleX;
-		
-		while(breite != 0) {
-			if(breite > 0) breite--;
+
+		while (breite != 0) {
+			if (breite > 0) breite--;
 			else breite++;
-			
+
 			felder[futterstelleY][futterstelleX + breite] = new Feld(futterstelleX + breite, futterstelleY);
 		}
-		while(hoehe != 0) {
-			if(hoehe > 0) hoehe--;
+		while (hoehe != 0) {
+			if (hoehe > 0) hoehe--;
 			else hoehe++;
-			
+
 			felder[futterstelleY + hoehe][futterstelleX] = new Feld(futterstelleX, futterstelleY + hoehe);
 		}
 	}
 
-	// felder x between 1 and 500
+	// Vorbedinung: felder muessen in beiden richtungen zw 1 und 50 liegen
+	// Vorbedinung: ameisenkolonie und futterstelle muss in felder vorhanden sein
 	public Labyrinth(Feld[][] felder, FeldAmeisenkolonie ameisenkolonie, FeldFutterstelle futterstelle) {
 		this.felder = felder;
 		this.rows = felder.length;
@@ -62,27 +64,36 @@ public class Labyrinth {
 		this.futterstelle = futterstelle;
 	}
 
+	// Nachbedingung: gibt das Feld an der stelle (x,y) zurueck
 	public Feld get(int x, int y) {
 		return felder[y][x];
 	}
 
+	// Nachbedingung: gibt die Hoehe des Labyrinthes zurueck
 	public int getRows() {
 		return rows;
 	}
 
+	// Nachbedingung: gibt die Breite des Labyrinthes zurueck
 	public int getCols() {
 		return cols;
 	}
 
+	// Nachbedingung: gibt die Futterstelle (End Punkt) des Labyrinthes zurueck
 	public FeldFutterstelle getFutterstelle() {
 		return futterstelle;
 	}
 
+	// Nachbedingung: gibt die Ameisenkolonie (Start Punkt) des Labyrinthes zurueck
 	public FeldAmeisenkolonie getAmeisenkolonie() {
 		return ameisenkolonie;
 	}
 
 	@Override
+	// sperrt alle Felder des Labyrinthes und berechnet die Dosis alle Felder in Abhangigkeit zu dem Feld mit der maximalen Dosis
+	// Bedeutung Ausgabe: 0: 0-9.99%, 1: 10-19.99% ..... 9: 90-100%
+	// Nachbedinung: gibt eine verstaendliche Interpretation des Labyrinthes zurueck
+	// Nachbedinung: alle locks wuerden von den Feldern wieder entfernt
 	public String toString() {
 
 		String output = "";
@@ -110,7 +121,7 @@ public class Labyrinth {
 			output += "\n";
 
 			for (int x = 0; x < getCols(); x++) {
-				int percentDosis = get(x, y).getDosis()*10/maxDuft;
+				int percentDosis = get(x, y).getDosis() * 10 / maxDuft;
 				output += percentDosis == 10 ? 9 : percentDosis;
 				if (get(x, y).hatMauerRechts()) {
 					output += "|";
@@ -121,7 +132,6 @@ public class Labyrinth {
 			output += "\n";
 		}
 
-		// unlock labyrinth
 		for (int x = 0; x < getCols(); x++) {
 			for (int y = 0; y < getRows(); y++) {
 				get(x, y).unlock();
