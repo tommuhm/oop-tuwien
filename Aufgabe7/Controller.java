@@ -35,15 +35,10 @@ public class Controller {
 					}
 
 					if (zuegeDone) {
-
 						for (Ameise ameise : ameisen) {
 							ameise.interrupt();
-						}
-
-						for (Ameise ameise : ameisen) {
 							System.out.println(ameise);
 						}
-
 						break;
 					} else {
 						leitameise.wait();
