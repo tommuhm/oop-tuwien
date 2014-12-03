@@ -33,9 +33,24 @@ public class Labyrinth {
 		felder[ameisenkolonieY][ameisenkolonieX] = ameisenkolonie;
 		felder[futterstelleY][futterstelleX] = futterstelle;
 
-		// remove walls
-		// TODO
-
+		// create dumb path from a to b
+		
+		int hoehe, breite;
+		hoehe = ameisenkolonieY - futterstelleY;
+		breite = ameisenkolonieX - futterstelleX;
+		
+		while(breite != 0) {
+			if(breite > 0) breite--;
+			else breite++;
+			
+			felder[futterstelleY][futterstelleX + breite] = new Feld(futterstelleX + breite, futterstelleY);
+		}
+		while(hoehe != 0) {
+			if(hoehe > 0) hoehe--;
+			else hoehe++;
+			
+			felder[futterstelleY + hoehe][futterstelleX] = new Feld(futterstelleX, futterstelleY + hoehe);
+		}
 	}
 
 	// felder x between 1 and 500
@@ -72,7 +87,7 @@ public class Labyrinth {
 
 		String output = "";
 
-		int maxDuft = 0;
+		int maxDuft = 1;
 		for (int x = 0; x < getCols(); x++) {
 			for (int y = 0; y < getRows(); y++) {
 				get(x, y).lock();

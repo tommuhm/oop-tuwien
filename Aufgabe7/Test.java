@@ -9,10 +9,11 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		testLabyrinth1();
+		//testLabyrinth1();
 
-		testLabyrinth2();
+		//testLabyrinth2();
 
+		testLabyrinth3();
 	}
 
 	private static void testLabyrinth1() {
@@ -94,6 +95,7 @@ public class Test {
 		felder[3][7] = new Feld(7, 3, false, false);
 
 		Labyrinth labyrinth = new Labyrinth(felder, ameisenkolonie, futterstelle);
+
 		int maxDosis = labyrinth.getRows();
 		int anzahlZuege = labyrinth.getRows() * labyrinth.getCols();
 
@@ -101,4 +103,12 @@ public class Test {
 		c2.start();
 	}
 
+	private static void testLabyrinth3() {
+		Labyrinth labyrinth = new Labyrinth(40, 40);
+		int maxDosis = labyrinth.getRows() * labyrinth.getCols();
+		int anzahlZuege = labyrinth.getRows() * labyrinth.getCols() * 1;
+
+		Controller c3 = new Controller(labyrinth, maxDosis, anzahlZuege);
+		c3.start();
+	}
 }
