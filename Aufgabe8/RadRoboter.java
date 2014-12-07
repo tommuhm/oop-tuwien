@@ -1,4 +1,5 @@
 
+@Author(name="Ulrich Aschl")
 public class RadRoboter extends Erkundungsroboter{
 	private double wegstrecke;
 

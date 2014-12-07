@@ -1,6 +1,8 @@
 import java.util.Date;
 
 
+
+@Author(name="Ulrich Aschl")
 public class Erkundungsroboter {
 	
 	private int stunden;

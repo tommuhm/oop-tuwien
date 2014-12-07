@@ -1,4 +1,5 @@
 
+@Author(name="Ulrich Aschl")
 public class SprungRoboter extends Erkundungsroboter{
 	private int spruenge;
 	
