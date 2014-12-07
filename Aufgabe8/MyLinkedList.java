@@ -1,4 +1,3 @@
-
 @Author(name = "Thomas Muhm")
 public class MyLinkedList<A> {
 
@@ -44,6 +43,19 @@ public class MyLinkedList<A> {
 
 	public int size() {
 		return size;
+	}
+
+	public A get(int index) {
+		if (index < 0 || index >= size) {
+			return null;
+		}
+
+		Node current = head;
+		for (int i = 0; i < size; i++) {
+			current = current.next();
+		}
+
+		return current.getElem();
 	}
 
 	private class Node {
