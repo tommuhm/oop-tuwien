@@ -1,19 +1,19 @@
-import java.util.Date;
-
-
 
 @Author(name="Ulrich Aschl")
 public class Erkundungsroboter {
 	
+	private final String name;
 	private int stunden;
 	private Einsatzart art;
 	
-	public Erkundungsroboter(int stunden, Einsatzart art) {
+	public Erkundungsroboter(String name, int stunden, Einsatzart art) {
+		this.name = name;
 		this.stunden = stunden;
 		this.art = art;
 	}
 	
-	public Erkundungsroboter(Einsatzart art) {
+	public Erkundungsroboter(String name, Einsatzart art) {
+		this.name = name;
 		this.stunden = 0;
 		this.art = art;
 	}
@@ -32,5 +32,14 @@ public class Erkundungsroboter {
 
 	public void setEinsatzart(Einsatzart art) {
 		this.art = art;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return this.getName() + " - Stunden: " + this.getStunden();
 	}
 }

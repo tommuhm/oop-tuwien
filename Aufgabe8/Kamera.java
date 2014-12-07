@@ -10,4 +10,9 @@ public class Kamera implements Einsatzart{
 	public int getWert() {
 		return this.pixel;
 	}
+	
+	@Override
+	public String toString() {
+		return "Kamera: " + this.pixel + " Pixel";
+	}
 }
