@@ -4,13 +4,16 @@ import java.util.Date;
 public class Erkundungsroboter {
 	
 	private int stunden;
+	private Einsatzart art;
 	
-	public Erkundungsroboter(int stunden) {
+	public Erkundungsroboter(int stunden, Einsatzart art) {
 		this.stunden = stunden;
+		this.art = art;
 	}
 	
-	public Erkundungsroboter() {
+	public Erkundungsroboter(Einsatzart art) {
 		this.stunden = 0;
+		this.art = art;
 	}
 	
 	public void erhoeheStunden() {
@@ -20,5 +23,12 @@ public class Erkundungsroboter {
 	public int getStunden() {
 		return this.stunden;
 	}
-	
+
+	public Einsatzart getArt() {
+		return art;
+	}
+
+	public void setArt(Einsatzart art) {
+		this.art = art;
+	}
 }
