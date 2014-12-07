@@ -21,6 +21,7 @@ public class Test {
 		Erkundungsroboter r7 = new RadRoboter("r7", art7);
 		Erkundungsroboter r8 = new RadRoboter("r8", art8);
 		
+		// Test 1:
 		System.out.println("Roboter r1 wird ausgegeben.");
 		System.out.println(r1.toString());
 		System.out.println("Stunden werden erhöht.");
@@ -31,5 +32,23 @@ public class Test {
 		r1.setEinsatzart(artTest);
 		System.out.println(r1.toString());
 		
+		Raumsonde raum1 = new Raumsonde("Raumsonde 1");
+		Raumsonde raum2 = new Raumsonde("Raumsonde 2");
+		Raumsonde raum3 = new Raumsonde("Raumsonde 3");
+		Raumsonde raum4 = new Raumsonde("Raumsonde 4");
+		Raumsonde raum5 = new Raumsonde("Raumsonde 5");
+		
+		raum1.addRoboter(r1);
+		raum1.addRoboter(r2);
+		raum1.addRoboter(r5);
+		raum2.addRoboter(r3);
+		raum3.addRoboter(r4);
+		raum3.addRoboter(r6);
+		raum4.addRoboter(r7);
+		raum4.addRoboter(r8);
+		
+		System.out.println(raum1);
+		System.out.println(raum1.getSpruengeSchnitt());
+		raum5.getSpruengeSchnitt();
 	}
 }
