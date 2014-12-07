@@ -9,7 +9,7 @@ public class RadRoboter extends Erkundungsroboter{
 	
 	public RadRoboter(Einsatzart art) {
 		super(art);
-		this.wegstrecke = wegstrecke;
+		this.wegstrecke = 0;
 	}
 
 	public void erhoeheWegstrecke() {
