@@ -24,9 +24,9 @@ public class Raumsonde {
 		return mylist.remove(rob);
 	}
 
-	public String getBetriebsstundenEinsatzartSchnitt() { //aufgeschluesselt nach Bohrer, Foto
+	public String getBetriebsstundenEinsatzartSchnitt() {
 		if (maxValue < 1) {
-			return null;
+			return null; //TODO
 		}
 		double wertbohrer = 0;
 		double wertkamera = 0;
@@ -49,9 +49,9 @@ public class Raumsonde {
 				);
 	}
 
-	public String getBetriebsstundenBauartSchnitt() { //aufgeschluesselt Spring, Rad
+	public String getBetriebsstundenBauartSchnitt() {
 		if (maxValue < 1) {
-			return null;
+			return null; //TODO
 		}
 		double wertrad = 0;
 		double wertsprung = 0;
