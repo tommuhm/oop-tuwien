@@ -1,17 +1,14 @@
-import MyLinkedList.Node;
-
 
 public class Raumsonde {
 
 	final String name;
 	static int maxValue = 0; 
-	MyLinkedList mylist = new MyLinkedList();
+	MyLinkedList<Erkundungsroboter> mylist = new MyLinkedList<Erkundungsroboter>();
 
 
 	public Raumsonde( String name ) {
 		this.name = name;
 	}
-
 
 	public void addRoboter(Erkundungsroboter rob) {
 		mylist.add(rob);
@@ -30,7 +27,6 @@ public class Raumsonde {
 		maxValue--;
 		return mylist.remove(rob);
 	}
-
 
 	public String getBetriebsstundenEinsatzartSchnitt() { //aufgeschluesselt nach Bohrer, Foto
 		return null;
@@ -56,7 +52,7 @@ public class Raumsonde {
 				}
 			}
 		}
-		System.out.println("\n#######################\n"
+		return ("\n#######################\n"
 				+ "Statistik RadRoboter Wegstrecken \n"
 				+ "Bohrer:\n"
 				+ " Anzahl: " + counterbohrer + '\n'
@@ -89,7 +85,7 @@ public class Raumsonde {
 				}
 			}
 		}
-		System.out.println("\n#######################\n"
+		return ("\n#######################\n"
 				+ "Statistik SprungRoboter Spruenge \n"
 				+ "Bohrer:\n"
 				+ " Anzahl: " + counterbohrer + '\n'
@@ -117,7 +113,4 @@ public class Raumsonde {
 	public String getBohrerSchnitt() {
 		return null;
 	}
-
-
-
 }
