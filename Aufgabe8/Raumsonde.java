@@ -1,6 +1,6 @@
 
 public class Raumsonde {
-
+	
 	final String name;
 	MyLinkedList mylist = new MyLinkedList();
 
@@ -10,16 +10,16 @@ public class Raumsonde {
 	}
 	
 
-	public boolean addRoboter(ErkundungsRoboter rob) {
-		return mylist.add(rob);
+	public void addRoboter(Erkundungsroboter rob) {
+		mylist.add(rob);
 	}
 
-	public boolean modifyRoboter(ErkundungsRoboter rob) {
+	public boolean modifyRoboter(Erkundungsroboter rob) {
 		
 		return false;
 	}
 
-	public boolean removeRoboter(ErkundungsRoboter rob) {
+	public boolean removeRoboter(Erkundungsroboter rob) {
 		return mylist.remove(rob);
 	}
 
