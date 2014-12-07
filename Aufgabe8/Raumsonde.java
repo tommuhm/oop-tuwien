@@ -33,6 +33,7 @@ public class Raumsonde {
 	}
 
 	public String getWegstreckeSchnitt() {
+		
 		double wertkamera = 0;
 		double wertbohrer = 0;
 		int counterkamera = 0;
@@ -166,5 +167,9 @@ public class Raumsonde {
 				+ " Insgesamt: " + (wertrad + wertsprung) + '\n'
 				+ " Durchschnitt: " + (countersprung + counterrad)/(wertrad + wertsprung) 
 				);
+	}
+	
+	public String toString() {
+		return "Raumsonde " + name + "\n Anzahl Roboter: " + maxValue;
 	}
 }
