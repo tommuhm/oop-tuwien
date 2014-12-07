@@ -7,7 +7,7 @@ public class Kamera implements Einsatzart{
 		this.pixel = pixel;
 	}
 	
-	public int getWert() {
+	public int getPixel() {
 		return this.pixel;
 	}
 	
