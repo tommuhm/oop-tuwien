@@ -52,7 +52,7 @@ public class MyLinkedList<A> {
 
 		Node current = head;
 		//for (int i = 0; i < size; i++) { // < size haut ned hin. da kommt immer des letzte tom ;-) - bussi uli.
-		for (int i = 0; i < index; i++) {
+		for (int i = 0; i <= index; i++) {
 			current = current.next();
 		}
 
