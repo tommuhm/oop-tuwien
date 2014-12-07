@@ -1,8 +1,8 @@
 
 public class Raumsonde {
 
-	final String name;
-	static int maxValue = 0; 
+	private final String name;
+	private int maxValue = 0; 
 	MyLinkedList<Erkundungsroboter> mylist = new MyLinkedList<Erkundungsroboter>();
 
 
@@ -13,10 +13,6 @@ public class Raumsonde {
 	public void addRoboter(Erkundungsroboter rob) {
 		mylist.add(rob);
 		maxValue++;
-	}
-
-	public void modifyRoboter(Erkundungsroboter rob, Einsatzart art) {
-		rob.setEinsatzart(art);
 	}
 
 	public void modifyRoboter(int index, Einsatzart art) {
@@ -42,12 +38,13 @@ public class Raumsonde {
 		int counterkamera = 0;
 		int counterbohrer = 0;
 		for (int i = 0; i < maxValue; i++ ) {
-			if ((Erkundungsroboter) mylist.get(i) instanceof RadRoboter ) {
-				if (((RadRoboter) mylist.get(i)).getEinsatzart() instanceof Bohrer) {
-					wertbohrer += ((RadRoboter) mylist.get(i)).getWegstrecke();
+			Erkundungsroboter rob = mylist.get(i);
+			if ( rob instanceof RadRoboter ) {
+				if ( rob.getEinsatzart() instanceof Bohrer) {
+					wertbohrer += ((RadRoboter) rob).getWegstrecke();
 					counterbohrer++;
 				} else {
-					wertkamera += ((RadRoboter) mylist.get(i)).getWegstrecke();
+					wertkamera += ((RadRoboter) rob).getWegstrecke();
 					counterkamera++;
 				}
 			}
@@ -75,12 +72,13 @@ public class Raumsonde {
 		int counterkamera = 0;
 		int counterbohrer = 0;
 		for (int i = 0; i < maxValue; i++ ) {
-			if ((Erkundungsroboter) mylist.get(i) instanceof SprungRoboter ) {
-				if (((SprungRoboter) mylist.get(i)).getEinsatzart() instanceof Bohrer) {
-					wertbohrer += ((SprungRoboter) mylist.get(i)).getSpruenge();
+			Erkundungsroboter rob = mylist.get(i);
+			if ( rob instanceof SprungRoboter ) {
+				if ( rob.getEinsatzart() instanceof Bohrer) {
+					wertbohrer += ((SprungRoboter) rob).getSpruenge();
 					counterbohrer++;
 				} else {
-					wertkamera += ((SprungRoboter) mylist.get(i)).getSpruenge();
+					wertkamera += ((SprungRoboter) rob).getSpruenge();
 					counterkamera++;
 				}
 			}
@@ -102,15 +100,71 @@ public class Raumsonde {
 				);
 	}
 
-	public String getMaxKameraPixel() {
-		return null;
-	}
-
-	public String getMinKameraPixel() {
-		return null;
+	public String getPixelSchnitt() {
+		double wertrad = 0;
+		double wertsprung = 0;
+		int counterrad = 0;
+		int countersprung = 0;
+		for (int i = 0; i < maxValue; i++ ) {
+			Erkundungsroboter rob = mylist.get(i);
+			if ( rob.getEinsatzart() instanceof Kamera ) {
+				if (rob instanceof SprungRoboter) {
+					wertsprung += ((Kamera)rob.getEinsatzart()).getPixel();
+					countersprung++;
+				} else {
+					wertrad += ((Kamera)rob.getEinsatzart()).getPixel();
+					counterrad++;
+				}
+			}
+		}
+		return ("\n#######################\n"
+				+ "Statistik Kamera \n"
+				+ "RadRoboter:\n"
+				+ " Anzahl: " + counterrad + '\n'
+				+ " Insgesamt: " + wertrad + '\n'
+				+ " Durchschnitt: " + wertrad/counterrad + '\n'
+				+ "SprungRoboter:\n"
+				+ " Anzahl: " + countersprung + '\n'
+				+ " Insgesamt: " + wertsprung + '\n'
+				+ " Durchschnitt: " + wertsprung/countersprung + '\n'
+				+ "Alle Roboter mit Kamera: \n"
+				+ " Anzahl: " + (counterrad + countersprung) + '\n'
+				+ " Insgesamt: " + (wertrad + wertsprung) + '\n'
+				+ " Durchschnitt: " + (countersprung + counterrad)/(wertrad + wertsprung) 
+				);
 	}
 
 	public String getBohrerSchnitt() {
-		return null;
+		double wertrad = 0;
+		double wertsprung = 0;
+		int counterrad = 0;
+		int countersprung = 0;
+		for (int i = 0; i < maxValue; i++ ) {
+			Erkundungsroboter rob = mylist.get(i);
+			if ( rob.getEinsatzart() instanceof Bohrer ) {
+				if (rob instanceof SprungRoboter) {
+					wertsprung += ((Bohrer)rob.getEinsatzart()).getLaenge();
+					countersprung++;
+				} else {
+					wertrad += ((Bohrer)rob.getEinsatzart()).getLaenge();
+					counterrad++;
+				}
+			}
+		}
+		return ("\n#######################\n"
+				+ "Statistik Bohrer \n"
+				+ "RadRoboter:\n"
+				+ " Anzahl: " + counterrad + '\n'
+				+ " Insgesamt: " + wertrad + '\n'
+				+ " Durchschnitt: " + wertrad/counterrad + '\n'
+				+ "SprungRoboter:\n"
+				+ " Anzahl: " + countersprung + '\n'
+				+ " Insgesamt: " + wertsprung + '\n'
+				+ " Durchschnitt: " + wertsprung/countersprung + '\n'
+				+ "Alle Roboter mit Bohrer: \n"
+				+ " Anzahl: " + (counterrad + countersprung) + '\n'
+				+ " Insgesamt: " + (wertrad + wertsprung) + '\n'
+				+ " Durchschnitt: " + (countersprung + counterrad)/(wertrad + wertsprung) 
+				);
 	}
 }
