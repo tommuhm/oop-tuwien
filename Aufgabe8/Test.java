@@ -1,6 +1,7 @@
 
 public class Test {
 
+	@Author(name="Ulrich Aschl")
 	public static void main(String[] args) {
 
 		Einsatzart art1 = new Bohrer(15.92);
@@ -14,11 +15,11 @@ public class Test {
 		
 		Erkundungsroboter r1 = new SprungRoboter("r1", art1);
 		Erkundungsroboter r2 = new SprungRoboter("r2", 10, 3, art2);
-		Erkundungsroboter r3 = new SprungRoboter("r3", art3);
-		Erkundungsroboter r4 = new SprungRoboter("r4", art4);
-		Erkundungsroboter r5 = new RadRoboter("r5", art5);
-		Erkundungsroboter r6 = new RadRoboter("r6", art6);
-		Erkundungsroboter r7 = new RadRoboter("r7", art7);
+		Erkundungsroboter r3 = new SprungRoboter("r3", 15, 20, art3);
+		Erkundungsroboter r4 = new SprungRoboter("r4", 10, 0, art4);
+		Erkundungsroboter r5 = new RadRoboter("r5", 20, 10, art5);
+		Erkundungsroboter r6 = new RadRoboter("r6", 30.50, 10, art6);
+		Erkundungsroboter r7 = new RadRoboter("r7", 20.12, 4, art7);
 		Erkundungsroboter r8 = new RadRoboter("r8", art8);
 		
 		// Test 1:
@@ -47,8 +48,43 @@ public class Test {
 		raum4.addRoboter(r7);
 		raum4.addRoboter(r8);
 		
+		
 		System.out.println(raum1);
 		System.out.println(raum1.getSpruengeSchnitt());
-		raum5.getSpruengeSchnitt();
+		System.out.println(raum1.getWegstreckeSchnitt());
+		System.out.println("Einsatzart in Raumsonde raum1 wird für r5 verändert.");
+		Einsatzart artTest2 = new Bohrer(120.90);	
+		raum1.modifyRoboter(2, artTest2);
+		System.out.println(raum1.getSpruengeSchnitt());
+		System.out.println(raum1.getWegstreckeSchnitt());
+		
+		System.out.println("Testen der Division durch 0.");
+		printAlleStatistiken(raum5);
+		
+		Mission m1 = new Mission("Mission 1");
+		Mission m2 = new Mission("Mission 2");
+		
+		m1.addRaumsonde(raum1);
+		m1.addRaumsonde(raum2);
+		m1.addRaumsonde(raum3);
+		m2.addRaumsonde(raum4);
+		m2.addRaumsonde(raum5);
+		
+		System.out.println("Mission 1 - Raumsonden:");
+		m1.printRaumstonden();
+		System.out.println("Mission 1 - Entferne Raumsonde 1.");
+		m1.removeRaumsonde(raum1);
+		System.out.println("Mission 1 - Raumsonde entfernt.");
+		m1.printRaumstonden();
+		
+	}
+	
+	private static void printAlleStatistiken(Raumsonde r) {
+		System.out.println(r.getBetriebsstundenEinsatzartSchnitt());
+		System.out.println(r.getBetriebsstundenBauartSchnitt());
+		System.out.println(r.getWegstreckeSchnitt());
+		System.out.println(r.getSpruengeSchnitt());
+		System.out.println(r.getMinMaxPixel());
+		System.out.println(r.getBohrerSchnitt());
 	}
 }
