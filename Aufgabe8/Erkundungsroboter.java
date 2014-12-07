@@ -1,6 +1,8 @@
 import java.util.Date;
 
 
+
+@Author(name="Ulrich Aschl")
 public class Erkundungsroboter {
 	
 	private int stunden;
@@ -24,11 +26,11 @@ public class Erkundungsroboter {
 		return this.stunden;
 	}
 
-	public Einsatzart getArt() {
+	public Einsatzart getEinsatzart() {
 		return art;
 	}
 
-	public void setArt(Einsatzart art) {
+	public void setEinsatzart(Einsatzart art) {
 		this.art = art;
 	}
 }

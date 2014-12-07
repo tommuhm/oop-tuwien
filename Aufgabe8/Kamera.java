@@ -1,4 +1,5 @@
 
+@Author(name="Ulrich Aschl")
 public class Kamera implements Einsatzart{
 	private int pixel;
 	

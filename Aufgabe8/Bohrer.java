@@ -1,4 +1,5 @@
 
+@Author(name="Ulrich Aschl")
 public class Bohrer implements Einsatzart {
 	private double laenge;
 	
