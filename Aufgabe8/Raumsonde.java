@@ -33,7 +33,9 @@ public class Raumsonde {
 	}
 
 	public String getWegstreckeSchnitt() {
-		
+		if (maxValue < 1) {
+			return null;
+		}
 		double wertkamera = 0;
 		double wertbohrer = 0;
 		int counterkamera = 0;
@@ -50,26 +52,19 @@ public class Raumsonde {
 				}
 			}
 		}
-		return ("\n#######################\n"
-				+ "Statistik RadRoboter Wegstrecken \n"
-				+ "Bohrer:\n"
-				+ " Anzahl: " + counterbohrer + '\n'
-				+ " Insgesamt: " + wertbohrer + '\n'
-				+ " Durchschnitt: " + wertbohrer/counterbohrer + '\n'
-				+ "Kamera:\n"
-				+ " Anzahl: " + counterkamera + '\n'
-				+ " Insgesamt: " + wertkamera + '\n'
-				+ " Durchschnitt: " + wertkamera/counterkamera + '\n'
-				+ "Alle: RadRoboter\n"
-				+ " Anzahl: " + (counterbohrer + counterkamera) + '\n'
-				+ " Insgesamt: " + (wertbohrer + wertkamera) + '\n'
-				+ " Durchschnitt: " + (counterbohrer + counterkamera)/(wertbohrer + wertkamera) 
+		return ("\n### Statistik RadRoboter Wegstrecken ###\n"
+				+ "Schnitt - Bohrer:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer/counterbohrer  + '\n' 
+				+ "Schnitt - Kamera:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera/counterkamera  + '\n' 
+				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera)  + " / " + (counterbohrer + counterkamera) + " = "  + (wertbohrer + wertkamera)/(counterbohrer + counterkamera) + '\n'
 				);
 	}
 
 	public String getSpruengeSchnitt() {
-		double wertkamera = 0;
-		double wertbohrer = 0;
+		if (maxValue < 1) {
+			return null;
+		}
+		int wertkamera = 0;
+		int wertbohrer = 0;
 		int counterkamera = 0;
 		int counterbohrer = 0;
 		for (int i = 0; i < maxValue; i++ ) {
@@ -84,58 +79,57 @@ public class Raumsonde {
 				}
 			}
 		}
-		return ("\n#######################\n"
-				+ "Statistik SprungRoboter Spruenge \n"
-				+ "Bohrer:\n"
-				+ " Anzahl: " + counterbohrer + '\n'
-				+ " Insgesamt: " + wertbohrer + '\n'
-				+ " Durchschnitt: " + wertbohrer/counterbohrer + '\n'
-				+ "Kamera:\n"
-				+ " Anzahl: " + counterkamera + '\n'
-				+ " Insgesamt: " + wertkamera + '\n'
-				+ " Durchschnitt: " + wertkamera/counterkamera + '\n'
-				+ "Alle SprungRoboter: \n"
-				+ " Anzahl: " + (counterbohrer + counterkamera) + '\n'
-				+ " Insgesamt: " + (wertbohrer + wertkamera) + '\n'
-				+ " Durchschnitt: " + (counterbohrer + counterkamera)/(wertbohrer + wertkamera) 
+		
+		return ("\n### Statistik SprungRoboter Spruenge ###\n"
+				+ "Schnitt - Bohrer:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer/counterbohrer  + '\n' 
+				+ "Schnitt - Kamera:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera/counterkamera  + '\n' 
+				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera)  + " / " + (counterbohrer + counterkamera) + " = "  + (wertbohrer + wertkamera)/(counterbohrer + counterkamera) + '\n'
 				);
 	}
 
-	public String getPixelSchnitt() {
-		double wertrad = 0;
-		double wertsprung = 0;
-		int counterrad = 0;
-		int countersprung = 0;
+	public String getMinMaxPixel() {
+		if (maxValue < 1) {
+			return null;
+		}
+		int minrad = 0;
+		int maxrad = 0;
+		int minsprung = 0;
+		int maxsprung = 0;
 		for (int i = 0; i < maxValue; i++ ) {
 			Erkundungsroboter rob = mylist.get(i);
 			if ( rob.getEinsatzart() instanceof Kamera ) {
-				if (rob instanceof SprungRoboter) {
-					wertsprung += ((Kamera)rob.getEinsatzart()).getPixel();
-					countersprung++;
+				if (rob instanceof RadRoboter) {
+					if (minrad > ((Kamera)rob.getEinsatzart()).getPixel()) {
+						minrad = ((Kamera)rob.getEinsatzart()).getPixel();
+					}
+					if (maxrad < ((Kamera)rob.getEinsatzart()).getPixel()) {
+						maxrad = ((Kamera)rob.getEinsatzart()).getPixel();
+					}
 				} else {
-					wertrad += ((Kamera)rob.getEinsatzart()).getPixel();
-					counterrad++;
+					if (minsprung > ((Kamera)rob.getEinsatzart()).getPixel()) {
+						minsprung = ((Kamera)rob.getEinsatzart()).getPixel();
+					}
+					if (maxsprung < ((Kamera)rob.getEinsatzart()).getPixel()) {
+						maxsprung = ((Kamera)rob.getEinsatzart()).getPixel();
+					}
+					
 				}
 			}
 		}
-		return ("\n#######################\n"
-				+ "Statistik Kamera \n"
-				+ "RadRoboter:\n"
-				+ " Anzahl: " + counterrad + '\n'
-				+ " Insgesamt: " + wertrad + '\n'
-				+ " Durchschnitt: " + wertrad/counterrad + '\n'
-				+ "SprungRoboter:\n"
-				+ " Anzahl: " + countersprung + '\n'
-				+ " Insgesamt: " + wertsprung + '\n'
-				+ " Durchschnitt: " + wertsprung/countersprung + '\n'
-				+ "Alle Roboter mit Kamera: \n"
-				+ " Anzahl: " + (counterrad + countersprung) + '\n'
-				+ " Insgesamt: " + (wertrad + wertsprung) + '\n'
-				+ " Durchschnitt: " + (countersprung + counterrad)/(wertrad + wertsprung) 
+		int min = (minrad < minsprung) ? minrad : minsprung;
+		int max = (maxrad > maxsprung) ? maxrad : maxsprung;
+		
+		return ("\n### Statistik Kamera ###\n"
+				+ "RadRoboter:\t " + " Min: " + minrad + "\t Max: " + maxrad + '\n' 
+				+ "SprungRoboter:\t " + " Min: " + minsprung  + "\t Max: " + maxrad + '\n' 
+				+ "Gesamt:\t " + " Min: " + min +  "\t Max " + max + '\n'
 				);
 	}
 
 	public String getBohrerSchnitt() {
+		if (maxValue < 1) {
+			return null;
+		}
 		double wertrad = 0;
 		double wertsprung = 0;
 		int counterrad = 0;
@@ -152,24 +146,15 @@ public class Raumsonde {
 				}
 			}
 		}
-		return ("\n#######################\n"
-				+ "Statistik Bohrer \n"
-				+ "RadRoboter:\n"
-				+ " Anzahl: " + counterrad + '\n'
-				+ " Insgesamt: " + wertrad + '\n'
-				+ " Durchschnitt: " + wertrad/counterrad + '\n'
-				+ "SprungRoboter:\n"
-				+ " Anzahl: " + countersprung + '\n'
-				+ " Insgesamt: " + wertsprung + '\n'
-				+ " Durchschnitt: " + wertsprung/countersprung + '\n'
-				+ "Alle Roboter mit Bohrer: \n"
-				+ " Anzahl: " + (counterrad + countersprung) + '\n'
-				+ " Insgesamt: " + (wertrad + wertsprung) + '\n'
-				+ " Durchschnitt: " + (countersprung + counterrad)/(wertrad + wertsprung) 
+		
+		return ("\n### Statistik Bohrer ###\n"
+				+ "Schnitt - RadRoboter:\t " + wertrad + " / " + counterrad + " = " + wertrad/counterrad  + '\n' 
+				+ "Schnitt - SprungRoboter:\t " + wertsprung + " / " + countersprung + " = " + wertsprung/countersprung  + '\n' 
+				+ "Schnitt - Gesamt:\t " + (wertrad + wertsprung)  + " / " + (countersprung + counterrad) + " = "  + (wertrad + wertsprung)/(counterrad + countersprung) + '\n'
 				);
 	}
-	
+	@Override
 	public String toString() {
-		return "Raumsonde " + name + "\n Anzahl Roboter: " + maxValue;
+		return "Raumsonde " + name + ", Roboter: " + maxValue;
 	}
 }
