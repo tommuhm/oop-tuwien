@@ -4,12 +4,16 @@ public class MyLinkedList {
 	private Node head;
 	private int size;
 
+	// Nachbedingung: eine leere liste wurde erstellt
 	@Author(name = "Thomas Muhm")
 	public MyLinkedList() {
 		head = new Node(null, null);
 		size = 0;
 	}
 
+	// Vorbedingung: id und elem duerfen nicht null sein
+	// Nachbedingung: gibt false zurueck wenn id bereits in der liste vorhanden ist
+	// Nachbedingung: gibt true zurueck wenn das element in die liste eingefuegt wurde wurde
 	@Author(name = "Thomas Muhm")
 	public boolean add(Object id, Object elem) {
 		Node node = new Node(id, elem);
@@ -33,6 +37,9 @@ public class MyLinkedList {
 		return true;
 	}
 
+	// Vorbedingung: id darf nicht null sein
+	// Nachbedingung: gibt false zurueck wenn die id nicht in der liste vorhanden ist
+	// Nachbedingung: gibt true zurueck wenn das element mit der id aus der liste entfernt wurde
 	@Author(name = "Thomas Muhm")
 	public boolean removeById(Object id) {
 		Node current = head;
@@ -56,6 +63,9 @@ public class MyLinkedList {
 		return false;
 	}
 
+	// Vorbedingung: elem darf nicht null sein
+	// Nachbedingung: gibt false zurueck wenn das element nicht in der liste vorhanden ist
+	// Nachbedingung: gibt true zurueck wenn das element aus der liste entfernt wurde
 	@Author(name = "Thomas Muhm")
 	public boolean remove(Object elem) {
 		Node current = head;
@@ -79,11 +89,14 @@ public class MyLinkedList {
 		return false;
 	}
 
+	// Nachbedingung: gibt die akutelle groesse der liste zurueck
 	@Author(name = "Thomas Muhm")
 	public int size() {
 		return size;
 	}
 
+	// Nachbedingung: gibt das element an der index position zurueck
+	// Nachbedingung: gibt null zurueck wenn der index nicht existiert
 	@Author(name = "Thomas Muhm")
 	public Object get(int index) {
 		if (index < 0 || index >= size) {
@@ -98,11 +111,14 @@ public class MyLinkedList {
 		return current.getElem();
 	}
 
+	// Vorbedingung: id darf nicht null sein
+	// Nachbedingung: gibt das element mit der angegeben id zurueck
+	// Nachbedingung: gibt null zurueck wenn die angebene id nicht in der liste ist
 	@Author(name = "Thomas Muhm")
 	public Object getById(Object id) {
 		Node current = head;
 		while (current != null) {
-			if (current.id.equals(id)) {
+			if (id.equals(current.id)) {
 				return current;
 			}
 			current = current.next();
@@ -117,6 +133,7 @@ public class MyLinkedList {
 		Object id;
 		Object elem;
 
+		// Vorbedingung: id und elem duerfen nicht null sein
 		@Author(name = "Thomas Muhm")
 		public Node(Object id, Object elem) {
 			this.id = id;
@@ -124,16 +141,19 @@ public class MyLinkedList {
 			next = null;
 		}
 
+		// Nachbedingung: gibt das element in dem node zurueck
 		@Author(name = "Thomas Muhm")
-		public Object getElem() {
+		private Object getElem() {
 			return elem;
 		}
 
+		// Nachbedingung: gibt den naechsten node in der liste zurueck
 		@Author(name = "Thomas Muhm")
-		public Node next() {
+		private Node next() {
 			return next;
 		}
 
+		// Nachbedingung: der angebene node wurde auf das naechste element der gesetzt
 		@Author(name = "Thomas Muhm")
 		private void setNext(Node next) {
 			this.next = next;
