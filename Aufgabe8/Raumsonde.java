@@ -24,7 +24,7 @@ public class Raumsonde {
 		return roboterList.add(rob.getNummer(), rob);
 	}
 
-	@Author(name = "David Jaffry")
+	@Author(name = "Thomas Muhm")
 	// Vorbedingung: roboter mit der angebenen nummer muss in der sonde vorhanden sein
 	// Vorbedingung: art darf nicht null sein
 	// Nachbedingung: die einsatzart des ausgewaehlten roboters wird auf art geaendert
@@ -58,7 +58,7 @@ public class Raumsonde {
 	// 		checkEinsatzart: gibt an ob classCheck1 und classCheck2 auf den Roboter oder auf dessen Einsatzart angewendet wird
 	// 		useEinsatzartMethod: gibt an ob die methode von Roboter oder von dessen Einsatzart verwendet werden soll
 	//	 	methodName: name der Methode, welche ueber refection von Roboter oder Einsatzart ausgefuert wird
-	@Author(name = "Thomas Muhm")
+	@Author(name = "David Jaffry")
 	private String getStatistik(String statistikName, Class filterClass, boolean checkEinsatzart, Class classCheck1, Class classCheck2, boolean useEinsatzartMethod, String methodName) {
 		if (roboterList.size() == 0) {
 			return ("\n### Keine Roboter in Raumsonde '" + name + "' vorhanden ###");
@@ -118,14 +118,14 @@ public class Raumsonde {
 
 	// Nachbedingung: errechnet die betriebsstunden sortiert nach einsatzart und gibt diese als lesbaren String zurueck
 	// Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
-	@Author(name = "David Jaffry")
+	@Author(name = "Thomas Muhm")
 	public String getBetriebsstundenEinsatzartSchnitt() {
 		return getStatistik("Statistik Betriebsstunden Einsatzart", Erkundungsroboter.class, true, Bohrer.class, Kamera.class, false, "getStunden");
 	}
 
 	// Nachbedingung: errechnet die betriebsstunden sortiert nach bauart und gibt diese als lesbaren String zurueck
 	// Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
-	@Author(name = "David Jaffry")
+	@Author(name = "Thomas Muhmy")
 	public String getBetriebsstundenBauartSchnitt() {
 		return getStatistik("Statistik Betriebsstunden Bauart", Erkundungsroboter.class, false, RadRoboter.class, SprungRoboter.class, false, "getStunden");
 	}
