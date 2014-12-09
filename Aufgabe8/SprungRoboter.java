@@ -3,8 +3,8 @@
 public class SprungRoboter extends Erkundungsroboter{
 	private int spruenge;
 	
-	public SprungRoboter(int spruenge, int stunden, Einsatzart art) {
-		super(stunden, art);
+	public SprungRoboter(Einsatzart art, int stunden, int spruenge) {
+		super(art, stunden);
 		this.spruenge = spruenge;
 	}
 	
@@ -19,5 +19,10 @@ public class SprungRoboter extends Erkundungsroboter{
 	
 	public int getSpruenge() {
 		return this.spruenge;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + " Spruenge: " + this.getSpruenge() + " Einsatzart: " + this.getEinsatzart();
 	}
 }

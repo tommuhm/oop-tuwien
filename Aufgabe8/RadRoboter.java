@@ -3,8 +3,8 @@
 public class RadRoboter extends Erkundungsroboter{
 	private double wegstrecke;
 
-	public RadRoboter(double wegstrecke, int stunden, Einsatzart art) {
-		super(stunden, art);
+	public RadRoboter(Einsatzart art,  int stunden, double wegstrecke) {
+		super(art, stunden);
 		this.wegstrecke = wegstrecke;
 	}
 	
@@ -19,5 +19,10 @@ public class RadRoboter extends Erkundungsroboter{
 	
 	public double getWegstrecke() {
 		return this.wegstrecke;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + " Wegstrecke: " + this.getWegstrecke() + " Einsatzart: " + this.getEinsatzart();
 	}
 }

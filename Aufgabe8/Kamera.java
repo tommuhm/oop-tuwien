@@ -7,7 +7,12 @@ public class Kamera implements Einsatzart{
 		this.pixel = pixel;
 	}
 	
-	public int getWert() {
+	public int getPixel() {
 		return this.pixel;
+	}
+	
+	@Override
+	public String toString() {
+		return "Kamera: " + this.pixel + " Pixel";
 	}
 }

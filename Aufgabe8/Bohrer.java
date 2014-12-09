@@ -7,7 +7,12 @@ public class Bohrer implements Einsatzart {
 		this.laenge = laenge;
 	}
 	
-	public double getWert() {
+	public double getLaenge() {
 		return this.laenge;
+	}
+	
+	@Override
+	public String toString() {
+		return "Bohrer: " + this.laenge + " cm";
 	}
 }
