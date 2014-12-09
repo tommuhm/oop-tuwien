@@ -1,3 +1,4 @@
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 @Author(name = "Ulrich Aschl")
@@ -175,18 +176,24 @@ public class Test {
 	@Author(name = "Thomas Muhm")
 	private static void printAuthorsForClass(Class<?> clazz) {
 		try {
-
 			Author author = clazz.getAnnotation(Author.class);
 			System.out.println("\n~~~ " + clazz.getName() + ".class ~~~");
 			System.out.println("Class: " + clazz.getName() + ", Author: " + author.name());
-
 		} catch (NullPointerException ex) {
 			System.out.println("missing Author for Class: " + clazz.getName());
 		}
 
+		for (Constructor constructor : clazz.getDeclaredConstructors()) {
+			try {
+				Author author = (Author) constructor.getAnnotation(Author.class);
+				System.out.println("Constructor: " + constructor.getName() + ", Author: " + author.name());
+			} catch (NullPointerException ex) {
+				System.out.println("missing Author for Constructor: " + constructor.getName());
+			}
+		}
+
 		for (Method method : clazz.getDeclaredMethods()) {
 			try {
-
 				Author author = method.getAnnotation(Author.class);
 				System.out.println("Method: " + method.getName() + ", Author: " + author.name());
 			} catch (NullPointerException ex) {
