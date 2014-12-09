@@ -3,13 +3,13 @@
 public class SprungRoboter extends Erkundungsroboter{
 	private int spruenge;
 	
-	public SprungRoboter(String name, int spruenge, int stunden, Einsatzart art) {
-		super(name, stunden, art);
+	public SprungRoboter(Einsatzart art, int stunden, int spruenge) {
+		super(art, stunden);
 		this.spruenge = spruenge;
 	}
 	
-	public SprungRoboter(String name, Einsatzart art) {
-		super(name, art);
+	public SprungRoboter(Einsatzart art) {
+		super(art);
 		this.spruenge = 0;
 	}
 

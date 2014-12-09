@@ -1,19 +1,21 @@
 
 @Author(name="Ulrich Aschl")
-public class Erkundungsroboter {
+public abstract class Erkundungsroboter {
+
+	private static int maxNummer = 0;
 	
-	private final String name;
+	private final int nummer;
 	private int stunden;
 	private Einsatzart art;
 	
-	public Erkundungsroboter(String name, int stunden, Einsatzart art) {
-		this.name = name;
+	public Erkundungsroboter(Einsatzart art, int stunden) {
+		this(art);
 		this.stunden = stunden;
-		this.art = art;
 	}
 	
-	public Erkundungsroboter(String name, Einsatzart art) {
-		this.name = name;
+	public Erkundungsroboter(Einsatzart art) {
+		this.nummer = maxNummer++;
+		
 		this.stunden = 0;
 		this.art = art;
 	}
@@ -34,12 +36,12 @@ public class Erkundungsroboter {
 		this.art = art;
 	}
 	
-	public String getName() {
-		return name;
+	public int getNummer() {
+		return this.nummer;
 	}
 
 	@Override
 	public String toString() {
-		return this.getName() + " - Stunden: " + this.getStunden();
+		return "Roboter #" + this.getNummer() + " - Stunden: " + this.getStunden();
 	}
 }
