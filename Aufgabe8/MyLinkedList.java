@@ -16,7 +16,7 @@ public class MyLinkedList {
 		Node prev = null;
 		Node current = head;
 		while (current != null) {
-			if (current.id.equals(id)) {
+			if (id.equals(current.id)) {
 				return false;
 			}
 			prev = current;
