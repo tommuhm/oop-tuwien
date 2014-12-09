@@ -58,6 +58,29 @@ public class MyLinkedList {
 	}
 
 	@Author(name = "Thomas Muhm")
+	public boolean remove(Object elem) {
+		Node current = head;
+		Node prev = null;
+
+		while (current != null) {
+			if (elem.equals(current.elem)) {
+				if (prev == null) {
+					head = current.next();
+				} else {
+					prev.setNext(current.next());
+				}
+				size--;
+				return true;
+			} else {
+				prev = current;
+				current = current.next();
+			}
+		}
+
+		return false;
+	}
+
+	@Author(name = "Thomas Muhm")
 	public int size() {
 		return size;
 	}
@@ -69,8 +92,7 @@ public class MyLinkedList {
 		}
 
 		Node current = head;
-		//for (int i = 0; i < size; i++) { // < size haut ned hin. da kommt immer des letzte tom ;-) - bussi uli.
-		for (int i = 0; i <= index; i++) {
+		for (int i = 0; i < index; i++) {
 			current = current.next();
 		}
 
