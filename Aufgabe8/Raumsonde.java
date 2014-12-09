@@ -13,6 +13,7 @@ public class Raumsonde {
 	public Raumsonde(String name) {
 		this.name = name;
 	}
+	
 
 	@Author(name = "David Jaffry")
 	//Vorbedingung: rob darf nicht null sein
@@ -56,14 +57,16 @@ public class Raumsonde {
 		}
 		return done;
 	}
+	
 
 	@Author(name = "David Jaffry")
 	public String getName() {
 		return name;
 	}
+	
 
 	@Author(name = "David Jaffry")
-	//Nachbedingungen: errechnet sich die betriebsstunden sortiert nach einsatzart und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: errechnet die betriebsstunden sortiert nach einsatzart und gibt diese als lesbaren String zurueck 
 	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getBetriebsstundenEinsatzartSchnitt() {
 		if (maxValue < 1) {
@@ -91,7 +94,7 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
-	//Nachbedingungen: errechnet sich die betriebsstunden sortiert nach bauart und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: errechnet die betriebsstunden sortiert nach bauart und gibt diese als lesbaren String zurueck 
 	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getBetriebsstundenBauartSchnitt() {
 		if (maxValue < 1) {
@@ -119,7 +122,7 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
-	//Nachbedingung: errechnet sich die statistik zu radrobotern und gibt diese als lesbaren String zurueck
+	//Nachbedingung: errechnet die statistik zu radrobotern und gibt diese als lesbaren String zurueck
 	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getWegstreckeSchnitt() {
 		if (maxValue < 1) {
@@ -149,7 +152,7 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
-	//Nachbedingungen: errechnet sich die statistik zu spruenge von sprungrobotern und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: errechnet die statistik zu spruenge von sprungrobotern und gibt diese als lesbaren String zurueck 
 	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getSpruengeSchnitt() {
 		if (maxValue < 1) {
@@ -180,7 +183,7 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
-	//Nachbedingungen: errechnet sich die statistik zu robotern mit kamera und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: errechnet die statistik zu robotern mit kamera und gibt diese als lesbaren String zurueck 
 	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getMinMaxPixel() {
 		if (maxValue < 1) {
@@ -222,7 +225,7 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
-	//Nachbedingungen: errechnet sich die statistik zu robotern mit bohrern und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: errechnet die statistik zu robotern mit bohrern und gibt diese als lesbaren String zurueck 
 	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getBohrerSchnitt() {
 		if (maxValue < 1) {
@@ -251,6 +254,7 @@ public class Raumsonde {
 				+ "Schnitt - Gesamt:\t " + (wertrad + wertsprung) + " / " + (countersprung + counterrad) + " = " + (wertrad + wertsprung) / (counterrad + countersprung) + '\n'
 		);
 	}
+	
 
 	@Author(name = "David Jaffry")
 	@Override
