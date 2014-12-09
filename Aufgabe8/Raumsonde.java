@@ -7,11 +7,16 @@ public class Raumsonde {
 	private MyLinkedList mylist = new MyLinkedList();
 
 	@Author(name = "David Jaffry")
+	//Vorbedingung: String darf nicht null sein
+	//Vorbedingung: String muss unique sein
+	//Nachbedingung: Raumsonde erhaelt einen Namen
 	public Raumsonde(String name) {
 		this.name = name;
 	}
 
 	@Author(name = "David Jaffry")
+	//Vorbedingung: rob darf nicht null sein
+	//Nachbedingung: maxValue wird um eins erhoeht (es gibt ein element mehr in der liste), falls rob in die liste aufgenommen werden kann
 	public boolean addRoboter(Erkundungsroboter rob) {
 		boolean done = mylist.add(rob.getNummer(), rob);
 		if (done) {
@@ -21,11 +26,17 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Vorbedingung: nummer muss groesser gleich 0 sein
+	//Vorbedingung: einsatzart muss entweder Bohrer oder Kamera sein
+	//Nachbedingung: die einsatzart des ausgewaehlten roboters wird auf art geaendert
 	public void modifyRoboter(int nummer, Einsatzart art) {
 		((Erkundungsroboter) mylist.getById(nummer)).setEinsatzart(art);
 	}
 
 	@Author(name = "David Jaffry")
+	//Vorbedingung: rob darf nicht null sein
+	//Nachbedingung: rob wird aus der liste entfernt
+	//Nachbedingung: die maximale anzahl der roboter in der liste maxValue verringert sich um 1
 	public boolean removeRoboter(Erkundungsroboter rob) {
 		boolean done = mylist.remove(rob);
 		if (done) {
@@ -35,6 +46,9 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Vorbedingung: rob darf nicht null sein
+	//Nachbedingung: rob wird aus der liste entfernt
+	//Nachbedingung: maxValue verringert sich um 1
 	public boolean removeRoboter(int nummer) {
 		boolean done = mylist.removeById(nummer);
 		if (done) {
@@ -49,6 +63,8 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Nachbedingungen: errechnet sich die betriebsstunden sortiert nach einsatzart und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getBetriebsstundenEinsatzartSchnitt() {
 		if (maxValue < 1) {
 			return null; //TODO
@@ -75,6 +91,8 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Nachbedingungen: errechnet sich die betriebsstunden sortiert nach bauart und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getBetriebsstundenBauartSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\" ###");
@@ -101,6 +119,8 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Nachbedingung: errechnet sich die statistik zu radrobotern und gibt diese als lesbaren String zurueck
+	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getWegstreckeSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\" ###");
@@ -129,6 +149,8 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Nachbedingungen: errechnet sich die statistik zu spruenge von sprungrobotern und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getSpruengeSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
@@ -158,6 +180,8 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Nachbedingungen: errechnet sich die statistik zu robotern mit kamera und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getMinMaxPixel() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
@@ -198,6 +222,8 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	//Nachbedingungen: errechnet sich die statistik zu robotern mit bohrern und gibt diese als lesbaren String zurueck 
+	//Nachbedingung: falls keine roboter in der raumsonde verfuegbar sind dann wird ein string ohne statistik zurueckgegeben
 	public String getBohrerSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
@@ -228,6 +254,7 @@ public class Raumsonde {
 
 	@Author(name = "David Jaffry")
 	@Override
+	//Nachbedingung: gibt einen string mit dem namen der raumsonde und der anzahl der gespeicherten roboter zurueck
 	public String toString() {
 		return "Raumsonde " + name + ", Roboter: " + maxValue;
 	}
