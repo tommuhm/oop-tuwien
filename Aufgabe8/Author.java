@@ -5,5 +5,6 @@ import java.lang.annotation.RetentionPolicy;
 
 @Author(name = "Thomas Muhm")
 public @interface Author {
+	@Author(name = "Thomas Muhm")
 	String name();
 }

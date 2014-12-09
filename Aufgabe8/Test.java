@@ -1,7 +1,6 @@
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-
+@Author(name = "Ulrich Aschl")
 public class Test {
 
 	private static Raumsonde raum1, raum2, raum3;
@@ -115,8 +114,11 @@ public class Test {
 		printAuthorsForClass(Kamera.class);
 		printAuthorsForClass(Einsatzart.class);
 		printAuthorsForClass(MyLinkedList.class);
+		for (Class<?> clazz : MyLinkedList.class.getDeclaredClasses()) {
+			printAuthorsForClass(clazz);
+		}
 		printAuthorsForClass(Test.class);
-//		printAuthorsForClass(MyLinkedList.Node.class);
+		printAuthorsForClass(Author.class);
 	}
 
 	@Author(name = "Thomas Muhm")
@@ -124,7 +126,7 @@ public class Test {
 		try {
 
 			Author author = clazz.getAnnotation(Author.class);
-			System.out.println("\n~~~ " + clazz.getName() + " ~~~");
+			System.out.println("\n~~~ " + clazz.getName() + ".class ~~~");
 			System.out.println("Class: " + clazz.getName() + ", Author: " + author.name());
 
 		} catch (NullPointerException ex) {
