@@ -84,13 +84,13 @@ public class Test {
 		m1.addRaumsonde(raum2);
 		
 		System.out.println("Mission 1:");
-		m1.printRaumstonden();
+		m1.printRaumsonden();
 		System.out.println("Mission 1 - Füge Raumsonde hinzu.");
 		m1.addRaumsonde(raum3);
-		m1.printRaumstonden();
+		m1.printRaumsonden();
 		System.out.println("Mission 1 - Remove Raumsonde.");
-		m1.removeRaumsonde(raum3);
-		m1.printRaumstonden();		
+		m1.removeRaumsonde(raum3.getName());
+		m1.printRaumsonden();
 	}
 	
 	private static void test1() {
@@ -162,10 +162,10 @@ public class Test {
 		m2.addRaumsonde(raum5);
 		
 		System.out.println("Mission 1 - Raumsonden:");
-		m1.printRaumstonden();
+		m1.printRaumsonden();
 		System.out.println("Mission 1 - Entferne Raumsonde 1.");
-		m1.removeRaumsonde(raum1);
+		m1.removeRaumsonde(raum1.getName());
 		System.out.println("Mission 1 - Raumsonde entfernt.");
-		m1.printRaumstonden();
+		m1.printRaumsonden();
 	}
 }

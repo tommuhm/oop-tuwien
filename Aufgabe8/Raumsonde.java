@@ -44,6 +44,11 @@ public class Raumsonde {
 	}
 
 	@Author(name = "David Jaffry")
+	public String getName() {
+		return name;
+	}
+
+	@Author(name = "David Jaffry")
 	public String getBetriebsstundenEinsatzartSchnitt() {
 		if (maxValue < 1) {
 			return null; //TODO
