@@ -37,6 +37,6 @@ public class SprungRoboter extends Erkundungsroboter {
 	@Author(name = "Ulrich Aschl")
 	@Override
 	public String toString() {
-		return super.toString() + " Spruenge: " + this.getSpruenge();
+		return super.toString() + ", Spruenge: " + this.getSpruenge();
 	}
 }

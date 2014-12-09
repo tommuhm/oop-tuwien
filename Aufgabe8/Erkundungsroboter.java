@@ -65,7 +65,7 @@ public abstract class Erkundungsroboter {
 	@Override
 	@Author(name = "Ulrich Aschl")
 	public String toString() {
-		return "Roboter #" + this.getNummer() + " - Stunden: " + this.getStunden() + " Einsatzart: " + this.getEinsatzart();
+		return "Roboter #" + this.getNummer() + " - Stunden: " + this.getStunden() + ", Einsatzart: " + this.getEinsatzart();
 	}
 
 }

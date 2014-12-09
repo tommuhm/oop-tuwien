@@ -119,7 +119,7 @@ public class MyLinkedList {
 		Node current = head;
 		while (current != null) {
 			if (id.equals(current.id)) {
-				return current;
+				return current.getElem();
 			}
 			current = current.next();
 		}

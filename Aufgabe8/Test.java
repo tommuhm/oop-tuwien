@@ -30,9 +30,12 @@ public class Test {
 		 */
 		testB();
 
+		testC();
+
+
 		printAlleStatistiken();
 
-//		printAuthors();
+		printAuthors();
 	}
 
 	@Author(name = "Ulrich Aschl")
@@ -91,9 +94,45 @@ public class Test {
 		System.out.println("Füge rB1 zu sonde4 hinzu.");
 		sonde4.addRoboter(rB1);
 		System.out.println(sonde4);
+		System.out.println(rB1);
+		System.out.println("Aendern der Einsatzart von rB1 ueber Sonde4.");
+		sonde4.modifyRoboter(rB1.getNummer(), kamera3);
+		System.out.println(rB1);
 		System.out.println("Lösche rB1 ueber eindeutige Nummer aus sonde4.");
 		sonde4.removeRoboter(rB1.getNummer());
 		System.out.println(sonde4);
+	}
+
+	@Author(name = "Thomas Muhm")
+	private static void testC() {
+		System.out.println("\n~~~ Test C: ~~~");
+		System.out.println("Erstelle Radroboter rB2.");
+		RadRoboter rB2 = new RadRoboter(bohrer1, 30, 10);
+		System.out.println(rB2);
+		System.out.println("Erhoehe Stunde.");
+		rB2.erhoeheStunden();
+		System.out.println(rB2);
+		System.out.println("Erhoehe Wegstrecke.");
+		rB2.erhoeheWegstrecke();
+		System.out.println(rB2);
+		System.out.println("Erstelle Sprungroboter rB3.");
+		SprungRoboter rB3 = new SprungRoboter(kamera1, 40, 15);
+		System.out.println(rB3);
+		System.out.println("Erhoehe Spruenge.");
+		rB3.erhoeheSpruenge();
+		System.out.println(rB3);
+		System.out.println("Aendern Einsatzart zu Kamera2.");
+		rB3.setEinsatzart(kamera2);
+		System.out.println(rB3);
+		if (rB3.getEinsatzart() instanceof Kamera) {
+			System.out.println("auslesen der Kamerapixel: " + ((Kamera) rB3.getEinsatzart()).getPixel());
+		}
+		System.out.println("Aendern Einsatzart zu Bohrer1.");
+		rB3.setEinsatzart(bohrer1);
+		System.out.println(rB3);
+		if (rB3.getEinsatzart() instanceof Bohrer) {
+			System.out.println("auslesen der Bohrerlaenge: " + ((Bohrer) rB3.getEinsatzart()).getLaenge());
+		}
 	}
 
 	@Author(name = "Thomas Muhm")
