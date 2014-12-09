@@ -1,10 +1,10 @@
 
+@Author(name="David Jaffry")
 public class Raumsonde {
-
+	
 	private final String name;
 	private int maxValue = 0; 
 	MyLinkedList<Erkundungsroboter> mylist = new MyLinkedList<Erkundungsroboter>();
-
 
 	public Raumsonde( String name ) {
 		this.name = name;
