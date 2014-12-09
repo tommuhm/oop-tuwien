@@ -99,7 +99,7 @@ public class Test {
 		System.out.println(r.getMinMaxPixel());
 		System.out.println(r.getBohrerSchnitt());
 	}
-	
+
 	private static void printAuthors() {
 		printAuthorsForClass(Mission.class);
 		printAuthorsForClass(Raumsonde.class);
@@ -110,16 +110,29 @@ public class Test {
 		printAuthorsForClass(Kamera.class);
 		printAuthorsForClass(Einsatzart.class);
 		printAuthorsForClass(MyLinkedList.class);
+//		printAuthorsForClass(MyLinkedList.Node.class);
 	}
 
 	private static void printAuthorsForClass(Class clazz) {
-		Author author = (Author) clazz.getAnnotation(Author.class);
+		try {
 
-		System.out.println("Class: " + clazz.getName() + ", Author: " + author.name());
+			Author author = (Author) clazz.getAnnotation(Author.class);
+			System.out.println("Class: " + clazz.getName() + ", Author: " + author.name());
 
-		for (Method method : clazz.getMethods()) {
-			author = method.getAnnotation(Author.class);
-			System.out.println("Method: " + clazz.getName() + ", Author: " + author.name());
+		} catch (NullPointerException ex) {
+			System.out.println("missing Author for Class: " + clazz.getName());
+		}
+
+
+		for (Method method : clazz.getDeclaredMethods()) {
+			try {
+
+				Author author = method.getAnnotation(Author.class);
+				System.out.println("Method: " + method.getName() + ", Author: " + author.name());
+
+			} catch (NullPointerException ex) {
+				System.out.println("missing Author for Method: " + method.getName());
+			}
 		}
 	}
 
