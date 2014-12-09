@@ -1,35 +1,49 @@
 
-@Author(name="David Jaffry")
+@Author(name = "David Jaffry")
 public class Raumsonde {
-	
-	private final String name;
-	private int maxValue = 0; 
-	MyLinkedList<Erkundungsroboter> mylist = new MyLinkedList<Erkundungsroboter>();
 
-	public Raumsonde( String name ) {
+	private final String name;
+	private int maxValue = 0;
+	private MyLinkedList mylist = new MyLinkedList();
+
+	@Author(name = "David Jaffry")
+	public Raumsonde(String name) {
 		this.name = name;
 	}
-	
-	public void addRoboter(Erkundungsroboter rob) {
-		mylist.add(rob);
-		maxValue++;
+
+	@Author(name = "David Jaffry")
+	public boolean addRoboter(Erkundungsroboter rob) {
+		boolean done = mylist.add(rob.getNummer(), rob);
+		if (done) {
+			maxValue++;
+		}
+		return done;
 	}
 
-	public void modifyRoboter(int index, Einsatzart art) {
-		((Erkundungsroboter) mylist.get(index)).setEinsatzart(art);
+	@Author(name = "David Jaffry")
+	public void modifyRoboter(int nummer, Einsatzart art) {
+		((Erkundungsroboter) mylist.getById(nummer)).setEinsatzart(art);
 	}
 
+	@Author(name = "David Jaffry")
 	public boolean removeRoboter(Erkundungsroboter rob) {
-		maxValue--;
-		return mylist.remove(rob);
-	}
-	
-	public boolean removeRoboter(int key) {
-		maxValue--;
-		return mylist.remove(key);
+		boolean done = mylist.remove(rob);
+		if (done) {
+			maxValue--;
+		}
+		return done;
 	}
 
+	@Author(name = "David Jaffry")
+	public boolean removeRoboter(int nummer) {
+		boolean done = mylist.removeById(nummer);
+		if (done) {
+			maxValue--;
+		}
+		return done;
+	}
 
+	@Author(name = "David Jaffry")
 	public String getBetriebsstundenEinsatzartSchnitt() {
 		if (maxValue < 1) {
 			return null; //TODO
@@ -38,9 +52,9 @@ public class Raumsonde {
 		double wertkamera = 0;
 		int counterbohrer = 0;
 		int counterkamera = 0;
-		for (int i = 0; i < maxValue; i++ ) {
-			Erkundungsroboter rob = mylist.get(i);
-			if ( rob.getEinsatzart() instanceof Bohrer) {
+		for (int i = 0; i < maxValue; i++) {
+			Erkundungsroboter rob = (Erkundungsroboter) mylist.get(i);
+			if (rob.getEinsatzart() instanceof Bohrer) {
 				wertbohrer += ((RadRoboter) rob).getStunden();
 				counterbohrer++;
 			} else {
@@ -49,12 +63,13 @@ public class Raumsonde {
 			}
 		}
 		return ("\n### Statistik Betriebsstunden Einsatzart ###\n"
-				+ "Schnitt - RadRoboter:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer/counterbohrer  + '\n' 
-				+ "Schnitt - SprungRoboter:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera/counterkamera  + '\n' 
-				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera)  + " / " + (counterbohrer + counterkamera) + " = "  + (wertbohrer + wertkamera)/(counterbohrer + counterkamera) + '\n'
-				);
+				+ "Schnitt - RadRoboter:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer / counterbohrer + '\n'
+				+ "Schnitt - SprungRoboter:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera / counterkamera + '\n'
+				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera) + " / " + (counterbohrer + counterkamera) + " = " + (wertbohrer + wertkamera) / (counterbohrer + counterkamera) + '\n'
+		);
 	}
 
+	@Author(name = "David Jaffry")
 	public String getBetriebsstundenBauartSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\" ###");
@@ -63,9 +78,9 @@ public class Raumsonde {
 		double wertsprung = 0;
 		int counterrad = 0;
 		int countersprung = 0;
-		for (int i = 0; i < maxValue; i++ ) {
-			Erkundungsroboter rob = mylist.get(i);
-			if ( rob instanceof RadRoboter ) {
+		for (int i = 0; i < maxValue; i++) {
+			Erkundungsroboter rob = (Erkundungsroboter) mylist.get(i);
+			if (rob instanceof RadRoboter) {
 				wertrad += ((RadRoboter) rob).getStunden();
 				counterrad++;
 			} else {
@@ -74,12 +89,13 @@ public class Raumsonde {
 			}
 		}
 		return ("\n### Statistik Betriebsstunden Bauart ###\n"
-				+ "Schnitt - RadRoboter:\t " + wertrad + " / " + counterrad + " = " + wertrad/counterrad  + '\n' 
-				+ "Schnitt - SprungRoboter:\t " + wertsprung + " / " + countersprung + " = " + wertsprung/countersprung  + '\n' 
-				+ "Schnitt - Gesamt:\t " + (wertrad + wertsprung)  + " / " + (counterrad + countersprung) + " = "  + (wertrad + wertsprung)/(counterrad + countersprung) + '\n'
-				);
+				+ "Schnitt - RadRoboter:\t " + wertrad + " / " + counterrad + " = " + wertrad / counterrad + '\n'
+				+ "Schnitt - SprungRoboter:\t " + wertsprung + " / " + countersprung + " = " + wertsprung / countersprung + '\n'
+				+ "Schnitt - Gesamt:\t " + (wertrad + wertsprung) + " / " + (counterrad + countersprung) + " = " + (wertrad + wertsprung) / (counterrad + countersprung) + '\n'
+		);
 	}
 
+	@Author(name = "David Jaffry")
 	public String getWegstreckeSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\" ###");
@@ -88,10 +104,10 @@ public class Raumsonde {
 		double wertbohrer = 0;
 		int counterkamera = 0;
 		int counterbohrer = 0;
-		for (int i = 0; i < maxValue; i++ ) {
-			Erkundungsroboter rob = mylist.get(i);
-			if ( rob instanceof RadRoboter ) {
-				if ( rob.getEinsatzart() instanceof Bohrer) {
+		for (int i = 0; i < maxValue; i++) {
+			Erkundungsroboter rob = (Erkundungsroboter) mylist.get(i);
+			if (rob instanceof RadRoboter) {
+				if (rob.getEinsatzart() instanceof Bohrer) {
 					wertbohrer += ((RadRoboter) rob).getWegstrecke();
 					counterbohrer++;
 				} else {
@@ -101,12 +117,13 @@ public class Raumsonde {
 			}
 		}
 		return ("\n### Statistik RadRoboter Wegstrecken ###\n"
-				+ "Schnitt - Bohrer:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer/counterbohrer  + '\n' 
-				+ "Schnitt - Kamera:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera/counterkamera  + '\n' 
-				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera)  + " / " + (counterbohrer + counterkamera) + " = "  + (wertbohrer + wertkamera)/(counterbohrer + counterkamera) + '\n'
-				);
+				+ "Schnitt - Bohrer:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer / counterbohrer + '\n'
+				+ "Schnitt - Kamera:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera / counterkamera + '\n'
+				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera) + " / " + (counterbohrer + counterkamera) + " = " + (wertbohrer + wertkamera) / (counterbohrer + counterkamera) + '\n'
+		);
 	}
 
+	@Author(name = "David Jaffry")
 	public String getSpruengeSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
@@ -115,10 +132,10 @@ public class Raumsonde {
 		int wertbohrer = 0;
 		int counterkamera = 0;
 		int counterbohrer = 0;
-		for (int i = 0; i < maxValue; i++ ) {
-			Erkundungsroboter rob = mylist.get(i);
-			if ( rob instanceof SprungRoboter ) {
-				if ( rob.getEinsatzart() instanceof Bohrer) {
+		for (int i = 0; i < maxValue; i++) {
+			Erkundungsroboter rob = (Erkundungsroboter) mylist.get(i);
+			if (rob instanceof SprungRoboter) {
+				if (rob.getEinsatzart() instanceof Bohrer) {
 					wertbohrer += ((SprungRoboter) rob).getSpruenge();
 					counterbohrer++;
 				} else {
@@ -129,12 +146,13 @@ public class Raumsonde {
 		}
 
 		return ("\n### Statistik SprungRoboter Spruenge ###\n"
-				+ "Schnitt - Bohrer:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer/counterbohrer  + '\n' 
-				+ "Schnitt - Kamera:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera/counterkamera  + '\n' 
-				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera)  + " / " + (counterbohrer + counterkamera) + " = "  + (wertbohrer + wertkamera)/(counterbohrer + counterkamera) + '\n'
-				);
+				+ "Schnitt - Bohrer:\t " + wertbohrer + " / " + counterbohrer + " = " + wertbohrer / counterbohrer + '\n'
+				+ "Schnitt - Kamera:\t " + wertkamera + " / " + counterkamera + " = " + wertkamera / counterkamera + '\n'
+				+ "Schnitt - Gesamt:\t " + (wertbohrer + wertkamera) + " / " + (counterbohrer + counterkamera) + " = " + (wertbohrer + wertkamera) / (counterbohrer + counterkamera) + '\n'
+		);
 	}
 
+	@Author(name = "David Jaffry")
 	public String getMinMaxPixel() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
@@ -143,22 +161,22 @@ public class Raumsonde {
 		int maxrad = 0;
 		int minsprung = 0;
 		int maxsprung = 0;
-		for (int i = 0; i < maxValue; i++ ) {
-			Erkundungsroboter rob = mylist.get(i);
-			if ( rob.getEinsatzart() instanceof Kamera ) {
+		for (int i = 0; i < maxValue; i++) {
+			Erkundungsroboter rob = (Erkundungsroboter) mylist.get(i);
+			if (rob.getEinsatzart() instanceof Kamera) {
 				if (rob instanceof RadRoboter) {
-					if (minrad > ((Kamera)rob.getEinsatzart()).getPixel()) {
-						minrad = ((Kamera)rob.getEinsatzart()).getPixel();
+					if (minrad > ((Kamera) rob.getEinsatzart()).getPixel()) {
+						minrad = ((Kamera) rob.getEinsatzart()).getPixel();
 					}
-					if (maxrad < ((Kamera)rob.getEinsatzart()).getPixel()) {
-						maxrad = ((Kamera)rob.getEinsatzart()).getPixel();
+					if (maxrad < ((Kamera) rob.getEinsatzart()).getPixel()) {
+						maxrad = ((Kamera) rob.getEinsatzart()).getPixel();
 					}
 				} else {
-					if (minsprung > ((Kamera)rob.getEinsatzart()).getPixel()) {
-						minsprung = ((Kamera)rob.getEinsatzart()).getPixel();
+					if (minsprung > ((Kamera) rob.getEinsatzart()).getPixel()) {
+						minsprung = ((Kamera) rob.getEinsatzart()).getPixel();
 					}
-					if (maxsprung < ((Kamera)rob.getEinsatzart()).getPixel()) {
-						maxsprung = ((Kamera)rob.getEinsatzart()).getPixel();
+					if (maxsprung < ((Kamera) rob.getEinsatzart()).getPixel()) {
+						maxsprung = ((Kamera) rob.getEinsatzart()).getPixel();
 					}
 
 				}
@@ -168,12 +186,13 @@ public class Raumsonde {
 		int max = (maxrad > maxsprung) ? maxrad : maxsprung;
 
 		return ("\n### Statistik Kamera ###\n"
-				+ "RadRoboter:\t " + " Min: " + minrad + "\t Max: " + maxrad + '\n' 
-				+ "SprungRoboter:\t " + " Min: " + minsprung  + "\t Max: " + maxrad + '\n' 
-				+ "Gesamt:\t " + " Min: " + min +  "\t Max " + max + '\n'
-				);
+				+ "RadRoboter:\t " + " Min: " + minrad + "\t Max: " + maxrad + '\n'
+				+ "SprungRoboter:\t " + " Min: " + minsprung + "\t Max: " + maxrad + '\n'
+				+ "Gesamt:\t " + " Min: " + min + "\t Max " + max + '\n'
+		);
 	}
 
+	@Author(name = "David Jaffry")
 	public String getBohrerSchnitt() {
 		if (maxValue < 1) {
 			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
@@ -182,25 +201,27 @@ public class Raumsonde {
 		double wertsprung = 0;
 		int counterrad = 0;
 		int countersprung = 0;
-		for (int i = 0; i < maxValue; i++ ) {
-			Erkundungsroboter rob = mylist.get(i);
-			if ( rob.getEinsatzart() instanceof Bohrer ) {
+		for (int i = 0; i < maxValue; i++) {
+			Erkundungsroboter rob = (Erkundungsroboter) mylist.get(i);
+			if (rob.getEinsatzart() instanceof Bohrer) {
 				if (rob instanceof SprungRoboter) {
-					wertsprung += ((Bohrer)rob.getEinsatzart()).getLaenge();
+					wertsprung += ((Bohrer) rob.getEinsatzart()).getLaenge();
 					countersprung++;
 				} else {
-					wertrad += ((Bohrer)rob.getEinsatzart()).getLaenge();
+					wertrad += ((Bohrer) rob.getEinsatzart()).getLaenge();
 					counterrad++;
 				}
 			}
 		}
 
 		return ("\n### Statistik Bohrer ###\n"
-				+ "Schnitt - RadRoboter:\t " + wertrad + " / " + counterrad + " = " + wertrad/counterrad  + '\n' 
-				+ "Schnitt - SprungRoboter:\t " + wertsprung + " / " + countersprung + " = " + wertsprung/countersprung  + '\n' 
-				+ "Schnitt - Gesamt:\t " + (wertrad + wertsprung)  + " / " + (countersprung + counterrad) + " = "  + (wertrad + wertsprung)/(counterrad + countersprung) + '\n'
-				);
+				+ "Schnitt - RadRoboter:\t " + wertrad + " / " + counterrad + " = " + wertrad / counterrad + '\n'
+				+ "Schnitt - SprungRoboter:\t " + wertsprung + " / " + countersprung + " = " + wertsprung / countersprung + '\n'
+				+ "Schnitt - Gesamt:\t " + (wertrad + wertsprung) + " / " + (countersprung + counterrad) + " = " + (wertrad + wertsprung) / (counterrad + countersprung) + '\n'
+		);
 	}
+
+	@Author(name = "David Jaffry")
 	@Override
 	public String toString() {
 		return "Raumsonde " + name + ", Roboter: " + maxValue;
