@@ -35,6 +35,7 @@ public class Test {
 		printAuthors();
 	}
 
+	@Author(name = "Ulrich Aschl")
 	private static void init() {
 		raum1 = new Raumsonde("raum1");
 		raum2 = new Raumsonde("raum2");
@@ -55,6 +56,7 @@ public class Test {
 		m1 = new Mission("Mission 1");
 	}
 
+	@Author(name = "Ulrich Aschl")
 	private static void testA() {
 		System.out.println("~~~ Test A: ~~~");
 
@@ -79,6 +81,7 @@ public class Test {
 		m1.printRaumsonden();
 	}
 
+	@Author(name = "Ulrich Aschl")
 	private static void testB() {
 		System.out.println("\n~~~ Test B: ~~~");
 		System.out.println("Erstelle Erkundungsroboter rB1.");
@@ -91,6 +94,7 @@ public class Test {
 		System.out.println("Anzahl and Robotern in Raum1: " + raum1);
 	}
 
+	@Author(name = "Ulrich Aschl")
 	private static void printAlleStatistiken(Raumsonde r) {
 		System.out.println(r.getBetriebsstundenEinsatzartSchnitt());
 		System.out.println(r.getBetriebsstundenBauartSchnitt());
@@ -100,6 +104,7 @@ public class Test {
 		System.out.println(r.getBohrerSchnitt());
 	}
 
+	@Author(name = "Thomas Muhm")
 	private static void printAuthors() {
 		printAuthorsForClass(Mission.class);
 		printAuthorsForClass(Raumsonde.class);
@@ -110,26 +115,27 @@ public class Test {
 		printAuthorsForClass(Kamera.class);
 		printAuthorsForClass(Einsatzart.class);
 		printAuthorsForClass(MyLinkedList.class);
+		printAuthorsForClass(Test.class);
 //		printAuthorsForClass(MyLinkedList.Node.class);
 	}
 
-	private static void printAuthorsForClass(Class clazz) {
+	@Author(name = "Thomas Muhm")
+	private static void printAuthorsForClass(Class<?> clazz) {
 		try {
 
-			Author author = (Author) clazz.getAnnotation(Author.class);
+			Author author = clazz.getAnnotation(Author.class);
+			System.out.println("\n~~~ " + clazz.getName() + " ~~~");
 			System.out.println("Class: " + clazz.getName() + ", Author: " + author.name());
 
 		} catch (NullPointerException ex) {
 			System.out.println("missing Author for Class: " + clazz.getName());
 		}
 
-
 		for (Method method : clazz.getDeclaredMethods()) {
 			try {
 
 				Author author = method.getAnnotation(Author.class);
 				System.out.println("Method: " + method.getName() + ", Author: " + author.name());
-
 			} catch (NullPointerException ex) {
 				System.out.println("missing Author for Method: " + method.getName());
 			}
