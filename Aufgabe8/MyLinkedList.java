@@ -23,7 +23,6 @@ public class MyLinkedList {
 			current = current.next();
 		}
 
-		node.setNext(current.next());
 		if (prev != null) {
 			prev.setNext(node);
 		} else {
