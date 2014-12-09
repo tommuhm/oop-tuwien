@@ -3,10 +3,10 @@ import java.lang.reflect.Method;
 @Author(name = "Ulrich Aschl")
 public class Test {
 
-	private static Raumsonde raum1, raum2, raum3;
-	private static Einsatzart art1, art2, art3, art4, art5;
-	private static Erkundungsroboter r1, r2, r3, r4, r5;
-	private static Mission m1;
+	private static Raumsonde sonde1, sonde2, sonde3, sonde4;
+	private static Einsatzart bohrer1, bohrer2, kamera1, kamera2, kamera3;
+	private static Erkundungsroboter roboter1, roboter2, roboter3, roboter4, roboter5;
+	private static Mission mission1;
 
 	@Author(name = "Ulrich Aschl")
 	public static void main(String[] args) {
@@ -30,53 +30,56 @@ public class Test {
 		 */
 		testB();
 
+		printAlleStatistiken();
 
-		printAuthors();
+//		printAuthors();
 	}
 
 	@Author(name = "Ulrich Aschl")
 	private static void init() {
-		raum1 = new Raumsonde("raum1");
-		raum2 = new Raumsonde("raum2");
-		raum3 = new Raumsonde("raum3");
+		sonde1 = new Raumsonde("sonde1");
+		sonde2 = new Raumsonde("sonde2");
+		sonde3 = new Raumsonde("sonde3");
+		sonde4 = new Raumsonde("sonde4");
 
-		art1 = new Bohrer(82.28);
-		art2 = new Bohrer(82.28);
-		art3 = new Kamera(200000);
-		art4 = new Kamera(300000);
-		art5 = new Kamera(10000);
+		bohrer1 = new Bohrer(82.28);
+		bohrer2 = new Bohrer(82.28);
 
-		r1 = new SprungRoboter(art1, 15, 20);
-		r2 = new SprungRoboter(art2, 10, 10);
-		r3 = new RadRoboter(art3, 20, 10.20);
-		r4 = new RadRoboter(art4, 30, 5.50);
-		r5 = new RadRoboter(art5, 20, 5);
+		kamera1 = new Kamera(200000);
+		kamera2 = new Kamera(300000);
+		kamera3 = new Kamera(10000);
 
-		m1 = new Mission("Mission 1");
+		roboter1 = new SprungRoboter(bohrer1, 15, 20);
+		roboter2 = new SprungRoboter(bohrer2, 10, 10);
+		roboter3 = new RadRoboter(kamera1, 20, 10.20);
+		roboter4 = new RadRoboter(kamera2, 30, 5.50);
+		roboter5 = new RadRoboter(kamera3, 20, 5);
+
+		mission1 = new Mission("Mission 1");
 	}
 
 	@Author(name = "Ulrich Aschl")
 	private static void testA() {
 		System.out.println("~~~ Test A: ~~~");
 
-		raum1.addRoboter(r1);
-		raum1.addRoboter(r2);
-		raum1.addRoboter(r3);
-		raum2.addRoboter(r4);
-		raum3.addRoboter(r5);
+		sonde1.addRoboter(roboter1);
+		sonde1.addRoboter(roboter2);
+		sonde1.addRoboter(roboter3);
+		sonde2.addRoboter(roboter4);
+		sonde3.addRoboter(roboter5);
 
 		Mission m1 = new Mission("Mission 1");
 
-		m1.addRaumsonde(raum1);
-		m1.addRaumsonde(raum2);
+		m1.addRaumsonde(sonde1);
+		m1.addRaumsonde(sonde2);
 
 		System.out.println("Mission 1:");
 		m1.printRaumsonden();
 		System.out.println("Mission 1 - Füge Raumsonde hinzu.");
-		m1.addRaumsonde(raum3);
+		m1.addRaumsonde(sonde3);
 		m1.printRaumsonden();
-		System.out.println("Mission 1 - Remove Raumsonde.");
-		m1.removeRaumsonde(raum3.getName());
+		System.out.println("Mission 1 - Remove Raumsonde ueber eindeutigen Namen");
+		m1.removeRaumsonde(sonde3.getName());
 		m1.printRaumsonden();
 	}
 
@@ -84,17 +87,26 @@ public class Test {
 	private static void testB() {
 		System.out.println("\n~~~ Test B: ~~~");
 		System.out.println("Erstelle Erkundungsroboter rB1.");
-		Erkundungsroboter rB1 = new SprungRoboter(art1, 30, 10);
-		System.out.println("Füge rB1 zu raum1 hinzu.");
-		raum1.addRoboter(rB1);
-		System.out.println("Anzahl and Robotern in Raum1: " + raum1);
-		System.out.println("Lösche rB1 aus raum1.");
-		raum1.removeRoboter(rB1.getNummer());
-		System.out.println("Anzahl and Robotern in Raum1: " + raum1);
+		Erkundungsroboter rB1 = new SprungRoboter(bohrer1, 30, 10);
+		System.out.println("Füge rB1 zu sonde4 hinzu.");
+		sonde4.addRoboter(rB1);
+		System.out.println(sonde4);
+		System.out.println("Lösche rB1 ueber eindeutige Nummer aus sonde4.");
+		sonde4.removeRoboter(rB1.getNummer());
+		System.out.println(sonde4);
 	}
 
+	@Author(name = "Thomas Muhm")
+	private static void printAlleStatistiken() {
+		printStatistiken(sonde1);
+		printStatistiken(sonde2);
+		printStatistiken(sonde3);
+		printStatistiken(sonde4);
+	}
+
+
 	@Author(name = "Ulrich Aschl")
-	private static void printAlleStatistiken(Raumsonde r) {
+	private static void printStatistiken(Raumsonde r) {
 		System.out.println(r.getBetriebsstundenEinsatzartSchnitt());
 		System.out.println(r.getBetriebsstundenBauartSchnitt());
 		System.out.println(r.getWegstreckeSchnitt());

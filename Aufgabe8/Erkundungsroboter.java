@@ -49,7 +49,7 @@ public abstract class Erkundungsroboter {
 	}
 
 	// Vorbedingung: art darf nicht null sein
-	// Nachbedingung:  this.art ist nun art
+	// Nachbedingung: this.art ist nun art
 	@Author(name = "Ulrich Aschl")
 	public void setEinsatzart(Einsatzart art) {
 		this.art = art;
@@ -67,4 +67,5 @@ public abstract class Erkundungsroboter {
 	public String toString() {
 		return "Roboter #" + this.getNummer() + " - Stunden: " + this.getStunden() + " Einsatzart: " + this.getEinsatzart();
 	}
+
 }

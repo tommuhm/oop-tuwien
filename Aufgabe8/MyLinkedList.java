@@ -7,7 +7,7 @@ public class MyLinkedList {
 	// Nachbedingung: eine leere liste wurde erstellt
 	@Author(name = "Thomas Muhm")
 	public MyLinkedList() {
-		head = new Node(null, null);
+		head = null;
 		size = 0;
 	}
 
@@ -27,10 +27,10 @@ public class MyLinkedList {
 			current = current.next();
 		}
 
-		if (prev != null) {
-			prev.setNext(node);
-		} else {
+		if (prev == null) {
 			head = node;
+		} else {
+			prev.setNext(node);
 		}
 
 		size++;
