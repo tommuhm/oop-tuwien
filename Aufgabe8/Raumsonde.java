@@ -10,7 +10,7 @@ public class Raumsonde {
 		this.name = name;
 	}
 	
-	public void addRoboter(Erkundungsroboter rob ) {
+	public void addRoboter(Erkundungsroboter rob) {
 		mylist.add(rob);
 		maxValue++;
 	}
@@ -23,6 +23,12 @@ public class Raumsonde {
 		maxValue--;
 		return mylist.remove(rob);
 	}
+	
+	public boolean removeRoboter(int key) {
+		maxValue--;
+		return mylist.remove(key);
+	}
+
 
 	public String getBetriebsstundenEinsatzartSchnitt() {
 		if (maxValue < 1) {
@@ -51,7 +57,7 @@ public class Raumsonde {
 
 	public String getBetriebsstundenBauartSchnitt() {
 		if (maxValue < 1) {
-			return null; //TODO
+			return ("\n### Keine Roboter in Raumsonde \"" + name + "\" ###");
 		}
 		double wertrad = 0;
 		double wertsprung = 0;
@@ -76,7 +82,7 @@ public class Raumsonde {
 
 	public String getWegstreckeSchnitt() {
 		if (maxValue < 1) {
-			return null;
+			return ("\n### Keine Roboter in Raumsonde \"" + name + "\" ###");
 		}
 		double wertkamera = 0;
 		double wertbohrer = 0;
@@ -103,7 +109,7 @@ public class Raumsonde {
 
 	public String getSpruengeSchnitt() {
 		if (maxValue < 1) {
-			return null;
+			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
 		}
 		int wertkamera = 0;
 		int wertbohrer = 0;
@@ -131,7 +137,7 @@ public class Raumsonde {
 
 	public String getMinMaxPixel() {
 		if (maxValue < 1) {
-			return null;
+			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
 		}
 		int minrad = 0;
 		int maxrad = 0;
@@ -170,7 +176,7 @@ public class Raumsonde {
 
 	public String getBohrerSchnitt() {
 		if (maxValue < 1) {
-			return null;
+			return ("\n### Keine Roboter in Raumsonde \"" + name + "\"###");
 		}
 		double wertrad = 0;
 		double wertsprung = 0;
