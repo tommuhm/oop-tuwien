@@ -10,16 +10,11 @@ public class Raumsonde {
 		this.name = name;
 	}
 	
-	public void addRoboter(int number) {
-		mylist.add(number);
-		maxValue++;
-	}
-
-	public void addRoboter(Erkundungsroboter rob) {
+	public void addRoboter(Erkundungsroboter rob ) {
 		mylist.add(rob);
 		maxValue++;
 	}
-	
+
 	public void modifyRoboter(int index, Einsatzart art) {
 		((Erkundungsroboter) mylist.get(index)).setEinsatzart(art);
 	}
