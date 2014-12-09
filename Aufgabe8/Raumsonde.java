@@ -63,8 +63,8 @@ public class Raumsonde {
 		if (roboterList.size() == 0) {
 			return ("\n### Keine Roboter in Raumsonde '" + name + "' vorhanden ###");
 		}
-		double stundenClass1 = 0;
-		double stundenClass2 = 0;
+		double valueClass1 = 0;
+		double valueClass2 = 0;
 		int anzClass1 = 0;
 		int anzClass2 = 0;
 		try {
@@ -82,18 +82,18 @@ public class Raumsonde {
 						if ((checkEinsatzart && classCheck1.isInstance(rob.getEinsatzart())) || (!checkEinsatzart && classCheck1.isInstance(rob))) {
 
 							if (value instanceof Integer) {
-								stundenClass1 += (Integer) value;
+								valueClass1 += (Integer) value;
 							} else if (value instanceof Double) {
-								stundenClass1 += (Double) value;
+								valueClass1 += (Double) value;
 							}
 
 							anzClass1++;
 						} else if ((checkEinsatzart && classCheck2.isInstance(rob.getEinsatzart())) || (!checkEinsatzart && classCheck2.isInstance(rob))) {
 
 							if (value instanceof Integer) {
-								stundenClass2 += (Integer) value;
+								valueClass2 += (Integer) value;
 							} else if (value instanceof Double) {
-								stundenClass2 += (Double) value;
+								valueClass2 += (Double) value;
 							}
 
 							anzClass2++;
@@ -110,9 +110,9 @@ public class Raumsonde {
 		}
 
 		return ("\n### " + statistikName + " ###\n"
-				+ "Schnitt - " + classCheck1.getName() + ":\t " + stundenClass1 + " / " + anzClass1 + " = " + stundenClass1 / (anzClass1 != 0 ? anzClass1 : 1) + '\n'
-				+ "Schnitt - " + classCheck2.getName() + ":\t " + stundenClass2 + " / " + anzClass2 + " = " + stundenClass2 / (anzClass2 != 0 ? anzClass2 : 1) + '\n'
-				+ "Schnitt - Gesamt:\t " + (stundenClass1 + stundenClass2) + " / " + (anzClass1 + anzClass2) + " = " + (stundenClass1 + stundenClass2) / (anzClass1 + anzClass2 != 0 ? anzClass1 + anzClass2 : 1) + '\n'
+				+ "Schnitt - " + classCheck1.getName() + ":\t " + valueClass1 + " / " + anzClass1 + " = " + valueClass1 / (anzClass1 != 0 ? anzClass1 : 1) + '\n'
+				+ "Schnitt - " + classCheck2.getName() + ":\t " + valueClass2 + " / " + anzClass2 + " = " + valueClass2 / (anzClass2 != 0 ? anzClass2 : 1) + '\n'
+				+ "Schnitt - Gesamt:\t " + (valueClass1 + valueClass2) + " / " + (anzClass1 + anzClass2) + " = " + (valueClass1 + valueClass2) / (anzClass1 + anzClass2 != 0 ? anzClass1 + anzClass2 : 1) + '\n'
 		);
 	}
 
