@@ -183,9 +183,9 @@ public class Test {
 			System.out.println("missing Author for Class: " + clazz.getName());
 		}
 
-		for (Constructor constructor : clazz.getDeclaredConstructors()) {
+		for (Constructor<?> constructor : clazz.getDeclaredConstructors()) {
 			try {
-				Author author = (Author) constructor.getAnnotation(Author.class);
+				Author author = constructor.getAnnotation(Author.class);
 				System.out.println("Constructor: " + constructor.getName() + ", Author: " + author.name());
 			} catch (NullPointerException ex) {
 				System.out.println("missing Author for Constructor: " + constructor.getName());
