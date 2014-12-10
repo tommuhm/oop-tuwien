@@ -8,13 +8,13 @@ public abstract class Erkundungsroboter {
 	private int stunden;
 	private Einsatzart art;
 
-	// Invariante: maxNummer ist größer gleich 0, wächst bei jedem neuen Objekt vom Typ Erkundungsroboter um +1.
-	// Invariante: nummer ist größer gleich 0, ist final und entspricht dem Wert von maxNummer zum Erstellungszeitpunkt.
-	// Invariatne: stunden ist größer gleich 0.
+	// Invariante: maxNummer ist groeßer gleich 0, waechst bei jedem neuen Objekt vom Typ Erkundungsroboter um +1.
+	// Invariante: nummer ist groeßer gleich 0, ist final und entspricht dem Wert von maxNummer zum Erstellungszeitpunkt.
+	// Invariatne: stunden ist groeßer gleich 0.
 	// Invariante: art darf nicht null sein.
 
 	// Vorbedingung: art darf nicht null sein
-	// Vorbedingung: stunden müssen größer gleich 0 sein.
+	// Vorbedingung: stunden muessen groeßer gleich 0 sein.
 	@Author(name = "Ulrich Aschl")
 	public Erkundungsroboter(Einsatzart art, int stunden) {
 		this(art);
@@ -36,13 +36,13 @@ public abstract class Erkundungsroboter {
 		this.stunden++;
 	}
 
-	// Nachbedingung: gibt stunden zurück
+	// Nachbedingung: gibt stunden zurueck
 	@Author(name = "Ulrich Aschl")
 	public int getStunden() {
 		return this.stunden;
 	}
 
-	// Nachbedingung: gibt die einsatzart zurück
+	// Nachbedingung: gibt die einsatzart zurueck
 	@Author(name = "Ulrich Aschl")
 	public Einsatzart getEinsatzart() {
 		return art;
@@ -55,13 +55,13 @@ public abstract class Erkundungsroboter {
 		this.art = art;
 	}
 
-	// Nachbedingung: gibt die identifizierungs-nummer zurück
+	// Nachbedingung: gibt die identifizierungs-nummer zurueck
 	@Author(name = "Ulrich Aschl")
 	public int getNummer() {
 		return this.nummer;
 	}
 
-	// Nachbedingung: gibt die Roboternummer, die Anzahl der Stunden, die der Roboter läuft und die Einsatzart als String zurück.
+	// Nachbedingung: gibt die Roboternummer, die Anzahl der Stunden, die der Roboter laeuft und die Einsatzart als String zurueck.
 	@Override
 	@Author(name = "Ulrich Aschl")
 	public String toString() {

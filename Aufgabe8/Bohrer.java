@@ -11,13 +11,13 @@ public class Bohrer implements Einsatzart {
 		this.laenge = laenge;
 	}
 
-	// Nachbedingung: gibt die Länge des Bohrers zurück.
+	// Nachbedingung: gibt die Laenge des Bohrers zurueck.
 	@Author(name = "Ulrich Aschl")
 	public double getLaenge() {
 		return this.laenge;
 	}
 
-	// Nachbedingung: Gibt die Länge des Bohrers als String aus.
+	// Nachbedingung: Gibt die Laenge des Bohrers als String aus.
 	@Override
 	@Author(name = "Ulrich Aschl")
 	public String toString() {

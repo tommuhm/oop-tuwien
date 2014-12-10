@@ -11,7 +11,7 @@ public class Kamera implements Einsatzart {
 		this.pixel = pixel;
 	}
 
-	// Nachbedingung: gibt die Anzahl an Pixel der Kamera zurück.
+	// Nachbedingung: gibt die Anzahl an Pixel der Kamera zurueck.
 	@Author(name = "Ulrich Aschl")
 	public int getPixel() {
 		return this.pixel;
