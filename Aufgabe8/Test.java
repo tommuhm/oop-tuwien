@@ -14,19 +14,19 @@ public class Test {
 		init();
 		
 		/*
-		 * • Erstellen und ändern Sie mehrere Missionen mit mehreren Raumsonden mit jeweils einigen
-		 *	Erkundungsrobotern. Jede Raumsonde einer Mission soll über ihren eindeutigen Namen
-		 *	angesprochen werden, und jeder Erkundungsroboter einer Raumsonde über seine eindeutige
+		 *  Erstellen und aendern Sie mehrere Missionen mit mehreren Raumsonden mit jeweils einigen
+		 *	Erkundungsrobotern. Jede Raumsonde einer Mission soll ueber ihren eindeutigen Namen
+		 *	angesprochen werden, und jeder Erkundungsroboter einer Raumsonde ueber seine eindeutige
 		 *	Nummer.
-		 *	• Fügen Sie zu Missionen einzelne Raumsonden hinzu, entfernen Sie einzelne Raumsonden,
-		 *	wobei Sie Raumsonden nur über deren Namen ansprechen.
+		 *	Fuegen Sie zu Missionen einzelne Raumsonden hinzu, entfernen Sie einzelne Raumsonden,
+		 *	wobei Sie Raumsonden nur ueber deren Namen ansprechen.
 		 */
 		testA();
 		
 		/*
-		 * Fügen Sie zu einigen Raumsonden einzelne Erkundungsroboter hinzu, entfernen Sie
-		 *	einzelne Erkundungsroboter, und ändern Sie die Informationen zu einzelnen
-		 *	Erkundungsrobotern, wobei Sie Erkundungsroboter und Raumsonden nur über deren
+		 * Fuegen Sie zu einigen Raumsonden einzelne Erkundungsroboter hinzu, entfernen Sie
+		 *	einzelne Erkundungsroboter, und aendern Sie die Informationen zu einzelnen
+		 *	Erkundungsrobotern, wobei Sie Erkundungsroboter und Raumsonden nur ueber deren
 		 *	Nummern und Namen ansprechen.
 		 */
 		testB();
@@ -79,7 +79,7 @@ public class Test {
 
 		System.out.println("Mission 1:");
 		m1.printRaumsonden();
-		System.out.println("Mission 1 - Füge Raumsonde hinzu.");
+		System.out.println("Mission 1 - Fuege Raumsonde hinzu.");
 		m1.addRaumsonde(sonde3);
 		m1.printRaumsonden();
 		System.out.println("Mission 1 - Remove Raumsonde ueber eindeutigen Namen");
@@ -92,14 +92,14 @@ public class Test {
 		System.out.println("\n~~~ Test B: ~~~");
 		System.out.println("Erstelle Erkundungsroboter rB1.");
 		Erkundungsroboter rB1 = new SprungRoboter(bohrer1, 30, 10);
-		System.out.println("Füge rB1 zu sonde4 hinzu.");
+		System.out.println("Fuege rB1 zu sonde4 hinzu.");
 		sonde4.addRoboter(rB1);
 		System.out.println(sonde4);
 		System.out.println(rB1);
 		System.out.println("Aendern der Einsatzart von rB1 ueber Sonde4.");
 		sonde4.modifyRoboter(rB1.getNummer(), kamera3);
 		System.out.println(rB1);
-		System.out.println("Lösche rB1 ueber eindeutige Nummer aus sonde4.");
+		System.out.println("Loesche rB1 ueber eindeutige Nummer aus sonde4.");
 		sonde4.removeRoboter(rB1.getNummer());
 		System.out.println(sonde4);
 	}

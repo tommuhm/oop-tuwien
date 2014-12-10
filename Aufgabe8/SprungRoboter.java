@@ -6,8 +6,8 @@ public class SprungRoboter extends Erkundungsroboter {
 	// Invariante: spruenge darf nicht kleiner als 0 sein.
 
 	// Vorbedingung: art darf nicht null sein
-	// Vorbedingung: stunden muss größer gleich 0 sein
-	// Vorbedingung: spruenge muss größer gleich 0 sein
+	// Vorbedingung: stunden muss groesser gleich 0 sein
+	// Vorbedingung: spruenge muss groesser gleich 0 sein
 	@Author(name = "Ulrich Aschl")
 	public SprungRoboter(Einsatzart art, int stunden, int spruenge) {
 		super(art, stunden);
@@ -21,19 +21,19 @@ public class SprungRoboter extends Erkundungsroboter {
 		this.spruenge = 0;
 	}
 
-	// Nachbedingung: spruenge wird um (+1) erhöht.
+	// Nachbedingung: spruenge wird um (+1) erhoeht.
 	@Author(name = "Ulrich Aschl")
 	public void erhoeheSpruenge() {
 		this.spruenge++;
 	}
 
-	// Nachbedingung: gibt spruenge zurück
+	// Nachbedingung: gibt spruenge zurueck
 	@Author(name = "Ulrich Aschl")
 	public int getSpruenge() {
 		return this.spruenge;
 	}
 
-	// Nachbedingung: gibt einen String zurück, der sich aus toString von Erkundungsroboter und der aktuellen Anzahl an Sprüngen zusammensetzt.
+	// Nachbedingung: gibt einen String zurueck, der sich aus toString von Erkundungsroboter und der aktuellen Anzahl an Spruengen zusammensetzt.
 	@Author(name = "Ulrich Aschl")
 	@Override
 	public String toString() {

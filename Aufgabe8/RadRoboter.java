@@ -6,8 +6,8 @@ public class RadRoboter extends Erkundungsroboter {
 	// Invariante: wegstrecke darf nicht kleiner als 0 sein.
 
 	// Vorbedingung: art darf nicht null sein
-	// Vorbedingung: stunden muss größer gleich 0 sein
-	// Vorbedingung: wegstrecke muss größer gleich 0 sein
+	// Vorbedingung: stunden muss groesser gleich 0 sein
+	// Vorbedingung: wegstrecke muss groesser gleich 0 sein
 	@Author(name = "Ulrich Aschl")
 	public RadRoboter(Einsatzart art, int stunden, double wegstrecke) {
 		super(art, stunden);
@@ -21,19 +21,19 @@ public class RadRoboter extends Erkundungsroboter {
 		this.wegstrecke = 0;
 	}
 
-	// Nachbedingung: wegstrecke wird um (+1) erhöht.
+	// Nachbedingung: wegstrecke wird um (+1) erhoeht.
 	@Author(name = "Ulrich Aschl")
 	public void erhoeheWegstrecke() {
 		this.wegstrecke++;
 	}
 
-	// Nachbedingung: gibt wegstrecke zurück
+	// Nachbedingung: gibt wegstrecke zurueck
 	@Author(name = "Ulrich Aschl")
 	public double getWegstrecke() {
 		return this.wegstrecke;
 	}
 
-	// Nachbedingung: gibt einen String zurück, der sich aus toString von Erkundungsroboter und der aktuellen Wegstrecke zusammensetzt.
+	// Nachbedingung: gibt einen String zurueck, der sich aus toString von Erkundungsroboter und der aktuellen Wegstrecke zusammensetzt.
 	@Override
 	@Author(name = "Ulrich Aschl")
 	public String toString() {
