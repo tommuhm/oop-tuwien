@@ -6,8 +6,8 @@ public class RadRoboter extends Erkundungsroboter {
 	// Invariante: wegstrecke darf nicht kleiner als 0 sein.
 
 	// Vorbedingung: art darf nicht null sein
-	// Vorbedingung: stunden muss groeßer gleich 0 sein
-	// Vorbedingung: wegstrecke muss groeßer gleich 0 sein
+	// Vorbedingung: stunden muss groesser gleich 0 sein
+	// Vorbedingung: wegstrecke muss groesser gleich 0 sein
 	@Author(name = "Ulrich Aschl")
 	public RadRoboter(Einsatzart art, int stunden, double wegstrecke) {
 		super(art, stunden);

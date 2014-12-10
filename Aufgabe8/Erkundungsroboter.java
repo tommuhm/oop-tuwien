@@ -8,13 +8,13 @@ public abstract class Erkundungsroboter {
 	private int stunden;
 	private Einsatzart art;
 
-	// Invariante: maxNummer ist groeßer gleich 0, waechst bei jedem neuen Objekt vom Typ Erkundungsroboter um +1.
-	// Invariante: nummer ist groeßer gleich 0, ist final und entspricht dem Wert von maxNummer zum Erstellungszeitpunkt.
-	// Invariatne: stunden ist groeßer gleich 0.
+	// Invariante: maxNummer ist groesser gleich 0, waechst bei jedem neuen Objekt vom Typ Erkundungsroboter um +1.
+	// Invariante: nummer ist groesser gleich 0, ist final und entspricht dem Wert von maxNummer zum Erstellungszeitpunkt.
+	// Invariatne: stunden ist groesser gleich 0.
 	// Invariante: art darf nicht null sein.
 
 	// Vorbedingung: art darf nicht null sein
-	// Vorbedingung: stunden muessen groeßer gleich 0 sein.
+	// Vorbedingung: stunden muessen groesser gleich 0 sein.
 	@Author(name = "Ulrich Aschl")
 	public Erkundungsroboter(Einsatzart art, int stunden) {
 		this(art);

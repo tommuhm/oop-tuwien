@@ -6,8 +6,8 @@ public class SprungRoboter extends Erkundungsroboter {
 	// Invariante: spruenge darf nicht kleiner als 0 sein.
 
 	// Vorbedingung: art darf nicht null sein
-	// Vorbedingung: stunden muss groeßer gleich 0 sein
-	// Vorbedingung: spruenge muss groeßer gleich 0 sein
+	// Vorbedingung: stunden muss groesser gleich 0 sein
+	// Vorbedingung: spruenge muss groesser gleich 0 sein
 	@Author(name = "Ulrich Aschl")
 	public SprungRoboter(Einsatzart art, int stunden, int spruenge) {
 		super(art, stunden);
