@@ -8,24 +8,29 @@ public class Sechseck extends Grundflaeche {
 	}
 
 	@Override
-	public boolean kannBeinhalten(Quadrat quadrat) {
+	public boolean kannBeinhalten(Grundflaeche grundflaeche) {
+		return grundflaeche.passtIn(this);
+	}
+
+	@Override
+	public boolean passtIn(Quadrat quadrat) {
 		return false;
 	}
 
 	@Override
-	public boolean kannBeinhalten(Rechteck rechteck) {
+	public boolean passtIn(Rechteck rechteck) {
 		return false;
 	}
 
 	@Override
-	public boolean kannBeinhalten(Kreis kreis) {
+	public boolean passtIn(Kreis kreis) {
 		if ((this.seitenlaenge * 2) >= kreis.getDurchmesser())
 			return true;
 		return false;
 	}
 
 	@Override
-	public boolean kannBeinhalten(Sechseck sechseck) {
+	public boolean passtIn(Sechseck sechseck) {
 		if (this.seitenlaenge >= sechseck.getSeitenlaenge())
 			return true;
 		return false;
