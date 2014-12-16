@@ -12,24 +12,29 @@ public class Rechteck extends Grundflaeche {
 	}
 
 	@Override
-	public boolean kannBeinhalten(Quadrat quadrat) {
+	public boolean kannBeinhalten(Grundflaeche grundflaeche) {
+		return grundflaeche.passtIn(this);
+	}
+
+	@Override
+	public boolean passtIn(Quadrat quadrat) {
 		return false;
 	}
 
 	@Override
-	public boolean kannBeinhalten(Rechteck rechteck) {
+	public boolean passtIn(Rechteck rechteck) {
 		if (this.getLaenge() >= rechteck.getLaenge() && this.getBreite() >= rechteck.getBreite())
 			return true;
 		return false;
 	}
 
 	@Override
-	public boolean kannBeinhalten(Kreis kreis) {
+	public boolean passtIn(Kreis kreis) {
 		return false;
 	}
 
 	@Override
-	public boolean kannBeinhalten(Sechseck sechseck) {
+	public boolean passtIn(Sechseck sechseck) {
 		double radius = sechseck.getSeitenlaenge();
 		double inkreis = radius * Math.sqrt(3) / 2;
 

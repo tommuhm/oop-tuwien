@@ -8,22 +8,29 @@ public class Kreis extends Grundflaeche {
 	}
 
 	@Override
-	public boolean kannBeinhalten(Rechteck rechteck) {
+	public boolean kannBeinhalten(Grundflaeche grundflaeche) {
+		return grundflaeche.passtIn(this);
+	}
+
+	@Override
+	public boolean passtIn(Rechteck rechteck) {
 		return false;
 	}
-	
-	public boolean kannBeinhalten(Quadrat quadrat) {
+
+	@Override
+	public boolean passtIn(Quadrat quadrat) {
 		return false;
 	}
-	
-	public boolean kannBeinhalten(Sechseck sechseck) {
-		if (2*sechseck.getSeitenlaenge() <= this.durchmesser) {
+
+	@Override
+	public boolean passtIn(Sechseck sechseck) {
+		if (2 * sechseck.getSeitenlaenge() <= this.durchmesser) {
 			return true;
 		}
 		return false;
 	}
-	
-	public boolean kannBeinhalten(Kreis kreis) {
+
+	public boolean passtIn(Kreis kreis) {
 		if (this.durchmesser >= kreis.getDurchmesser()) {
 			return true;
 		}
