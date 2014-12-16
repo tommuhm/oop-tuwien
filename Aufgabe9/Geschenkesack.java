@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Geschenkesack {
+
 	private static Geschenkesack instance = null;
 	private ArrayList<Schachtel> schachtelList;
 
