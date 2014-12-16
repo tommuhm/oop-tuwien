@@ -11,4 +11,15 @@ public abstract class Geschenk {
 		this.grundform = grundform;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public double getHoehe() {
+		return hoehe;
+	}
+
+	public Grundflaeche getGrundform() {
+		return grundform;
+	}
 }
