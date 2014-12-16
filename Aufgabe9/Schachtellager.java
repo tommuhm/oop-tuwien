@@ -33,7 +33,7 @@ public class Schachtellager {
 			}
 		}
 
-		if (schachtel != null) {
+		if (schachtel == null) {
 			schachtel = new Schachtel(geschenk.getHoehe(), geschenk.getGrundform());
 		} else {
 			schachtelList.remove(schachtel);
