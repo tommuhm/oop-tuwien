@@ -32,8 +32,4 @@ public class Schachtellager {
 			schachtel.addGeschenk(geschenk);
 		}
 	}
-
-	public String inventar(){
-		return null;	
-	}
 }
