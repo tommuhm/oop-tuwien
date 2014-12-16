@@ -18,8 +18,8 @@ public class Quadrat extends Grundflaeche {
 			return false;
 		}
 		
-		if(g instanceof Kreis) {
-			Kreis k = (Kreis) g;
+		if(g instanceof Kreis && this.getSeitenlaenge() > ((Kreis) g).getDurchmesser()) {
+			return true;
 			
 		}
 		if(g instanceof Quadrat && this.getSeitenlaenge() > ((Quadrat) g).getSeitenlaenge()) {
