@@ -2,12 +2,12 @@
 public class Schachtel extends Geschenk {
 
 	private static final double KARTONDICKE = 0.5;
-	
+
 	private Geschenk geschenk;
-	
+
 	public Schachtel(double hoehe, Grundflaeche grundflaeche) {
 		super("", hoehe, grundflaeche);
-		this.geschenk = geschenk;
+		this.geschenk = null;
 	}
 
 	public double volumen() {
@@ -16,23 +16,27 @@ public class Schachtel extends Geschenk {
 		return flaecheAussen * hoeheAussen;
 	}
 
-	public boolean kannBeinhalten(Geschenk geschenk) {
+	private boolean kannBeinhalten(Geschenk geschenk) {
 		if (this.getHoehe() >= geschenk.getHoehe() && this.getGrundform().kannBeinhalten(geschenk.getGrundform()))
 			return true;
 
 		return false;
 	}
-	
+
 	public boolean addGeschenk(Geschenk geschenk) {
-		if(this.geschenk != null) {
+		if (!this.kannBeinhalten(geschenk))
 			return false;
-		}
-		
-		if(this.kannBeinhalten(geschenk)) {
-			this.geschenk = geschenk;
-			//this.setName(...)
-		}
-		return false;
+
+		this.geschenk = geschenk;
+		this.setName(geschenk.getName());
+
+		return true;
+	}
+
+	public boolean hasGeschenk() {
+		if (geschenk == null)
+			return false;
+		return true;
 	}
 
 }
