@@ -27,7 +27,7 @@ public class GeschenkPrototypeFactory {
 
 	}
 
-	//Vorbedingung: geschenk darf nicht null sein
+	//Vorbedingung: geschenk soll ein gueltiger key sein
 	//Nachbedingung: gibt einen prototyp, passend zum key, zurueck
 	public Geschenk getGeschenk(String geschenk) {
 		if (geschenkMap.containsKey(geschenk))
