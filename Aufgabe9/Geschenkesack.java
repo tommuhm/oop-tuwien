@@ -2,16 +2,16 @@ import java.util.ArrayList;
 
 public class Geschenkesack {
 	private static Geschenkesack instance = null;
-	private ArrayList<Schachtel> sacklist;
+	private ArrayList<Schachtel> schachtellist;
 
 	public Geschenkesack(){
-		sacklist = new ArrayList<Schachtel>();
+		schachtellist = new ArrayList<Schachtel>();
 	}
 
 	public Geschenkesack(ArrayList geschenklist){
-		sacklist = geschenklist;
+		schachtellist = geschenklist;
 	}
-	
+
 	public static Geschenkesack getInstance(){
 		if(instance == null) {
 			instance = new Geschenkesack();
@@ -20,21 +20,22 @@ public class Geschenkesack {
 	}
 
 	public void addGeschenk(Schachtel schachtel){
-		sacklist.add(schachtel);
+		schachtellist.add(schachtel);
 	}
-	
+
 	public double volumen(){
-		double volumen;
-		for (Schachtel schachtel : sacklist) {   
-		    volumen += schachtel.volumen();
+		double volumen = 0;
+		for (Schachtel schachtel : schachtellist) {   
+			volumen += schachtel.volumen();
 		}
 		return volumen;
 	}
 
 	public String inhalt(){
-		String inhalt = "\n ########## \n";
-		for (Schachtel schachtel : sacklist) {   
-		    schachtel.getName();
+		String inhalt = "\n##########\nGeschenkenamen im Sack:\n";
+		for (Schachtel schachtel : schachtellist) {   
+			inhalt += schachtel.getName();
 		}
+		return inhalt;
 	}
 }

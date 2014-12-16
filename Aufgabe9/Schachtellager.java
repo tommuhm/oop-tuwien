@@ -23,11 +23,14 @@ public class Schachtellager {
 		boolean stickybit = false;
 		for (Schachtel schachtel : lagerlist) {   
 			if (schachtel.addGeschenk(geschenk)) {
-				schachtel.addGeschenk(geschenk);
 				stickybit = true;
+				break;
 			}
 		}
-		if (!(stickybit)) //finde schachtel und erstelle und hau geschenk rein
+		if (!(stickybit)) {
+			Grundflaeche gflaeche = geschenk.getGrundform();
+			//TODO
+		}
 	}
 
 	public String inventar(){
