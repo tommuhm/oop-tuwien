@@ -22,4 +22,8 @@ public abstract class Geschenk {
 	public Grundflaeche getGrundform() {
 		return grundform;
 	}
+	
+	protected void setName(String name) {
+		this.name = name;
+	}
 }
