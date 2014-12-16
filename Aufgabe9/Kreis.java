@@ -1,4 +1,5 @@
-public class Kreis implements Grundflaeche {
+
+public class Kreis extends Grundflaeche {
 
 	private double durchmesser;
 
@@ -6,4 +7,8 @@ public class Kreis implements Grundflaeche {
 		this.durchmesser = durchmesser;
 	}
 
+	@Override
+	public double flaeche(double kartondicke) {
+		return Math.PI * Math.pow(durchmesser + 2 * kartondicke, 2) / 4;
+	}
 }
