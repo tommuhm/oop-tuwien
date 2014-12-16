@@ -74,12 +74,12 @@ public class Test {
 		System.out.println("Weinflaschen wurden erfolgreich zum Geschenkesack hinzugefuegt.");
 		
 		
-		Geschenk glas0 = geschenkprotoypefactory.getGeschenk("vase0");
-		Geschenk glas1 = geschenkprotoypefactory.getGeschenk("vase1");
+		Geschenk vase0 = geschenkprotoypefactory.getGeschenk("vase0");
+		Geschenk vase1 = geschenkprotoypefactory.getGeschenk("vase1");
 		System.out.println("Vasen wurden erfolgreich erstellt.");
 
-		Schachtel schachtel15 = schachtellager.verpacke(glas0);
-		Schachtel schachtel16 = schachtellager.verpacke(glas1);
+		Schachtel schachtel15 = schachtellager.verpacke(vase0);
+		Schachtel schachtel16 = schachtellager.verpacke(vase1);
 		System.out.println("Vasen wurden erfolgreich verpackt.");
 		
 		geschenkesack.addGeschenk(schachtel16);
