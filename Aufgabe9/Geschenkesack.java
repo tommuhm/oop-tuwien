@@ -16,6 +16,9 @@ public class Geschenkesack {
 		return instance;
 	}
 
+	//Vorbedingung: schachtel darf nicht null sein
+	//Nachbedingung: gibt false zurueck, falls die schachtel schon noch kein geschenk enthaelt
+	//Nachbedingung: gibt true zurueck, falls die schachtel erfolgreich zum sack hinzugefuegt wird
 	public boolean addGeschenk(Schachtel schachtel) {
 		if (!schachtel.hasGeschenk())
 			return false;
@@ -24,6 +27,7 @@ public class Geschenkesack {
 		return true;
 	}
 
+	//Nachbedingung: gibt das volumen des Sacks zurueck
 	public double volumen() {
 		double volumen = 0;
 		for (Schachtel schachtel : schachtelList) {
@@ -32,6 +36,7 @@ public class Geschenkesack {
 		return volumen;
 	}
 
+	//Nachbedingung: gibt alle namen der geschenke des sacks zurueck
 	public String inhalt() {
 		String inhalt = "\n##########\nGeschenke im Sack:\n";
 		for (Schachtel schachtel : schachtelList) {
