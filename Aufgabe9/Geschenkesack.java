@@ -4,7 +4,7 @@ public class Geschenkesack {
 	private static Geschenkesack instance = null;
 	private ArrayList<Schachtel> schachtellist;
 
-	public Geschenkesack(){
+	private Geschenkesack(){
 		schachtellist = new ArrayList<Schachtel>();
 	}
 

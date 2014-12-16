@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Schachtellager {
 	private static Schachtellager instance = null;
-	public ArrayList<Schachtel> lagerlist;
+	private ArrayList<Schachtel> lagerlist;
 
-	public Schachtellager(){
+	private Schachtellager(){
 		lagerlist = new ArrayList<Schachtel>();
 	}
 
@@ -28,8 +28,8 @@ public class Schachtellager {
 			}
 		}
 		if (!(stickybit)) {
-			Grundflaeche gflaeche = geschenk.getGrundform();
-			//TODO
+			Schachtel schachtel = new Schachtel(geschenk.getHoehe(), geschenk.getGrundform());
+			schachtel.addGeschenk(geschenk);
 		}
 	}
 
