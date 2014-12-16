@@ -1,35 +1,44 @@
 import java.util.ArrayList;
 
 public class Schachtellager {
-	private static Schachtellager instance = null;
-	private ArrayList<Schachtel> lagerlist;
 
-	private Schachtellager(){
-		lagerlist = new ArrayList<Schachtel>();
+	private static Schachtellager instance = null;
+	private ArrayList<Schachtel> schachtelList;
+
+	private Schachtellager() {
+		schachtelList = new ArrayList<Schachtel>();
 	}
 
-	public static Schachtellager getInstance(){
-		if(instance == null) {
+	public static Schachtellager getInstance() {
+		if (instance == null) {
 			instance = new Schachtellager();
 		}
 		return instance;
 	}
 
-	public void addSchachtel(Schachtel schachtel){
-		lagerlist.add(schachtel);
+	public boolean addSchachtel(Schachtel schachtel) {
+		if (schachtel.hasGeschenk())
+			return false;
+
+		schachtelList.add(schachtel);
+		return true;
 	}
 
-	public void verpacke(Geschenk geschenk){
-		boolean stickybit = false;
-		for (Schachtel schachtel : lagerlist) {   
-			if (schachtel.addGeschenk(geschenk)) {
-				stickybit = true;
+	public Schachtel verpacke(Geschenk geschenk) {
+		Schachtel schachtel = null;
+		for (Schachtel s : schachtelList) {
+			if (s.addGeschenk(geschenk)) {
+				schachtel = s;
 				break;
 			}
 		}
-		if (!(stickybit)) {
-			Schachtel schachtel = new Schachtel(geschenk.getHoehe(), geschenk.getGrundform());
+
+		if (schachtel != null) {
+			schachtel = new Schachtel(geschenk.getHoehe(), geschenk.getGrundform());
 			schachtel.addGeschenk(geschenk);
+		} else {
+			schachtelList.remove(schachtel);
 		}
+		return schachtel;
 	}
 }
