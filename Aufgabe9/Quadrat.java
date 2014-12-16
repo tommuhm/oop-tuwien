@@ -12,20 +12,26 @@ public class Quadrat extends Grundflaeche {
 		return Math.pow(seitenlaenge + 2 * kartondicke, 2);
 	}
 	
-	//Quadrat kann haben: Kreis, Quadrat, 
-	public boolean kannBeinhalten(Grundflaeche g) {
-		if(g instanceof Sechseck || g instanceof Rechteck) {
-			return false;
+	
+	public boolean kannBeinhalten(Sechseck sechseck) {
+		return false;		
+	}
+	
+	public boolean kannBeinhalten(Rechteck rechteck) {
+		return false;
+	}
+	
+	public boolean kannBeinhalten(Kreis kreis) {
+		if(this.getSeitenlaenge() >= kreis.getDurchmesser()) {
+			return true;		
 		}
-		
-		if(g instanceof Kreis && this.getSeitenlaenge() >= ((Kreis) g).getDurchmesser()) {
+		return false;
+	}
+
+	public boolean kannBeinhalten(Quadrat quadrat) {
+		if(this.getSeitenlaenge() >= quadrat.getSeitenlaenge()) {
 			return true;
-			
 		}
-		if(g instanceof Quadrat && this.getSeitenlaenge() >= ((Quadrat) g).getSeitenlaenge()) {
-			return true;
-		}
-		
 		return false;
 	}
 
