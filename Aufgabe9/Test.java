@@ -20,7 +20,7 @@ public class Test {
 		Schachtel schachtel1 = schachtellager.verpacke(kerze1);
 		
 		//fuege Geschenke zu Sack hinzu
-		geschenkesack.addGeschenk(schachtel0);
+		geschenkesack.addGeschenk(schachtel8);
 		geschenkesack.addGeschenk(schachtel1);
 		
 
@@ -33,7 +33,7 @@ public class Test {
 		Schachtel schachtel10 = schachtellager.verpacke(schachtel9); //verpacke 3fach
 		Schachtel schachtel3 = schachtellager.verpacke(buch1);
 		
-		geschenkesack.addGeschenk(schachtel2);
+		geschenkesack.addGeschenk(schachtel10);
 		geschenkesack.addGeschenk(schachtel3);
 	
 		
@@ -45,7 +45,7 @@ public class Test {
 		Schachtel schachtel11 = schachtellager.verpacke(schachtel4); //verpacke 2fach
 		Schachtel schachtel5 = schachtellager.verpacke(wuerfel1);
 		
-		geschenkesack.addGeschenk(schachtel4);
+		geschenkesack.addGeschenk(schachtel11);
 		geschenkesack.addGeschenk(schachtel5);
 		
 		
@@ -60,7 +60,7 @@ public class Test {
 		Schachtel schachtel14 = schachtellager.verpacke(schachtel13); //verpacke 4fach
 		
 		geschenkesack.addGeschenk(schachtel6);
-		geschenkesack.addGeschenk(schachtel7);
+		geschenkesack.addGeschenk(schachtel14);
 		
 		/*
 		 * Da in dem Programm viele Objekte erzeugt werden, 
