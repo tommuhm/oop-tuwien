@@ -2,39 +2,39 @@ import java.util.ArrayList;
 
 public class Geschenkesack {
 	private static Geschenkesack instance = null;
-	private ArrayList<Schachtel> schachtellist;
+	private ArrayList<Schachtel> schachtelList;
 
-	private Geschenkesack(){
-		schachtellist = new ArrayList<Schachtel>();
+	private Geschenkesack() {
+		schachtelList = new ArrayList<Schachtel>();
 	}
 
-	public Geschenkesack(ArrayList geschenklist){
-		schachtellist = geschenklist;
-	}
-
-	public static Geschenkesack getInstance(){
-		if(instance == null) {
+	public static Geschenkesack getInstance() {
+		if (instance == null) {
 			instance = new Geschenkesack();
 		}
 		return instance;
 	}
 
-	public void addGeschenk(Schachtel schachtel){
-		schachtellist.add(schachtel);
+	public boolean addGeschenk(Schachtel schachtel) {
+		if (!schachtel.hasGeschenk())
+			return false;
+
+		schachtelList.add(schachtel);
+		return true;
 	}
 
-	public double volumen(){
+	public double volumen() {
 		double volumen = 0;
-		for (Schachtel schachtel : schachtellist) {   
+		for (Schachtel schachtel : schachtelList) {
 			volumen += schachtel.volumen();
 		}
 		return volumen;
 	}
 
-	public String inhalt(){
-		String inhalt = "\n##########\nGeschenkenamen im Sack:\n";
-		for (Schachtel schachtel : schachtellist) {   
-			inhalt += schachtel.getName();
+	public String inhalt() {
+		String inhalt = "\n##########\nGeschenke im Sack:\n";
+		for (Schachtel schachtel : schachtelList) {
+			inhalt += schachtel.getName() + "\n";
 		}
 		return inhalt;
 	}
