@@ -1,8 +1,10 @@
 
 public class Buch extends Geschenk {
 
-	public Buch(String name, double hoehe, Grundflaeche grundform) {
-		super(name, hoehe, grundform);
+
+	// laenge > breite
+	public Buch(String name, double hoehe, double laenge, double breite) {
+		super(name, hoehe, new Rechteck(laenge, breite));
 	}
 
 }
