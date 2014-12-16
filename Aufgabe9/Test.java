@@ -114,7 +114,7 @@ public class Test {
 		
 		
 		Geschenk artefakt0 = geschenkprotoypefactory.getGeschenk("artefakt0");
-		Geschenk artefakt1 = geschenkprotoypefactory.getGeschenk("artefakte1");
+		Geschenk artefakt1 = geschenkprotoypefactory.getGeschenk("artefakt1");
 		System.out.println("Artefakte wurden erfolgreich erstellt.");
 
 		Schachtel schachtel21 = schachtellager.verpacke(artefakt0);

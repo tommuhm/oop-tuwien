@@ -17,13 +17,13 @@ public class GeschenkPrototypeFactory {
 		geschenkMap.put("wein0", new Weinflasche("Weinfalsche 15x3", 15, 3));
 		geschenkMap.put("wein1", new Weinflasche("Weinflasche 20x4", 20, 4));
 		geschenkMap.put("vase0",new Vase("Vase 12x4", 12, 4));
-		geschenkMap.put("vase0",new Vase("Vase 10x5", 10, 5));
+		geschenkMap.put("vase1",new Vase("Vase 10x5", 10, 5));
 		geschenkMap.put("bonboniere0", new Bonboniere("Bonboniere 7x7X10", 10, 7));
 		geschenkMap.put("bonboniere1", new Bonboniere("Bonboniere 5x5X6", 6, 5));
 		geschenkMap.put("schuhe0", new Schuhe("Schuhe 30x20X7", 7, 30, 20));
 		geschenkMap.put("schuhe1", new Schuhe("Schuhe 40x30X12", 12, 40, 30));
 		geschenkMap.put("artefakt0", new Artefakt("Artefakt 3x3x3", 3));
-		geschenkMap.put("artefakt0", new Artefakt("Artefakt 9x9x9", 9));
+		geschenkMap.put("artefakt1", new Artefakt("Artefakt 9x9x9", 9));
 
 	}
 
