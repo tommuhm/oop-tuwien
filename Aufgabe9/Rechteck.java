@@ -3,7 +3,7 @@ public class Rechteck extends Grundflaeche {
 
 	private double laenge;
 	private double breite;
-	
+
 	//invariante für laenge > breite setzen!
 
 	public Rechteck(double laenge, double breite) {
@@ -12,29 +12,29 @@ public class Rechteck extends Grundflaeche {
 	}
 
 	@Override
-	public boolean kannBeinhalten(Grundflaeche g) {
-		if(g instanceof Kreis || g instanceof Quadrat) {
-			return false;
-		}
-		
-		if(g instanceof Sechseck && this.getLaenge() > 2*((Sechseck) g).getSeitenlaenge() && this.getBreite() > 2*((Sechseck) g).getSeitenlaenge()) {
-			double radius = ((Sechseck) g).getSeitenlaenge();
-			double inkreis = radius * Math.sqrt(3) / 2;
+	public boolean kannBeinhalten(Quadrat quadrat) {
+		return false;
+	}
 
-			if(this.getLaenge() >= 2*radius && this.getBreite() >= 2*inkreis) {
-				return true;
-			}
-		}
-		
-		if(g instanceof Rechteck) {
-			double gLaenge = ((Rechteck) g).getLaenge();
-			double gBreite = ((Rechteck) g).getBreite();
-			
-			if(this.getLaenge() >= gLaenge && this.getBreite() >= gBreite) {
-				return true;
-			}
-		}
-		
+	@Override
+	public boolean kannBeinhalten(Rechteck rechteck) {
+		if (this.getLaenge() >= rechteck.getLaenge() && this.getBreite() >= rechteck.getBreite())
+			return true;
+		return false;
+	}
+
+	@Override
+	public boolean kannBeinhalten(Kreis kreis) {
+		return false;
+	}
+
+	@Override
+	public boolean kannBeinhalten(Sechseck sechseck) {
+		double radius = sechseck.getSeitenlaenge();
+		double inkreis = radius * Math.sqrt(3) / 2;
+
+		if (this.getLaenge() >= 2 * radius && this.getBreite() >= 2 * inkreis)
+			return true;
 		return false;
 	}
 
