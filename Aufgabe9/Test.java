@@ -3,10 +3,12 @@ public class Test {
 	public static void main(String[] args) {
 		
 		/*
-		 * Schreiben Sie eine Klasse Test, die das Lager, den Geschenkesack, 
-		 * alle Klassen von Geschenken und Schachteln und alle Untertypbeziehungen testet.
-		 * 
-		 */		
+		 * Aufgabenaufteilung: Planung zu dritt.
+		 * David Jaffry: Geschenkesack, Schachtellager, Test, GeschenkPrototypeFactory, Zusicherungen, Artefakt, Bonboniere, Buch, Kerze, Schuhe, Vase, Weinflasche, Wuerfel
+		 * Ulrich Aschl: ZaehlerObj, Schachtel, Quadrat, Rechteck, Zusicherungen
+		 * Thomas Muhm: Geschenk, GeschenkPrototypeFactory, Grundflaeche, Kreis, Sechseck
+		 */
+		
 		
 		Schachtellager schachtellager = Schachtellager.getInstance();
 		Geschenkesack geschenkesack = Geschenkesack.getInstance();
@@ -125,7 +127,7 @@ public class Test {
 		geschenkesack.addGeschenk(schachtel22);
 		System.out.println("Artefakte wurden erfolgreich zum Geschenkesack hinzugefuegt.");
 		
-		System.out.println("\nVolumen des Geschenkesacks: " + geschenkesack.volumen());
+		System.out.println("\nVolumen des Geschenkesacks: " + geschenkesack.volumen() + "cm³");
 		System.out.println("\nInhalt des Geschenkesacks:\n" + geschenkesack.inhalt());
 		
 	}

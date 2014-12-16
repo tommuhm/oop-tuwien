@@ -1,8 +1,8 @@
 
 public class Kreis extends Grundflaeche {
 
-	private double durchmesser;
 	// Invariante: durchmesser muss groesser 0 sein.
+	private double durchmesser;
 
 	// Nachbedingung: durchmesser ist zugewiesen.
 	public Kreis(double durchmesser) {

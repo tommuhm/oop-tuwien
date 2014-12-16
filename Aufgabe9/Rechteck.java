@@ -1,13 +1,12 @@
 
 public class Rechteck extends Grundflaeche {
 
-	private double laenge;
-	private double breite;
-
 	// Invariante: laenge muss groesser 0 sein.
 	// Invariante: breite muss groesser 0 sein.
 	// Invariante: laenge muss groesser breite sein.
-
+	private double laenge;
+	private double breite;
+	
 	// Nachbedingung: laenge ist zugewiesen.
 	// Nachbedingung: breite ist zugewiesen.
 	public Rechteck(double laenge, double breite) {

@@ -1,8 +1,8 @@
 
 public class Sechseck extends Grundflaeche {
 
-	private double seitenlaenge;
 	// Invariante: seitenlaenge muss groesser 0 sein.
+	private double seitenlaenge;
 
 	// Nachbedingung: seitenlaenge ist zugewiesen.
 	public Sechseck(double seitenlaenge) {

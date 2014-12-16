@@ -4,7 +4,7 @@ public class GeschenkPrototypeFactory {
 
 	HashMap<String, Geschenk> geschenkMap;
 
-	//Nachbedingung: erstellt eine HashMap von Prototypen
+	// Nachbedingung: erstellt eine HashMap von Prototypen
 	public GeschenkPrototypeFactory() {
 		geschenkMap = new HashMap<String, Geschenk>();
 
@@ -16,8 +16,8 @@ public class GeschenkPrototypeFactory {
 		geschenkMap.put("wuerfel1", new Wuerfel("Wuerfel 7x7x7", 7));
 		geschenkMap.put("wein0", new Weinflasche("Weinfalsche 15x3", 15, 3));
 		geschenkMap.put("wein1", new Weinflasche("Weinflasche 20x4", 20, 4));
-		geschenkMap.put("vase0",new Vase("Vase 12x4", 12, 4));
-		geschenkMap.put("vase1",new Vase("Vase 10x5", 10, 5));
+		geschenkMap.put("vase0", new Vase("Vase 12x4", 12, 4));
+		geschenkMap.put("vase1", new Vase("Vase 10x5", 10, 5));
 		geschenkMap.put("bonboniere0", new Bonboniere("Bonboniere 7x7x10", 10, 7));
 		geschenkMap.put("bonboniere1", new Bonboniere("Bonboniere 5x5x6", 6, 5));
 		geschenkMap.put("schuhe0", new Schuhe("Schuhe 30x20x7", 7, 30, 20));
@@ -27,8 +27,8 @@ public class GeschenkPrototypeFactory {
 
 	}
 
-	//Vorbedingung: geschenk soll ein gueltiger key sein
-	//Nachbedingung: gibt einen prototyp, passend zum key, zurueck
+	// Vorbedingung: geschenk soll ein gueltiger key sein
+	// Nachbedingung: gibt einen prototyp, passend zum key, zurueck
 	public Geschenk getGeschenk(String geschenk) {
 		if (geschenkMap.containsKey(geschenk))
 			return (Geschenk) geschenkMap.get(geschenk).clone();

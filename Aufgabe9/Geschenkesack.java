@@ -9,6 +9,10 @@ public class Geschenkesack {
 		schachtelList = new ArrayList<Schachtel>();
 	}
 
+	// singleton
+	// Nachbedingung: falls es noch keine instance gab, wird diese hiermit erstellt
+	// Nachbedingung: gibt diese instanz zurueck
+	// Nachbedingung: versichert, dass es nur genau einen Geschenkesack gibt
 	public static Geschenkesack getInstance() {
 		if (instance == null) {
 			instance = new Geschenkesack();
@@ -16,9 +20,9 @@ public class Geschenkesack {
 		return instance;
 	}
 
-	//Vorbedingung: schachtel darf nicht null sein
-	//Nachbedingung: gibt false zurueck, falls die schachtel schon noch kein geschenk enthaelt
-	//Nachbedingung: gibt true zurueck, falls die schachtel erfolgreich zum sack hinzugefuegt wird
+	// Vorbedingung: schachtel darf nicht null sein
+	// Nachbedingung: gibt false zurueck, falls die schachtel noch kein geschenk enthaelt
+	// Nachbedingung: gibt true zurueck, falls die schachtel erfolgreich zum sack hinzugefuegt wird
 	public boolean addGeschenk(Schachtel schachtel) {
 		if (!schachtel.hasGeschenk())
 			return false;
@@ -27,7 +31,8 @@ public class Geschenkesack {
 		return true;
 	}
 
-	//Nachbedingung: gibt das volumen des Sacks zurueck
+	// Nachbedingung: gibt das Volumen des Sacks zurueck
+	// Invariante: volumen ist groesser gleich 0
 	public double volumen() {
 		double volumen = 0;
 		for (Schachtel schachtel : schachtelList) {
@@ -36,12 +41,15 @@ public class Geschenkesack {
 		return volumen;
 	}
 
-	//Nachbedingung: gibt alle namen der geschenke des sacks zurueck
+	// Nachbedingung: gibt alle namen der geschenke des sacks zurueck
+	// Invariante: counter ist groesser gleich 0
 	public String inhalt() {
-		String inhalt = "\n##########\nGeschenke im Sack:\n";
+		int counter = 0;
+		String inhalt = "\n";
 		for (Schachtel schachtel : schachtelList) {
 			inhalt += schachtel.getName() + "\n";
+			counter++;
 		}
-		return inhalt;
+		return (inhalt + "\nEs sind insgesamt " + counter + " Geschenke im Sack");
 	}
 }
