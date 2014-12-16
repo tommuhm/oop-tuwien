@@ -1,5 +1,5 @@
 
-public abstract class Geschenk {
+public abstract class Geschenk implements Cloneable {
 
 	private String name;
 	private double hoehe;
@@ -22,8 +22,19 @@ public abstract class Geschenk {
 	public Grundflaeche getGrundform() {
 		return grundform;
 	}
-	
+
 	protected void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public Object clone() {
+		Object clone = null;
+		try {
+			clone = super.clone();
+		} catch (CloneNotSupportedException ex) {
+			ex.printStackTrace();
+		}
+		return clone;
 	}
 }
