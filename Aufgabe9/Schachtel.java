@@ -16,7 +16,7 @@ public class Schachtel extends Geschenk {
 		return flaecheAussen * hoeheAussen;
 	}
 
-	private boolean kannBeinhalten(Geschenk geschenk) {
+	public boolean kannBeinhalten(Geschenk geschenk) {
 		if (this.getHoehe() >= geschenk.getHoehe() && this.getGrundform().kannBeinhalten(geschenk.getGrundform()))
 			return true;
 

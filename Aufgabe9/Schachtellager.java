@@ -27,7 +27,7 @@ public class Schachtellager {
 	public Schachtel verpacke(Geschenk geschenk) {
 		Schachtel schachtel = null;
 		for (Schachtel s : schachtelList) {
-			if (s.addGeschenk(geschenk)) {
+			if (s.kannBeinhalten(geschenk)) {
 				schachtel = s;
 				break;
 			}
@@ -35,10 +35,10 @@ public class Schachtellager {
 
 		if (schachtel != null) {
 			schachtel = new Schachtel(geschenk.getHoehe(), geschenk.getGrundform());
-			schachtel.addGeschenk(geschenk);
 		} else {
 			schachtelList.remove(schachtel);
 		}
+		schachtel.addGeschenk(geschenk);
 		return schachtel;
 	}
 }
