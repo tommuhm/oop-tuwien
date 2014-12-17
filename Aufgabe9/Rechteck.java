@@ -18,7 +18,7 @@ public class Rechteck extends Grundflaeche {
 	// Vorbedingung: grundflaeche darf nicht null sein.
 	// Nachbedingung: gibt true zurueck wenn das aktuelle object in die grundflaeche passt
 	public boolean passtIn(Grundflaeche grundflaeche) {
-		return grundflaeche.passtIn(this);
+		return grundflaeche.kannBeinhalten(this);
 	}
 
 	@Override
