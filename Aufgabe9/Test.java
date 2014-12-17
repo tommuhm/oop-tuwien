@@ -30,15 +30,21 @@ public class Test {
 
 		init();
 
-		testSingleton();
+		testSingletonPattern();
+		System.out.println("");
+
+		testPrototypePattern();
+		System.out.println("");
+
+		testUntertypen();
+
+		testGrundflaechen();
 
 		testSchachtellager();
 
 		printGeschensack();
 
 		testGeschenke();
-
-		testUntertypen();
 
 		printGeschensack();
 	}
@@ -49,7 +55,7 @@ public class Test {
 		geschenke = new GeschenkPrototypes();
 	}
 
-	private static void testSingleton() {
+	private static void testSingletonPattern() {
 		Schachtellager schachtellager1 = Schachtellager.getInstance();
 		if (schachtellager1 != schachtellager) {
 			System.out.println("Singelton Test fuer Schachtellager ist fehlgeschlagen!.");
@@ -62,6 +68,26 @@ public class Test {
 			System.out.println("Singelton Test fuer Geschenkesack ist fehlgeschlagen!.");
 		} else {
 			System.out.println("Singelton Test fuer Geschenkesack war erfolgreich.");
+		}
+	}
+
+	private static void testPrototypePattern() {
+		Geschenk kerze0 = geschenke.getGeschenk("kerze0");
+		Geschenk kerze1 = geschenke.getGeschenk("kerze0");
+
+		if (kerze0 != kerze1) {
+			System.out.println("Kerze0 ist ein anderes Object als Kerze1 - Prototype Test erfolgreich");
+		} else {
+			System.out.println("Kerze0 ist das gleiche Object wie Kerze1 - Prototype Test fehlgeschlagen");
+		}
+
+		Geschenk wein0 = geschenke.getGeschenk("wein0");
+		Geschenk wein1 = geschenke.getGeschenk("wein0");
+
+		if (wein0 != wein1) {
+			System.out.println("Wein0 ist ein anderes Object als Wein1 - Prototype Test erfolgreich");
+		} else {
+			System.out.println("Wein0 ist das gleiche Object wie Wein1 - Prototype Test fehlgeschlagen");
 		}
 	}
 
@@ -87,7 +113,99 @@ public class Test {
 	}
 
 	private static void testUntertypen() {
+		Geschenk vase = geschenke.getGeschenk("vase0");
+		Geschenk weinfalsche = geschenke.getGeschenk("wein0");
+		Geschenk buch = geschenke.getGeschenk("buch0");
+		Geschenk schuhe = geschenke.getGeschenk("schuhe0");
+		Geschenk wuerfel = geschenke.getGeschenk("wuerfel0");
+		Geschenk artefakt = geschenke.getGeschenk("artefakt0");
+		Geschenk bonboniere = geschenke.getGeschenk("bonboniere0");
+		Geschenk kerze = geschenke.getGeschenk("kerze0");
 
+		if (vase instanceof Vase && vase.getGrundflaeche() instanceof Kreis) {
+			System.out.println("Prototype: vase0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: vase0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+		if (weinfalsche instanceof Weinflasche && weinfalsche.getGrundflaeche() instanceof Kreis) {
+			System.out.println("Prototype: wein0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: wein0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+		if (buch instanceof Buch && buch.getGrundflaeche() instanceof Rechteck) {
+			System.out.println("Prototype: buch0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: buch0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+		if (schuhe instanceof Schuhe && schuhe.getGrundflaeche() instanceof Rechteck) {
+			System.out.println("Prototype: schuhe0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: schuhe0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+		if (wuerfel instanceof Wuerfel && wuerfel.getGrundflaeche() instanceof Quadrat) {
+			System.out.println("Prototype: wuerfel0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: wuerfel0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+		if (artefakt instanceof Artefakt && artefakt.getGrundflaeche() instanceof Sechseck) {
+			System.out.println("Prototype: artefakt0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: artefakt0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+		if (bonboniere instanceof Bonboniere && bonboniere.getGrundflaeche() instanceof Sechseck) {
+			System.out.println("Prototype: bonboniere0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: bonboniere0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+		if (kerze instanceof Kerze && kerze.getGrundflaeche() instanceof Sechseck) {
+			System.out.println("Prototype: kerze0, instance und grundflaeche korrekt - Test erfolgreich");
+		} else {
+			System.out.println("Prototype: kerze0, instance oder grundflaeche falsch - Test fehlgeschlagen");
+		}
+
+		Schachtel schachtel0 = schachtellager.verpacke(vase);
+		if (schachtel0 instanceof Geschenk) {
+			System.out.println("Schachtel kann als Geschenk verwendet werden - Test erfolgreich");
+		} else {
+			System.out.println("Schachtel kann nicht Geschenk verwendet werden - Test fehlgeschlagen");
+		}
+	}
+
+	private static void testGrundflaechen() {
+		Rechteck g1 = new Rechteck(2.1, 2);
+		Quadrat g2 = new Quadrat(2);
+		Kreis g3 = new Kreis(2);
+		Sechseck g4 = new Sechseck(1);
+
+		if (g1 instanceof Grundflaeche && g2 instanceof Grundflaeche && g3 instanceof Grundflaeche && g4 instanceof Grundflaeche) {
+			System.out.println("Alle Grundflaeche erben von Grundflaeche - Test erfolgreich");
+		} else {
+			System.out.println("min eine Grundflaeche erbt nicht von Grundflaeche - Test fehlgeschlagen");
+		}
+
+		if (g1.kannBeinhalten(g4) && !g1.kannBeinhalten(g2) && !g1.kannBeinhalten(g3)) {
+			System.out.println("Rechteck passt fuer Sechseck und nicht fuer Quadrat, Kreis - Test erfolgreich");
+		} else {
+			System.out.println("Rechteck passt nicht fuer Sechseck oder passt fuer Quadrat, Kreis - Test fehlgeschlagen");
+		}
+
+		if (g2.kannBeinhalten(g3) && !g2.kannBeinhalten(g1) && !g2.kannBeinhalten(g4)) {
+			System.out.println("Quadrat passt fuer Kreis und nicht fuer Rechteck, Seckseck - Test erfolgreich");
+		} else {
+			System.out.println("Quadrat passt nicht fuer Kreis oder passt fuer Rechteck, Sechseck - Test fehlgeschlagen");
+		}
+
+		if (g3.kannBeinhalten(g4) && !g3.kannBeinhalten(g1) && !g3.kannBeinhalten(g2)) {
+			System.out.println("Kreis passt fuer Sechseck und nicht fuer Rechteck, Quadrat - Test erfolgreich");
+		} else {
+			System.out.println("Kreis passt nicht fuer Sechseck oder passt fuer Rechteck, Quadrat - Test fehlgeschlagen");
+		}
+
+		if (g4.kannBeinhalten(g3) && !g4.kannBeinhalten(g1) && !g4.kannBeinhalten(g2)) {
+			System.out.println("Sechseck passt fuer Kreis und nicht fuer Rechteck, Quadrat - Test erfolgreich");
+		} else {
+			System.out.println("Sechseck passt nicht fuer Kreis oder passt fuer Rechteck, Quadrat - Test fehlgeschlagen");
+		}
 	}
 
 	private static void kerzenTest() {
