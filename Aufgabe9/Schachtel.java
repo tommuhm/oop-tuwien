@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 public class Schachtel extends Geschenk {
 
 	private static final double KARTONDICKE = 0.5;
@@ -15,9 +17,10 @@ public class Schachtel extends Geschenk {
 		this.hoeheAussen = hoeheInnen + 2 * KARTONDICKE;
 	}
 
+	@Override
 	// Nachbedingung: gibt das Volumen der Schachtel mit eingerechneter Kartondicke zurueck
 	public double volumen() {
-		return grundflaecheAussen.flaeche() * hoeheAussen;
+		return new BigDecimal(grundflaecheAussen.flaeche() * hoeheAussen).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	// Vorbedingung: geschenk darf nicht null sein
@@ -63,7 +66,7 @@ public class Schachtel extends Geschenk {
 	@Override
 	// Nachbedingung: gibt die Grundflaeche in lesbarer Form zurueck
 	public String toString() {
-		return "Schachtel: " + getName() + ", " + getGrundflaeche() + ", Volumen: " + volumen();
+		return "Schachtel: " + getName() + ", Hoehe: " + getHoehe() + ", " + getGrundflaeche() + ", Volumen: " + volumen();
 	}
 
 }

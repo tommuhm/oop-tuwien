@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Geschenkesack {
@@ -38,7 +39,7 @@ public class Geschenkesack {
 		for (Schachtel schachtel : schachtelList) {
 			volumen += schachtel.volumen();
 		}
-		return volumen;
+		return new BigDecimal(volumen).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 
 	// Nachbedingung: gibt alle namen der geschenke des sacks aus
