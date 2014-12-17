@@ -49,10 +49,16 @@ public class Kreis extends Grundflaeche {
 	}
 
 	@Override
+	// Nachbedingung: Gibt die Flaeche des Kreises zurueck
+	public double flaeche() {
+		return Math.PI * Math.pow(durchmesser, 2) / 4;
+	}
+
+	@Override
 	// Vorbedingung: kartondicke darf nicht kleiner 0 sein.
-	// Nachbedingung: Gibt die Flaeche des Kreises zurueck und berechnet die Kartondicke ein.
-	public double flaeche(double kartondicke) {
-		return Math.PI * Math.pow(durchmesser + 2 * kartondicke, 2) / 4;
+	// Nachbedingung: gibt einen neuen Kreis mit zusatzlicher kartondicke zurueck
+	public Kreis create(double kartondicke) {
+		return new Kreis(durchmesser + 2 * kartondicke);
 	}
 
 	// Nachbedingung: Gibt den Durchmesser des Kreises zurueck.

@@ -48,9 +48,15 @@ public class Sechseck extends Grundflaeche {
 
 	@Override
 	// Vorbedingung: kartondicke darf nicht kleiner 0 sein.
-	// Nachbedingung: Gibt die Flaeche des Sechsecks zurueck und berechnet die Kartondicke ein.
-	public double flaeche(double kartondicke) {
-		return 3 / 2 * Math.pow(seitenlaenge + kartondicke, 2) * Math.sqrt(3);
+	// Nachbedingung: gibt ein neues Sechseck mit zusatzlicher kartondicke zurueck
+	public Sechseck create(double kartondicke) {
+		return new Sechseck(seitenlaenge + kartondicke);
+	}
+
+	@Override
+	// Nachbedingung: Gibt die Flaeche des Sechsecks zurueck
+	public double flaeche() {
+		return 3 / 2 * Math.pow(seitenlaenge, 2) * Math.sqrt(3);
 	}
 
 	// Nachbedingung: Gibt die Seitenlänge des Sechsecks zurueck.

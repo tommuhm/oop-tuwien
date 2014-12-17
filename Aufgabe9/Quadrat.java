@@ -50,9 +50,15 @@ public class Quadrat extends Grundflaeche {
 
 	@Override
 	// Vorbedingung: kartondicke darf nicht kleiner 0 sein.
-	// Nachbedingung: Gibt die Flaeche des Quadrats zurueck und berechnet die Kartondicke ein.
-	public double flaeche(double kartondicke) {
-		return Math.pow(seitenlaenge + 2 * kartondicke, 2);
+	// Nachbedingung: gibt ein neues Quadrat mit zusatzlicher kartondicke zurueck
+	public Quadrat create(double kartondicke) {
+		return new Quadrat(seitenlaenge + 2 * kartondicke);
+	}
+
+	@Override
+	// Nachbedingung: Gibt die Flaeche des Quadrats zurueck
+	public double flaeche() {
+		return Math.pow(seitenlaenge, 2);
 	}
 
 	// Nachbedingung: Gibt den Seitenlaenge des Rechtecks zurueck.

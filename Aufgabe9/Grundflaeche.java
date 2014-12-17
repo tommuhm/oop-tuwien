@@ -2,9 +2,7 @@
 public abstract class Grundflaeche {
 
 	// Nachbedingung: gibt die flaeche der Grundflaeche zurück
-	public double flaeche() {
-		return flaeche(0);
-	}
+	public abstract double flaeche();
 
 	// Vorbedingung: grundflaeche darf nicht null sein
 	// Nachbedingung: gibt true zurueck wenn das aktuelle object in die grundflaeche passt
@@ -26,8 +24,13 @@ public abstract class Grundflaeche {
 	// Nachbedingung: Gibt true zurueck wenn this in sechseck passt, sonst false.
 	public abstract boolean kannBeinhalten(Sechseck sechseck);
 
-	// Vorbedingung: kartondicke darf nicht kleiner 0 sein
-	// Nachbedingung: gibt die berechnete Flaeche von this zurueck. Die Kartondicke muss in der Berechnung einbezogen werden.
-	public abstract double flaeche(double kartondicke);
+	// Nachbedingung: gibt eine neue Grundflaeche zurueck
+	public Grundflaeche create() {
+		return create(0);
+	}
+
+	// Vorbedingung: kartondicke darf nicht kleiner 0 sein.
+	// Nachbedingung: gibt eine neue Grundflaeche mit zusatzlicher kartondicke zurueck
+	public abstract Grundflaeche create(double kartondicke);
 
 }

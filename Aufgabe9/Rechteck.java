@@ -6,7 +6,7 @@ public class Rechteck extends Grundflaeche {
 	// Invariante: laenge muss groesser breite sein.
 	private double laenge;
 	private double breite;
-	
+
 	// Nachbedingung: laenge ist zugewiesen.
 	// Nachbedingung: breite ist zugewiesen.
 	public Rechteck(double laenge, double breite) {
@@ -55,10 +55,16 @@ public class Rechteck extends Grundflaeche {
 	}
 
 	@Override
+	// Nachbedingung: Gibt die Flaeche des Rechtecks zurueck
+	public double flaeche() {
+		return laenge * breite;
+	}
+
+	@Override
 	// Vorbedingung: kartondicke darf nicht kleiner 0 sein.
-	// Nachbedingung: Gibt die Flaeche des Rechtecks zurueck und berechnet die Kartondicke ein.
-	public double flaeche(double kartondicke) {
-		return (laenge + 2 * kartondicke) * (breite + 2 * kartondicke);
+	// Nachbedingung: gibt ein neues Rechteck mit zusatzlicher kartondicke zurueck
+	public Rechteck create(double kartondicke) {
+		return new Rechteck(laenge + 2 * kartondicke, breite + 2 * kartondicke);
 	}
 
 	// Nachbedingung: Gibt den Laenge des Rechtecks zurueck.
