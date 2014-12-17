@@ -3,26 +3,28 @@ public class Schachtel extends Geschenk {
 	private static final double KARTONDICKE = 0.5;
 
 	private Geschenk geschenk;
+	private Grundflaeche grundflaecheAussen;
+	private double hoeheAussen;
 
 	// Vorbedingung: hoehe muss groesser als 0 sein
 	// Vorbedingung: grundflaeche darf nicht null sein
-	public Schachtel(double hoehe, Grundflaeche grundflaeche) {
-		super("", hoehe, grundflaeche);
+	public Schachtel(double hoeheInnen, Grundflaeche grundflaecheInnen) {
+		super("", hoeheInnen, grundflaecheInnen.create());
 		this.geschenk = null;
+		this.grundflaecheAussen = grundflaecheInnen.create(KARTONDICKE);
+		this.hoeheAussen = hoeheInnen + 2 * KARTONDICKE;
 	}
 
 	// Nachbedingung: gibt das Volumen der Schachtel mit eingerechneter Kartondicke zurueck
 	public double volumen() {
-		double flaecheAussen = super.getGrundflaeche().flaeche(KARTONDICKE);
-		double hoeheAussen = super.getHoehe() + 2 * KARTONDICKE;
-		return flaecheAussen * hoeheAussen;
+		return grundflaecheAussen.flaeche() * hoeheAussen;
 	}
 
 	// Vorbedingung: geschenk darf nicht null sein
 	// Nachbedingung: falls das Geschenk in diese Schachtel hineinpasst, dann wird true zurueckgegeben
 	// Nachbedingung: falls das Geschenk nicht hineinpasst, dann wird false zurueckgegeben
 	public boolean kannBeinhalten(Geschenk geschenk) {
-		if (this.getHoehe() >= geschenk.getHoehe() && geschenk.getGrundflaeche().passtIn(this.getGrundflaeche()))
+		if (super.getHoehe() >= geschenk.getHoehe() && geschenk.getGrundflaeche().passtIn(super.getGrundflaeche()))
 			return true;
 
 		return false;
@@ -39,6 +41,16 @@ public class Schachtel extends Geschenk {
 		this.setName(geschenk.getName());
 
 		return true;
+	}
+
+	@Override
+	public Grundflaeche getGrundflaeche() {
+		return grundflaecheAussen;
+	}
+
+	@Override
+	public double getHoehe() {
+		return hoeheAussen;
 	}
 
 	// Nachbedingung: falls diese Schachtel ein Geschenk enthaelt, dann wird true zurueckgegeben
