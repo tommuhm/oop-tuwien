@@ -1,7 +1,7 @@
 
 public abstract class Grundflaeche {
 
-	// Nachbedingung: gibt die flaeche der Grundflaeche zurück
+	// Nachbedingung: gibt die flaeche der Grundflaeche zurueck
 	public abstract double flaeche();
 
 	// Vorbedingung: grundflaeche darf nicht null sein

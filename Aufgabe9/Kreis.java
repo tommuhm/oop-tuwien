@@ -17,13 +17,13 @@ public class Kreis extends Grundflaeche {
 	}
 
 	@Override
-	// Nachbedingung: Kreise dürfen keine Rechtecke aufnehmen -> false. 
+	// Nachbedingung: Kreise duerfen keine Rechtecke aufnehmen -> false.
 	public boolean kannBeinhalten(Rechteck rechteck) {
 		return false;
 	}
 
 	@Override
-	// Nachbedingung: Kreise dürfen keine Quadrate aufnehmen -> false.
+	// Nachbedingung: Kreise duerfen keine Quadrate aufnehmen -> false.
 	public boolean kannBeinhalten(Quadrat quadrat) {
 		return false;
 	}

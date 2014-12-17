@@ -369,7 +369,7 @@ public class Test {
 	private static void printGeschensack() {
 		System.out.println();
 		geschenkesack.inhalt();
-		System.out.println("\n### Volumen des Geschenkesacks: " + geschenkesack.volumen() + "cm³ ###\n");
+		System.out.println("\n### Volumen des Geschenkesacks: " + geschenkesack.volumen() + "cm^3 ###\n");
 	}
 
 	private static void rdmSchachtelGenerator(int anzahl) {

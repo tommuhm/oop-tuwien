@@ -17,13 +17,13 @@ public class Quadrat extends Grundflaeche {
 	}
 
 	@Override
-	// Nachbedingung: Quadrate dürfen keine Sechsecke aufnehmen -> false. 
+	// Nachbedingung: Quadrate duerfen keine Sechsecke aufnehmen -> false.
 	public boolean kannBeinhalten(Sechseck sechseck) {
 		return false;
 	}
 
 	@Override
-	// Nachbedingung: Quadrate dürfen keine Rechtecke aufnehmen -> false. 
+	// Nachbedingung: Quadrate duerfen keine Rechtecke aufnehmen -> false.
 	public boolean kannBeinhalten(Rechteck rechteck) {
 		return false;
 	}

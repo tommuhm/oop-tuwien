@@ -17,13 +17,13 @@ public class Sechseck extends Grundflaeche {
 	}
 
 	@Override
-	// Nachbedingung: Sechsecke dürfen keine Quadrate aufnehmen -> false. 
+	// Nachbedingung: Sechsecke duerfen keine Quadrate aufnehmen -> false.
 	public boolean kannBeinhalten(Quadrat quadrat) {
 		return false;
 	}
 
 	@Override
-	// Nachbedingung: Sechsecke dürfen keine Rechtecke aufnehmen -> false. 
+	// Nachbedingung: Sechsecke duerfen keine Rechtecke aufnehmen -> false.
 	public boolean kannBeinhalten(Rechteck rechteck) {
 		return false;
 	}
@@ -59,7 +59,7 @@ public class Sechseck extends Grundflaeche {
 		return 3 / 2 * Math.pow(seitenlaenge, 2) * Math.sqrt(3);
 	}
 
-	// Nachbedingung: Gibt die Seitenlänge des Sechsecks zurueck.
+	// Nachbedingung: Gibt die Seitenlaenge des Sechsecks zurueck.
 	public double getSeitenlaenge() {
 		return seitenlaenge;
 	}

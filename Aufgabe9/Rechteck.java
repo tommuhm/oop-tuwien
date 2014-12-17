@@ -22,7 +22,7 @@ public class Rechteck extends Grundflaeche {
 	}
 
 	@Override
-	// Nachbedingung: Rechtecke dürfen keine Quadrate aufnehmen -> false. 
+	// Nachbedingung: Rechtecke duerfen keine Quadrate aufnehmen -> false.
 	public boolean kannBeinhalten(Quadrat quadrat) {
 		return false;
 	}
@@ -37,7 +37,7 @@ public class Rechteck extends Grundflaeche {
 	}
 
 	@Override
-	// Nachbedingung: Rechtecke dürfen keine Kreise aufnehmen -> false. 
+	// Nachbedingung: Rechtecke duerfen keine Kreise aufnehmen -> false.
 	public boolean kannBeinhalten(Kreis kreis) {
 		return false;
 	}
