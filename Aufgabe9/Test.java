@@ -147,7 +147,7 @@ public class Test {
 		} else {
 			System.out.println("Prototype: wuerfel0, instance oder grundflaeche falsch - Test fehlgeschlagen");
 		}
-		if (artefakt instanceof Artefakt && artefakt.getGrundflaeche() instanceof Sechseck) {
+		if (artefakt instanceof Artefakt && artefakt.getGrundflaeche() instanceof Quadrat) {
 			System.out.println("Prototype: artefakt0, instance und grundflaeche korrekt - Test erfolgreich");
 		} else {
 			System.out.println("Prototype: artefakt0, instance oder grundflaeche falsch - Test fehlgeschlagen");
