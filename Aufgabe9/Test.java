@@ -3,17 +3,29 @@ public class Test {
 	public static void main(String[] args) {
 		
 		/*
+		 * ausfuehren am g0:
+		 * 
+		 * $ ajc -source 1.6 *.java *.aj
+		 * $ java -cp .:/usr/share/java/aspectjrt.jar Test
+		 * 
+		 * erster command ist compilen mit source level 1.6
+		 * zweiter command ist beim ausfuehren auch die AspectJ-Runtime-Bibliothek in den Classpath aufnehmen
+		 */
+		
+		/*
 		 * Aufgabenaufteilung: Planung zu dritt.
 		 * David Jaffry: Geschenkesack, Schachtellager, Test, GeschenkPrototypeFactory, Zusicherungen, Artefakt, Bonboniere, Buch, Kerze, Schuhe, Vase, Weinflasche, Wuerfel
 		 * Ulrich Aschl: ZaehlerObj, Schachtel, Quadrat, Rechteck, Zusicherungen
 		 * Thomas Muhm: Geschenk, GeschenkPrototypeFactory, Grundflaeche, Kreis, Sechseck
-		 */
-		
+		 */		
 		
 		Schachtellager schachtellager = Schachtellager.getInstance();
 		Geschenkesack geschenkesack = Geschenkesack.getInstance();
 		GeschenkPrototypeFactory geschenkprotoypefactory = new GeschenkPrototypeFactory();
 		
+		// zeigt nach mehreren Ausfuehrungen auch, dass die Schachteln im Lager wirklich genutzt werden, 
+		// da die Anzahl der dynamisch erstellten Objekte davon abhaengt, 
+		// wie sehr die zufaellig erstellten Schachteln fuer die Geschenke passen
 		rdmSchachtelGenerator(10);
 		System.out.println("\nSchachteln wurden erstellt und zum Schachtellager hinzugefuegt.\n");
 		
@@ -128,7 +140,7 @@ public class Test {
 		System.out.println("Artefakte wurden erfolgreich zum Geschenkesack hinzugefuegt.");
 		
 		System.out.println("\nVolumen des Geschenkesacks: " + geschenkesack.volumen() + "cm³");
-		System.out.println("\nInhalt des Geschenkesacks:\n" + geschenkesack.inhalt());
+		System.out.println("\nInhalt des Geschenkesacks:\n\n" + geschenkesack.inhalt());
 		
 	}
 	
