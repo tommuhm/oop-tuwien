@@ -2,29 +2,34 @@ public abstract class Geschenk implements Cloneable {
 
 	private String name;
 	private double hoehe;
-	private Grundflaeche grundform;
+	private Grundflaeche grundflaeche;
 
-	// Vorbedingung: name sollte nicht null sein
-	// Vorbedingung: grundform muss eine gueltige Grundform sein
-	// Invariante: hoehe muss groesser als 0 sein
-	public Geschenk(String name, double hoehe, Grundflaeche grundform) {
+	// Vorbedingung: name darf nicht null sein
+	// Vorbedingung: grundflaeche darf nicht null sein
+	// Vorbedingung: hoehe muss groesser als 0 sein
+	public Geschenk(String name, double hoehe, Grundflaeche grundflaeche) {
 		this.name = name;
 		this.hoehe = hoehe;
-		this.grundform = grundform;
+		this.grundflaeche = grundflaeche;
 	}
 
+	// Nachbedingung: gibt den namen des geschenks zurueck
 	public String getName() {
 		return name;
 	}
 
+	// Nachbedingung: gibt die hoehe des geschenks zurueck
 	public double getHoehe() {
 		return hoehe;
 	}
 
-	public Grundflaeche getGrundform() {
-		return grundform;
+	// Nachbedingung: gibt die grundflaeche des geschenks zurueck
+	public Grundflaeche getGrundflaeche() {
+		return grundflaeche;
 	}
 
+	// Vorbedingung: name darf nicht null sein
+	// Nachbedingung: der name des geschneks wurde auf name gesetzt
 	protected void setName(String name) {
 		this.name = name;
 	}

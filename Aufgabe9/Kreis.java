@@ -11,28 +11,28 @@ public class Kreis extends Grundflaeche {
 
 	@Override
 	// Vorbedingung: grundflaeche darf nicht null sein.
-	// Nachbedingung: gibt true zurueck wenn this das Objekt grundflaeche beinhalten kann.
-	public boolean kannBeinhalten(Grundflaeche grundflaeche) {
+	// Nachbedingung: gibt true zurueck wenn das aktuelle object in die grundflaeche passt
+	public boolean passtIn(Grundflaeche grundflaeche) {
 		return grundflaeche.passtIn(this);
 	}
 
 	@Override
 	// Nachbedingung: Kreise dürfen keine Rechtecke aufnehmen -> false. 
-	public boolean passtIn(Rechteck rechteck) {
+	public boolean kannBeinhalten(Rechteck rechteck) {
 		return false;
 	}
 
 	@Override
 	// Nachbedingung: Kreise dürfen keine Quadrate aufnehmen -> false.
-	public boolean passtIn(Quadrat quadrat) {
+	public boolean kannBeinhalten(Quadrat quadrat) {
 		return false;
 	}
 
 	@Override
 	// Vorbedingung: sechseck darf nicht null sein.
 	// Nachbedingung: Gibt true zurueck wenn sechseck in this passt, sonst false.
-	public boolean passtIn(Sechseck sechseck) {
-		if (2 * sechseck.getSeitenlaenge() <= this.durchmesser) {
+	public boolean kannBeinhalten(Sechseck sechseck) {
+		if (this.durchmesser >= 2 * sechseck.getSeitenlaenge()) {
 			return true;
 		}
 		return false;
@@ -41,7 +41,7 @@ public class Kreis extends Grundflaeche {
 	@Override
 	// Vorbedingung: kreis darf nicht null sein.
 	// Nachbedingung: Gibt true zurueck wenn kreis in this passt, sonst false.
-	public boolean passtIn(Kreis kreis) {
+	public boolean kannBeinhalten(Kreis kreis) {
 		if (this.durchmesser >= kreis.getDurchmesser()) {
 			return true;
 		}

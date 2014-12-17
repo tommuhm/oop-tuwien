@@ -21,7 +21,7 @@ public class Test {
 		
 		Schachtellager schachtellager = Schachtellager.getInstance();
 		Geschenkesack geschenkesack = Geschenkesack.getInstance();
-		GeschenkPrototypeFactory geschenkprotoypefactory = new GeschenkPrototypeFactory();
+		GeschenkPrototypes geschenkprotoypefactory = new GeschenkPrototypes();
 		
 		// zeigt nach mehreren Ausfuehrungen auch, dass die Schachteln im Lager wirklich genutzt werden, 
 		// da die Anzahl der dynamisch erstellten Objekte davon abhaengt, 

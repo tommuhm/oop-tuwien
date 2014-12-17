@@ -5,13 +5,14 @@ public class Geschenkesack {
 	private static Geschenkesack instance = null;
 	private ArrayList<Schachtel> schachtelList;
 
+	// Invariante: instance muss eine referenz auf die singleton instanz sein, oder null wenn diese noch nicht existiert
+
 	private Geschenkesack() {
 		schachtelList = new ArrayList<Schachtel>();
 	}
 
-	// singleton
 	// Nachbedingung: falls es noch keine instance gab, wird diese hiermit erstellt
-	// Nachbedingung: gibt diese instanz zurueck
+	// Nachbedingung: gibt die singleton instanz zurueck
 	// Nachbedingung: versichert, dass es nur genau einen Geschenkesack gibt
 	public static Geschenkesack getInstance() {
 		if (instance == null) {
@@ -31,8 +32,7 @@ public class Geschenkesack {
 		return true;
 	}
 
-	// Nachbedingung: gibt das Volumen des Sacks zurueck
-	// Invariante: volumen ist groesser gleich 0
+	// Nachbedingung: gibt das Gesamtvolumen aller Geschenke in dem Sack zurueck
 	public double volumen() {
 		double volumen = 0;
 		for (Schachtel schachtel : schachtelList) {
@@ -42,7 +42,6 @@ public class Geschenkesack {
 	}
 
 	// Nachbedingung: gibt alle namen der geschenke des sacks zurueck
-	// Invariante: counter ist groesser gleich 0
 	public String inhalt() {
 		int counter = 0;
 		String inhalt = "\n";

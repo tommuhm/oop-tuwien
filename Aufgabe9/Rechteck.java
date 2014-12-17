@@ -16,21 +16,21 @@ public class Rechteck extends Grundflaeche {
 
 	@Override
 	// Vorbedingung: grundflaeche darf nicht null sein.
-	// Nachbedingung: gibt true zurueck wenn this das Objekt grundflaeche beinhalten kann.
-	public boolean kannBeinhalten(Grundflaeche grundflaeche) {
+	// Nachbedingung: gibt true zurueck wenn das aktuelle object in die grundflaeche passt
+	public boolean passtIn(Grundflaeche grundflaeche) {
 		return grundflaeche.passtIn(this);
 	}
 
 	@Override
 	// Nachbedingung: Rechtecke dürfen keine Quadrate aufnehmen -> false. 
-	public boolean passtIn(Quadrat quadrat) {
+	public boolean kannBeinhalten(Quadrat quadrat) {
 		return false;
 	}
 
 	@Override
 	// Vorbedingung: rechteck darf nicht null sein.
-	// Nachbedingung: Gibt true zurueck wenn this in rechteck passt, sonst false.
-	public boolean passtIn(Rechteck rechteck) {
+	// Nachbedingung: Gibt true zurueck wenn rechteck in this passt, sonst false.
+	public boolean kannBeinhalten(Rechteck rechteck) {
 		if (this.getLaenge() >= rechteck.getLaenge() && this.getBreite() >= rechteck.getBreite())
 			return true;
 		return false;
@@ -38,14 +38,14 @@ public class Rechteck extends Grundflaeche {
 
 	@Override
 	// Nachbedingung: Rechtecke dürfen keine Kreise aufnehmen -> false. 
-	public boolean passtIn(Kreis kreis) {
+	public boolean kannBeinhalten(Kreis kreis) {
 		return false;
 	}
 
 	@Override
 	// Vorbedingung: sechseck darf nicht null sein.
-	// Nachbedingung: Gibt true zurueck wenn this in sechseck passt, sonst false.
-	public boolean passtIn(Sechseck sechseck) {
+	// Nachbedingung: Gibt true zurueck wenn seckseck in this passt, sonst false.
+	public boolean kannBeinhalten(Sechseck sechseck) {
 		double radius = sechseck.getSeitenlaenge();
 		double inkreis = radius * Math.sqrt(3) / 2;
 

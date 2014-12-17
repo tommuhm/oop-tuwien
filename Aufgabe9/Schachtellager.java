@@ -5,14 +5,15 @@ public class Schachtellager {
 	private static Schachtellager instance = null;
 	private ArrayList<Schachtel> schachtelList;
 
+	// Invariante: instance muss eine referenz auf die singleton instanz sein, oder null wenn diese noch nicht existiert
+
 	private Schachtellager() {
 		schachtelList = new ArrayList<Schachtel>();
 	}
 
-	// singleton
 	// Nachbedingung: falls es noch keine instance gab, wird diese hiermit erstellt
-	// Nachbedingung: gibt diese instanz zurueck
-	// Nachbedingung: versichert, dass es nur genau einen Geschenkesack gibt
+	// Nachbedingung: gibt die singleton instanz zurueck
+	// Nachbedingung: versichert, dass es nur genau ein Schachtellager gibt
 	public static Schachtellager getInstance() {
 		if (instance == null) {
 			instance = new Schachtellager();
@@ -21,9 +22,8 @@ public class Schachtellager {
 	}
 
 	// Vorbedingung: schachtel darf nicht null sein
-	// Nachbedingung: eine schachtel kann nicht hinzugefuegt werden, wenn sie schon ein geschenk beinhaltet, gibt daher false zurueck
-	// Nachbedingung: wenn eine schachtel hizugefuegt wird, dann wird true
-	// zurueckgegeben
+	// Nachbedingung: wenn eine schachtel ein geschenk beinhaltet, wird false zureckgeben und die schachtel wird nicht dem lager hinzugefuegt
+	// Nachbedingung: wenn eine schachtel hizugefuegt wurde, dann wird true zurueckgegeben
 	public boolean addSchachtel(Schachtel schachtel) {
 		if (schachtel.hasGeschenk())
 			return false;
@@ -33,9 +33,10 @@ public class Schachtellager {
 	}
 
 	// Vorbedingung: geschenk darf nicht null sein
-	// Vorbedingung: innere Verpackung/Geschenk verpacken nicht möglich, wenn äußerere Verpackung vorhanden
+	// Vorbedingung: geschenk darf noch nicht verpackt sein
 	// Nachbedingung: falls eine passende schachtel in der schachtelList vorhanden ist, wird diese genommen, schachtel wird anschliessend aus der liste entfernt
-	// Nachbedingung: falls keine passende schachtel in der schachtelList  vorhanden ist, dann wird diese erstellt
+	// Nachbedingung: falls keine passende schachtel in der schachtelList  vorhanden ist, dann wird das geschenk in einer neuen schachtel verpackt
+	// Nachbedingung: gibt die schachtel in dem sich das geschenk befindet zurueck
 	public Schachtel verpacke(Geschenk geschenk) {
 		Schachtel schachtel = null;
 		for (Schachtel s : schachtelList) {
@@ -47,7 +48,7 @@ public class Schachtellager {
 
 		if (schachtel == null) {
 			schachtel = new Schachtel(geschenk.getHoehe(),
-					geschenk.getGrundform());
+					geschenk.getGrundflaeche());
 		} else {
 			schachtelList.remove(schachtel);
 		}
