@@ -45,4 +45,5 @@ public abstract class Geschenk implements Cloneable {
 		}
 		return clone;
 	}
+
 }

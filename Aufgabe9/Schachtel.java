@@ -48,4 +48,10 @@ public class Schachtel extends Geschenk {
 		return true;
 	}
 
+	@Override
+	// Nachbedingung: gibt die Grundflaeche in lesbarer Form zurueck
+	public String toString() {
+		return "Schachtel: " + getName() + ", " + getGrundflaeche() + ", Volumen: " + volumen();
+	}
+
 }

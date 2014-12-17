@@ -59,4 +59,10 @@ public class Kreis extends Grundflaeche {
 	public double getDurchmesser() {
 		return durchmesser;
 	}
+
+	@Override
+	// Nachbedingung: gibt die Grundflaeche in lesbarer Form zurueck
+	public String toString() {
+		return "Kreis: " + durchmesser;
+	}
 }

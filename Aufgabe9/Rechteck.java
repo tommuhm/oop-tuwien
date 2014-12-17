@@ -70,4 +70,10 @@ public class Rechteck extends Grundflaeche {
 	public double getBreite() {
 		return breite;
 	}
+
+	@Override
+	// Nachbedingung: gibt die Grundflaeche in lesbarer Form zurueck
+	public String toString() {
+		return "Rechteck: " + laenge + "x" + breite;
+	}
 }

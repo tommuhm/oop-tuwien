@@ -8,7 +8,7 @@ public class GeschenkPrototypes {
 	public GeschenkPrototypes() {
 		geschenkMap = new HashMap<String, Geschenk>();
 
-		geschenkMap.put("kerze0", new Kerze("Kerze 15x10", 15, 10));
+		geschenkMap.put("kerze0", new Kerze("Kerze 15x3", 15, 3));
 		geschenkMap.put("kerze1", new Kerze("Kerze 20x05", 20, 05));
 		geschenkMap.put("buch0", new Buch("Buch 2x10x4", 2, 10, 4));
 		geschenkMap.put("buch1", new Buch("Buch 3x12x6", 3, 12, 6));
