@@ -44,12 +44,10 @@ public class Geschenkesack {
 
 	// Nachbedingung: gibt alle namen der geschenke des sacks aus
 	public void inhalt() {
-		int counter = 0;
 		System.out.println("### Inhalt des Geschenkesacks: ###");
 		for (Schachtel schachtel : schachtelList) {
 			System.out.println(schachtel.getName());
-			counter++;
 		}
-		System.out.println("### Es sind insgesamt " + counter + " Geschenke im Sack ###");
+		System.out.println("### Es sind insgesamt " + schachtelList.size() + " Geschenke im Sack ###");
 	}
 }

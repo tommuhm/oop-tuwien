@@ -54,4 +54,15 @@ public class Schachtellager {
 		schachtel.addGeschenk(geschenk);
 		return schachtel;
 	}
+
+	@Override
+	// Nachbedingung: gibt eine lessbare representation der schachteln im lager zurueck
+	public String toString() {
+		String out = "### Schachtellager ###";
+		for (Schachtel schachtel : schachtelList) {
+			out += "\n" + schachtel;
+		}
+		out += "\n### " + schachtelList.size() + " Schachteln im Lager ###";
+		return out;
+	}
 }

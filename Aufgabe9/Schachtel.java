@@ -17,7 +17,6 @@ public class Schachtel extends Geschenk {
 		this.hoeheAussen = hoeheInnen + 2 * KARTONDICKE;
 	}
 
-	@Override
 	// Nachbedingung: gibt das Volumen der Schachtel mit eingerechneter Kartondicke zurueck
 	public double volumen() {
 		return new BigDecimal(grundflaecheAussen.flaeche() * hoeheAussen).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
@@ -47,11 +46,13 @@ public class Schachtel extends Geschenk {
 	}
 
 	@Override
+	// Nachbedingung: gibt den namen des geschenks zurueck
 	public Grundflaeche getGrundflaeche() {
 		return grundflaecheAussen;
 	}
 
 	@Override
+	// Nachbedingung: gibt die hoehe des geschenks zurueck
 	public double getHoehe() {
 		return hoeheAussen;
 	}

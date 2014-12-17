@@ -15,11 +15,6 @@ public abstract class Geschenk implements Cloneable {
 		this.grundflaeche = grundflaeche;
 	}
 
-	// Nachbedingung: gibt das Volumen der Schachtel mit eingerechneter Kartondicke zurueck
-	public double volumen() {
-		return new BigDecimal(grundflaeche.flaeche() * hoehe).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-	}
-
 	// Nachbedingung: gibt den namen des geschenks zurueck
 	public String getName() {
 		return name;
@@ -56,7 +51,7 @@ public abstract class Geschenk implements Cloneable {
 	@Override
 	// Nachbedingung: gibt die Grundflaeche in lesbarer Form zurueck
 	public String toString() {
-		return "Geschenk: " + getName() + ", Hoehe: " + getHoehe() + ", " + getGrundflaeche() + ", Volumen: " + volumen();
+		return "Geschenk: " + getName() + ", Hoehe: " + getHoehe() + ", " + getGrundflaeche();
 	}
 
 }
