@@ -1,5 +1,4 @@
 
-
 public aspect ZaehlerObj {
 	int objects = 0;
 	
